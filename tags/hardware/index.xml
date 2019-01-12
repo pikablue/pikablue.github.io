@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hardware on pika.blue</title>
+    <link>http://pika.blue/tags/hardware/</link>
+    <description>Recent content in Hardware on pika.blue</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 05 Jan 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://pika.blue/tags/hardware/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Hardware</title>
+      <link>http://pika.blue/posts/tenori-on/hardware/</link>
+      <pubDate>Sat, 05 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/hardware/</guid>
+      <description>The service manual for the TNR-O (the orange version) can be found on-line.</description>
+    </item>
+    
+  </channel>
+</rss>
