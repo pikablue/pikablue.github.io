@@ -24,7 +24,7 @@
 		<div class="logo" role="banner">
 			<a class="logo__link" href="/" title="pika.blue" rel="home">
 				<div class="logo__title">pika.blue</div>
-				<div class="logo__tagline">Just another site</div>
+				<div class="logo__tagline">Random Project Repository </div>
 			</a>
 		</div>
 	</div>
@@ -52,42 +52,171 @@
 	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
 	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/tenori-on" rel="category">tenori-on</a></span>
 </span></div>
-		</header><div class="post__content clearfix">
+		</header>
+		<figure class="post__thumbnail">
+			<img src="/images/tenori_on.1024.jpg" alt="Tenori-On : Project Introduction and Goals">
+		</figure>
+<div class="post__toc toc">
+	<div class="toc__title">Page content</div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#fix">Fix :</a></li>
+<li><a href="#minor-quiet-mode">Minor : Quiet mode</a></li>
+<li><a href="#minor-block-change-in-normal-mode">Minor : Block change in normal mode</a></li>
+<li><a href="#minor-code-optimisation">Minor :  Code optimisation</a></li>
+<li><a href="#major-assignable-midi-channels">Major :  Assignable Midi channels</a></li>
+<li><a href="#major-assignable-scales">Major : Assignable scales</a></li>
+<li><a href="#major-wider-playable-range">Major : Wider Playable range</a></li>
+<li><a href="#major-arpeggiator">Major : Arpeggiator</a></li>
+<li><a href="#major-controller-output">Major : Controller output</a></li>
+<li><a href="#major-sequencer">Major : Sequencer</a></li>
+<li><a href="#major-direct-velocity-control">Major : Direct Velocity control</a></li>
+<li><a href="#major-variable-sound-length">Major : Variable sound length</a></li>
+</ul></li>
+</ul>
+</nav>
+	</div>
+</div>
+<div class="post__content clearfix">
 			
-
-<h1 id="introduction">Introduction</h1>
 
 <p>The Yamaha Tenori-on, designed in collaboration between the performance artist Toshio Iwai and Yamaha, is a wonderful piece of hardware.</p>
 
-<p>However, the software (firmware) running on it has some issues. A number of the bugs in the initially released software (v1) were fixed by subsequent releases (v2.0, v2.1) from Yamaha, but some still remain. Additionally, to use the device fully as part of my live setup, requires some modifications to play nice.</p>
+<p>However, the software (firmware) running on it has some issues. A number of the bugs in the initially released software (v1) were fixed by subsequent releases (v2.0, v2.1) from Yamaha, but some still remain. Additionally, to use the device fully as part of a live setup, requires some modifications to play nice, if it is going to be used as a midi controller. Fortunately, it is possible to safely update the &ldquo;application&rdquo; software, without touching the boot code that actually loads/saves the application software, so it is possible to perform test updates without brick the device (it is always possible to go back to the stock application software).</p>
 
-<p>This project is therefore an attempt to patch the software (starting with v2.1 as a base) to improve/modify the functionality.</p>
+<p>NB : Updating the <strong>boot</strong> software may brick your TNR! Don&rsquo;t do it!</p>
 
-<p>This page acts to track the goals, and subgoal, status.</p>
+<p>This project is therefore an attempt to patch the software (starting with v2.1 as a base) to improve/modify the functionality. A major rewrite is not really possible : although there is lots of information about the CPU, quite a lot of the action occurs in the SWL-01 chip, on which I can find no information, so the &ldquo;API&rdquo; to the SWL-01 in the code has to remain. As a result this is really just patching the code.</p>
 
-<h1 id="fixes">Fixes</h1>
+<p>This page acts to track the goals, provide some context, and try to say what I&rsquo;m doing.</p>
 
-<p>This is a list of preceived issues with the software, and the fixing route.</p>
+<p>The mods are divided into:
+- Fixes : Where the code just looks wrong
+- Minor : Where a small change could have a big effect
+- Major : Where significant rewrites are needed</p>
 
-<table>
-<thead>
-<tr>
-<th>Problem</th>
-<th>Description</th>
-<th>Solution</th>
-<th>Status</th>
-</tr>
-</thead>
+<h2 id="fix">Fix :</h2>
 
-<tbody>
-<tr>
-<td>Sysex 1</td>
-<td>Generated Sysex messages confuse the rest of the system</td>
-<td>Turn them off</td>
-<td>open</td>
-</tr>
-</tbody>
-</table>
+<h2 id="minor-quiet-mode">Minor : Quiet mode</h2>
+
+<p><strong>Problem</strong> : Sysex messages are sent whenever keys are pressed/</p>
+
+<p>In every mode (master/slave, remote/normal), pressing a key emits sysex codes.  This is unnecessary traffic (and buffer handling in the TNR), and in the worst case, seems to confuse other bits of kit.</p>
+
+<p><strong>Solution_1</strong> : Don&rsquo;t send sysex codes. This suppression can be done in one place in the code.</p>
+
+<p><strong>Solution_2</strong> : Sending sysex is how one tenori-on can control another. It would be nice if this could be only suppressed in some sort of &ldquo;midi quiet&rdquo; mode, set at power on or menu, but this requires understanding the menu system (which I don&rsquo;t yet).</p>
+
+<p><strong>Status</strong> : <em>Open</em></p>
+
+<h2 id="minor-block-change-in-normal-mode">Minor : Block change in normal mode</h2>
+
+<p><strong>Problem</strong> : TNR only responds to block change requests in remote mode.</p>
+
+<p>It would be good to be able to change the block playing from a different midi controller, while in normal mode. In my case, to allow a foot controller to change the block number, so that swaps between verses and chorus can be done with the feet rather than with the hands. This is of course possible in remote mode, by sending sysex messages (providing that you have a foot controller that can send arbitrary sysex messages, which the Behringer FCB1010 can&rsquo;t but the Roland FC-300 can). Unforunately, in remote mode, no note on/note off messages are produced by the TNR, defeating the point of its use as a controller.</p>
+
+<p><strong>Solution_1</strong> : When midi messages are parsed from the incoming buffer, there is a check to see whether the TNR is in remote mode or not. This has to be suppressed, at least for some message types, so that response in normal mode is possible.</p>
+
+<p><strong>Solution_2</strong> : More convenient would be to change the &ldquo;change block&rdquo; command from a sysex to a MIDI CC code, or MIDI system message. I have been considering using F3 &ldquo;Song Select&rdquo;; I can&rsquo;t find any examples of other kit using this.</p>
+
+<p><strong>Status</strong> : <em>Open</em></p>
+
+<h2 id="minor-code-optimisation">Minor :  Code optimisation</h2>
+
+<p><strong>Problem</strong> : TNR code is not well optimised</p>
+
+<p>As far as I can tell from the assembler, the code produced by the TLCS-900 compiler is very poorly optimised. This can range from the trivial (there are several occasions where unnecessary jumps and stack pushes are done, probably coming from variable type casting) to the complex (e.g. searching an instrument array every time a note is played). The tenori-on is not a high power machine, so the more that can be done to optimise the code, the better.</p>
+
+<p><strong>Solution</strong> : Remove redundant code. Optimise where possible.</p>
+
+<p><strong>Status</strong> : <em>Ongoing</em></p>
+
+<h2 id="major-assignable-midi-channels">Major :  Assignable Midi channels</h2>
+
+<p><strong>Problem</strong> : Layers do not have assignable midi channels</p>
+
+<p>Layer 1 is Midi channel 1, Layer 2 is Midi channel 2, etc.  If both layer 1 &amp; 2 were set to the same midi channel, very interesting effects could be generated.</p>
+
+<p><strong>Solution</strong> : In fact, in the code, there is an array interpreted as midi-channel-per-layer. However I haven&rsquo;t yet sorted out how to provide an easy user interface, nor how to save/load the data from a layer or song. Layers can certainly only output on one channel (adding output on multiple channels is too difficult). An approach where the tenori-on main grid can be used to do the map - e.g. the Y axis is the layer, and the X-axis is the channel (like the volume sliders) would be good.</p>
+
+<p><strong>Status</strong> : <em>Open</em></p>
+
+<h2 id="major-assignable-scales">Major : Assignable scales</h2>
+
+<p><strong>Problem</strong> : Layers do not have assignable scales</p>
+
+<p>All layers work on the same scale (Dorian, Ionian, Chromatic, etc.). This is limiting</p>
+
+<p><strong>Solution</strong> : In the code, there is a scale-per-layer array. Again, the problem is setting it.</p>
+
+<p><strong>Status</strong> : <em>Open</em></p>
+
+<h2 id="major-wider-playable-range">Major : Wider Playable range</h2>
+
+<p><strong>Problem</strong> : If using a chromatic scale, the range is limited to just over an octave. This is quite limiting.</p>
+
+<p><strong>Solution</strong> : In score mode, at least, one could imaging using the rotary dial to scroll up and down, so that the enterable range is larger. (e.g. +1/-1 scale extent). Since this is lots more notes in the scale, this would require the scale definitions to be extended to cover more than 16 notes.</p>
+
+<p><strong>Status</strong> : <em>Open</em></p>
+
+<h2 id="major-arpeggiator">Major : Arpeggiator</h2>
+
+<p><strong>Problem</strong> : I want an arpeggiator.</p>
+
+<p>In particular, to allow singificant rythmic infill without &ldquo;using up&rdquo; so much of a blocks time allocation.</p>
+
+<p><strong>Solution</strong> : The approach here is to define a new type of instrument, one that doesn&rsquo;t produce audible notes, but that does set the scale <em>for a different layer</em>. Here the midi-mapping would indicate which layers scale was intended, rather than actually producing any MIDI messages. This would allow one layer to contain chords, with a very slow loop speed, and another layer to contain an arpeggio pattern. Assignable scales is a precursor to this mod.</p>
+
+<p><strong>Status</strong> : <em>Open</em></p>
+
+<h2 id="major-controller-output">Major : Controller output</h2>
+
+<p><strong>Problem</strong> : Only note on/note off messages can be produced</p>
+
+<p><strong>Solution</strong> : One way is to be able to &ldquo;tag&rdquo; any layer as being a controller layer, rather than a note layer. Different instruments would correspond to production of different controllers (volume, pan, filters, etc.). Instead of &ldquo;note on/off&rdquo; events, midi CC messages would be produced. If block change is a controller number, and some midi messages are reflected internally (e.g. volume), then this would also be a way to do a sequencer (i.e. the TNR can issue its own block change messages).</p>
+
+<p><strong>Status</strong> : <em>Open</em></p>
+
+<h2 id="major-sequencer">Major : Sequencer</h2>
+
+<p><strong>Problem</strong> : The TNR can not chain blocks together</p>
+
+<p><strong>Solution 1</strong> : The &ldquo;easiest&rdquo; way to do this might be to have a new layer mode (Score,Random,Draw,&hellip;,Sequencer) that somehow allows block changes to be done. In particular, there isn&rsquo;t anything in the code that prevents different layers running on different blocks - it&rsquo;s just that there is no way for the user to differentiate between block-change-all, or block-change-layer. This is a tricky thing to provide a UI for.</p>
+
+<p><strong>Solution 2</strong> : Using a block-change controller instrument.</p>
+
+<p><strong>Status</strong> : <em>Open</em></p>
+
+<h2 id="major-direct-velocity-control">Major : Direct Velocity control</h2>
+
+<p><strong>Problem</strong> : The TNR just produces notes with the same velocity</p>
+
+<p>Interestingly, the underlying SWL-01 will produce audio with variable volume/velocity - as can be seen when sending note-on from somewhere else -  and the TNR SW stores velocity, it&rsquo;s just that you can&rsquo;t input velocity via the UI.</p>
+
+<p><strong>Solution 1</strong> : Possibly use the variable brightness to allow 3-state velocity (full, <sup>2</sup>&frasl;<sub>3</sub>, <sup>1</sup>&frasl;<sub>3</sub>, off) via multiple presses.</p>
+
+<p><strong>Solution 2</strong> : Alternatively, the Controller Output mod above could also have a &ldquo;velocity&rdquo; controller, to update the internal velocity, although this might be tricky to coordinate. One layer running the notes in draw mode with another layer running the velocity in bounce mode could produce some nice effects</p>
+
+<p><strong>Solution 3</strong> : Another approach, only really useful in score mode, is to have a &ldquo;split screen&rdquo; where the top N (say 12) rows are notes, and the bottom 4 are the velocity.</p>
+
+<p><strong>Status</strong> : <em>Open</em></p>
+
+<h2 id="major-variable-sound-length">Major : Variable sound length</h2>
+
+<p><strong>Problem</strong> : Each layer has a set sound length.</p>
+
+<p>There isn&rsquo;t a way to have variable sound lengths within a layer. There isn&rsquo;t any underlying reason why; when a new note comes up, tne TNR pushes it, and a timer count, into a &ldquo;notes on&rdquo; buffer, and then simply down-counts throught the buffer to see when to send the note-off. So long as the note length is known at the time the note-on appears, then there could be a way of having variable note lengths. An approach whereby the notes duration is a &ldquo;bar&rdquo; on the grid - i.e. play the note until there is no LED lit - is not easy to implement, and only really valid in Score mode.</p>
+
+<p><strong>Solution 1</strong> : Possibly use the variable brightness to allow 3-state note lenths (full, <sup>2</sup>&frasl;<sub>3</sub>, <sup>1</sup>&frasl;<sub>3</sub>, off) via multiple presses.</p>
+
+<p><strong>Solution 2</strong> : Alternatively, the Controller Output mod above could also have a &ldquo;note length&rdquo; controller, to update the note length, although this might be tricky to coordinate.</p>
+
+<p><strong>Solution 3</strong> : A similar &ldquo;split screen&rdquo; to the Direct Velocity control above.</p>
+
+<p><strong>Status</strong> : <em>Open</em></p>
 
 		</div>
 		
@@ -107,7 +236,7 @@
 		<span class="authorbox__name">About Pika Blue</span>
 	</div>
 	<div class="authorbox__description">
-		Pika Blue is an engineer with too many side projects on the go
+		Pika Blue is overly obsessed with midi controllers, especially unsupported ones with blinky lights .
 	</div>
 </div>
 	
