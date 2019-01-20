@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://pika.blue/posts/tenori-on/bootbuttons/</loc>
+    <lastmod>2019-01-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://pika.blue/posts/fc-300/goals/</loc>
     <lastmod>2019-01-05T00:00:00+00:00</lastmod>
   </url>
@@ -29,7 +34,7 @@
   
   <url>
     <loc>http://pika.blue/posts/tenori-on/</loc>
-    <lastmod>2019-01-05T00:00:00+00:00</lastmod>
+    <lastmod>2019-01-19T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -51,7 +56,7 @@
   
   <url>
     <loc>http://pika.blue/tags/hardware/</loc>
-    <lastmod>2019-01-05T00:00:00+00:00</lastmod>
+    <lastmod>2019-01-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -68,7 +73,7 @@
   
   <url>
     <loc>http://pika.blue/categories/tenori-on/</loc>
-    <lastmod>2019-01-05T00:00:00+00:00</lastmod>
+    <lastmod>2019-01-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

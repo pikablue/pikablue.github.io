@@ -904,6 +904,10 @@ img {
 	vertical-align: bottom;
 }
 
+img[src~="small"] {
+   width: 50%;
+}
+
 iframe,
 embed,
 object,
