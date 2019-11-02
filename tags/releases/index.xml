@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Releases on pika.blue</title>
+    <link>http://pika.blue/tags/releases/</link>
+    <description>Recent content in Releases on pika.blue</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 06 Oct 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://pika.blue/tags/releases/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>A006 - Per layer scales</title>
+      <link>http://pika.blue/posts/tenori-on/a006/</link>
+      <pubDate>Sun, 06 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/a006/</guid>
+      <description>This release adds
+ The ability to set different scales per layer.</description>
+    </item>
+    
+    <item>
+      <title>Releases</title>
+      <link>http://pika.blue/posts/tenori-on/releases/</link>
+      <pubDate>Sun, 06 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/releases/</guid>
+      <description>This page contains a link to the the releases so far.</description>
+    </item>
+    
+  </channel>
+</rss>

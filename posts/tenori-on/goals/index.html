@@ -54,7 +54,9 @@
 </span></div>
 		</header>
 		<figure class="post__thumbnail">
-			<img src="/images/tenori_on.1024.jpg" alt="Tenori-On : Project Introduction and Goals">
+			<p style="text-align:center;">
+			<img src="/images/tenori_on.1024.jpg" alt="Tenori-On : Project Introduction and Goals" style="max-width:400px;">
+			</p>
 		</figure>
 <div class="post__toc toc">
 	<div class="toc__title">Page content</div>
@@ -63,7 +65,7 @@
 <ul>
 <li>
 <ul>
-<li><a href="#fix">Fix :</a></li>
+<li><a href="#summary">Summary</a></li>
 <li><a href="#minor-quiet-mode">Minor : Quiet mode</a></li>
 <li><a href="#minor-block-change-in-normal-mode">Minor : Block change in normal mode</a></li>
 <li><a href="#minor-code-optimisation">Minor :  Code optimisation</a></li>
@@ -85,7 +87,7 @@
 
 <p>The Yamaha Tenori-on, designed in collaboration between the performance artist Toshio Iwai and Yamaha, is a wonderful piece of hardware.</p>
 
-<p>However, the software (firmware) running on it has some issues. A number of the bugs in the initially released software (v1) were fixed by subsequent releases (v2.0, v2.1) from Yamaha, but some still remain. Additionally, to use the device fully as part of a live setup, requires some modifications to play nice, if it is going to be used as a midi controller. Fortunately, it is possible to safely update the &ldquo;application&rdquo; software, without touching the boot code that actually loads/saves the application software, so it is possible to perform test updates without brick the device (it is always possible to go back to the stock application software).</p>
+<p>However, the software (firmware) running on it has some issues. It isn&rsquo;t well optimised (I mainly blame the Toshiba TLCS-900 compiler for that) which is an issue when under load. Also, to use the device fully as part of a live setup, requires some extensions/modifications to play nice, if it is going to be used as a midi controller. Fortunately, it is possible to safely update the &ldquo;application&rdquo; software, without touching the boot code that actually loads/saves the application software, so it is possible to perform test updates without brick the device (it is always possible to go back to the stock application software).</p>
 
 <p>NB : Updating the <strong>boot</strong> software may brick your TNR! Don&rsquo;t do it!</p>
 
@@ -98,7 +100,22 @@
 - Minor : Where a small change could have a big effect
 - Major : Where significant rewrites are needed</p>
 
-<h2 id="fix">Fix :</h2>
+<h2 id="summary">Summary</h2>
+
+<p>| Title | Class | Status |
+| Quiet Mode | Minor | Not started |
+| Block change | Minor | Not started |
+| Code optimisation | Minor | Ongoing |
+| Assignable Midi channels | Major | Not started |
+| Per-layer scales | Major | In release A006 |
+| Wider range | Major | Not started |
+| Arpeggiator | Major | Not started |
+| Controller output | Major | Not started |
+| Sequencer | Major | Not started |
+| Velocity control | Major | Not started |
+| Sound length control | Major | Not started |</p>
+
+<hr />
 
 <h2 id="minor-quiet-mode">Minor : Quiet mode</h2>
 
@@ -112,6 +129,8 @@
 
 <p><strong>Status</strong> : <em>Open</em></p>
 
+<hr />
+
 <h2 id="minor-block-change-in-normal-mode">Minor : Block change in normal mode</h2>
 
 <p><strong>Problem</strong> : TNR only responds to block change requests in remote mode.</p>
@@ -124,6 +143,8 @@
 
 <p><strong>Status</strong> : <em>Open</em></p>
 
+<hr />
+
 <h2 id="minor-code-optimisation">Minor :  Code optimisation</h2>
 
 <p><strong>Problem</strong> : TNR code is not well optimised</p>
@@ -133,6 +154,8 @@
 <p><strong>Solution</strong> : Remove redundant code. Optimise where possible.</p>
 
 <p><strong>Status</strong> : <em>Ongoing</em></p>
+
+<hr />
 
 <h2 id="major-assignable-midi-channels">Major :  Assignable Midi channels</h2>
 
@@ -144,15 +167,18 @@
 
 <p><strong>Status</strong> : <em>Open</em></p>
 
+<hr />
+
 <h2 id="major-assignable-scales">Major : Assignable scales</h2>
 
 <p><strong>Problem</strong> : Layers do not have assignable scales</p>
 
 <p>All layers work on the same scale (Dorian, Ionian, Chromatic, etc.). This is limiting</p>
 
-<p><strong>Solution</strong> : In the code, there is a scale-per-layer array. Again, the problem is setting it.</p>
+<p><strong>Solution</strong> : Per layer scales are implemented in A006. In addition, a few extra scales have been added (Harmonic Minor, Melodic Minor, Bebop Dominant, 6-note Blues, 9-note Blues, Whole Tone).
+Using &ldquo;Master scale&rdquo; works like &ldquo;Master loop point&rdquo; - at the moment it is set (via OK), all scales of all layers will be overwritten to this one.</p>
 
-<p><strong>Status</strong> : <em>Open</em></p>
+<p><strong>Status</strong> : Closed in release A006</p>
 
 <h2 id="major-wider-playable-range">Major : Wider Playable range</h2>
 
@@ -252,10 +278,11 @@
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/a006/">A006 - Per layer scales</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/releases/">Releases</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/bootbuttons/">TNR Power On Buttons</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/fc-300/goals/">FC300</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/hardware/">TNR Hardware</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/goals/">Tenori-On : Project Introduction and Goals</a></li>
 		</ul>
 	</div>
 </div>
@@ -264,6 +291,7 @@
 	<div class="widget__content">
 		<a class="widget-taglist__link widget__link btn" href="/tags/goals" title="Goals">Goals (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/hardware" title="Hardware">Hardware (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/releases" title="Releases">Releases (2)</a>
 	</div>
 </div><div class="widget-social widget">
 	<h4 class="widget-social__title widget__title">Social</h4>
