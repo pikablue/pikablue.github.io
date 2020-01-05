@@ -12,22 +12,40 @@
     
     
     <item>
-      <title>A006 - Per layer scales</title>
-      <link>http://pika.blue/posts/tenori-on/a006/</link>
-      <pubDate>Sun, 06 Oct 2019 00:00:00 +0000</pubDate>
-      
-      <guid>http://pika.blue/posts/tenori-on/a006/</guid>
-      <description>This release adds
- The ability to set different scales per layer.</description>
-    </item>
-    
-    <item>
       <title>Releases</title>
       <link>http://pika.blue/posts/tenori-on/releases/</link>
-      <pubDate>Sun, 06 Oct 2019 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 08 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>http://pika.blue/posts/tenori-on/releases/</guid>
       <description>This page contains a link to the the releases so far.</description>
+    </item>
+    
+    <item>
+      <title>Suppress Midi SysEx</title>
+      <link>http://pika.blue/posts/tenori-on/midiquiet/</link>
+      <pubDate>Sun, 08 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/midiquiet/</guid>
+      <description>This function stops the output of MIDI SysEx messages everytime you press a button in normal mode.</description>
+    </item>
+    
+    <item>
+      <title>Per layer midi channels</title>
+      <link>http://pika.blue/posts/tenori-on/perlayermidichannel/</link>
+      <pubDate>Fri, 06 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/perlayermidichannel/</guid>
+      <description>This function adds the ability to set different midi channels per layer (including off)</description>
+    </item>
+    
+    <item>
+      <title>Per layer scales</title>
+      <link>http://pika.blue/posts/tenori-on/perlayerscales/</link>
+      <pubDate>Sun, 06 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/perlayerscales/</guid>
+      <description>This function adds
+ The ability to set different scales per layer.</description>
     </item>
     
     <item>

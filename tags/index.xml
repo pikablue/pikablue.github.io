@@ -6,35 +6,35 @@
     <description>Recent content in Tags on pika.blue</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 05 Jan 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 08 Dec 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://pika.blue/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Goals</title>
-      <link>http://pika.blue/tags/goals/</link>
-      <pubDate>Sat, 05 Jan 2019 00:00:00 +0000</pubDate>
+      <title>New Features</title>
+      <link>http://pika.blue/tags/new-features/</link>
+      <pubDate>Sun, 08 Dec 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://pika.blue/tags/goals/</guid>
+      <guid>http://pika.blue/tags/new-features/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Hardware</title>
-      <link>http://pika.blue/tags/hardware/</link>
+      <title>Project Plan</title>
+      <link>http://pika.blue/tags/project-plan/</link>
+      <pubDate>Sun, 08 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/tags/project-plan/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Stock Features</title>
+      <link>http://pika.blue/tags/stock-features/</link>
       <pubDate>Sat, 31 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://pika.blue/tags/hardware/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Releases</title>
-      <link>http://pika.blue/tags/releases/</link>
-      <pubDate>Sun, 06 Oct 2019 00:00:00 +0000</pubDate>
-      
-      <guid>http://pika.blue/tags/releases/</guid>
+      <guid>http://pika.blue/tags/stock-features/</guid>
       <description></description>
     </item>
     

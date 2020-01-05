@@ -57,37 +57,14 @@
 			<p style="text-align:center;">
 			<img src="/images/tenori_on.1024.jpg" alt="Tenori-On : Project Introduction and Goals" style="max-width:400px;">
 			</p>
-		</figure>
-<div class="post__toc toc">
-	<div class="toc__title">Page content</div>
-	<div class="toc__menu">
-		<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#summary">Summary</a></li>
-<li><a href="#minor-quiet-mode">Minor : Quiet mode</a></li>
-<li><a href="#minor-block-change-in-normal-mode">Minor : Block change in normal mode</a></li>
-<li><a href="#minor-code-optimisation">Minor :  Code optimisation</a></li>
-<li><a href="#major-assignable-midi-channels">Major :  Assignable Midi channels</a></li>
-<li><a href="#major-assignable-scales">Major : Assignable scales</a></li>
-<li><a href="#major-wider-playable-range">Major : Wider Playable range</a></li>
-<li><a href="#major-arpeggiator">Major : Arpeggiator</a></li>
-<li><a href="#major-controller-output">Major : Controller output</a></li>
-<li><a href="#major-sequencer">Major : Sequencer</a></li>
-<li><a href="#major-direct-velocity-control">Major : Direct Velocity control</a></li>
-<li><a href="#major-variable-sound-length">Major : Variable sound length</a></li>
-</ul></li>
-</ul>
-</nav>
-	</div>
-</div>
-<div class="post__content clearfix">
+		</figure><div class="post__content clearfix">
 			
 
 <p>The Yamaha Tenori-on, designed in collaboration between the performance artist Toshio Iwai and Yamaha, is a wonderful piece of hardware.</p>
 
-<p>However, the software (firmware) running on it has some issues. It isn&rsquo;t well optimised (I mainly blame the Toshiba TLCS-900 compiler for that) which is an issue when under load. Also, to use the device fully as part of a live setup, requires some extensions/modifications to play nice, if it is going to be used as a midi controller. Fortunately, it is possible to safely update the &ldquo;application&rdquo; software, without touching the boot code that actually loads/saves the application software, so it is possible to perform test updates without brick the device (it is always possible to go back to the stock application software).</p>
+<p>However, Yamaha seem to have given up supporting the hardware version in preference to the (iOS only 😞 ) TNR-i and TNR-e. For the hardware (TNR-w, TNR-o), the v2.10 firmware was released back in 2011 and nothing has happened since.</p>
+
+<p>The software (firmware) running on it has some issues. It isn&rsquo;t well optimised (I mainly blame the Toshiba TLCS-900 compiler for that) which is an issue when under load. Also, to use the device fully as part of a live setup, requires some extensions/modifications to play nice, if it is going to be used as a midi controller. Fortunately, it is possible to safely update the &ldquo;application&rdquo; software, without touching the boot code that actually loads/saves the application software, so it is possible to perform test updates without brick the device (it is always possible to go back to the stock application software).</p>
 
 <p>NB : Updating the <strong>boot</strong> software may brick your TNR! Don&rsquo;t do it!</p>
 
@@ -95,43 +72,108 @@
 
 <p>This page acts to track the goals, provide some context, and try to say what I&rsquo;m doing.</p>
 
-<p>The mods are divided into:
-- Fixes : Where the code just looks wrong
-- Minor : Where a small change could have a big effect
-- Major : Where significant rewrites are needed</p>
+<p>The mods are divided into:</p>
+
+<ul>
+<li>Minor : Where a small change could have a big effect</li>
+<li>Major : Where significant rewrites are needed</li>
+</ul>
 
 <h2 id="summary">Summary</h2>
 
-<p>| Title | Class | Status |
-| Quiet Mode | Minor | Not started |
-| Block change | Minor | Not started |
-| Code optimisation | Minor | Ongoing |
-| Assignable Midi channels | Major | Not started |
-| Per-layer scales | Major | In release A006 |
-| Wider range | Major | Not started |
-| Arpeggiator | Major | Not started |
-| Controller output | Major | Not started |
-| Sequencer | Major | Not started |
-| Velocity control | Major | Not started |
-| Sound length control | Major | Not started |</p>
+<table>
+<thead>
+<tr>
+<th>Title</th>
+<th>Class</th>
+<th>Status</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><a href="#qui">Quiet Mode</a></td>
+<td>Minor</td>
+<td><strong>Complete</strong> : <a href="/posts/tenori-on/midiquiet/">Midi quiet</a></td>
+</tr>
+
+<tr>
+<td><a href="#blo">Block change</a></td>
+<td>Minor</td>
+<td>Not started</td>
+</tr>
+
+<tr>
+<td><a href="#opt">Code optimisation</a></td>
+<td>Minor</td>
+<td>Ongoing</td>
+</tr>
+
+<tr>
+<td><a href="#plm">Assignable Midi channels</a></td>
+<td>Major</td>
+<td><strong>Complete</strong> : <a href="/posts/tenori-on/perlayermidichannel/">Per layer midi channel</a></td>
+</tr>
+
+<tr>
+<td><a href="#pls">Per-layer scales</a></td>
+<td>Major</td>
+<td><strong>Complete</strong> : <a href="/posts/tenori-on/perlayerscales/">Per layer scales</a></td>
+</tr>
+
+<tr>
+<td><a href="#wid">Wider range</a></td>
+<td>Major</td>
+<td>Not started</td>
+</tr>
+
+<tr>
+<td><a href="#arp">Arpeggiator</a></td>
+<td>Major</td>
+<td>Not started</td>
+</tr>
+
+<tr>
+<td><a href="#cco">Controller output</a></td>
+<td>Major</td>
+<td>Not started</td>
+</tr>
+
+<tr>
+<td><a href="#seq">Sequencer</a></td>
+<td>Major</td>
+<td>Not started</td>
+</tr>
+
+<tr>
+<td><a href="#vel">Velocity control</a></td>
+<td>Major</td>
+<td>Not started</td>
+</tr>
+
+<tr>
+<td><a href="#len">Sound length control</a></td>
+<td>Major</td>
+<td>Not started</td>
+</tr>
+</tbody>
+</table>
 
 <hr />
 
-<h2 id="minor-quiet-mode">Minor : Quiet mode</h2>
+<h2 id="qui">Minor : Quiet mode</h2>
 
 <p><strong>Problem</strong> : Sysex messages are sent whenever keys are pressed/</p>
 
-<p>In every mode (master/slave, remote/normal), pressing a key emits sysex codes.  This is unnecessary traffic (and buffer handling in the TNR), and in the worst case, seems to confuse other bits of kit.</p>
+<p>In normal mode, pressing a key emits sysex codes.  This is unnecessary traffic (and buffer handling in the TNR), and in the worst case, seems to confuse other bits of kit.</p>
 
-<p><strong>Solution_1</strong> : Don&rsquo;t send sysex codes. This suppression can be done in one place in the code.</p>
+<p><strong>Solution</strong> : Include a menu setting for not sending SysEx codes when in normal mode, but leave remote mode alone, since that is how one TNR controls another.</p>
 
-<p><strong>Solution_2</strong> : Sending sysex is how one tenori-on can control another. It would be nice if this could be only suppressed in some sort of &ldquo;midi quiet&rdquo; mode, set at power on or menu, but this requires understanding the menu system (which I don&rsquo;t yet).</p>
-
-<p><strong>Status</strong> : <em>Open</em></p>
+<p><strong>Status</strong> : Completed in vA009. See <a href="/posts/tenori-on/midiquiet/">Midi quiet</a></p>
 
 <hr />
 
-<h2 id="minor-block-change-in-normal-mode">Minor : Block change in normal mode</h2>
+<h2 id="blo">Minor : Block change in normal mode</h2>
 
 <p><strong>Problem</strong> : TNR only responds to block change requests in remote mode.</p>
 
@@ -145,7 +187,7 @@
 
 <hr />
 
-<h2 id="minor-code-optimisation">Minor :  Code optimisation</h2>
+<h2 id="opt">Minor :  Code optimisation</h2>
 
 <p><strong>Problem</strong> : TNR code is not well optimised</p>
 
@@ -157,7 +199,7 @@
 
 <hr />
 
-<h2 id="major-assignable-midi-channels">Major :  Assignable Midi channels</h2>
+<h2 id="plm">Major :  Assignable Midi channels</h2>
 
 <p><strong>Problem</strong> : Layers do not have assignable midi channels</p>
 
@@ -165,11 +207,11 @@
 
 <p><strong>Solution</strong> : In fact, in the code, there is an array interpreted as midi-channel-per-layer. However I haven&rsquo;t yet sorted out how to provide an easy user interface, nor how to save/load the data from a layer or song. Layers can certainly only output on one channel (adding output on multiple channels is too difficult). An approach where the tenori-on main grid can be used to do the map - e.g. the Y axis is the layer, and the X-axis is the channel (like the volume sliders) would be good.</p>
 
-<p><strong>Status</strong> : <em>Open</em></p>
+<p><strong>Status</strong> : Completed in vA008. See <a href="/posts/tenori-on/perlayermidichannel/">Per layer midi channel</a></p>
 
 <hr />
 
-<h2 id="major-assignable-scales">Major : Assignable scales</h2>
+<h2 id="pls">Major : Assignable scales</h2>
 
 <p><strong>Problem</strong> : Layers do not have assignable scales</p>
 
@@ -178,9 +220,9 @@
 <p><strong>Solution</strong> : Per layer scales are implemented in A006. In addition, a few extra scales have been added (Harmonic Minor, Melodic Minor, Bebop Dominant, 6-note Blues, 9-note Blues, Whole Tone).
 Using &ldquo;Master scale&rdquo; works like &ldquo;Master loop point&rdquo; - at the moment it is set (via OK), all scales of all layers will be overwritten to this one.</p>
 
-<p><strong>Status</strong> : Closed in release A006</p>
+<p><strong>Status</strong> : Completed in vA006. See <a href="/posts/tenori-on/perlayerscales/">Per layer scales</a></p>
 
-<h2 id="major-wider-playable-range">Major : Wider Playable range</h2>
+<h2 id="wid">Major : Wider Playable range</h2>
 
 <p><strong>Problem</strong> : If using a chromatic scale, the range is limited to just over an octave. This is quite limiting.</p>
 
@@ -188,7 +230,7 @@ Using &ldquo;Master scale&rdquo; works like &ldquo;Master loop point&rdquo; - at
 
 <p><strong>Status</strong> : <em>Open</em></p>
 
-<h2 id="major-arpeggiator">Major : Arpeggiator</h2>
+<h2 id="arp">Major : Arpeggiator</h2>
 
 <p><strong>Problem</strong> : I want an arpeggiator.</p>
 
@@ -198,7 +240,7 @@ Using &ldquo;Master scale&rdquo; works like &ldquo;Master loop point&rdquo; - at
 
 <p><strong>Status</strong> : <em>Open</em></p>
 
-<h2 id="major-controller-output">Major : Controller output</h2>
+<h2 id="cco">Major : Controller output</h2>
 
 <p><strong>Problem</strong> : Only note on/note off messages can be produced</p>
 
@@ -206,7 +248,7 @@ Using &ldquo;Master scale&rdquo; works like &ldquo;Master loop point&rdquo; - at
 
 <p><strong>Status</strong> : <em>Open</em></p>
 
-<h2 id="major-sequencer">Major : Sequencer</h2>
+<h2 id="seq">Major : Sequencer</h2>
 
 <p><strong>Problem</strong> : The TNR can not chain blocks together</p>
 
@@ -216,7 +258,7 @@ Using &ldquo;Master scale&rdquo; works like &ldquo;Master loop point&rdquo; - at
 
 <p><strong>Status</strong> : <em>Open</em></p>
 
-<h2 id="major-direct-velocity-control">Major : Direct Velocity control</h2>
+<h2 id="vel">Major : Direct Velocity control</h2>
 
 <p><strong>Problem</strong> : The TNR just produces notes with the same velocity</p>
 
@@ -230,7 +272,7 @@ Using &ldquo;Master scale&rdquo; works like &ldquo;Master loop point&rdquo; - at
 
 <p><strong>Status</strong> : <em>Open</em></p>
 
-<h2 id="major-variable-sound-length">Major : Variable sound length</h2>
+<h2 id="len">Major : Variable sound length</h2>
 
 <p><strong>Problem</strong> : Each layer has a set sound length.</p>
 
@@ -249,7 +291,7 @@ Using &ldquo;Master scale&rdquo; works like &ldquo;Master loop point&rdquo; - at
 <div class="post__tags tags clearfix">
 	<svg class="icon icon-tag" width="16" height="16" viewBox="0 0 16 16"><path d="M16 9.5c0 .373-.24.74-.5 1l-5 5c-.275.26-.634.5-1 .5-.373 0-.74-.24-1-.5L1 8a2.853 2.853 0 0 1-.7-1C.113 6.55 0 5.973 0 5.6V1.4C0 1.034.134.669.401.401.67.134 1.034 0 1.4 0h4.2c.373 0 .95.113 1.4.3.45.187.732.432 1 .7l7.5 7.502c.26.274.5.632.5.998zM3.5 5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>
 	<ul class="tags__list">
-		<li class="tags__item"><a class="tags__link btn" href="/tags/goals/" rel="tag">goals</a></li>
+		<li class="tags__item"><a class="tags__link btn" href="/tags/project-plan/" rel="tag">project plan</a></li>
 	</ul>
 </div>
 	</article>
@@ -278,20 +320,20 @@ Using &ldquo;Master scale&rdquo; works like &ldquo;Master loop point&rdquo; - at
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/a006/">A006 - Per layer scales</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/releases/">Releases</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/midiquiet/">Suppress Midi SysEx</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/perlayermidichannel/">Per layer midi channels</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/perlayerscales/">Per layer scales</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/bootbuttons/">TNR Power On Buttons</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/fc-300/goals/">FC300</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/hardware/">TNR Hardware</a></li>
 		</ul>
 	</div>
 </div>
 <div class="widget-taglist widget">
 	<h4 class="widget__title">Tags</h4>
 	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="/tags/goals" title="Goals">Goals (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/hardware" title="Hardware">Hardware (2)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/releases" title="Releases">Releases (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/new-features" title="New features">New features (3)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/project-plan" title="Project plan">Project plan (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/stock-features" title="Stock features">Stock features (2)</a>
 	</div>
 </div><div class="widget-social widget">
 	<h4 class="widget-social__title widget__title">Social</h4>
@@ -308,7 +350,7 @@ Using &ldquo;Master scale&rdquo; works like &ldquo;Master loop point&rdquo; - at
 		</div>
 		<footer class="footer">
 	<div class="container container-inner">
-		<div class="footer__copyright">&copy; 2019 pika.blue. <span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and a modified <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span></div>
+		<div class="footer__copyright">&copy; 2020 pika.blue. <span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and a modified <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span></div>
 	</div>
 </footer>
 

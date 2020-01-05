@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>New Features on pika.blue</title>
+    <link>http://pika.blue/tags/new-features/</link>
+    <description>Recent content in New Features on pika.blue</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 08 Dec 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://pika.blue/tags/new-features/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Suppress Midi SysEx</title>
+      <link>http://pika.blue/posts/tenori-on/midiquiet/</link>
+      <pubDate>Sun, 08 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/midiquiet/</guid>
+      <description>This function stops the output of MIDI SysEx messages everytime you press a button in normal mode.</description>
+    </item>
+    
+    <item>
+      <title>Per layer midi channels</title>
+      <link>http://pika.blue/posts/tenori-on/perlayermidichannel/</link>
+      <pubDate>Fri, 06 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/perlayermidichannel/</guid>
+      <description>This function adds the ability to set different midi channels per layer (including off)</description>
+    </item>
+    
+    <item>
+      <title>Per layer scales</title>
+      <link>http://pika.blue/posts/tenori-on/perlayerscales/</link>
+      <pubDate>Sun, 06 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/perlayerscales/</guid>
+      <description>This function adds
+ The ability to set different scales per layer.</description>
+    </item>
+    
+  </channel>
+</rss>
