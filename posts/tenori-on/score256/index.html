@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Suppress Midi SysEx</title>
+	<title>Extended (256 step) score</title>
 	<meta name="description" content="">
 	<meta name="generator" content="Hugo 0.48" />
 	
@@ -45,9 +45,9 @@
 <main class="main content">
 	<article class="post">
 		<header class="post__header">
-			<h1 class="post__title">Suppress Midi SysEx</h1><div class="post__meta meta">
+			<h1 class="post__title">Extended (256 step) score</h1><div class="post__meta meta">
 <svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-<time class="post__meta-date meta-date" datetime="2019-12-08T00:00:00">December 08, 2019</time>
+<time class="post__meta-date meta-date" datetime="2020-04-07T00:00:00">April 07, 2020</time>
 <span class="post__meta-categories meta-categories">
 	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
 	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/tenori-on" rel="category">tenori-on</a></span>
@@ -55,33 +55,55 @@
 		</header><div class="post__content clearfix">
 			
 
-<p>This function stops the output of MIDI SysEx messages everytime you press a button in normal mode.</p>
+<p>This function adds a new layer type - a 256 step score. This layer type can be selected via changing the layer mode</p>
 
-<p>When using the TNR as a midi controller, many devices are overwhelmed by the torrent of SysEx&rsquo;s coming out of the TNR. I&rsquo;ve seen several solutions involving midi hardware filters, etc.</p>
+<p><img src="/images/score256_set.jpg" alt="Score 256 selection" title="Score-256 selection" /></p>
 
-<p>This release simply adds a &ldquo;turn off sysex&rdquo; option.</p>
+<p>Fundamentally, this is implemented via chaining the blocks together, so that block 2 plays after block 1, etc., up to the end of the loop range. The loop range can be 256 steps long.</p>
 
-<p>In remote mode, of course, the SysEx output is not suppressed - this would defeat the purpose of the remote mode.</p>
+<p><img src="/images/score256_1.png" alt="Score 256 concept" title="Score-256 concept" /></p>
 
-<table>
-<thead>
-<tr>
-<th><img src="/images/midiquiet.jpg" alt="" title="Midi SysEx menu" /></th>
-<th><img src="/images/midiquietoff.jpg" alt="" title="Turning off SysEx" /></th>
-</tr>
-</thead>
+<p>This means that there can be a difference between the block currently being edited, and the block currently playing.</p>
 
-<tbody>
-</tbody>
-</table>
+<p>The behaviour of this new layer is quite complex, and a few changes have been made to the &ldquo;normal&rdquo; score layer type to support this.</p>
+
+<ol>
+<li><p>Changing the current block with R5 will change the currently playing block, for score, random, draw etc. as normal. For score-256, while it will change the block into which notes are entered, it won&rsquo;t change the current loop playing position, i.e. it won&rsquo;t change the currently <em>playing</em> block. (I can extend this ability to be playing one block and editing another into the other layer types, but I haven&rsquo;t yet got a nice UI way of differentiating between a normal block change and a edit-only block change).</p></li>
+
+<li><p>The LCD display of loop start (top) / loop end in normal score, and score256, has been changed to include both the block, and the position within the block, for the loop start and end points. This is shown below, corresponding to the loop point example above. For normal score, you can just ignore the first value as it simply reports the current block. I haven&rsquo;t yet worked out a way of suppressing this information in normal score mode.</p>
+
+<p><img src="/images/score256_2.png" alt="Score 256 LCD display" title="Score-256 Loop Point display" /></p></li>
+
+<li><p>To set loop points, L4 is used as normal. Pressing L4 and a key will set the start or end points, as normal, but at this block. For example, using a score256 layer to create the 38 step pattern shown above:</p>
+
+<ul>
+<li>In block 1, press L4 and the top half of the fifth column. This sets the LOOP TOP to 1 / 5</li>
+<li>Switch to block 3 using R5 and a key from the third column</li>
+<li>Press L4 and the bottom half of the 10th column. This sets the LOOP END to 3 / 10.</li>
+</ul></li>
+
+<li><p>A loop point &ldquo;off screen&rdquo; is displayed with a broken line at the edge of the current block, either the left edge, indicating that the loop point is on a lower block number than the current block, or the right edge, indicating that the loop point is on a higher block number than the current edge. For example, pressing L4 when the current block is 1, 2 or 3 gives the results below.</p>
+
+<p><img src="/images/score256_3.png" alt="Score 256 LED display" title="Score-256 Loop Point display" /></p></li>
+
+<li><p>If loop indicators are on, then when the currently playing position is not on the currently displayed block, the loop indicators will flash at the left of right edge of the block indicating the direction in which the currently playing position is.</p></li>
+
+<li><p>Animations for &ldquo;off screen&rdquo; notes aren&rsquo;t played.</p></li>
+
+<li><p>Using master loop point now reads in the current layers loop points. Pressing any LED key will change the loop point to the current block. Since block changing within the master loop point menu resets the menu, this doesn&rsquo;t allow easy editing of score256 loop points, but provided that LED keys aren&rsquo;t pressed during the master loop point menu, this does allow loop points to be set normally in one score-256 layer, then copied to any other score-256 layers.</p></li>
+</ol>
 
 <h2 id="compatibility-issues">Compatibility Issues</h2>
 
-<p>There shouldn&rsquo;t be any. The Midi Sysex setting is saveable, and is loadable, from standard settings files, although &ldquo;save as default&rdquo; doesn&rsquo;t yet work.</p>
+<p>Loading songs/blocks saved in previous releases - since they can&rsquo;t contain score-256 layers, should probably work OK.</p>
+
+<p>Using previous releases to load songs created in this release, using score-256, will not work.</p>
+
+<p>&ldquo;Save as default&rdquo; doesn&rsquo;t yet work.</p>
 
 <h2 id="releases">Releases</h2>
 
-<p>First included in A009.</p>
+<p>First included in A013</p>
 
 		</div>
 		
@@ -107,10 +129,7 @@
 	
 <nav class="post-nav flex">
 	<div class="post-nav__item post-nav__item--prev">
-		<a class="post-nav__link" href="/posts/tenori-on/perlayermidichannel/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Per layer midi channels</p></a>
-	</div>
-	<div class="post-nav__item post-nav__item--next">
-		<a class="post-nav__link" href="/posts/tenori-on/blockchange/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Remote block change</p></a>
+		<a class="post-nav__link" href="/posts/tenori-on/releases/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Releases</p></a>
 	</div>
 </nav>
 	

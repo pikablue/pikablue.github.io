@@ -12,12 +12,30 @@
     
     
     <item>
+      <title>Extended (256 step) score</title>
+      <link>http://pika.blue/posts/tenori-on/score256/</link>
+      <pubDate>Tue, 07 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/score256/</guid>
+      <description>This function adds a new layer type - a 256 step score.</description>
+    </item>
+    
+    <item>
       <title>Releases</title>
       <link>http://pika.blue/posts/tenori-on/releases/</link>
-      <pubDate>Sun, 08 Dec 2019 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 07 Apr 2020 00:00:00 +0000</pubDate>
       
       <guid>http://pika.blue/posts/tenori-on/releases/</guid>
       <description>This page contains a link to the the releases so far.</description>
+    </item>
+    
+    <item>
+      <title>Remote block change</title>
+      <link>http://pika.blue/posts/tenori-on/blockchange/</link>
+      <pubDate>Sat, 08 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/blockchange/</guid>
+      <description>This function adds the ability to change the block remotely, without being in remote mode.</description>
     </item>
     
     <item>
@@ -45,7 +63,7 @@
       
       <guid>http://pika.blue/posts/tenori-on/perlayerscales/</guid>
       <description>This function adds
- The ability to set different scales per layer.</description>
+ the ability to set different scales per layer.</description>
     </item>
     
     <item>

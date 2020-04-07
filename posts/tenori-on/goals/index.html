@@ -100,7 +100,7 @@
 <tr>
 <td><a href="#blo">Block change</a></td>
 <td>Minor</td>
-<td>Not started</td>
+<td><strong>Complete</strong> : <a href="/posts/tenori-on/blockchange/">Block Change</a></td>
 </tr>
 
 <tr>
@@ -142,7 +142,7 @@
 <tr>
 <td><a href="#seq">Sequencer</a></td>
 <td>Major</td>
-<td>Not started</td>
+<td>Subgoal 1 complete</td>
 </tr>
 
 <tr>
@@ -153,6 +153,12 @@
 
 <tr>
 <td><a href="#len">Sound length control</a></td>
+<td>Major</td>
+<td>Not started</td>
+</tr>
+
+<tr>
+<td><a href="#rnd">Randomizer</a></td>
 <td>Major</td>
 <td>Not started</td>
 </tr>
@@ -179,11 +185,9 @@
 
 <p>It would be good to be able to change the block playing from a different midi controller, while in normal mode. In my case, to allow a foot controller to change the block number, so that swaps between verses and chorus can be done with the feet rather than with the hands. This is of course possible in remote mode, by sending sysex messages (providing that you have a foot controller that can send arbitrary sysex messages, which the Behringer FCB1010 can&rsquo;t but the Roland FC-300 can). Unforunately, in remote mode, no note on/note off messages are produced by the TNR, defeating the point of its use as a controller.</p>
 
-<p><strong>Solution_1</strong> : When midi messages are parsed from the incoming buffer, there is a check to see whether the TNR is in remote mode or not. This has to be suppressed, at least for some message types, so that response in normal mode is possible.</p>
+<p><strong>Solution</strong> : F3 &ldquo;Song Select&rdquo; can be used to change the block, whether in remote mode or not.</p>
 
-<p><strong>Solution_2</strong> : More convenient would be to change the &ldquo;change block&rdquo; command from a sysex to a MIDI CC code, or MIDI system message. I have been considering using F3 &ldquo;Song Select&rdquo;; I can&rsquo;t find any examples of other kit using this.</p>
-
-<p><strong>Status</strong> : <em>Open</em></p>
+<p><strong>Status</strong> : Completed in vA010. See <a href="/posts/tenori-on/blockchange/">Block change</a></p>
 
 <hr />
 
@@ -226,7 +230,9 @@ Using &ldquo;Master scale&rdquo; works like &ldquo;Master loop point&rdquo; - at
 
 <p><strong>Problem</strong> : If using a chromatic scale, the range is limited to just over an octave. This is quite limiting.</p>
 
-<p><strong>Solution</strong> : In score mode, at least, one could imaging using the rotary dial to scroll up and down, so that the enterable range is larger. (e.g. +1/-1 scale extent). Since this is lots more notes in the scale, this would require the scale definitions to be extended to cover more than 16 notes.</p>
+<p><strong>Solution 1</strong> : In score mode, at least, one could imaging using the rotary dial to scroll up and down, so that the enterable range is larger. (e.g. +1/-1 scale extent). Since this is lots more notes in the scale, this would require the scale definitions to be extended to cover more than 16 notes.</p>
+
+<p><strong>Solution 2</strong> : A split approach where some of the notes are used to indicate +1 oct, 0 oct, -1 oct etc.</p>
 
 <p><strong>Status</strong> : <em>Open</em></p>
 
@@ -252,11 +258,11 @@ Using &ldquo;Master scale&rdquo; works like &ldquo;Master loop point&rdquo; - at
 
 <p><strong>Problem</strong> : The TNR can not chain blocks together</p>
 
-<p><strong>Solution 1</strong> : The &ldquo;easiest&rdquo; way to do this might be to have a new layer mode (Score,Random,Draw,&hellip;,Sequencer) that somehow allows block changes to be done. In particular, there isn&rsquo;t anything in the code that prevents different layers running on different blocks - it&rsquo;s just that there is no way for the user to differentiate between block-change-all, or block-change-layer. This is a tricky thing to provide a UI for.</p>
+<p><strong>Solution 1</strong> : A new layer mode - a 256 step score - has been implemented as a sub-goal of this. See <a href="/posts/tenori-on/score256/">Score 256</a> . This will be enhanced with a block-change &ldquo;instrument&rdquo; (as part of <a href="#cco">Controller output</a>) to permit true block change programming.</p>
 
-<p><strong>Solution 2</strong> : Using a block-change controller instrument.</p>
+<p><strong>Solution 2</strong> : Extending the solution above with additional mute/don&rsquo;t mute/fade in/fade out layer instructions would allow whole song programming.</p>
 
-<p><strong>Status</strong> : <em>Open</em></p>
+<p><strong>Status</strong> : <em>Ongoing</em></p>
 
 <h2 id="vel">Major : Direct Velocity control</h2>
 
@@ -268,7 +274,7 @@ Using &ldquo;Master scale&rdquo; works like &ldquo;Master loop point&rdquo; - at
 
 <p><strong>Solution 2</strong> : Alternatively, the Controller Output mod above could also have a &ldquo;velocity&rdquo; controller, to update the internal velocity, although this might be tricky to coordinate. One layer running the notes in draw mode with another layer running the velocity in bounce mode could produce some nice effects</p>
 
-<p><strong>Solution 3</strong> : Another approach, only really useful in score mode, is to have a &ldquo;split screen&rdquo; where the top N (say 12) rows are notes, and the bottom 4 are the velocity.</p>
+<p><strong>Solution 3</strong> : Another approach is to have a &ldquo;split screen&rdquo; where the top N (say 12) rows are notes, and the bottom 4 are the velocity. This would force the velocity of all playing notes within that step, but that might be OK.</p>
 
 <p><strong>Status</strong> : <em>Open</em></p>
 
@@ -283,6 +289,16 @@ Using &ldquo;Master scale&rdquo; works like &ldquo;Master loop point&rdquo; - at
 <p><strong>Solution 2</strong> : Alternatively, the Controller Output mod above could also have a &ldquo;note length&rdquo; controller, to update the note length, although this might be tricky to coordinate.</p>
 
 <p><strong>Solution 3</strong> : A similar &ldquo;split screen&rdquo; to the Direct Velocity control above.</p>
+
+<p><strong>Status</strong> : <em>Open</em></p>
+
+<h2 id="rnd">Major : Randomizer</h2>
+
+<p><strong>Problem</strong> : &ldquo;Random&rdquo; mode isn&rsquo;t random</p>
+
+<p>It would be nice to have a truly random note loop generator, like several modular synths, where the probability of each note in the scale occuring is settable.</p>
+
+<p><strong>Solution</strong> : This would be a new layer type, probably a bit visually similar to Bounce, where the height of each note corresponded to how likely that note was to fire.</p>
 
 <p><strong>Status</strong> : <em>Open</em></p>
 
@@ -320,18 +336,18 @@ Using &ldquo;Master scale&rdquo; works like &ldquo;Master loop point&rdquo; - at
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/score256/">Extended (256 step) score</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/releases/">Releases</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/blockchange/">Remote block change</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/midiquiet/">Suppress Midi SysEx</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/perlayermidichannel/">Per layer midi channels</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/perlayerscales/">Per layer scales</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/bootbuttons/">TNR Power On Buttons</a></li>
 		</ul>
 	</div>
 </div>
 <div class="widget-taglist widget">
 	<h4 class="widget__title">Tags</h4>
 	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="/tags/new-features" title="New features">New features (3)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/new-features" title="New features">New features (5)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/project-plan" title="Project plan">Project plan (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/stock-features" title="Stock features">Stock features (2)</a>
 	</div>
