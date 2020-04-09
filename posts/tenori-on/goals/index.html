@@ -16,6 +16,17 @@
 	<script type="text/javascript" src="/js/scripts.js"></script>
 	<link rel="shortcut icon" href="/favicon.ico">
 		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-163129209-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
 </head>
 <body class="body">
 	<div class="container container-outer">
@@ -162,6 +173,12 @@
 <td>Major</td>
 <td>Not started</td>
 </tr>
+
+<tr>
+<td><a href="#rec">Recorder</a></td>
+<td>Major</td>
+<td>Not started</td>
+</tr>
 </tbody>
 </table>
 
@@ -299,6 +316,25 @@ Using &ldquo;Master scale&rdquo; works like &ldquo;Master loop point&rdquo; - at
 <p>It would be nice to have a truly random note loop generator, like several modular synths, where the probability of each note in the scale occuring is settable.</p>
 
 <p><strong>Solution</strong> : This would be a new layer type, probably a bit visually similar to Bounce, where the height of each note corresponded to how likely that note was to fire.</p>
+
+<p><strong>Status</strong> : <em>Open</em></p>
+
+<h2 id="rec">Major : Recorder</h2>
+
+<p><strong>Problem</strong> : The TNR can&rsquo;t record incoming midi</p>
+
+<p>It would be nice if the TNR could record incoming midi onto a score. There are lots of issues here.</p>
+
+<pre><code>a) The way the code currently works is that the note duration is fixed, and known in advance, so there is no easy way of responding to Note-Off events. Nevertheless, Note-On events could be translated into grid notes, similar to remote mode.
+
+b) As a result, turning notes off can only be done fro the TNR itself, by deselecting LEDs. (Asking the user to reset notes with more note-on events seems wrong, and asking for 0-velocity note on's rather than note-offs seems awkward too)
+
+c) The translation task from incoming pitch to grid position is difficult. What should happen when the incoming note is &quot;off screen&quot; because of being too high or low? Or not in the current scale? Simplest would be to restrict recording to layers with chromatic scale, and within the octave that is displayed.
+
+d) Is this relevant for any other layers other than score?
+</code></pre>
+
+<p><strong>Solution</strong> : Not obvious. Since this seems score-specific, perhaps a new layer type (record), like score, but chromatic only, and dedicated to recording somehow.</p>
 
 <p><strong>Status</strong> : <em>Open</em></p>
 

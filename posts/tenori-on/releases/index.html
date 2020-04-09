@@ -16,6 +16,17 @@
 	<script type="text/javascript" src="/js/scripts.js"></script>
 	<link rel="shortcut icon" href="/favicon.ico">
 		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-163129209-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
 </head>
 <body class="body">
 	<div class="container container-outer">
@@ -93,12 +104,23 @@
 <li>The update will start after about 20 seconds. The update process takes about 90 seconds in process.</li>
 <li>Depending on SD card type, more time may be required.</li>
 </ul></li>
-<li>When installation is complete, switch the TENORI-ON off, then on again.</li>
-<li>Use the <em>System Menu</em> to perform a Factory Reset.</li>
+
+<li><p>When installation is complete, switch the TENORI-ON off, then on again.</p>
+
+<p>The following then differs from the standard approach, because expected locations for things have moved around a bit.</p></li>
+
+<li><p>If the system hangs on startup (i.e. never moves on from the title screen), then you will need to do a TEST MODE Factory reset. This will remove any loaded samples and reset back to &ldquo;normal&rdquo; rather than &ldquo;advanced&rdquo; mode, but it is easy to put these back.</p>
+
+<ul>
+<li>Turn off, then turn on while holding [L1] and [CLEAR]. The text &ldquo;Test Mode&rdquo; and &ldquo;TEST&rdquo; will appears</li>
+<li>Use the rotary dial to change &ldquo;TEST&rdquo; to &ldquo;047 Factory Set&rdquo;. Press OK</li>
+<li>Wait until the &ldquo;&ndash;&rdquo; has changed to &ldquo;End&rdquo;. Then turn off and turn on.</li>
+</ul></li>
+
+<li><p>If the system didn&rsquo;t hang on startup, it is recommended to perform the &ldquo;normal&rdquo; factory reset, which is the same, but retains the user loaded samples. Use the <em>System Menu</em> to perform a Factory Reset.</p></li>
 </ol>
 
-<p>Note that, while I try to retain as much backward compatibility as possible, some releases will not play songs/layers/blocks from earlier
-releases (or the 2.10 release) correctly, since certain settings have changed.</p>
+<p>Note that, while I try to retain as much backward compatibility as possible, some releases will not play songs/layers/blocks from earlier releases (or the 2.10 release) correctly, since certain settings have changed.</p>
 
 <h2 id="liability-waiver">Liability Waiver !</h2>
 
