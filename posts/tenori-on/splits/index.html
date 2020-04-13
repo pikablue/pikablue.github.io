@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Per layer scales</title>
+	<title>Splits</title>
 	<meta name="description" content="">
 	<meta name="generator" content="Hugo 0.48" />
 	
@@ -56,9 +56,9 @@ if (!doNotTrack) {
 <main class="main content">
 	<article class="post">
 		<header class="post__header">
-			<h1 class="post__title">Per layer scales</h1><div class="post__meta meta">
+			<h1 class="post__title">Splits</h1><div class="post__meta meta">
 <svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-<time class="post__meta-date meta-date" datetime="2019-10-06T00:00:00">October 06, 2019</time>
+<time class="post__meta-date meta-date" datetime="2020-04-13T00:00:00">April 13, 2020</time>
 <span class="post__meta-categories meta-categories">
 	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
 	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/tenori-on" rel="category">tenori-on</a></span>
@@ -66,87 +66,61 @@ if (!doNotTrack) {
 		</header><div class="post__content clearfix">
 			
 
-<p>This function adds</p>
+<p>This function extends all layer modes (except push) with octave, velocity, or note length splits.</p>
+
+<ul>
+<li><p>It is quite frustrating that the normal TNR limits the &ldquo;playable&rdquo; range of one block to the range of the selected scale and the octave setting. This new feature allows the octave to be one higher, or one lower, than the selected setting dynamically.</p></li>
+
+<li><p>The SWL-01 chip can actually produce a much more interesting range of notes than the TNR will allow it, in particular by allowing modification of the note velocity away from the default of 100. This new feature allows the velocity to be changed per note (from 3 options), allowing, for example, more musically dynamic drums and other effects.</p></li>
+
+<li><p>Finally, this feature allows the sound length to be dynamically halved, or doubled, allowing a larger range of expression.</p></li>
+</ul>
+
+<p>This function is a property of the layer, and is selected under the layer menu.</p>
+
+<table>
+<thead>
+<tr>
+<th><img src="/images/layeroperation.png" alt="" title="Layer Operation" /></th>
+<th><img src="/images/octavesplit.png" alt="" title="Selecting octave split" /></th>
+</tr>
+</thead>
+
+<tbody>
+</tbody>
+</table>
+
+<p>These features - only one of which can be selected at a time - act to sacrifice the top 3 pitched notes of the block, and use these to select which of the three octaves/velocities/sound lengths are wanted. Thus the note range is &ldquo;split&rdquo; into normal instrument notes (bottom 13) and expression (top 3).</p>
 
 <ol>
-<li>the ability to set different scales per layer.</li>
-<li>some additional scales.</li>
+<li><p>For layers where pitch increases vertically - i.e. score, random, draw - the top 3 rows of the TNR adjust the octave/velocity/note length. For layers where pitch increases horizontally - i.e. bounce, solo - the rightmost 3 rows of the adjust the octave/velocity/note length. This feature is not implemented for push.</p>
+
+<table>
+<thead>
+<tr>
+<th><img src="/images/splitvert.png" alt="Split point vertical" title="Vertical split" /></th>
+<th><img src="/images/splithoriz.png" alt="Split point horizontal" title="Horizontal split" /></th>
+</tr>
+</thead>
+
+<tbody>
+</tbody>
+</table></li>
+
+<li><p>The middle of the three split notes represents the &ldquo;baseline&rdquo; octave, velocity (100) or note length, as set by the layer. The top of the split represents +1 octave, +27 velocity (127) and double default note length. The bottom of the split is -1 octave, -27 velocity (73) or <sup>1</sup>&frasl;<sub>2</sub> note length.</p></li>
+
+<li><p>The split modified is retained until the next split modifier, i.e. the split latches. This is easily seen in score mode, and is fun to use in bounce mode, using the bounce to vary the velocity randomly.</p></li>
+
+<li><p>In score mode, a split directive in the same column as a note will strictly apply (i.e. before) that note plays. This is required in order to make &ldquo;chords&rdquo; in score mode behave predictably. For the other layer types, this has not been enforced, and depends on the order in which the notes were originally entered.</p></li>
 </ol>
-
-<p>Per-layer scales are set via a menu entry under &ldquo;Layer&rdquo;. Advanced mode will need
-to be active to see this menu entry (but I assume that everyone has this active&hellip;)</p>
-
-<table>
-<thead>
-<tr>
-<th><img src="/images/layerscale.jpg" alt="" title="Layer Scale Menu" /></th>
-<th><img src="/images/blues6.jpg" alt="" title="Setting Blues 6 scale" /></th>
-</tr>
-</thead>
-
-<tbody>
-</tbody>
-</table>
-
-<p>Using &ldquo;Master scale&rdquo; from the Play menu acts to set all scales in all layers to the same
-scale, in a similar way to the way Master loop speed operates.</p>
-
-<p>In addition to the modes of the major scale, i.e. Ionian,
-Dorian, Phrygian, Lydian, Mixolydian, Aeolian, and Locrian, the Chromatic scale, the
-Okinawan scale and the User defined scale, I&rsquo;ve added :</p>
-
-<table>
-<thead>
-<tr>
-<th>Scale Name</th>
-<th>Scale</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>Harmonic Minor</td>
-<td><img src="/images/harmonicminor.png" alt="scale" title="Harmonic Minor Scale" /></td>
-</tr>
-
-<tr>
-<td>Melodic Minor (ascending)</td>
-<td><img src="/images/melodicminor.png" alt="scale" title="Melodic Minor Scale" /></td>
-</tr>
-
-<tr>
-<td>Bebop (Dominant)</td>
-<td><img src="/images/bebopdominant.png" alt="scale" title="Bebop Scale" /></td>
-</tr>
-
-<tr>
-<td>6-note blues scale</td>
-<td><img src="/images/blues6scale.png" alt="scale" title="6-note Blues Scale" /></td>
-</tr>
-
-<tr>
-<td>9-note blues scale</td>
-<td><img src="/images/blues9scale.png" alt="scale" title="9-note Blues Scale" /></td>
-</tr>
-
-<tr>
-<td>Whole tone scale</td>
-<td><img src="/images/wholetonescale.png" alt="scale" title="Whole Tone Scale" /></td>
-</tr>
-</tbody>
-</table>
-
-<p>No &ldquo;per-layer-scale&rdquo; remote mode midi sysex has been included, so in remote mode, the TNR will not cause linked TNRs to change their layer scale.</p>
 
 <h2 id="compatibility-issues">Compatibility Issues</h2>
 
-<p>Loading songs/blocks saved in previous releases will interpret the layer as Lydian/Mixolydian, and probably get the octave setting wrong. To fix this, load the block, modify the octave and layerscale, then save the block again.</p>
+<p>Loading songs/blocks saved in previous releases may confuse the split code, and unexpected results may occur.</p>
 
 <h2 id="releases">Releases</h2>
 
-<p>First included in A006</p>
-
-<p>Bugfix for SaveAs (Alarm, Time Signal, Default) in A014.</p>
+<p>First included in A015.</p>
 
 		</div>
 		
@@ -172,10 +146,10 @@ Okinawan scale and the User defined scale, I&rsquo;ve added :</p>
 	
 <nav class="post-nav flex">
 	<div class="post-nav__item post-nav__item--prev">
-		<a class="post-nav__link" href="/posts/tenori-on/bootbuttons/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">TNR Power On Buttons</p></a>
+		<a class="post-nav__link" href="/posts/tenori-on/score256/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Extended (256 step) score</p></a>
 	</div>
 	<div class="post-nav__item post-nav__item--next">
-		<a class="post-nav__link" href="/posts/tenori-on/perlayermidichannel/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Per layer midi channels</p></a>
+		<a class="post-nav__link" href="/posts/tenori-on/releases/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Releases</p></a>
 	</div>
 </nav>
 	

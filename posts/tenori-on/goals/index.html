@@ -129,13 +129,13 @@ if (!doNotTrack) {
 <tr>
 <td><a href="#pls">Per-layer scales</a></td>
 <td>Major</td>
-<td><strong>Complete</strong> : <a href="/posts/tenori-on/perlayerscales/">Per layer scales</a></td>
+<td>Partial : <a href="/posts/tenori-on/perlayerscales/">Per layer scales</a></td>
 </tr>
 
 <tr>
 <td><a href="#wid">Wider range</a></td>
 <td>Major</td>
-<td>Not started</td>
+<td><strong>Complete</strong> : <a href="/posts/tenori-on/splits/">Splits</a></td>
 </tr>
 
 <tr>
@@ -159,13 +159,13 @@ if (!doNotTrack) {
 <tr>
 <td><a href="#vel">Velocity control</a></td>
 <td>Major</td>
-<td>Not started</td>
+<td>Partial : <a href="/posts/tenori-on/splits/">Splits</a></td>
 </tr>
 
 <tr>
 <td><a href="#len">Sound length control</a></td>
-<td>Major</td>
-<td>Not started</td>
+<td>Minor</td>
+<td>Partial : <a href="/posts/tenori-on/splits/">Splits</a></td>
 </tr>
 
 <tr>
@@ -212,11 +212,11 @@ if (!doNotTrack) {
 
 <p><strong>Problem</strong> : TNR code is not well optimised</p>
 
-<p>As far as I can tell from the assembler, the code produced by the TLCS-900 compiler is very poorly optimised. This can range from the trivial (there are several occasions where unnecessary jumps and stack pushes are done, probably coming from variable type casting) to the complex (e.g. searching an instrument array every time a note is played). The tenori-on is not a high power machine, so the more that can be done to optimise the code, the better.</p>
+<p>As far as I can tell from the assembler, the code produced by the TLCS-900 compiler is very poorly optimised. This can range from the trivial (there are several occasions where unnecessary jumps and stack pushes are done, probably coming from variable type casting) to the complex (e.g. searching an instrument array every time a note is played). The compiler also looks like it eschewed some TLCS-900/H1 commands (e.g. EX) in favour of long winded work-arounds). The tenori-on is not a high power machine, so the more that can be done to optimise the code, the better.</p>
 
 <p><strong>Solution</strong> : Remove redundant code. Optimise where possible.</p>
 
-<p><strong>Status</strong> : <em>Ongoing</em></p>
+<p><strong>Status</strong> : <em>Ongoing</em>. Code optimisation is done where it looks like it will save significant cycles.</p>
 
 <hr />
 
@@ -241,7 +241,9 @@ if (!doNotTrack) {
 <p><strong>Solution</strong> : Per layer scales are implemented in A006. In addition, a few extra scales have been added (Harmonic Minor, Melodic Minor, Bebop Dominant, 6-note Blues, 9-note Blues, Whole Tone).
 Using &ldquo;Master scale&rdquo; works like &ldquo;Master loop point&rdquo; - at the moment it is set (via OK), all scales of all layers will be overwritten to this one.</p>
 
-<p><strong>Status</strong> : Completed in vA006. See <a href="/posts/tenori-on/perlayerscales/">Per layer scales</a></p>
+<p>However, this is incomplete. Each Layer should have a distinct user-definable scale. The issue here is that although I can set it, I don&rsquo;t know (yet) how to save it with the layer.</p>
+
+<p><strong>Status</strong> : Partial implementation completed in vA006. See <a href="/posts/tenori-on/perlayerscales/">Per layer scales</a></p>
 
 <h2 id="wid">Major : Wider Playable range</h2>
 
@@ -249,9 +251,9 @@ Using &ldquo;Master scale&rdquo; works like &ldquo;Master loop point&rdquo; - at
 
 <p><strong>Solution 1</strong> : In score mode, at least, one could imaging using the rotary dial to scroll up and down, so that the enterable range is larger. (e.g. +1/-1 scale extent). Since this is lots more notes in the scale, this would require the scale definitions to be extended to cover more than 16 notes.</p>
 
-<p><strong>Solution 2</strong> : A split approach where some of the notes are used to indicate +1 oct, 0 oct, -1 oct etc.</p>
+<p><strong>Solution 2</strong> : A split approach where some of the notes are used to indicate +1 oct, 0 oct, -1 oct etc. This is the approach that has been implemented.</p>
 
-<p><strong>Status</strong> : <em>Open</em></p>
+<p><strong>Status</strong> : Completed in A015. See <a href="/posts/tenori-on/splits/">Splits</a></p>
 
 <h2 id="arp">Major : Arpeggiator</h2>
 
@@ -291,9 +293,11 @@ Using &ldquo;Master scale&rdquo; works like &ldquo;Master loop point&rdquo; - at
 
 <p><strong>Solution 2</strong> : Alternatively, the Controller Output mod above could also have a &ldquo;velocity&rdquo; controller, to update the internal velocity, although this might be tricky to coordinate. One layer running the notes in draw mode with another layer running the velocity in bounce mode could produce some nice effects</p>
 
-<p><strong>Solution 3</strong> : Another approach is to have a &ldquo;split screen&rdquo; where the top N (say 12) rows are notes, and the bottom 4 are the velocity. This would force the velocity of all playing notes within that step, but that might be OK.</p>
+<p><strong>Solution 3</strong> : Another approach is to have a &ldquo;split screen&rdquo; where the bottom N (say 13) rows are notes, and the top 3 are the velocity. This would force the velocity of all playing notes within that step. This has been implemented.</p>
 
-<p><strong>Status</strong> : <em>Open</em></p>
+<p><strong>Solution 4</strong> : Adding a per-layer velocity baseline value, like sound length and octave etc.</p>
+
+<p><strong>Status</strong> : <em>Ongoing</em>. Solution 3 has been implemented here : <a href="/posts/tenori-on/splits/">Splits</a></p>
 
 <h2 id="len">Major : Variable sound length</h2>
 
@@ -305,9 +309,9 @@ Using &ldquo;Master scale&rdquo; works like &ldquo;Master loop point&rdquo; - at
 
 <p><strong>Solution 2</strong> : Alternatively, the Controller Output mod above could also have a &ldquo;note length&rdquo; controller, to update the note length, although this might be tricky to coordinate.</p>
 
-<p><strong>Solution 3</strong> : A similar &ldquo;split screen&rdquo; to the Direct Velocity control above.</p>
+<p><strong>Solution 3</strong> : A similar &ldquo;split screen&rdquo; to the Direct Velocity control above. This has been implemented.</p>
 
-<p><strong>Status</strong> : <em>Open</em></p>
+<p><strong>Status</strong> : <em>Ongoing</em>. Solution 3 has been implemented here : <a href="/posts/tenori-on/splits/">Splits</a></p>
 
 <h2 id="rnd">Major : Randomizer</h2>
 
@@ -325,14 +329,13 @@ Using &ldquo;Master scale&rdquo; works like &ldquo;Master loop point&rdquo; - at
 
 <p>It would be nice if the TNR could record incoming midi onto a score. There are lots of issues here.</p>
 
-<pre><code>a) The way the code currently works is that the note duration is fixed, and known in advance, so there is no easy way of responding to Note-Off events. Nevertheless, Note-On events could be translated into grid notes, similar to remote mode.
+<p>a) The way the code currently works is that the note duration is fixed, and known in advance, so there is no easy way of responding to Note-Off events. Nevertheless, Note-On events could be translated into grid notes, similar to remote mode.</p>
 
-b) As a result, turning notes off can only be done fro the TNR itself, by deselecting LEDs. (Asking the user to reset notes with more note-on events seems wrong, and asking for 0-velocity note on's rather than note-offs seems awkward too)
+<p>b) As a result, turning notes off can only be done fro the TNR itself, by deselecting LEDs. (Asking the user to reset notes with more note-on events seems wrong, and asking for 0-velocity note on&rsquo;s rather than note-offs seems awkward too)</p>
 
-c) The translation task from incoming pitch to grid position is difficult. What should happen when the incoming note is &quot;off screen&quot; because of being too high or low? Or not in the current scale? Simplest would be to restrict recording to layers with chromatic scale, and within the octave that is displayed.
+<p>c) The translation task from incoming pitch to grid position is difficult. What should happen when the incoming note is &ldquo;off screen&rdquo; because of being too high or low? Or not in the current scale? Simplest would be to restrict recording to layers with chromatic scale, and within the octave that is displayed.</p>
 
-d) Is this relevant for any other layers other than score?
-</code></pre>
+<p>d) Is this relevant for any other layers other than score?</p>
 
 <p><strong>Solution</strong> : Not obvious. Since this seems score-specific, perhaps a new layer type (record), like score, but chromatic only, and dedicated to recording somehow.</p>
 
@@ -372,18 +375,18 @@ d) Is this relevant for any other layers other than score?
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/score256/">Extended (256 step) score</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/releases/">Releases</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/splits/">Splits</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/score256/">Extended (256 step) score</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/blockchange/">Remote block change</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/midiquiet/">Suppress Midi SysEx</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/perlayermidichannel/">Per layer midi channels</a></li>
 		</ul>
 	</div>
 </div>
 <div class="widget-taglist widget">
 	<h4 class="widget__title">Tags</h4>
 	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="/tags/new-features" title="New features">New features (5)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/new-features" title="New features">New features (6)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/project-plan" title="Project plan">Project plan (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/stock-features" title="Stock features">Stock features (2)</a>
 	</div>
