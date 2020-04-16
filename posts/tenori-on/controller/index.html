@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Extended (256 step) score</title>
+	<title>Control Change</title>
 	<meta name="description" content="">
 	<meta name="generator" content="Hugo 0.48" />
 	
@@ -56,9 +56,9 @@ if (!doNotTrack) {
 <main class="main content">
 	<article class="post">
 		<header class="post__header">
-			<h1 class="post__title">Extended (256 step) score</h1><div class="post__meta meta">
+			<h1 class="post__title">Control Change</h1><div class="post__meta meta">
 <svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-<time class="post__meta-date meta-date" datetime="2020-04-07T00:00:00">April 07, 2020</time>
+<time class="post__meta-date meta-date" datetime="2020-04-16T00:00:00">April 16, 2020</time>
 <span class="post__meta-categories meta-categories">
 	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
 	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/tenori-on" rel="category">tenori-on</a></span>
@@ -66,55 +66,51 @@ if (!doNotTrack) {
 		</header><div class="post__content clearfix">
 			
 
-<p>This function adds a new layer type - a 256 step score. This layer type can be selected via changing the layer mode</p>
+<p>This function allows arbitrary CC (Midi control change) messages to be sent.</p>
 
-<p><img src="/images/score256_set.jpg" alt="Score 256 selection" title="Score-256 selection" /></p>
+<p>Essentially, this is performed by changing the layer operation type to &ldquo;control change&rdquo;, and then changing the &ldquo;instrument&rdquo; (using [L1] or the menu) to a particular CC message. Note &ldquo;pitch&rdquo; is then interpreted as a CC value between 0 and 127.</p>
 
-<p>Fundamentally, this is implemented via chaining the blocks together, so that block 2 plays after block 1, etc., up to the end of the loop range. The loop range can be 256 steps long.</p>
+<p>This function is a property of the layer, and is selected under the layer menu. When active, the main display will change slightly to indicate that it is not an &ldquo;INST&rdquo; that is being played, but a CC.</p>
 
-<p><img src="/images/score256_1.png" alt="Score 256 concept" title="Score-256 concept" /></p>
+<table>
+<thead>
+<tr>
+<th><img src="/images/layeroperation.png" alt="" title="Layer Operation" /></th>
+<th><img src="/images/controlchange.png" alt="" title="Selecting control change" /></th>
+</tr>
+</thead>
 
-<p>This means that there can be a difference between the block currently being edited, and the block currently playing.</p>
+<tbody>
+<tr>
+<td></td>
+<td><img src="/images/ccplaying.png" alt="" title="Playing Control change" /></td>
+</tr>
+</tbody>
+</table>
 
-<p>The behaviour of this new layer is quite complex, and a few changes have been made to the &ldquo;normal&rdquo; score layer type to support this.</p>
+<p>A few notes:</p>
 
 <ol>
-<li><p>Changing the current block with R5 will change the currently playing block, for score, random, draw etc. as normal. For score-256, while it will change the block into which notes are entered, it won&rsquo;t change the current loop playing position, i.e. it won&rsquo;t change the currently <em>playing</em> block. (I can extend this ability to be playing one block and editing another into the other layer types, but I haven&rsquo;t yet got a nice UI way of differentiating between a normal block change and a edit-only block change).</p></li>
+<li><p>On swapping to the CC operation type, currently the layer contents are NOT cleared. Instead, the controller will be set to CC 03 (Undefined). This is to prevent bad things happening to any connected equipment if the layer is not empty, when the running instrument maps to a controller that the connected equipment interprets meaningfully (e.g. patch changes, or similar). CC03 is the most undefined - and therefore safest - CC I could find!</p></li>
 
-<li><p>The LCD display of loop start (top) / loop end in normal score, and score256, has been changed to include both the block, and the position within the block, for the loop start and end points. This is shown below, corresponding to the loop point example above. For normal score, you can just ignore the first value as it simply reports the current block. I haven&rsquo;t yet worked out a way of suppressing this information in normal score mode.</p>
+<li><p>The CC values issued are 16 fixed values between 0 and 127 inclusive. I haven&rsquo;t yet implemented a way to tailor the range, but plan to.</p></li>
 
-<p><img src="/images/score256_2.png" alt="Score 256 LCD display" title="Score-256 Loop Point display" /></p></li>
+<li><p>There are only 127 Controllers, so don&rsquo;t be surprised if using [L1] and selecting a switch in the top half of the TNR doesn&rsquo;t do anything. I have tried to name the controllers with something meaningful based on the Midi specification.</p></li>
 
-<li><p>To set loop points, L4 is used as normal. Pressing L4 and a key will set the start or end points, as normal, but at this block. For example, using a score256 layer to create the 38 step pattern shown above:</p>
+<li><p>CC messages go out on the midi channel selected within the layer menu. So, when driving external synths, one layer can be used for notes, and another for a specific controller (e.g. timbre, etc.) on the same midi channel.</p></li>
 
-<ul>
-<li>In block 1, press L4 and the top half of the fifth column. This sets the LOOP TOP to 1 / 5</li>
-<li>Switch to block 3 using R5 and a key from the third column</li>
-<li>Press L4 and the bottom half of the 10th column. This sets the LOOP END to 3 / 10.</li>
-</ul></li>
+<li><p>Channel mode messages (controllers 121/0x79 to 127/0x7F) are available for use. There is no attempt made to catch &ldquo;illegal&rdquo; combinations of CC and data, e.g. sending &ldquo;Omni mode ON&rdquo; with non-zero value. These may set attached hardware into very strange modes.</p></li>
 
-<li><p>A loop point &ldquo;off screen&rdquo; is displayed with a broken line at the edge of the current block, either the left edge, indicating that the loop point is on a lower block number than the current block, or the right edge, indicating that the loop point is on a higher block number than the current edge. For example, pressing L4 when the current block is 1, 2 or 3 gives the results below.</p>
-
-<p><img src="/images/score256_3.png" alt="Score 256 LED display" title="Score-256 Loop Point display" /></p></li>
-
-<li><p>If loop indicators are on, then when the currently playing position is not on the currently displayed block, the loop indicators will flash at the left of right edge of the block indicating the direction in which the currently playing position is.</p></li>
-
-<li><p>Animations for &ldquo;off screen&rdquo; notes aren&rsquo;t played.</p></li>
-
-<li><p>Using master loop point now reads in the current layers loop points. Pressing any LED key will change the loop point to the current block. Since block changing within the master loop point menu resets the menu, this doesn&rsquo;t allow easy editing of score256 loop points, but provided that LED keys aren&rsquo;t pressed during the master loop point menu, this does allow loop points to be set normally in one score-256 layer, then copied to any other score-256 layers.</p></li>
+<li><p>The TNR does output certain CC messages normally anyway, e.g. instrument change (CC_00, CC_20), layer volume (CC_07), reverb param (CC_5B), chorus param (CC_5D). Using this control change instrument set to these won&rsquo;t change anything internal to the TNR, e.g CC_07 won&rsquo;t change the internal TNR layer volume. (For that see a later release).</p></li>
 </ol>
 
 <h2 id="compatibility-issues">Compatibility Issues</h2>
 
-<p>Loading songs/blocks saved in previous releases - since they can&rsquo;t contain score-256 layers, should probably work OK.</p>
-
-<p>Using previous releases to load songs created in this release, using score-256, will not work.</p>
+<p>Loading songs/blocks saved in previous releases will definately confuse it.</p>
 
 <h2 id="releases">Releases</h2>
 
-<p>First included in A013.</p>
-
-<p>Bugfix for SaveAs (Alarm, Time Signal, Default) in A014.</p>
+<p>First included in A016.</p>
 
 		</div>
 		
@@ -140,10 +136,7 @@ if (!doNotTrack) {
 	
 <nav class="post-nav flex">
 	<div class="post-nav__item post-nav__item--prev">
-		<a class="post-nav__link" href="/posts/tenori-on/blockchange/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Remote block change</p></a>
-	</div>
-	<div class="post-nav__item post-nav__item--next">
-		<a class="post-nav__link" href="/posts/tenori-on/splits/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Splits</p></a>
+		<a class="post-nav__link" href="/posts/tenori-on/releases/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Releases</p></a>
 	</div>
 </nav>
 	

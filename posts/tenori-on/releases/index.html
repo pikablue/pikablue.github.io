@@ -58,7 +58,7 @@ if (!doNotTrack) {
 		<header class="post__header">
 			<h1 class="post__title">Releases</h1><div class="post__meta meta">
 <svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-<time class="post__meta-date meta-date" datetime="2020-04-13T00:00:00">April 13, 2020</time>
+<time class="post__meta-date meta-date" datetime="2020-04-16T00:00:00">April 16, 2020</time>
 <span class="post__meta-categories meta-categories">
 	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
 	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/tenori-on" rel="category">tenori-on</a></span>
@@ -86,12 +86,12 @@ if (!doNotTrack) {
 
 <h2 id="general-installation-instructions">General installation instructions</h2>
 
-<p>Each release is provided as a &ldquo;.tup&rdquo; file, to be loaded into the Tenori-On in the same way as you loaded v2.10.</p>
+<p>Each release is provided as a zipped &ldquo;.tup&rdquo; file, to be loaded into the Tenori-On in the same way as you loaded v2.10.</p>
 
 <p>That is :</p>
 
 <ol>
-<li>Copy the <release>.tup to the TENORI-ON folder on your SD card.</li>
+<li>Unpack the .zip file and copy the <release>.tup to the TENORI-ON folder on your SD card.</li>
 <li>Insert the SD card into your TENORI-ON. Turn the TENORI-ON while pressing [OK] and [CANCEL] simultaneously.
 
 <ul>
@@ -101,7 +101,7 @@ if (!doNotTrack) {
 <li>Press the OK button again when the &ldquo;Start Update ?&rdquo; query appears.
 
 <ul>
-<li>The update will start after about 20 seconds. The update process takes about 90 seconds in process.</li>
+<li>The update will start after about 20 seconds. The update process takes about 90 seconds in total.</li>
 <li>Depending on SD card type, more time may be required.</li>
 </ul></li>
 
@@ -112,7 +112,7 @@ if (!doNotTrack) {
 <li><p>If the system hangs on startup (i.e. never moves on from the title screen), then you will need to do a TEST MODE Factory reset. This will remove any loaded samples and reset back to &ldquo;normal&rdquo; rather than &ldquo;advanced&rdquo; mode, but it is easy to put these back.</p>
 
 <ul>
-<li>Turn off, then turn on while holding [L1] and [CLEAR]. The text &ldquo;Test Mode&rdquo; and &ldquo;TEST&rdquo; will appears</li>
+<li>Turn off, then turn on while holding [L1] and [CLEAR]. The text &ldquo;Test Mode&rdquo; and &ldquo;TEST&rdquo; will appear</li>
 <li>Use the rotary dial to change &ldquo;TEST&rdquo; to &ldquo;047 Factory Set&rdquo;. Press OK</li>
 <li>Wait until the &ldquo;&ndash;&rdquo; has changed to &ldquo;End&rdquo;. Then turn off and turn on.</li>
 </ul></li>
@@ -131,7 +131,7 @@ any damage they may cause to yours!</p>
 
 <h2 id="list-of-releases-and-downloads">List of releases and downloads</h2>
 
-<p>The latest release is A015.</p>
+<p>The latest release is A016.</p>
 
 <p>Each release contains, cumulatively, all the previous release features.</p>
 
@@ -194,6 +194,13 @@ any damage they may cause to yours!</p>
 <td><a href="/posts/tenori-on/splits/">Splits</a></td>
 <td><a href="/releases/A015.zip">A015 firmware</a></td>
 </tr>
+
+<tr>
+<td><img src="/images/A016.png" alt="" title="A016" /></td>
+<td>Control Change</td>
+<td><a href="/posts/tenori-on/controller/">Control Change</a></td>
+<td><a href="/releases/A016.zip">A016 firmware</a></td>
+</tr>
 </tbody>
 </table>
 
@@ -223,6 +230,9 @@ any damage they may cause to yours!</p>
 	<div class="post-nav__item post-nav__item--prev">
 		<a class="post-nav__link" href="/posts/tenori-on/splits/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Splits</p></a>
 	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/posts/tenori-on/controller/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Control Change</p></a>
+	</div>
 </nav>
 	
 </main>
@@ -231,18 +241,18 @@ any damage they may cause to yours!</p>
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/controller/">Control Change</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/releases/">Releases</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/splits/">Splits</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/score256/">Extended (256 step) score</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/blockchange/">Remote block change</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/midiquiet/">Suppress Midi SysEx</a></li>
 		</ul>
 	</div>
 </div>
 <div class="widget-taglist widget">
 	<h4 class="widget__title">Tags</h4>
 	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="/tags/new-features" title="New features">New features (6)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/new-features" title="New features">New features (7)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/project-plan" title="Project plan">Project plan (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/stock-features" title="Stock features">Stock features (2)</a>
 	</div>

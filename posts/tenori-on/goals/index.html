@@ -147,7 +147,7 @@ if (!doNotTrack) {
 <tr>
 <td><a href="#cco">Controller output</a></td>
 <td>Major</td>
-<td>Not started</td>
+<td><strong>Complete</strong> : <a href="/posts/tenori-on/controller/">Control Change</a></td>
 </tr>
 
 <tr>
@@ -269,9 +269,9 @@ Using &ldquo;Master scale&rdquo; works like &ldquo;Master loop point&rdquo; - at
 
 <p><strong>Problem</strong> : Only note on/note off messages can be produced</p>
 
-<p><strong>Solution</strong> : One way is to be able to &ldquo;tag&rdquo; any layer as being a controller layer, rather than a note layer. Different instruments would correspond to production of different controllers (volume, pan, filters, etc.). Instead of &ldquo;note on/off&rdquo; events, midi CC messages would be produced. If block change is a controller number, and some midi messages are reflected internally (e.g. volume), then this would also be a way to do a sequencer (i.e. the TNR can issue its own block change messages).</p>
+<p><strong>Solution</strong> : The approach is to &ldquo;tag&rdquo; any layer as being a controller layer, rather than a note layer. Standard TNR instrument selection approaches - [L1], menu - then change the CC type.</p>
 
-<p><strong>Status</strong> : <em>Open</em></p>
+<p><strong>Status</strong> : Considered completed in A016, although would be good to be able to customize the range of CC values being output. See <a href="/posts/tenori-on/controller/">Control Change</a></p>
 
 <h2 id="seq">Major : Sequencer</h2>
 
@@ -375,18 +375,18 @@ Using &ldquo;Master scale&rdquo; works like &ldquo;Master loop point&rdquo; - at
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/controller/">Control Change</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/releases/">Releases</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/splits/">Splits</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/score256/">Extended (256 step) score</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/blockchange/">Remote block change</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/midiquiet/">Suppress Midi SysEx</a></li>
 		</ul>
 	</div>
 </div>
 <div class="widget-taglist widget">
 	<h4 class="widget__title">Tags</h4>
 	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="/tags/new-features" title="New features">New features (6)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/new-features" title="New features">New features (7)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/project-plan" title="Project plan">Project plan (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/stock-features" title="Stock features">Stock features (2)</a>
 	</div>

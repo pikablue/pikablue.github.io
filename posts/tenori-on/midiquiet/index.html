@@ -74,6 +74,14 @@ if (!doNotTrack) {
 
 <p>In remote mode, of course, the SysEx output is not suppressed - this would defeat the purpose of the remote mode.</p>
 
+<p>Using the menu to change any of the following normally results in a Sysex message, since the TNR doesn&rsquo;t map these to Control Changes (unlike Reverb Param and Chorus Param). Using this &ldquo;midi quiet&rdquo; feature will also suppress generation of these messages.</p>
+
+<ul>
+<li>Master tuning</li>
+<li>Reverb Type</li>
+<li>Chorus Type</li>
+</ul>
+
 <table>
 <thead>
 <tr>
@@ -95,6 +103,8 @@ if (!doNotTrack) {
 <p>First included in A009.</p>
 
 <p>Bugfix for SaveAs (Alarm, Time Signal, Default) in A014.</p>
+
+<p>Supression of Sysex for Master tuning, Reverb Type, Chorus type, included in A016.</p>
 
 		</div>
 		
@@ -133,18 +143,18 @@ if (!doNotTrack) {
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/controller/">Control Change</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/releases/">Releases</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/splits/">Splits</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/score256/">Extended (256 step) score</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/blockchange/">Remote block change</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/midiquiet/">Suppress Midi SysEx</a></li>
 		</ul>
 	</div>
 </div>
 <div class="widget-taglist widget">
 	<h4 class="widget__title">Tags</h4>
 	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="/tags/new-features" title="New features">New features (6)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/new-features" title="New features">New features (7)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/project-plan" title="Project plan">Project plan (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/stock-features" title="Stock features">Stock features (2)</a>
 	</div>
