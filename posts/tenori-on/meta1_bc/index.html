@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Per layer midi channels</title>
+	<title>Meta Controller - Block Change</title>
 	<meta name="description" content="">
 	<meta name="generator" content="Hugo 0.48" />
 	
@@ -56,9 +56,9 @@ if (!doNotTrack) {
 <main class="main content">
 	<article class="post">
 		<header class="post__header">
-			<h1 class="post__title">Per layer midi channels</h1><div class="post__meta meta">
+			<h1 class="post__title">Meta Controller - Block Change</h1><div class="post__meta meta">
 <svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-<time class="post__meta-date meta-date" datetime="2019-12-06T00:00:00">December 06, 2019</time>
+<time class="post__meta-date meta-date" datetime="2020-04-17T00:00:00">April 17, 2020</time>
 <span class="post__meta-categories meta-categories">
 	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
 	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/tenori-on" rel="category">tenori-on</a></span>
@@ -66,44 +66,55 @@ if (!doNotTrack) {
 		</header><div class="post__content clearfix">
 			
 
-<p>This function adds the ability to set different midi channels per layer (including off)</p>
+<p>This function introduces meta controllers, the first one of which is a block change.</p>
 
-<p>Per-layer midi channels are set via a menu entry under &ldquo;Layer&rdquo;. Advanced mode will need
-to be active to see this menu entry.</p>
+<p>Meta controllers are instruments that, rather than playing notes, or outputting control change messages, act to change internal parameters of the TNR.</p>
 
-<p>Changing the midi channel of a layer with active notes will send a &ldquo;notes off&rdquo; command for all notes prior to changing the midi channel.
-Note that it is now possible for multiple layers to have the same midi channel. Note on/note off correspondence is maintained per-layer. For example, if 2 layers with identical midi channels, sound durations, loop speeds, and both have a note corresponding to &ldquo;C&rdquo;, but at different times, then the midi output could be
-- Channel 1 Note on C (from layer 1)
-- Channel 1 Note on C (from layer 2)
-- Channel 1 Note off C (from layer 1)
-- Channel 1 Note off C (from layer 2)
-This can end up with some wierd results, but at least shouldn&rsquo;t result in any midi panics with stuck notes.</p>
+<p>The first meta controller is a block change controller, that simply executes a block change to the block indicated by the &ldquo;note&rdquo;, where the lowest pitch is block 1, and the highest pitch is block 16.</p>
+
+<p>This function is a property of the layer, and is selected under the layer menu. When active, the main display will change slightly to indicate that it is not an &ldquo;INST&rdquo; that is being played, but a META.</p>
 
 <table>
 <thead>
 <tr>
-<th><img src="/images/midichannel.jpg" alt="" title="Midi Channel Menu" /></th>
-<th><img src="/images/midichannel1.jpg" alt="" title="Setting Channel 1" /></th>
+<th><img src="/images/layeroperation.png" alt="" title="Layer Operation" /></th>
+<th><img src="/images/metainstrument.png" alt="" title="Selecting Meta controller" /></th>
 </tr>
 </thead>
 
 <tbody>
+<tr>
+<td><img src="/images/meta1_bc.png" alt="" title="Selecting Block change" /></td>
+<td><img src="/images/metaplaying.png" alt="" title="Playing Meta" /></td>
+</tr>
 </tbody>
 </table>
 
-<p>No &ldquo;per-layer-midi-channel&rdquo; remote mode midi sysex has been included, so in remote mode, the TNR will not cause linked TNRs to change their layer midi channels.</p>
+<p>A typical usage model for this is to have layer 1 be a &ldquo;sequencer&rdquo; layer, set in score-256 mode (see <a href="/posts/tenori-on/score256/">Score 256</a> ), with a slow loop speed, using the block change meta controller as its instrument. This provides a way of writing a track, with a certain number of ticks of block 1, then a certain number of ticks of block 3, then block 4, etc.  This works well because block changes received by the score-256 layer don&rsquo;t affect what is seen.</p>
+
+<p><img src="/images/sequencer.png" alt="Track Sequencer" title="Track Sequencer" /></p>
+
+<p>However, this does not preclude inventive use in other modes. The block change meta controller deliberately doesn&rsquo;t do anything in PUSH mode since it isn&rsquo;t meaningful. Behaviour in SOLO mode does change block as expected, but is probably only useful as a way of changing blocks with one key press e.g. in a live situation. Trying to use a block change meta in a BOUNCE layer, for example, can be quite confusing, since the block - and hence the live set of notes - keeps changing.</p>
+
+<p>A few notes:</p>
+
+<ol>
+<li><p>The TNR processes layers from 1 to 16, so if multiple score layers are being run, it makes timing sense for block changes to be in low number layers (otherwise more notes than expected may be generated).</p></li>
+
+<li><p>Block changes are quite processor expensive, so rapid sequences of block changes may lead to audible timing glitches if there are a lot of notes. (Improving this is part of the overall optimization activity, but the TNR isn&rsquo;t a powerhouse, so be nice)</p></li>
+
+<li><p>Controller 0 is defined as a NULL controller deliberately, and is switched to by default when Meta controllers are selected, as a way of ensuring that nothing crazy happens to connected hardware.  Contollers 2-15 are at the moment empty slots - selecting them will result in nothing happening.</p></li>
+
+<li><p>Only 1 block change is allowed per &ldquo;tick&rdquo;; this is to try prevent loops where block 1 changes to block 2 which immediately changes back to block 1 etc.</p></li>
+</ol>
 
 <h2 id="compatibility-issues">Compatibility Issues</h2>
 
-<p>Loading songs/blocks saved in previous releases will probably incorrectly interpret the data, and assign odd midi channels to the layers. To fix this, load the block, modify the octave and layerscale, then save the block again.</p>
-
-<p>Using previous releases to load songs created in this release will probably not work.</p>
+<p>Loading songs/blocks saved in previous releases are unlikely to play properly.</p>
 
 <h2 id="releases">Releases</h2>
 
-<p>First included in A008</p>
-
-<p>Bugfix for SaveAs (Alarm, Time Signal, Default) in A014.</p>
+<p>First included in A017.</p>
 
 		</div>
 		
@@ -129,10 +140,7 @@ This can end up with some wierd results, but at least shouldn&rsquo;t result in 
 	
 <nav class="post-nav flex">
 	<div class="post-nav__item post-nav__item--prev">
-		<a class="post-nav__link" href="/posts/tenori-on/perlayerscales/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Per layer scales</p></a>
-	</div>
-	<div class="post-nav__item post-nav__item--next">
-		<a class="post-nav__link" href="/posts/tenori-on/midiquiet/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Suppress Midi SysEx</p></a>
+		<a class="post-nav__link" href="/posts/tenori-on/releases/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Releases</p></a>
 	</div>
 </nav>
 	

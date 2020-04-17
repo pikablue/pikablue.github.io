@@ -6,10 +6,19 @@
     <description>Recent content in New Features on pika.blue</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 16 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 17 Apr 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://pika.blue/tags/new-features/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Meta Controller - Block Change</title>
+      <link>http://pika.blue/posts/tenori-on/meta1_bc/</link>
+      <pubDate>Fri, 17 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/meta1_bc/</guid>
+      <description>This function introduces meta controllers, the first one of which is a block change.</description>
+    </item>
     
     <item>
       <title>Control Change</title>

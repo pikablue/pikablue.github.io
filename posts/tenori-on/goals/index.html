@@ -153,7 +153,7 @@ if (!doNotTrack) {
 <tr>
 <td><a href="#seq">Sequencer</a></td>
 <td>Major</td>
-<td>Subgoal 1 complete</td>
+<td>Partial; several subgoals compete, i.e. <a href="/posts/tenori-on/score256/">Score 256</a> and <a href="/posts/tenori-on/meta1_bc/">Block change meta controller</a></td>
 </tr>
 
 <tr>
@@ -177,6 +177,12 @@ if (!doNotTrack) {
 <tr>
 <td><a href="#rec">Recorder</a></td>
 <td>Major</td>
+<td>Not started</td>
+</tr>
+
+<tr>
+<td><a href="#clk">Usable Clock</a></td>
+<td>Minor</td>
 <td>Not started</td>
 </tr>
 </tbody>
@@ -245,6 +251,8 @@ Using &ldquo;Master scale&rdquo; works like &ldquo;Master loop point&rdquo; - at
 
 <p><strong>Status</strong> : Partial implementation completed in vA006. See <a href="/posts/tenori-on/perlayerscales/">Per layer scales</a></p>
 
+<hr />
+
 <h2 id="wid">Major : Wider Playable range</h2>
 
 <p><strong>Problem</strong> : If using a chromatic scale, the range is limited to just over an octave. This is quite limiting.</p>
@@ -254,6 +262,8 @@ Using &ldquo;Master scale&rdquo; works like &ldquo;Master loop point&rdquo; - at
 <p><strong>Solution 2</strong> : A split approach where some of the notes are used to indicate +1 oct, 0 oct, -1 oct etc. This is the approach that has been implemented.</p>
 
 <p><strong>Status</strong> : Completed in A015. See <a href="/posts/tenori-on/splits/">Splits</a></p>
+
+<hr />
 
 <h2 id="arp">Major : Arpeggiator</h2>
 
@@ -265,6 +275,8 @@ Using &ldquo;Master scale&rdquo; works like &ldquo;Master loop point&rdquo; - at
 
 <p><strong>Status</strong> : <em>Open</em></p>
 
+<hr />
+
 <h2 id="cco">Major : Controller output</h2>
 
 <p><strong>Problem</strong> : Only note on/note off messages can be produced</p>
@@ -273,15 +285,19 @@ Using &ldquo;Master scale&rdquo; works like &ldquo;Master loop point&rdquo; - at
 
 <p><strong>Status</strong> : Considered completed in A016, although would be good to be able to customize the range of CC values being output. See <a href="/posts/tenori-on/controller/">Control Change</a></p>
 
+<hr />
+
 <h2 id="seq">Major : Sequencer</h2>
 
 <p><strong>Problem</strong> : The TNR can not chain blocks together</p>
 
-<p><strong>Solution 1</strong> : A new layer mode - a 256 step score - has been implemented as a sub-goal of this. See <a href="/posts/tenori-on/score256/">Score 256</a> . This will be enhanced with a block-change &ldquo;instrument&rdquo; (as part of <a href="#cco">Controller output</a>) to permit true block change programming.</p>
+<p><strong>Solution 1</strong> : A new layer mode - a 256 step score - has been implemented as a sub-goal of this. See <a href="/posts/tenori-on/score256/">Score 256</a> . This has been enhanced in A017 with a block-change meta-controller &ldquo;instrument&rdquo; ( See <a href="/posts/tenori-on/meta1_bc/">Block change meta controller</a> ) to permit true block change programming.</p>
 
 <p><strong>Solution 2</strong> : Extending the solution above with additional mute/don&rsquo;t mute/fade in/fade out layer instructions would allow whole song programming.</p>
 
 <p><strong>Status</strong> : <em>Ongoing</em></p>
+
+<hr />
 
 <h2 id="vel">Major : Direct Velocity control</h2>
 
@@ -299,6 +315,8 @@ Using &ldquo;Master scale&rdquo; works like &ldquo;Master loop point&rdquo; - at
 
 <p><strong>Status</strong> : <em>Ongoing</em>. Solution 3 has been implemented here : <a href="/posts/tenori-on/splits/">Splits</a></p>
 
+<hr />
+
 <h2 id="len">Major : Variable sound length</h2>
 
 <p><strong>Problem</strong> : Each layer has a set sound length.</p>
@@ -313,6 +331,8 @@ Using &ldquo;Master scale&rdquo; works like &ldquo;Master loop point&rdquo; - at
 
 <p><strong>Status</strong> : <em>Ongoing</em>. Solution 3 has been implemented here : <a href="/posts/tenori-on/splits/">Splits</a></p>
 
+<hr />
+
 <h2 id="rnd">Major : Randomizer</h2>
 
 <p><strong>Problem</strong> : &ldquo;Random&rdquo; mode isn&rsquo;t random</p>
@@ -322,6 +342,8 @@ Using &ldquo;Master scale&rdquo; works like &ldquo;Master loop point&rdquo; - at
 <p><strong>Solution</strong> : This would be a new layer type, probably a bit visually similar to Bounce, where the height of each note corresponded to how likely that note was to fire.</p>
 
 <p><strong>Status</strong> : <em>Open</em></p>
+
+<hr />
 
 <h2 id="rec">Major : Recorder</h2>
 
@@ -338,6 +360,18 @@ Using &ldquo;Master scale&rdquo; works like &ldquo;Master loop point&rdquo; - at
 <p>d) Is this relevant for any other layers other than score?</p>
 
 <p><strong>Solution</strong> : Not obvious. Since this seems score-specific, perhaps a new layer type (record), like score, but chromatic only, and dedicated to recording somehow.</p>
+
+<p><strong>Status</strong> : <em>Open</em></p>
+
+<hr />
+
+<h2 id="clk">Minor : Usable Clock</h2>
+
+<p><strong>Problem</strong> : Honestly, you can see the clock from space, and with all the flashing going on, planes try to land nearby.</p>
+
+<p>It would be nice if there was a less bright, and less distracting clock.</p>
+
+<p><strong>Solution</strong> : An analogue clock face, or one that didn&rsquo;t keep clearing with the clear animation. Or smaller characters? (at least dimmer ones).</p>
 
 <p><strong>Status</strong> : <em>Open</em></p>
 
@@ -375,18 +409,18 @@ Using &ldquo;Master scale&rdquo; works like &ldquo;Master loop point&rdquo; - at
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/controller/">Control Change</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/meta1_bc/">Meta Controller - Block Change</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/releases/">Releases</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/controller/">Control Change</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/splits/">Splits</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/score256/">Extended (256 step) score</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/blockchange/">Remote block change</a></li>
 		</ul>
 	</div>
 </div>
 <div class="widget-taglist widget">
 	<h4 class="widget__title">Tags</h4>
 	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="/tags/new-features" title="New features">New features (7)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/new-features" title="New features">New features (8)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/project-plan" title="Project plan">Project plan (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/stock-features" title="Stock features">Stock features (2)</a>
 	</div>

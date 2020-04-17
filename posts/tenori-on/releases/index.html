@@ -58,7 +58,7 @@ if (!doNotTrack) {
 		<header class="post__header">
 			<h1 class="post__title">Releases</h1><div class="post__meta meta">
 <svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-<time class="post__meta-date meta-date" datetime="2020-04-16T00:00:00">April 16, 2020</time>
+<time class="post__meta-date meta-date" datetime="2020-04-17T00:00:00">April 17, 2020</time>
 <span class="post__meta-categories meta-categories">
 	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
 	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/tenori-on" rel="category">tenori-on</a></span>
@@ -74,6 +74,7 @@ if (!doNotTrack) {
 <li><a href="#general-installation-instructions">General installation instructions</a></li>
 <li><a href="#liability-waiver">Liability Waiver !</a></li>
 <li><a href="#list-of-releases-and-downloads">List of releases and downloads</a></li>
+<li><a href="#list-of-known-bugs">List of known bugs</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -124,14 +125,13 @@ if (!doNotTrack) {
 
 <h2 id="liability-waiver">Liability Waiver !</h2>
 
-<p>Please note that while these images work on my Tenori-on, I hold no liability for
-any damage they may cause to yours!</p>
+<p>Please note that while these images work on my Tenori-on, I hold no liability for any damage they may cause to yours!</p>
 
 <hr />
 
 <h2 id="list-of-releases-and-downloads">List of releases and downloads</h2>
 
-<p>The latest release is A016.</p>
+<p>The latest release is A017.</p>
 
 <p>Each release contains, cumulatively, all the previous release features.</p>
 
@@ -184,7 +184,7 @@ any damage they may cause to yours!</p>
 <tr>
 <td>A014</td>
 <td>Bugfix release</td>
-<td>Fixes &ldquo;Save as Alarm / Chime / Default&rdquo; error</td>
+<td>Fixes bug 001 : &ldquo;Save as Alarm / Chime / Default&rdquo; error</td>
 <td><a href="/releases/A014.zip">A014 firmware</a></td>
 </tr>
 
@@ -200,6 +200,42 @@ any damage they may cause to yours!</p>
 <td>Control Change</td>
 <td><a href="/posts/tenori-on/controller/">Control Change</a></td>
 <td><a href="/releases/A016.zip">A016 firmware</a></td>
+</tr>
+
+<tr>
+<td><img src="/images/A017.png" alt="" title="A017" /></td>
+<td>Block change meta controller + fix for bug 002</td>
+<td><a href="/posts/tenori-on/meta1_bc/">Block change meta controller</a></td>
+<td><a href="/releases/A017.zip">A017 firmware</a></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="list-of-known-bugs">List of known bugs</h2>
+
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Issue</th>
+<th>Appears in</th>
+<th>Fix status</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>001</td>
+<td>Save As (Save as default, save as alarm, save as time signal) fails - saved settings are not used.</td>
+<td>A008, A009, A010, A013</td>
+<td>Fixed in A014 and later</td>
+</tr>
+
+<tr>
+<td>002</td>
+<td>In score modes, changing blocks to block N results in notes playing that are a mixture of blocks N and N+1</td>
+<td>A015, A016</td>
+<td>Fixed in A017</td>
 </tr>
 </tbody>
 </table>
@@ -228,10 +264,10 @@ any damage they may cause to yours!</p>
 	
 <nav class="post-nav flex">
 	<div class="post-nav__item post-nav__item--prev">
-		<a class="post-nav__link" href="/posts/tenori-on/splits/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Splits</p></a>
+		<a class="post-nav__link" href="/posts/tenori-on/controller/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Control Change</p></a>
 	</div>
 	<div class="post-nav__item post-nav__item--next">
-		<a class="post-nav__link" href="/posts/tenori-on/controller/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Control Change</p></a>
+		<a class="post-nav__link" href="/posts/tenori-on/meta1_bc/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Meta Controller - Block Change</p></a>
 	</div>
 </nav>
 	
@@ -241,18 +277,18 @@ any damage they may cause to yours!</p>
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/controller/">Control Change</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/meta1_bc/">Meta Controller - Block Change</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/releases/">Releases</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/controller/">Control Change</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/splits/">Splits</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/score256/">Extended (256 step) score</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/blockchange/">Remote block change</a></li>
 		</ul>
 	</div>
 </div>
 <div class="widget-taglist widget">
 	<h4 class="widget__title">Tags</h4>
 	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="/tags/new-features" title="New features">New features (7)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/new-features" title="New features">New features (8)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/project-plan" title="Project plan">Project plan (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/stock-features" title="Stock features">Stock features (2)</a>
 	</div>
