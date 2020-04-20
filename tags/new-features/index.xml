@@ -6,10 +6,19 @@
     <description>Recent content in New Features on pika.blue</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 17 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 20 Apr 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://pika.blue/tags/new-features/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>MIDI recording</title>
+      <link>http://pika.blue/posts/tenori-on/recorder/</link>
+      <pubDate>Mon, 20 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/recorder/</guid>
+      <description>This function adds MIDI (note on) recording to all layers.</description>
+    </item>
     
     <item>
       <title>Meta Controller - Block Change</title>

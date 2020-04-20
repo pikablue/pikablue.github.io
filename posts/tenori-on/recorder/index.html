@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Control Change</title>
+	<title>MIDI recording</title>
 	<meta name="description" content="">
 	<meta name="generator" content="Hugo 0.48" />
 	
@@ -56,9 +56,9 @@ if (!doNotTrack) {
 <main class="main content">
 	<article class="post">
 		<header class="post__header">
-			<h1 class="post__title">Control Change</h1><div class="post__meta meta">
+			<h1 class="post__title">MIDI recording</h1><div class="post__meta meta">
 <svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-<time class="post__meta-date meta-date" datetime="2020-04-16T00:00:00">April 16, 2020</time>
+<time class="post__meta-date meta-date" datetime="2020-04-20T00:00:00">April 20, 2020</time>
 <span class="post__meta-categories meta-categories">
 	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
 	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/tenori-on" rel="category">tenori-on</a></span>
@@ -66,51 +66,55 @@ if (!doNotTrack) {
 		</header><div class="post__content clearfix">
 			
 
-<p>This function allows arbitrary CC (Midi control change) messages to be sent.</p>
+<p>This function adds MIDI (note on) recording to all layers.</p>
 
-<p>Essentially, this is performed by changing the layer operation type to &ldquo;control change&rdquo;, and then changing the &ldquo;instrument&rdquo; (using [L1] or the menu) to a particular CC message. Note &ldquo;pitch&rdquo; is then interpreted as a CC value between 0 and 127.</p>
+<p>The baseline TNR already implements external setting of notes via remote (SysEx) messaging. Also, receiving note-on/note-off messages already stimulates the tone generator to play the correct sound, but does not set the notes in the grid.</p>
 
-<p>This function is a property of the layer, and is selected under the layer menu. When active, the main display will change slightly to indicate that it is not an &ldquo;INST&rdquo; that is being played, but a CC.</p>
+<p>This modification joins the two, so that the TNR can record incoming midi note-on streams. The behaviour is slightly different depending on the layer targetted.</p>
 
-<table>
-<thead>
-<tr>
-<th><img src="/images/layeroperation.png" alt="" title="Layer Operation" /></th>
-<th><img src="/images/controlchange.png" alt="" title="Selecting control change" /></th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td></td>
-<td><img src="/images/ccplaying.png" alt="" title="Playing Control change" /></td>
-</tr>
-</tbody>
-</table>
-
-<p>A few notes:</p>
+<p>Some notes:</p>
 
 <ol>
-<li><p>On swapping to the CC operation type, currently the layer contents are NOT cleared. Instead, the controller will be set to CC 03 (Undefined). This is to prevent bad things happening to any connected equipment if the layer is not empty, when the running instrument maps to a controller that the connected equipment interprets meaningfully (e.g. patch changes, or similar). CC03 is the most undefined - and therefore safest - CC I could find!</p></li>
+<li><p>The function is &ldquo;always on&rdquo; - that is, there is currently no menu item for turning it on, or more particularly, turning it off. (This could be added if needed).</p></li>
 
-<li><p>The CC values issued are 16 fixed values between 0 and 127 inclusive. I haven&rsquo;t yet implemented a way to tailor the range, but plan to.</p></li>
+<li><p>Only Note-on information is recorded. The internal workings of the TNR rely on knowing the sound duration when the note-on occurs; the durations are not established from the note-off event. Play back of recorded data uses the layer&rsquo;s sound length time.</p></li>
 
-<li><p>There are only 127 Controllers, so don&rsquo;t be surprised if using [L1] and selecting a switch in the top half of the TNR doesn&rsquo;t do anything. I have tried to name the controllers with something meaningful based on the Midi specification.</p></li>
+<li><p>Velocity is not recorded. (The TNR doesn&rsquo;t generally handle velocity). The velocity output of played back notes is fixed at 100.</p></li>
 
-<li><p>CC messages go out on the midi channel selected within the layer menu. So, when driving external synths, one layer can be used for notes, and another for a specific controller (e.g. timbre, etc.) on the same midi channel.</p></li>
+<li><p>Notes incoming on midi channel 1 will be recorded on layer 1, those on midi channel 2 will record on layer 2, irrespective of what the output midi channel is set to for that layer. This is deliberate in order to disambiguate from cases where several layers have the same midi channel number, as well as to avoid the need to &ldquo;hunt&rdquo; the layers for matching midi channels.</p></li>
 
-<li><p>Channel mode messages (controllers 121/0x79 to 127/0x7F) are available for use. There is no attempt made to catch &ldquo;illegal&rdquo; combinations of CC and data, e.g. sending &ldquo;Omni mode ON&rdquo; with non-zero value. These may set attached hardware into very strange modes.</p></li>
+<li><p>Only notes that the TNR could play with the current settings are recorded. That means that only notes in the current layer scale, within the current transpose and octave range, are recorded. Incoming notes not in the scale may be heard - since the tone generator will still play them - but they will not be recorded.</p></li>
 
-<li><p>The TNR does output certain CC messages normally anyway, e.g. instrument change (CC_00, CC_20), layer volume (CC_07), reverb param (CC_5B), chorus param (CC_5D). Using this control change instrument set to these won&rsquo;t change anything internal to the TNR, e.g CC_07 won&rsquo;t change the internal TNR layer volume. (For that see a later release).</p></li>
+<li><p>All loops are in continuous punch-in/overwrite mode. Deletion of notes has to be via interaction with the TNR itself, e.g. via layer clear, or specific deselection of notes.</p></li>
+
+<li><p>The behaviour is different for different layer types.</p>
+
+<ul>
+<li>Score records notes at the current loop position as might be anticipated. Quantization occurs at the loop speed of the layer.</li>
+<li>Random records the pitch, but the other on-screen axis position is random. Consequently the timing of the playback is random.</li>
+<li>Draw records the pitch, but the other on-screen axis position is random. The timing is quantized at draw&rsquo;s loop tick (which is 24 times faster than score&rsquo;s, for the same loop speed). Draw is therefore a good general recording target if you don&rsquo;t want quantized data, and don&rsquo;t need to edit it afterwards.</li>
+<li>Bounce records the pitch, but assumes you are pressing the top row.</li>
+<li>Push records the pitch, but the other on-screen axis position is random.</li>
+<li>Score256 does not have recording capability (yet).
+<br /></li>
+</ul>
+
+<p>If anyone has any better ideas for what to do with the &ldquo;random&rdquo; positions, then suggestions are welcome! For example, the bounce height could be linked in some way to received velocity?</p></li>
+
+<li><p>Only layers that are set to &ldquo;pure&rdquo; instruments can be recorded to. Layers with velocity, octave or duration splits, or controller layers, or meta controller layers, can not record incoming notes.</p></li>
+
+<li><p>It might be nice to have a &ldquo;clear track&rdquo; or &ldquo;clear note&rdquo; message - e.g. a low note not likely to represent a real recorded note, or a controller message - in order to allow hands-free recording. Again, suggestions welcome.</p></li>
 </ol>
+
+<p>I also sorted out what - to me - was a discrepancy. In the original TNR firmware, received patch change commands (B0 00 3F / B0 20 01 / C0 nn) would change the on-board tone of the Tone Generator, but not actually update the instrument on the screen. This is now corrected so that the displayed instrument always tracks the instrument that the tone generator is playing.</p>
 
 <h2 id="compatibility-issues">Compatibility Issues</h2>
 
-<p>Loading songs/blocks saved in previous releases will definately confuse it.</p>
+<p>None known - there may be compatibility issues with hardware setups if the TNR was previously being bombarded by note-on messages.</p>
 
 <h2 id="releases">Releases</h2>
 
-<p>First included in A016.</p>
+<p>First included in A018.</p>
 
 		</div>
 		
@@ -136,10 +140,7 @@ if (!doNotTrack) {
 	
 <nav class="post-nav flex">
 	<div class="post-nav__item post-nav__item--prev">
-		<a class="post-nav__link" href="/posts/tenori-on/splits/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Splits</p></a>
-	</div>
-	<div class="post-nav__item post-nav__item--next">
-		<a class="post-nav__link" href="/posts/tenori-on/meta1_bc/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Meta Controller - Block Change</p></a>
+		<a class="post-nav__link" href="/posts/tenori-on/releases/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Releases</p></a>
 	</div>
 </nav>
 	

@@ -12,21 +12,30 @@
     
     
     <item>
+      <title>MIDI recording</title>
+      <link>http://pika.blue/posts/tenori-on/recorder/</link>
+      <pubDate>Mon, 20 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/recorder/</guid>
+      <description>This function adds MIDI (note on) recording to all layers.</description>
+    </item>
+    
+    <item>
+      <title>Releases</title>
+      <link>http://pika.blue/posts/tenori-on/releases/</link>
+      <pubDate>Mon, 20 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/releases/</guid>
+      <description>This page contains a link to the the releases so far.</description>
+    </item>
+    
+    <item>
       <title>Meta Controller - Block Change</title>
       <link>http://pika.blue/posts/tenori-on/meta1_bc/</link>
       <pubDate>Fri, 17 Apr 2020 00:00:00 +0000</pubDate>
       
       <guid>http://pika.blue/posts/tenori-on/meta1_bc/</guid>
       <description>This function introduces meta controllers, the first one of which is a block change.</description>
-    </item>
-    
-    <item>
-      <title>Releases</title>
-      <link>http://pika.blue/posts/tenori-on/releases/</link>
-      <pubDate>Fri, 17 Apr 2020 00:00:00 +0000</pubDate>
-      
-      <guid>http://pika.blue/posts/tenori-on/releases/</guid>
-      <description>This page contains a link to the the releases so far.</description>
     </item>
     
     <item>
