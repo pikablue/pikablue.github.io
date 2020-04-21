@@ -99,7 +99,7 @@ if (!doNotTrack) {
 <p>A few notes:</p>
 
 <ol>
-<li><p>The TNR processes layers from 1 to 16, so if multiple score layers are being run, it makes timing sense for block changes to be in low number layers (otherwise more notes than expected may be generated).</p></li>
+<li><p>The timing of when the block change happens can be a bit bizarre. The TNR executes the block change at the end of the current internal tick. This means that with two score layers running in perfect parallel, a block change LED column 1 will take effect some time between column 1 and column 2, meaning that column 1 LEDs from the other score blocks will be played for the OLD block rather than the new block. I am still trying to see how this might be made more predictable.</p></li>
 
 <li><p>Block changes are quite processor expensive, so rapid sequences of block changes may lead to audible timing glitches if there are a lot of notes. (Improving this is part of the overall optimization activity, but the TNR isn&rsquo;t a powerhouse, so be nice)</p></li>
 
