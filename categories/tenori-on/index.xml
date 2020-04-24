@@ -6,10 +6,19 @@
     <description>Recent content in Tenori On on pika.blue</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 20 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 22 Apr 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://pika.blue/categories/tenori-on/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Tools of the trade</title>
+      <link>http://pika.blue/posts/tenori-on/tradetools/</link>
+      <pubDate>Wed, 22 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/tradetools/</guid>
+      <description>If you are going to be updating firmware frequently, I can recommend these&amp;hellip;</description>
+    </item>
     
     <item>
       <title>MIDI recording</title>
