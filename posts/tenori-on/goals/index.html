@@ -185,6 +185,12 @@ if (!doNotTrack) {
 <td>Minor</td>
 <td>Not started</td>
 </tr>
+
+<tr>
+<td><a href="#lyr">Save Layer</a></td>
+<td>Minor</td>
+<td>Not started</td>
+</tr>
 </tbody>
 </table>
 
@@ -375,6 +381,18 @@ Using &ldquo;Master scale&rdquo; works like &ldquo;Master loop point&rdquo; - at
 
 <p><strong>Status</strong> : <em>Open</em></p>
 
+<hr />
+
+<h2 id="lyr">Minor : True save layer</h2>
+
+<p><strong>Problem</strong> : There is no way to save and load all the blocks from just the current layer. &ldquo;Layer&rdquo; menu settings apply to all blocks in this layer. However &ldquo;Layer&rdquo; save items just refer to the current block of the current layer. This makes score-256 a bit tricky to use.</p>
+
+<p><strong>Solution 1</strong> : Modify &ldquo;layer&rdquo; save/load to mean what it says, and rename the existing &ldquo;layer&rdquo; file menu setting something like &ldquo;block+layer&rdquo;.</p>
+
+<p><strong>Solution 2</strong> : This is only really a problem for multi-block layers. Make save &ldquo;layer&rdquo; work as saving all blocks, when the layer type is multi-block (like score-256)</p>
+
+<p><strong>Status</strong> : <em>Open</em></p>
+
 		</div>
 		
 <div class="post__tags tags clearfix">
@@ -409,18 +427,18 @@ Using &ldquo;Master scale&rdquo; works like &ldquo;Master loop point&rdquo; - at
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/meta2_tr/">Meta Controller - Master Transpose</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/releases/">Releases</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/tradetools/">Tools of the trade</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/recorder/">MIDI recording</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/releases/">Releases</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/meta1_bc/">Meta Controller - Block Change</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/controller/">Control Change</a></li>
 		</ul>
 	</div>
 </div>
 <div class="widget-taglist widget">
 	<h4 class="widget__title">Tags</h4>
 	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="/tags/new-features" title="New features">New features (9)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/new-features" title="New features">New features (10)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/project-plan" title="Project plan">Project plan (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/stock-features" title="Stock features">Stock features (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/tools" title="Tools">Tools (1)</a>

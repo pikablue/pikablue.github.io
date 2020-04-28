@@ -12,6 +12,26 @@
     
     
     <item>
+      <title>Meta Controller - Master Transpose</title>
+      <link>http://pika.blue/posts/tenori-on/meta2_tr/</link>
+      <pubDate>Tue, 28 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/meta2_tr/</guid>
+      <description>&lt;p&gt;This function introduces a master transpose meta controller.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Releases</title>
+      <link>http://pika.blue/posts/tenori-on/releases/</link>
+      <pubDate>Tue, 28 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/releases/</guid>
+      <description>This page contains a link to the the releases so far.</description>
+    </item>
+    
+    <item>
       <title>Tools of the trade</title>
       <link>http://pika.blue/posts/tenori-on/tradetools/</link>
       <pubDate>Wed, 22 Apr 2020 00:00:00 +0000</pubDate>
@@ -27,15 +47,6 @@
       
       <guid>http://pika.blue/posts/tenori-on/recorder/</guid>
       <description>This function adds MIDI (note on) recording to all layers.</description>
-    </item>
-    
-    <item>
-      <title>Releases</title>
-      <link>http://pika.blue/posts/tenori-on/releases/</link>
-      <pubDate>Mon, 20 Apr 2020 00:00:00 +0000</pubDate>
-      
-      <guid>http://pika.blue/posts/tenori-on/releases/</guid>
-      <description>This page contains a link to the the releases so far.</description>
     </item>
     
     <item>

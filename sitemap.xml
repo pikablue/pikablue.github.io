@@ -3,17 +3,22 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://pika.blue/posts/tenori-on/meta2_tr/</loc>
+    <lastmod>2020-04-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://pika.blue/posts/tenori-on/releases/</loc>
+    <lastmod>2020-04-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://pika.blue/posts/tenori-on/tradetools/</loc>
     <lastmod>2020-04-22T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>http://pika.blue/posts/tenori-on/recorder/</loc>
-    <lastmod>2020-04-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://pika.blue/posts/tenori-on/releases/</loc>
     <lastmod>2020-04-20T00:00:00+00:00</lastmod>
   </url>
   
@@ -89,7 +94,7 @@
   
   <url>
     <loc>http://pika.blue/posts/tenori-on/</loc>
-    <lastmod>2020-04-22T00:00:00+00:00</lastmod>
+    <lastmod>2020-04-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -105,7 +110,7 @@
   
   <url>
     <loc>http://pika.blue/tags/new-features/</loc>
-    <lastmod>2020-04-20T00:00:00+00:00</lastmod>
+    <lastmod>2020-04-28T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -116,7 +121,7 @@
   
   <url>
     <loc>http://pika.blue/tags/project-plan/</loc>
-    <lastmod>2020-04-20T00:00:00+00:00</lastmod>
+    <lastmod>2020-04-28T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -128,13 +133,13 @@
   
   <url>
     <loc>http://pika.blue/tags/</loc>
-    <lastmod>2020-04-20T00:00:00+00:00</lastmod>
+    <lastmod>2020-04-28T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://pika.blue/categories/tenori-on/</loc>
-    <lastmod>2020-04-22T00:00:00+00:00</lastmod>
+    <lastmod>2020-04-28T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
