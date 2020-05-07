@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Remote block change</title>
+	<title>Meta Controller - Arpeggio 4 (Arp4)</title>
 	<meta name="description" content="">
 	<meta name="generator" content="Hugo 0.48" />
 	
@@ -56,31 +56,65 @@ if (!doNotTrack) {
 <main class="main content">
 	<article class="post">
 		<header class="post__header">
-			<h1 class="post__title">Remote block change</h1><div class="post__meta meta">
+			<h1 class="post__title">Meta Controller - Arpeggio 4 (Arp4)</h1><div class="post__meta meta">
 <svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-<time class="post__meta-date meta-date" datetime="2020-02-08T00:00:00">February 08, 2020</time>
+<time class="post__meta-date meta-date" datetime="2020-05-07T00:00:00">May 07, 2020</time>
 <span class="post__meta-categories meta-categories">
 	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
 	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/tenori-on" rel="category">tenori-on</a></span>
 </span></div>
 		</header><div class="post__content clearfix">
-			
+			<p>This function introduces an implementaton of an arpeggiator.</p>
 
-<p>This function adds the ability to change the block remotely, without being in remote mode.</p>
+<p></p>
 
-<p>When in remote mode, the following sysex command can be used to set the current block. (Introduced in Yamaha firmware v2.10).</p>
+<p>This meta controller is an instrument that, rather than playing notes, dynamically sets a scale, that other layers can then play from. This allows lots of generative type effects. The way this arpeggiator works may seem a bit convoluted, but hopefully this offers flexilibity to lots of different uses.</p>
 
-<p><code>F0 43 73 01 33 01 00 0F Blk d.c. d.c. d.c. d.c. F7</code></p>
+<p>This function is a property of the layer, and is selected under the layer menu. When active, the main display will change slightly to indicate that it is not an &ldquo;INST&rdquo; that is being played, but a META.</p>
 
-<p>where Blk = the block number, from 0x00 to 0x0F and d.c. = dont care</p>
+<table>
+<thead>
+<tr>
+<th><img src="/images/layeroperation.png" alt="" title="Layer Operation" /></th>
+<th><img src="/images/metainstrument.png" alt="" title="Selecting Meta controller" /></th>
+</tr>
+</thead>
 
-<p>However, when not in remote mode, this is ignored.</p>
+<tbody>
+<tr>
+<td><img src="/images/meta3_arp4.png" alt="" title="Selecting Arp-4" /></td>
+<td><img src="/images/arp4playing.png" alt="" title="Playing Meta" /></td>
+</tr>
+</tbody>
+</table>
 
-<p>The midi song request message can now be used to also set the currently playing block, whatever the mode. This allows - for example - a foot controller to send block change messages when the TNR is providing note messages to an external synth.</p>
+<p>The controller constructs a scale from 4 notes defined in the layer, repeated across 4 octaves (one octave lower than the original notes, the original notes, then +1 octave and +2 octave). The scale number (see <a href="/posts/tenori-on/perlayerscales/">Per layer scales</a>) is taken from the &ldquo;midi channel&rdquo; number of the layer. That is, to write to scale set 1, the midi channel should be 1, whereas to write to scale set 8, the midi channel should be set to 8. (No midi information is output by this meta controller).</p>
 
-<p><code>F3 Blk</code></p>
+<p>How the four notes are defined depends slightly on the layer mode. For all non-score modes, where chords are impossible (e.g. random) or not necessarily deliberate (e.g. bounce), each new note pushes out the oldest one in the four-note unit. So, if Arp4 is used in random mode, once 4 notes are entered, then the scale defined will always be &ldquo;full&rdquo;, with no missing notes.</p>
 
-<p>where Blk = the block number, from 0x00 to 0x0F</p>
+<p>In score mode, where &ldquo;chords&rdquo; are more normal, the defined scale is cleared if any are set. This means a three note chord will only have three notes (repeated in each octave) - i.e. the scale generated will have gaps.</p>
+
+<p>For all layers, the notes are sorted by pitch.</p>
+
+<p>Confused?</p>
+
+<p>A typical usage model for this might be to have layer 1 be Score mode, using an Arp-4, set to Ionian scale, with midi channel 1 (i.e. layer scale 1) as its target. A four-note chord in each column, and a slow loop speed, would change the contents of layer scale 1 on every tick. A different layer - e.g. a bounce layer - with layer scale set to 1 - could then be used to arpeggiate from the 4 notes defined by the score layer.</p>
+
+<p>Alternatively, I&rsquo;ve found setting a few widely spaced notes in a random layer using Arp-4, and then rotating the layer, is a great way of generating evolving chords.</p>
+
+<p>A few notes:</p>
+
+<ol>
+<li><p>If the target (i.e. midi channel) of an Arp-4 layer is the layer scale, nothing will happen.</p></li>
+
+<li><p>Only 4-note arps are currently set because a 4-note pitch sort was quite fast to execute, and (for example) an 8 note sort would take longer. It is possible to implement a generic N-note scale setting controller, without sorting (i.e. first in, first out) if this is useful for people. In the mean time, I may work on a suitably fast 8-note sort.</p></li>
+
+<li><p>Arp-4 layers don&rsquo;t record incoming midi. This means that it can&rsquo;t be used as a arpeggiator for a keyboard, for example.</p></li>
+
+<li><p>in case it wasn&rsquo;t obvious, this <em>isn&rsquo;t</em> a traditional arpeggiator, i.e. an instrument that arpeggiates (up/down etc.) chords that are played into it; since the arpeggiator pattern is defined within the target layer.</p></li>
+
+<li><p>Multiple layers can play from the same scale number, allowing chords, bassline rhythms, arpeggios, all to come from the same 4-note set.</p></li>
+</ol>
 
 <h2 id="compatibility-issues">Compatibility Issues</h2>
 
@@ -88,8 +122,7 @@ if (!doNotTrack) {
 
 <h2 id="releases">Releases</h2>
 
-<p>First included in A010</p>
-
+<p>First included in A021.</p>
 		</div>
 		
 <div class="post__tags tags clearfix">
@@ -114,10 +147,7 @@ if (!doNotTrack) {
 	
 <nav class="post-nav flex">
 	<div class="post-nav__item post-nav__item--prev">
-		<a class="post-nav__link" href="/posts/tenori-on/midiquiet/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Suppress Midi SysEx</p></a>
-	</div>
-	<div class="post-nav__item post-nav__item--next">
-		<a class="post-nav__link" href="/posts/tenori-on/score256/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Extended (256 step) score</p></a>
+		<a class="post-nav__link" href="/posts/tenori-on/perlayerscales/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Per layer scales (expanded)</p></a>
 	</div>
 </nav>
 	

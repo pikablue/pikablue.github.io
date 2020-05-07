@@ -6,10 +6,31 @@
     <description>Recent content in New Features on pika.blue</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 28 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 07 May 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://pika.blue/tags/new-features/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Meta Controller - Arpeggio 4 (Arp4)</title>
+      <link>http://pika.blue/posts/tenori-on/meta3_arp4/</link>
+      <pubDate>Thu, 07 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/meta3_arp4/</guid>
+      <description>&lt;p&gt;This function introduces an implementaton of an arpeggiator.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Per layer scales (expanded)</title>
+      <link>http://pika.blue/posts/tenori-on/perlayerscales/</link>
+      <pubDate>Thu, 07 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/perlayerscales/</guid>
+      <description>This function adds
+ the ability to set different scales per layer.</description>
+    </item>
     
     <item>
       <title>Meta Controller - Master Transpose</title>
@@ -92,16 +113,6 @@
       
       <guid>http://pika.blue/posts/tenori-on/perlayermidichannel/</guid>
       <description>This function adds the ability to set different midi channels per layer (including off)</description>
-    </item>
-    
-    <item>
-      <title>Per layer scales</title>
-      <link>http://pika.blue/posts/tenori-on/perlayerscales/</link>
-      <pubDate>Sun, 06 Oct 2019 00:00:00 +0000</pubDate>
-      
-      <guid>http://pika.blue/posts/tenori-on/perlayerscales/</guid>
-      <description>This function adds
- the ability to set different scales per layer.</description>
     </item>
     
   </channel>

@@ -3,6 +3,16 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://pika.blue/posts/tenori-on/meta3_arp4/</loc>
+    <lastmod>2020-05-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://pika.blue/posts/tenori-on/perlayerscales/</loc>
+    <lastmod>2020-05-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://pika.blue/posts/tenori-on/releases/</loc>
     <lastmod>2020-05-02T00:00:00+00:00</lastmod>
   </url>
@@ -58,11 +68,6 @@
   </url>
   
   <url>
-    <loc>http://pika.blue/posts/tenori-on/perlayerscales/</loc>
-    <lastmod>2019-10-06T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://pika.blue/posts/tenori-on/bootbuttons/</loc>
     <lastmod>2019-08-31T00:00:00+00:00</lastmod>
   </url>
@@ -94,7 +99,7 @@
   
   <url>
     <loc>http://pika.blue/posts/tenori-on/</loc>
-    <lastmod>2020-05-02T00:00:00+00:00</lastmod>
+    <lastmod>2020-05-07T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -110,7 +115,7 @@
   
   <url>
     <loc>http://pika.blue/tags/new-features/</loc>
-    <lastmod>2020-04-28T00:00:00+00:00</lastmod>
+    <lastmod>2020-05-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -133,13 +138,13 @@
   
   <url>
     <loc>http://pika.blue/tags/</loc>
-    <lastmod>2020-04-28T00:00:00+00:00</lastmod>
+    <lastmod>2020-05-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://pika.blue/categories/tenori-on/</loc>
-    <lastmod>2020-05-02T00:00:00+00:00</lastmod>
+    <lastmod>2020-05-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
