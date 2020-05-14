@@ -58,7 +58,7 @@ if (!doNotTrack) {
 		<header class="post__header">
 			<h1 class="post__title">Releases</h1><div class="post__meta meta">
 <svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-<time class="post__meta-date meta-date" datetime="2020-05-02T00:00:00">May 02, 2020</time>
+<time class="post__meta-date meta-date" datetime="2020-05-07T00:00:00">May 07, 2020</time>
 <span class="post__meta-categories meta-categories">
 	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
 	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/tenori-on" rel="category">tenori-on</a></span>
@@ -74,7 +74,8 @@ if (!doNotTrack) {
 <li><a href="#general-installation-instructions">General installation instructions</a></li>
 <li><a href="#liability-waiver">Liability Waiver !</a></li>
 <li><a href="#list-of-releases-and-downloads">List of releases and downloads</a></li>
-<li><a href="#list-of-known-bugs">List of known bugs</a></li>
+<li><a href="#open">List of open bugs</a></li>
+<li><a href="#list-of-closed-bugs">List of closed bugs</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -131,7 +132,7 @@ if (!doNotTrack) {
 
 <h2 id="list-of-releases-and-downloads">List of releases and downloads</h2>
 
-<p>The latest release is A021.</p>
+<p>The latest release is A021. (May 7th 2020). The known <a href="#open">open bugs</a> can be seen below.</p>
 
 <p>Each release contains, cumulatively, all the previous release features.</p>
 
@@ -147,73 +148,10 @@ if (!doNotTrack) {
 
 <tbody>
 <tr>
-<td><img src="/images/A006.jpg" alt="" title="A006" /></td>
-<td>Per-layer scales<br>Additional scales</td>
-<td><a href="/posts/tenori-on/perlayerscales/">Per layer scales</a></td>
-<td><a href="/releases/A006.zip">A006 firmware</a></td>
-</tr>
-
-<tr>
-<td>A008</td>
-<td>Per-layer midi channels</td>
-<td><a href="/posts/tenori-on/perlayermidichannel/">Per layer midi channel</a></td>
-<td><a href="/releases/A008.zip">A008 firmware</a></td>
-</tr>
-
-<tr>
-<td><img src="/images/A009.jpg" alt="" title="A009" /></td>
-<td>Selectable Sysex output</td>
-<td><a href="/posts/tenori-on/midiquiet/">Midi quiet</a></td>
-<td><a href="/releases/A009.zip">A009 firmware</a></td>
-</tr>
-
-<tr>
-<td>A010</td>
-<td>Remote block change</td>
-<td><a href="/posts/tenori-on/blockchange/">Block change</a></td>
-<td><a href="/releases/A010.zip">A010 firmware</a></td>
-</tr>
-
-<tr>
-<td><img src="/images/A013.jpg" alt="" title="A013" /></td>
-<td>256-step score</td>
-<td><a href="/posts/tenori-on/score256/">Score 256</a></td>
-<td><a href="/releases/A013.zip">A013 firmware</a></td>
-</tr>
-
-<tr>
-<td>A014</td>
-<td>Bugfix release</td>
-<td>Fixes bug 001 : &ldquo;Save as Alarm / Chime / Default&rdquo; error</td>
-<td><a href="/releases/A014.zip">A014 firmware</a></td>
-</tr>
-
-<tr>
-<td><img src="/images/A015.png" alt="" title="A015" /></td>
-<td>Splits</td>
-<td><a href="/posts/tenori-on/splits/">Splits</a></td>
-<td><a href="/releases/A015.zip">A015 firmware</a></td>
-</tr>
-
-<tr>
-<td><img src="/images/A016.png" alt="" title="A016" /></td>
-<td>Control Change</td>
-<td><a href="/posts/tenori-on/controller/">Control Change</a></td>
-<td><a href="/releases/A016.zip">A016 firmware</a></td>
-</tr>
-
-<tr>
-<td><img src="/images/A017.png" alt="" title="A017" /></td>
-<td>Block change meta controller + fix for bug 002</td>
-<td><a href="/posts/tenori-on/meta1_bc/">Block change meta controller</a></td>
-<td><a href="/releases/A017.zip">A017 firmware</a></td>
-</tr>
-
-<tr>
-<td>A018</td>
-<td>Recording</td>
-<td><a href="/posts/tenori-on/recorder/">Recording</a></td>
-<td><a href="/releases/A018.zip">A018 firmware</a></td>
+<td>A021</td>
+<td>Arp-4 meta controller + fix for bug 006</td>
+<td><a href="/posts/tenori-on/meta3_arp4/">Arp-4 meta controller</a></td>
+<td><a href="/releases/A021.zip">A021 firmware</a></td>
 </tr>
 
 <tr>
@@ -224,15 +162,121 @@ if (!doNotTrack) {
 </tr>
 
 <tr>
-<td>A021</td>
-<td>Arp-4 meta controller + fix for bug 006</td>
-<td><a href="/posts/tenori-on/meta3_arp4/">Arp-4 meta controller</a></td>
-<td><a href="/releases/A021.zip">A021 firmware</a></td>
+<td>A018</td>
+<td>Recording</td>
+<td><a href="/posts/tenori-on/recorder/">Recording</a></td>
+<td><a href="/releases/A018.zip">A018 firmware</a></td>
+</tr>
+
+<tr>
+<td><img src="/images/A017.png" alt="" title="A017" /></td>
+<td>Block change meta controller + fix for bug 002</td>
+<td><a href="/posts/tenori-on/meta1_bc/">Block change meta controller</a></td>
+<td><a href="/releases/A017.zip">A017 firmware</a></td>
+</tr>
+
+<tr>
+<td><img src="/images/A016.png" alt="" title="A016" /></td>
+<td>Control Change</td>
+<td><a href="/posts/tenori-on/controller/">Control Change</a></td>
+<td><a href="/releases/A016.zip">A016 firmware</a></td>
+</tr>
+
+<tr>
+<td><img src="/images/A015.png" alt="" title="A015" /></td>
+<td>Splits</td>
+<td><a href="/posts/tenori-on/splits/">Splits</a></td>
+<td><a href="/releases/A015.zip">A015 firmware</a></td>
+</tr>
+
+<tr>
+<td>A014</td>
+<td>Bugfix release</td>
+<td>Fixes bug 001 : &ldquo;Save as Alarm / Chime / Default&rdquo; error</td>
+<td><a href="/releases/A014.zip">A014 firmware</a></td>
+</tr>
+
+<tr>
+<td><img src="/images/A013.jpg" alt="" title="A013" /></td>
+<td>256-step score</td>
+<td><a href="/posts/tenori-on/score256/">Score 256</a></td>
+<td><a href="/releases/A013.zip">A013 firmware</a></td>
+</tr>
+
+<tr>
+<td>A010</td>
+<td>Remote block change</td>
+<td><a href="/posts/tenori-on/blockchange/">Block change</a></td>
+<td><a href="/releases/A010.zip">A010 firmware</a></td>
+</tr>
+
+<tr>
+<td><img src="/images/A009.jpg" alt="" title="A009" /></td>
+<td>Selectable Sysex output</td>
+<td><a href="/posts/tenori-on/midiquiet/">Midi quiet</a></td>
+<td><a href="/releases/A009.zip">A009 firmware</a></td>
+</tr>
+
+<tr>
+<td>A008</td>
+<td>Per-layer midi channels</td>
+<td><a href="/posts/tenori-on/perlayermidichannel/">Per layer midi channel</a></td>
+<td><a href="/releases/A008.zip">A008 firmware</a></td>
+</tr>
+
+<tr>
+<td><img src="/images/A006.jpg" alt="" title="A006" /></td>
+<td>Per-layer scales<br>Additional scales</td>
+<td><a href="/posts/tenori-on/perlayerscales/">Per layer scales</a></td>
+<td><a href="/releases/A006.zip">A006 firmware</a></td>
 </tr>
 </tbody>
 </table>
 
-<h2 id="list-of-known-bugs">List of known bugs</h2>
+<h2 id="open">List of open bugs</h2>
+
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Issue</th>
+<th>Appears in</th>
+<th>Fix status</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>004</td>
+<td>Using the rotary dial to modify the loop points crashes the TNR</td>
+<td>A013-&hellip;</td>
+<td>Open</td>
+</tr>
+
+<tr>
+<td>007</td>
+<td>Midi recorder timing (i.e. grid position) in score mode incorrect</td>
+<td>A018, A021</td>
+<td>Open</td>
+</tr>
+
+<tr>
+<td>008</td>
+<td>Similar to 003, off-screen loop display in score-256 &ldquo;leaks&rdquo; into current display when function keys are used</td>
+<td>A021</td>
+<td>Open</td>
+</tr>
+
+<tr>
+<td>009</td>
+<td>Layer 16 has &ldquo;ghost&rdquo; notes in block 1 when block is playing off-screen</td>
+<td>???- A021</td>
+<td>Open</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="list-of-closed-bugs">List of closed bugs</h2>
 
 <table>
 <thead>
@@ -267,13 +311,6 @@ if (!doNotTrack) {
 </tr>
 
 <tr>
-<td>004</td>
-<td>Using the rotary dial to modify the loop points crashes the TNR</td>
-<td>A013-&hellip;</td>
-<td>Open</td>
-</tr>
-
-<tr>
 <td>005</td>
 <td>Saving + loading blocks and songs with the new layer settings does not preserve the new settings</td>
 <td>A013-A018</td>
@@ -285,13 +322,6 @@ if (!doNotTrack) {
 <td>Release A019 broke the recorder from A018 !</td>
 <td>A019</td>
 <td>Fixed in A021</td>
-</tr>
-
-<tr>
-<td>007</td>
-<td>Midi recorder timing (i.e. grid position) in score mode incorrect</td>
-<td>A018, A021</td>
-<td>Open</td>
 </tr>
 </tbody>
 </table>
