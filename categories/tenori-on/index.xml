@@ -6,10 +6,19 @@
     <description>Recent content in Tenori On on pika.blue</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 07 May 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 19 May 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://pika.blue/categories/tenori-on/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Releases</title>
+      <link>http://pika.blue/posts/tenori-on/releases/</link>
+      <pubDate>Tue, 19 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/releases/</guid>
+      <description>This page contains a link to the the releases so far.</description>
+    </item>
     
     <item>
       <title>Meta Controller - Arpeggio 4 (Arp4)</title>
@@ -30,15 +39,6 @@
       <guid>http://pika.blue/posts/tenori-on/perlayerscales/</guid>
       <description>This function adds
  the ability to set different scales per layer.</description>
-    </item>
-    
-    <item>
-      <title>Releases</title>
-      <link>http://pika.blue/posts/tenori-on/releases/</link>
-      <pubDate>Thu, 07 May 2020 00:00:00 +0000</pubDate>
-      
-      <guid>http://pika.blue/posts/tenori-on/releases/</guid>
-      <description>This page contains a link to the the releases so far.</description>
     </item>
     
     <item>

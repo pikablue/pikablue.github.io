@@ -58,7 +58,7 @@ if (!doNotTrack) {
 		<header class="post__header">
 			<h1 class="post__title">Releases</h1><div class="post__meta meta">
 <svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-<time class="post__meta-date meta-date" datetime="2020-05-07T00:00:00">May 07, 2020</time>
+<time class="post__meta-date meta-date" datetime="2020-05-19T00:00:00">May 19, 2020</time>
 <span class="post__meta-categories meta-categories">
 	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
 	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/tenori-on" rel="category">tenori-on</a></span>
@@ -132,7 +132,7 @@ if (!doNotTrack) {
 
 <h2 id="list-of-releases-and-downloads">List of releases and downloads</h2>
 
-<p>The latest release is A021. (May 7th 2020). The known <a href="#open">open bugs</a> can be seen below.</p>
+<p>The latest release is A022. (May 19th 2020). The known <a href="#open">open bugs</a> in the latest release can be seen below.</p>
 
 <p>Each release contains, cumulatively, all the previous release features.</p>
 
@@ -147,6 +147,13 @@ if (!doNotTrack) {
 </thead>
 
 <tbody>
+<tr>
+<td>A022</td>
+<td>Bugfix release</td>
+<td>Fix for bugs 008 + 009</td>
+<td><a href="/releases/A022.zip">A022 firmware</a></td>
+</tr>
+
 <tr>
 <td>A021</td>
 <td>Arp-4 meta controller + fix for bug 006</td>
@@ -259,20 +266,6 @@ if (!doNotTrack) {
 <td>A018, A021</td>
 <td>Open</td>
 </tr>
-
-<tr>
-<td>008</td>
-<td>Similar to 003, off-screen loop display in score-256 &ldquo;leaks&rdquo; into current display when function keys are used</td>
-<td>A021</td>
-<td>Open</td>
-</tr>
-
-<tr>
-<td>009</td>
-<td>Layer 16 has &ldquo;ghost&rdquo; notes in block 1 when block is playing off-screen</td>
-<td>???- A021</td>
-<td>Open</td>
-</tr>
 </tbody>
 </table>
 
@@ -306,7 +299,7 @@ if (!doNotTrack) {
 <tr>
 <td>003</td>
 <td>Using the block change meta controller, the LED display of the loop points doesn&rsquo;t update, so that L4 shows loop points that are &ldquo;off screen&rdquo;</td>
-<td>A017-&hellip;</td>
+<td>A017-A018</td>
 <td>Fixed in A019</td>
 </tr>
 
@@ -322,6 +315,20 @@ if (!doNotTrack) {
 <td>Release A019 broke the recorder from A018 !</td>
 <td>A019</td>
 <td>Fixed in A021</td>
+</tr>
+
+<tr>
+<td>008</td>
+<td>Similar to 003, off-screen loop display in score-256 &ldquo;leaks&rdquo; into current display when function keys are used</td>
+<td>A021</td>
+<td>Open</td>
+</tr>
+
+<tr>
+<td>009</td>
+<td>Layer 16 has &ldquo;ghost&rdquo; notes in block 1 when block is playing off-screen</td>
+<td>A013-A021</td>
+<td>Open</td>
 </tr>
 </tbody>
 </table>
@@ -350,10 +357,7 @@ if (!doNotTrack) {
 	
 <nav class="post-nav flex">
 	<div class="post-nav__item post-nav__item--prev">
-		<a class="post-nav__link" href="/posts/tenori-on/meta2_tr/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Meta Controller - Master Transpose</p></a>
-	</div>
-	<div class="post-nav__item post-nav__item--next">
-		<a class="post-nav__link" href="/posts/tenori-on/perlayerscales/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Per layer scales (expanded)</p></a>
+		<a class="post-nav__link" href="/posts/tenori-on/meta3_arp4/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Meta Controller - Arpeggio 4 (Arp4)</p></a>
 	</div>
 </nav>
 	
@@ -363,9 +367,9 @@ if (!doNotTrack) {
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/releases/">Releases</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/meta3_arp4/">Meta Controller - Arpeggio 4 (Arp4)</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/perlayerscales/">Per layer scales (expanded)</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/releases/">Releases</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/meta2_tr/">Meta Controller - Master Transpose</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/tradetools/">Tools of the trade</a></li>
 		</ul>

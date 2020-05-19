@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>Releases</title>
+      <link>http://pika.blue/posts/tenori-on/releases/</link>
+      <pubDate>Tue, 19 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/releases/</guid>
+      <description>This page contains a link to the the releases so far.</description>
+    </item>
+    
+    <item>
       <title>Meta Controller - Arpeggio 4 (Arp4)</title>
       <link>http://pika.blue/posts/tenori-on/meta3_arp4/</link>
       <pubDate>Thu, 07 May 2020 00:00:00 +0000</pubDate>
@@ -30,15 +39,6 @@
       <guid>http://pika.blue/posts/tenori-on/perlayerscales/</guid>
       <description>This function adds
  the ability to set different scales per layer.</description>
-    </item>
-    
-    <item>
-      <title>Releases</title>
-      <link>http://pika.blue/posts/tenori-on/releases/</link>
-      <pubDate>Thu, 07 May 2020 00:00:00 +0000</pubDate>
-      
-      <guid>http://pika.blue/posts/tenori-on/releases/</guid>
-      <description>This page contains a link to the the releases so far.</description>
     </item>
     
     <item>
