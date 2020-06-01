@@ -5,6 +5,7 @@ exec wish "$0" "$@"
 # This is a Tcl/Tk script to play and unpack Yamaha TENORI-ON TNW sample files
 
 # v0.1	31/05/20	Initial version 
+# v0.2	01/06/20	Added afplay for MacOsX in proc play 
 
 # INSTALLING (WINDOWS)
 # 1/ Obtain a TCLKIT with TWAPI. This is a single-file version of the TCL/TK distribution; it's about 6MB
@@ -234,9 +235,6 @@ proc play {slot} {
 		return
 	}
 	
-	if { $::tcl_platform(platform) != "windows" } {
-		return
-	}
 	set ::Progress "Playing slot [expr $slot+1]"
 	update
 
@@ -245,7 +243,12 @@ proc play {slot} {
 	puts -nonewline $f [set ::Wavfile_${slot} ]
 	close $f
 
-	twapi::play_sound $::TEMPFILENAME
+	if { $::tcl_platform(platform) == "windows" } {
+		twapi::play_sound $::TEMPFILENAME
+	} elseif { $::tcl_platform(os) == "Darwin" } {
+		# Attempt to work on MacOsX
+		exec {*}[auto_execok afplay ] "" [file nativename [file normalize $::TEMPFILENAME]]
+	}	
 
 	# This is a sensible fallback if TWAPI is not available
 	# exec {*}[auto_execok start ] "" [file nativename [file normalize $::TEMPFILENAME]]
