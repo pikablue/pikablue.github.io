@@ -58,7 +58,7 @@ if (!doNotTrack) {
 		<header class="post__header">
 			<h1 class="post__title">Auditioning a TNW file</h1><div class="post__meta meta">
 <svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-<time class="post__meta-date meta-date" datetime="2020-06-01T00:00:00">June 01, 2020</time>
+<time class="post__meta-date meta-date" datetime="2020-06-03T00:00:00">June 03, 2020</time>
 <span class="post__meta-categories meta-categories">
 	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
 	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/tenori-on" rel="category">tenori-on</a></span>
@@ -78,21 +78,24 @@ if (!doNotTrack) {
 <img src="/images/auditionTNW.png" alt="SD extender" style="max-width:400px" border="0">
 </p>
 
-<p>In an attempt to be cross-platform, this was written as a script in <a href="https://www.tcl.tk">Tcl/Tk</a> ; however, my ignorance with all things MacOS mean that the sound previewing only currently works on Windows. Hopefully someone can help me sort this! Although there are lots of ways of providing binary distributions of TCL scripts, I am currently providing just the script itself and some install instructions for the single-executable version of Tcl/Tk:</p>
+<p>In an attempt to be cross-platform, this was written as a script in <a href="https://www.tcl.tk">Tcl/Tk</a>. For Windows, this uses <em>TWAPI</em> to play the sounds. For MacOS, an attempt has been made to use <em>afplay</em> to audition the sounds, but this may not work.
+Although there are lots of ways of providing binary distributions of TCL scripts, I am currently providing just the script itself and some install instructions for the single-executable version of Tcl/Tk:</p>
 
 <p>To install it:</p>
 
 <ol>
-<li><p>Download the script from here :  <a href="/releases/AuditionTNW.tcl">AuditionTNW.tcl</a></p></li>
+<li><p>Download the script from here :  <a href="/data/AuditionTNW.tcl">AuditionTNW.tcl</a></p></li>
 
 <li><p>(Windows, option 1) Download the Freewrap executable for your platform : <a href="http://freewrap.sourceforge.net/">Freewrap on Sourceforge</a>.  Use Freewrap to create a standalone version of the AuditionTNW script by dragging and dropping the script onto the Freewrap executable.</p></li>
 
 <li><p>(Windows, option 2) Download a TclKit that includes TWAPI. For example, one of the ones with &ldquo;GUI&rdquo; in the filename from here : <a href="https://sourceforge.net/projects/twapi/files/Tcl%20binaries/Tclkits%20with%20TWAPI/">TWAPI on Sourceforge</a></p></li>
 
-<li><p>(Linux) You more than likely alredy have Tcl/Tk installed. If you don&rsquo;t, the Freewrap route above also works.</p></li>
+<li><p>(Linux) You more than likely already have Tcl/Tk installed. If you don&rsquo;t, the Freewrap route above also works.</p></li>
 
 <li><p>(MacOs) Download a TclKit, e.g. from here : <a href="http://tclkits.rkeene.org/fossil/wiki/Downloads">Prebuilt TclKits</a>. Use this to run the script.</p></li>
 </ol>
+
+<p>Some notes on the TNW file format can be found as a zipped, OpenDocument Spreadsheet here : <a href="/data/TNW_Format_v1.zip">TNW Format</a></p>
 
 		</div>
 		
@@ -118,7 +121,7 @@ if (!doNotTrack) {
 	
 <nav class="post-nav flex">
 	<div class="post-nav__item post-nav__item--prev">
-		<a class="post-nav__link" href="/posts/tenori-on/resample1/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">(Limited) User sample pitch shift</p></a>
+		<a class="post-nav__link" href="/posts/tenori-on/releases/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Releases</p></a>
 	</div>
 </nav>
 	
@@ -129,8 +132,8 @@ if (!doNotTrack) {
 	<div class="widget__content">
 		<ul class="widget__list">
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/audition/">Auditioning a TNW file</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/resample1/">(Limited) User sample pitch shift</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/releases/">Releases</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/resample1/">(Limited) User sample pitch shift</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/meta3_arp4/">Meta Controller - Arpeggio 4 (Arp4)</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/perlayerscales/">Per layer scales (expanded)</a></li>
 		</ul>
