@@ -58,7 +58,7 @@ if (!doNotTrack) {
 		<header class="post__header">
 			<h1 class="post__title">MIDI recording</h1><div class="post__meta meta">
 <svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-<time class="post__meta-date meta-date" datetime="2020-04-20T00:00:00">April 20, 2020</time>
+<time class="post__meta-date meta-date" datetime="2020-06-13T00:00:00">June 13, 2020</time>
 <span class="post__meta-categories meta-categories">
 	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
 	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/tenori-on" rel="category">tenori-on</a></span>
@@ -72,10 +72,24 @@ if (!doNotTrack) {
 
 <p>This modification joins the two, so that the TNR can record incoming midi note-on streams. The behaviour is slightly different depending on the layer targetted.</p>
 
+<p>This function is found under the MIDI menu:</p>
+
+<table>
+<thead>
+<tr>
+<th><img src="/images/recordmode.png" alt="" title="MIDI Recording menu" /></th>
+<th><img src="/images/recordtime.png" alt="" title="Selecting record mode" /></th>
+</tr>
+</thead>
+
+<tbody>
+</tbody>
+</table>
+
 <p>Some notes:</p>
 
 <ol>
-<li><p>The function is &ldquo;always on&rdquo; - that is, there is currently no menu item for turning it on, or more particularly, turning it off. (This could be added if needed).</p></li>
+<li><p>The function is enabled by the Record Mode entry under the MIDI menu. This enables the recording mode to be switched between &ldquo;Time&rdquo; and &ldquo;Velocity&rdquo;</p></li>
 
 <li><p>Only Note-on information is recorded. The internal workings of the TNR rely on knowing the sound duration when the note-on occurs; the durations are not established from the note-off event. Play back of recorded data uses the layer&rsquo;s sound length time.</p></li>
 
@@ -87,7 +101,7 @@ if (!doNotTrack) {
 
 <li><p>All loops are in continuous punch-in/overwrite mode. Deletion of notes has to be via interaction with the TNR itself, e.g. via layer clear, or specific deselection of notes.</p></li>
 
-<li><p>The behaviour is different for different layer types.</p>
+<li><p>The behaviour is different for different layer types. In &ldquo;Time&rdquo; mode, the following occurs</p>
 
 <ul>
 <li>Score records notes at the current loop position as might be anticipated. Quantization occurs at the loop speed of the layer.</li>
@@ -95,11 +109,19 @@ if (!doNotTrack) {
 <li>Draw records the pitch, but the other on-screen axis position is random. The timing is quantized at draw&rsquo;s loop tick (which is 24 times faster than score&rsquo;s, for the same loop speed). Draw is therefore a good general recording target if you don&rsquo;t want quantized data, and don&rsquo;t need to edit it afterwards.</li>
 <li>Bounce records the pitch, but assumes you are pressing the top row.</li>
 <li>Push records the pitch, but the other on-screen axis position is random.</li>
-<li>Score256 does not have recording capability (yet).
-<br /></li>
-</ul>
+<li>Score256 does not have recording capability (yet).</li>
+</ul></li>
 
-<p>If anyone has any better ideas for what to do with the &ldquo;random&rdquo; positions, then suggestions are welcome! For example, the bounce height could be linked in some way to received velocity?</p></li>
+<li><p>In &ldquo;Velocity&rdquo; mode, the following occurs</p>
+
+<ul>
+<li>Score uses the incoming note velocity to determine which column to draw the note, split evenly from <code>01-7F</code>. HIgh velocities are drawn on the right, low ones on the left.</li>
+<li>Random records the pitch, but the other on-screen axis position is determined by velocity. The timing of the playback is therefore not random, as such, but it is difficult to control.</li>
+<li>Draw records the pitch, the other on-screen axis position is taken from the velocity. The time-quantization is as per the &ldquo;Time&rdquo; mode</li>
+<li>Bounce records the pitch, but places notes towards the bottom for high velocities, and the top for low velocities. Bounce therefore provides the only way in which notes can be turned off, since a high velocity corresponds to the bottom row, which is Off in bounce mode.</li>
+<li>Push records the pitch, the other axis is dictated by the incoming velocity.</li>
+<li>Score256 does not have recording capability (yet).<br /></li>
+</ul></li>
 
 <li><p>Only layers that are set to &ldquo;pure&rdquo; instruments can be recorded to. Layers with velocity, octave or duration splits, or controller layers, or meta controller layers, can not record incoming notes.</p></li>
 
@@ -111,8 +133,6 @@ if (!doNotTrack) {
 <h2 id="compatibility-issues">Compatibility Issues</h2>
 
 <p>None known - there may be compatibility issues with hardware setups if the TNR was previously being bombarded by note-on messages.</p>
-
-<p>Bug 007 tracks the fact that the quantization (most obvious in score mode with a slow loop speed) isn&rsquo;t quite correct.</p>
 
 <h2 id="releases">Releases</h2>
 
@@ -142,10 +162,7 @@ if (!doNotTrack) {
 	
 <nav class="post-nav flex">
 	<div class="post-nav__item post-nav__item--prev">
-		<a class="post-nav__link" href="/posts/tenori-on/meta1_bc/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Meta Controller - Block Change</p></a>
-	</div>
-	<div class="post-nav__item post-nav__item--next">
-		<a class="post-nav__link" href="/posts/tenori-on/tradetools/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Tools of the trade</p></a>
+		<a class="post-nav__link" href="/posts/tenori-on/midiquiet/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Suppress Midi SysEx (updated)</p></a>
 	</div>
 </nav>
 	
@@ -155,20 +172,20 @@ if (!doNotTrack) {
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/recorder/">MIDI recording</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/midiquiet/">Suppress Midi SysEx (updated)</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/transport/">MIDI Transport Controls</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/audition/">Auditioning a TNW file</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/releases/">Releases</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/resample1/">(Limited) User sample pitch shift</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/meta3_arp4/">Meta Controller - Arpeggio 4 (Arp4)</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/perlayerscales/">Per layer scales (expanded)</a></li>
 		</ul>
 	</div>
 </div>
 <div class="widget-taglist widget">
 	<h4 class="widget__title">Tags</h4>
 	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="/tags/new-features" title="New features">New features (12)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/new-features" title="New features">New features (13)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/project-plan" title="Project plan">Project plan (2)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/stock-features" title="Stock features">Stock features (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/stock-features" title="Stock features">Stock features (3)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/tools" title="Tools">Tools (2)</a>
 	</div>
 </div><div class="widget-social widget">

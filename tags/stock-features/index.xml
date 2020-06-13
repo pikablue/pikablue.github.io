@@ -6,10 +6,21 @@
     <description>Recent content in Stock Features on pika.blue</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 31 Aug 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 11 Jun 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://pika.blue/tags/stock-features/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>MIDI Transport Controls</title>
+      <link>http://pika.blue/posts/tenori-on/transport/</link>
+      <pubDate>Thu, 11 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/transport/</guid>
+      <description>&lt;p&gt;This page discusses the TNR&amp;rsquo;s baseline MIDI transport implementation, and some extensions.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>TNR Power On Buttons</title>

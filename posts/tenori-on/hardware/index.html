@@ -87,7 +87,7 @@ if (!doNotTrack) {
 <img src="/images/servicemanual.png" alt="TNR-O Service Manual" style="max-width:300px" border="1">
 </p>
 
-<p>It is in both Japanese and English. I haven&rsquo;t been able to find the service manual for the TNR-W, however while there are several differences between the TNR-W and the TNR-O (colour, backside LEDs, battery), the schematics in the service manual for the TNR-O just show the TNR-W components with a dotted line saying &ldquo;not fitted&rdquo;. Similarly to the actual hardware, the service manual is really fantastic, and provides so much good information for wannabe Tenori-on modders.</p>
+<p>It is in both Japanese and English. The service manual for the TNR-W is almost identical. While there are several differences between the TNR-W and the TNR-O (colour, backside LEDs, battery), the schematics in the service manual for the TNR-O just show the TNR-W components with a dotted line saying &ldquo;not fitted&rdquo;. Similarly to the actual hardware, the service manual is really fantastic, and provides so much good information for wannabe Tenori-on modders.</p>
 
 <h2 id="cpu-toshiba-tlcs-900-h1-tmp92ca25fg">CPU : Toshiba TLCS-900/H1 : TMP92CA25FG</h2>
 
@@ -99,11 +99,11 @@ if (!doNotTrack) {
 
 <p>The commercial IDA disassembler from Hex-Rays also includes support for the TLCS-900, I believe as a module that you need to compile using the IDA SDK.</p>
 
-<p>I am reassembling using the excellent <a href="http://http://john.ccac.rwth-aachen.de:8000/as/">Macro Assembler AS</a>. When I couldn&rsquo;t get binary-identical reassembly for the 2.10 branch, Alfred made some specific enhancements to AS which enabled me to generate identical code.</p>
+<p>I am reassembling using the excellent <a href="http://http://john.ccac.rwth-aachen.de:8000/as/">Macro Assembler AS</a>. When I couldn&rsquo;t get binary-identical reassembly for the 2.10 branch, Alfred - the developer of the assembler - made some specific enhancements to AS which enabled me to generate identical code, so much thanks to him.</p>
 
 <h2 id="tone-generator-yamaha-swl-01-ymw767-vtz">&ldquo;Tone Generator&rdquo; : Yamaha SWL-01 : YMW767-VTZ</h2>
 
-<p>I can find very little information on this device. It is used in <a href="http://www.dtech.lv/techarticles_yamaha_chips.html">some Yamaha synths contemporaneous with the TNR; scroll down to find the SWL01</a>. This is essentially a second CPU. The TLCS-900 and SWL-01 communicate over the address and data bus, so the SWL-01 is presumably memory mapped into the TLCS-900 address space.</p>
+<p>I can find very little information on this device. It is used in <a href="http://www.dtech.lv/techarticles_yamaha_chips.html">some Yamaha synths contemporaneous with the TNR; scroll down to find the SWL01</a>. This is essentially a second CPU. The TLCS-900 and SWL-01 communicate over the address and data bus, the SWL-01 is memory mapped into the TLCS-900 address space. However, the Flash memory used for storing the instruments, and user samples, is only accessible by the SWL; updating the user samples involves the TLCS-900 messaging the SWL, which then writes to its Flash memory - this is why updating user samples takes so long.</p>
 
 <h2 id="lcd-module-wg12232d-ygh">LCD Module : WG12232D-YGH</h2>
 
@@ -121,7 +121,7 @@ if (!doNotTrack) {
 
 <h1 id="dac">DAC</h1>
 
-<p>The digital-to-analog converter (that makes the audio sound) is an <a href="https://media.digikey.com/pdf/Data%20Sheets/AKM%20Semiconductor%20Inc.%20PDFs/AK4385_9-30-10.pdf">AsahiKASEI AK4385</a> 24bit, 192kHz DAC.</p>
+<p>The digital-to-analog converter (that makes the audio sound) is an <a href="https://media.digikey.com/pdf/Data%20Sheets/AKM%20Semiconductor%20Inc.%20PDFs/AK4385_9-30-10.pdf">AsahiKASEI AK4385</a> 24bit, up-tp-192kHz DAC.</p>
 
 		</div>
 		
@@ -160,20 +160,20 @@ if (!doNotTrack) {
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/recorder/">MIDI recording</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/midiquiet/">Suppress Midi SysEx (updated)</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/transport/">MIDI Transport Controls</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/audition/">Auditioning a TNW file</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/releases/">Releases</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/resample1/">(Limited) User sample pitch shift</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/meta3_arp4/">Meta Controller - Arpeggio 4 (Arp4)</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/perlayerscales/">Per layer scales (expanded)</a></li>
 		</ul>
 	</div>
 </div>
 <div class="widget-taglist widget">
 	<h4 class="widget__title">Tags</h4>
 	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="/tags/new-features" title="New features">New features (12)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/new-features" title="New features">New features (13)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/project-plan" title="Project plan">Project plan (2)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/stock-features" title="Stock features">Stock features (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/stock-features" title="Stock features">Stock features (3)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/tools" title="Tools">Tools (2)</a>
 	</div>
 </div><div class="widget-social widget">

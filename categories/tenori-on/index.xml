@@ -6,10 +6,39 @@
     <description>Recent content in Tenori On on pika.blue</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 03 Jun 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 13 Jun 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://pika.blue/categories/tenori-on/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>MIDI recording</title>
+      <link>http://pika.blue/posts/tenori-on/recorder/</link>
+      <pubDate>Sat, 13 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/recorder/</guid>
+      <description>This function adds MIDI (note on) recording to all layers.</description>
+    </item>
+    
+    <item>
+      <title>Suppress Midi SysEx (updated)</title>
+      <link>http://pika.blue/posts/tenori-on/midiquiet/</link>
+      <pubDate>Sat, 13 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/midiquiet/</guid>
+      <description>This function manages the output of MIDI SysEx messages everytime you press a button in normal mode, and CC messages when instruments are changed.</description>
+    </item>
+    
+    <item>
+      <title>MIDI Transport Controls</title>
+      <link>http://pika.blue/posts/tenori-on/transport/</link>
+      <pubDate>Thu, 11 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/transport/</guid>
+      <description>&lt;p&gt;This page discusses the TNR&amp;rsquo;s baseline MIDI transport implementation, and some extensions.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Auditioning a TNW file</title>
@@ -82,15 +111,6 @@
     </item>
     
     <item>
-      <title>MIDI recording</title>
-      <link>http://pika.blue/posts/tenori-on/recorder/</link>
-      <pubDate>Mon, 20 Apr 2020 00:00:00 +0000</pubDate>
-      
-      <guid>http://pika.blue/posts/tenori-on/recorder/</guid>
-      <description>This function adds MIDI (note on) recording to all layers.</description>
-    </item>
-    
-    <item>
       <title>Meta Controller - Block Change</title>
       <link>http://pika.blue/posts/tenori-on/meta1_bc/</link>
       <pubDate>Fri, 17 Apr 2020 00:00:00 +0000</pubDate>
@@ -127,24 +147,6 @@
     </item>
     
     <item>
-      <title>Remote block change</title>
-      <link>http://pika.blue/posts/tenori-on/blockchange/</link>
-      <pubDate>Sat, 08 Feb 2020 00:00:00 +0000</pubDate>
-      
-      <guid>http://pika.blue/posts/tenori-on/blockchange/</guid>
-      <description>This function adds the ability to change the block remotely, without being in remote mode.</description>
-    </item>
-    
-    <item>
-      <title>Suppress Midi SysEx</title>
-      <link>http://pika.blue/posts/tenori-on/midiquiet/</link>
-      <pubDate>Sun, 08 Dec 2019 00:00:00 +0000</pubDate>
-      
-      <guid>http://pika.blue/posts/tenori-on/midiquiet/</guid>
-      <description>This function stops the output of MIDI SysEx messages everytime you press a button in normal mode.</description>
-    </item>
-    
-    <item>
       <title>Per layer midi channels</title>
       <link>http://pika.blue/posts/tenori-on/perlayermidichannel/</link>
       <pubDate>Fri, 06 Dec 2019 00:00:00 +0000</pubDate>
@@ -178,6 +180,15 @@
       
       <guid>http://pika.blue/posts/tenori-on/goals/</guid>
       <description>The Yamaha Tenori-on, designed in collaboration between the performance artist Toshio Iwai and Yamaha, is a wonderful piece of hardware.</description>
+    </item>
+    
+    <item>
+      <title>Remote block change</title>
+      <link>http://pika.blue/posts/tenori-on/blockchange/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/blockchange/</guid>
+      <description>This function adds the ability to change the block remotely, without being in remote mode.</description>
     </item>
     
   </channel>
