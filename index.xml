@@ -21,6 +21,15 @@
     </item>
     
     <item>
+      <title>Releases</title>
+      <link>http://pika.blue/posts/tenori-on/releases/</link>
+      <pubDate>Sat, 13 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/releases/</guid>
+      <description>This page contains a link to the the releases so far.</description>
+    </item>
+    
+    <item>
       <title>Suppress Midi SysEx (updated)</title>
       <link>http://pika.blue/posts/tenori-on/midiquiet/</link>
       <pubDate>Sat, 13 Jun 2020 00:00:00 +0000</pubDate>
@@ -47,15 +56,6 @@
       
       <guid>http://pika.blue/posts/tenori-on/audition/</guid>
       <description>This is a small utility for auditioning sample (TNW) files without having to load them to the TNR.</description>
-    </item>
-    
-    <item>
-      <title>Releases</title>
-      <link>http://pika.blue/posts/tenori-on/releases/</link>
-      <pubDate>Mon, 01 Jun 2020 00:00:00 +0000</pubDate>
-      
-      <guid>http://pika.blue/posts/tenori-on/releases/</guid>
-      <description>This page contains a link to the the releases so far.</description>
     </item>
     
     <item>
