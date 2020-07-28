@@ -58,7 +58,7 @@ if (!doNotTrack) {
 		<header class="post__header">
 			<h1 class="post__title">Meta Controller - Block Change</h1><div class="post__meta meta">
 <svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-<time class="post__meta-date meta-date" datetime="2020-04-17T00:00:00">April 17, 2020</time>
+<time class="post__meta-date meta-date" datetime="2020-07-27T00:00:00">July 27, 2020</time>
 <span class="post__meta-categories meta-categories">
 	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
 	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/tenori-on" rel="category">tenori-on</a></span>
@@ -92,16 +92,18 @@ if (!doNotTrack) {
 
 <p>A typical usage model for this is to have layer 1 be a &ldquo;sequencer&rdquo; layer, set in score-256 mode (see <a href="/posts/tenori-on/score256/">Score 256</a> ), with a slow loop speed, using the block change meta controller as its instrument. This provides a way of writing a track, with a certain number of ticks of block 1, then a certain number of ticks of block 3, then block 4, etc.</p>
 
-<p>Currently, since a running block change controller does change the current block, the visible block will keep changing. This makes entering block change commands tricky. (I am working on this). One workaround is to &ldquo;program&rdquo; the block changes with the Meta instrument set to 000 (No action), and then change the instrument to the block change instrument.</p>
+<p>In a playing score-256 mode, a block change note will not change the visible block, which enables correct entering of sequences of blocks even while playing.</p>
 
 <p><img src="/images/sequencer.png" alt="Track Sequencer" title="Track Sequencer" /></p>
+
+<p>However, for non-score-256 layer types, a block change will change the active visible block, which can make programming certain effects difficult. One workaround for non-score256 layers is to &ldquo;program&rdquo; the block changes with the Meta instrument set to 000 (No action), and then change the instrument to the block change instrument.</p>
 
 <p>However, this does not preclude inventive use in other modes. The block change meta controller deliberately doesn&rsquo;t do anything in PUSH mode since it isn&rsquo;t meaningful. Behaviour in SOLO mode does change block as expected, but is probably only useful as a way of changing blocks with one key press e.g. in a live situation. Trying to use a block change meta in a BOUNCE layer, for example, can be quite confusing, since the block - and hence the live set of notes - keeps changing.</p>
 
 <p>A few notes:</p>
 
 <ol>
-<li><p>The timing of when the block change happens can be a bit bizarre. The TNR executes the block change at the end of the current internal tick. This means that with two score layers running in perfect parallel, a block change LED column 1 will take effect some time between column 1 and column 2, meaning that column 1 LEDs from the other score blocks will be played for the OLD block rather than the new block. I am still trying to see how this might be made more predictable.</p></li>
+<li><p>Meta controllers deliberately run slightly ahead of time, so that with two score layers running in perfect parallel, a block change LED column 1 will take effect before column 1 in the other layer gets executed. This is the correct intuitive behaviour.</p></li>
 
 <li><p>Block changes are quite processor expensive, so rapid sequences of block changes may lead to audible timing glitches if there are a lot of notes. (Improving this is part of the overall optimization activity, but the TNR isn&rsquo;t a powerhouse, so be nice)</p></li>
 
@@ -116,7 +118,7 @@ if (!doNotTrack) {
 
 <h2 id="releases">Releases</h2>
 
-<p>First included in A017.</p>
+<p>First included in A017. Timing improved in A026</p>
 
 		</div>
 		
@@ -142,10 +144,7 @@ if (!doNotTrack) {
 	
 <nav class="post-nav flex">
 	<div class="post-nav__item post-nav__item--prev">
-		<a class="post-nav__link" href="/posts/tenori-on/controller/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Control Change</p></a>
-	</div>
-	<div class="post-nav__item post-nav__item--next">
-		<a class="post-nav__link" href="/posts/tenori-on/tradetools/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Tools of the trade</p></a>
+		<a class="post-nav__link" href="/posts/tenori-on/meta2_tr/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Meta Controller - Master Transpose</p></a>
 	</div>
 </nav>
 	
@@ -155,11 +154,11 @@ if (!doNotTrack) {
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/recorder/">MIDI recording</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/meta1_bc/">Meta Controller - Block Change</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/meta2_tr/">Meta Controller - Master Transpose</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/releases/">Releases</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/recorder/">MIDI recording</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/midiquiet/">Suppress Midi SysEx (updated)</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/transport/">MIDI Transport Controls</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/audition/">Auditioning a TNW file</a></li>
 		</ul>
 	</div>
 </div>

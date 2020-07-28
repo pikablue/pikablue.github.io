@@ -58,7 +58,7 @@ if (!doNotTrack) {
 		<header class="post__header">
 			<h1 class="post__title">Meta Controller - Master Transpose</h1><div class="post__meta meta">
 <svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-<time class="post__meta-date meta-date" datetime="2020-04-28T00:00:00">April 28, 2020</time>
+<time class="post__meta-date meta-date" datetime="2020-07-27T00:00:00">July 27, 2020</time>
 <span class="post__meta-categories meta-categories">
 	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
 	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/tenori-on" rel="category">tenori-on</a></span>
@@ -95,7 +95,7 @@ if (!doNotTrack) {
 <p>A few notes:</p>
 
 <ol>
-<li>Common to all meta-controllers, the timing of when the transpose happens can be a bit bizarre. The TNR executes the transpose at the end of the current internal tick. This means that with two score layers running in perfect parallel, a transpose LED column 1 will take effect some time between column 1 and column 2, meaning that column 1 LEDs from the other score will be played with the OLD transpose value rather than the new one. I am still trying to see how this might be made more predictable.</li>
+<li>Common to all meta-controllers, the transpose, in score modes, actually happens very slightly before the indicated column. This means that with two score layers running in perfect parallel, a transpose LED column 1 will take effect just before the other score layer gets to column 1. This is the intuitively expected behaviour.</li>
 </ol>
 
 <h2 id="compatibility-issues">Compatibility Issues</h2>
@@ -104,7 +104,7 @@ if (!doNotTrack) {
 
 <h2 id="releases">Releases</h2>
 
-<p>First included in A019.</p>
+<p>First included in A019; timing improved in A026</p>
 		</div>
 		
 <div class="post__tags tags clearfix">
@@ -129,10 +129,10 @@ if (!doNotTrack) {
 	
 <nav class="post-nav flex">
 	<div class="post-nav__item post-nav__item--prev">
-		<a class="post-nav__link" href="/posts/tenori-on/tradetools/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Tools of the trade</p></a>
+		<a class="post-nav__link" href="/posts/tenori-on/releases/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Releases</p></a>
 	</div>
 	<div class="post-nav__item post-nav__item--next">
-		<a class="post-nav__link" href="/posts/tenori-on/perlayerscales/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Per layer scales (expanded)</p></a>
+		<a class="post-nav__link" href="/posts/tenori-on/meta1_bc/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Meta Controller - Block Change</p></a>
 	</div>
 </nav>
 	
@@ -142,11 +142,11 @@ if (!doNotTrack) {
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/recorder/">MIDI recording</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/meta1_bc/">Meta Controller - Block Change</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/meta2_tr/">Meta Controller - Master Transpose</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/releases/">Releases</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/recorder/">MIDI recording</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/midiquiet/">Suppress Midi SysEx (updated)</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/transport/">MIDI Transport Controls</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/audition/">Auditioning a TNW file</a></li>
 		</ul>
 	</div>
 </div>

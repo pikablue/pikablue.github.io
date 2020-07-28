@@ -6,10 +6,30 @@
     <description>Recent content in New Features on pika.blue</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 13 Jun 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 27 Jul 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://pika.blue/tags/new-features/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Meta Controller - Block Change</title>
+      <link>http://pika.blue/posts/tenori-on/meta1_bc/</link>
+      <pubDate>Mon, 27 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/meta1_bc/</guid>
+      <description>This function introduces meta controllers, the first one of which is a block change.</description>
+    </item>
+    
+    <item>
+      <title>Meta Controller - Master Transpose</title>
+      <link>http://pika.blue/posts/tenori-on/meta2_tr/</link>
+      <pubDate>Mon, 27 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/meta2_tr/</guid>
+      <description>&lt;p&gt;This function introduces a master transpose meta controller.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>MIDI recording</title>
@@ -70,26 +90,6 @@
       <guid>http://pika.blue/posts/tenori-on/perlayerscales/</guid>
       <description>This function adds
  the ability to set different scales per layer.</description>
-    </item>
-    
-    <item>
-      <title>Meta Controller - Master Transpose</title>
-      <link>http://pika.blue/posts/tenori-on/meta2_tr/</link>
-      <pubDate>Tue, 28 Apr 2020 00:00:00 +0000</pubDate>
-      
-      <guid>http://pika.blue/posts/tenori-on/meta2_tr/</guid>
-      <description>&lt;p&gt;This function introduces a master transpose meta controller.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Meta Controller - Block Change</title>
-      <link>http://pika.blue/posts/tenori-on/meta1_bc/</link>
-      <pubDate>Fri, 17 Apr 2020 00:00:00 +0000</pubDate>
-      
-      <guid>http://pika.blue/posts/tenori-on/meta1_bc/</guid>
-      <description>This function introduces meta controllers, the first one of which is a block change.</description>
     </item>
     
     <item>
