@@ -6,10 +6,37 @@
     <description>Recent content on pika.blue</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 27 Jul 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 12 Sep 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://pika.blue/posts/tenori-on/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Releases</title>
+      <link>http://pika.blue/posts/tenori-on/releases/</link>
+      <pubDate>Sat, 12 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/releases/</guid>
+      <description>This page contains a link to the the releases so far.</description>
+    </item>
+    
+    <item>
+      <title>Extended (256 step) score</title>
+      <link>http://pika.blue/posts/tenori-on/score256/</link>
+      <pubDate>Fri, 11 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/score256/</guid>
+      <description>This function adds a new layer type - a 256 step score.</description>
+    </item>
+    
+    <item>
+      <title>Quick Layer Copy</title>
+      <link>http://pika.blue/posts/tenori-on/layercopy/</link>
+      <pubDate>Fri, 11 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/layercopy/</guid>
+      <description>This function adds the ability to quickly copy layers to each other.</description>
+    </item>
     
     <item>
       <title>Meta Controller - Block Change</title>
@@ -29,15 +56,6 @@
       <description>&lt;p&gt;This function introduces a master transpose meta controller.&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Releases</title>
-      <link>http://pika.blue/posts/tenori-on/releases/</link>
-      <pubDate>Mon, 27 Jul 2020 00:00:00 +0000</pubDate>
-      
-      <guid>http://pika.blue/posts/tenori-on/releases/</guid>
-      <description>This page contains a link to the the releases so far.</description>
     </item>
     
     <item>
@@ -135,15 +153,6 @@
       
       <guid>http://pika.blue/posts/tenori-on/splits/</guid>
       <description>This function extends all layer modes (except push) with octave, velocity, or note length splits.</description>
-    </item>
-    
-    <item>
-      <title>Extended (256 step) score</title>
-      <link>http://pika.blue/posts/tenori-on/score256/</link>
-      <pubDate>Tue, 07 Apr 2020 00:00:00 +0000</pubDate>
-      
-      <guid>http://pika.blue/posts/tenori-on/score256/</guid>
-      <description>This function adds a new layer type - a 256 step score.</description>
     </item>
     
     <item>

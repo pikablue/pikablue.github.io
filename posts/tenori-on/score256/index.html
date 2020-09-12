@@ -58,7 +58,7 @@ if (!doNotTrack) {
 		<header class="post__header">
 			<h1 class="post__title">Extended (256 step) score</h1><div class="post__meta meta">
 <svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-<time class="post__meta-date meta-date" datetime="2020-04-07T00:00:00">April 07, 2020</time>
+<time class="post__meta-date meta-date" datetime="2020-09-11T00:00:00">September 11, 2020</time>
 <span class="post__meta-categories meta-categories">
 	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
 	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/tenori-on" rel="category">tenori-on</a></span>
@@ -101,7 +101,9 @@ if (!doNotTrack) {
 
 <li><p>Animations for &ldquo;off screen&rdquo; notes aren&rsquo;t played.</p></li>
 
-<li><p>Using master loop point now reads in the current layers loop points. Pressing any LED key will change the loop point to the current block. Since block changing within the master loop point menu resets the menu, this doesn&rsquo;t allow easy editing of score256 loop points, but provided that LED keys aren&rsquo;t pressed during the master loop point menu, this does allow loop points to be set normally in one score-256 layer, then copied to any other score-256 layers.</p></li>
+<li><p>Score256 respects master loop points in a different way to the normal score. The master loop setting does not overwrite the score256 loop points. Instead, the master loop points are viewed as defining the length of the bar; playing a score256 layer with loop points that span blocks will skip from the master loop end of one block to the master loop start of the next block. This feature is provided so that songs where the bars length is not 16 (e.g. in <sup>3</sup>&frasl;<sub>4</sub> or <sup>5</sup>&frasl;<sub>4</sub> or similar) can be sensibly used in score256 without having to do complicated mental maths to work out where in each score256 block the bar actually starts. Setting invalid loop points in a score256 that are outside the master loop range is flagged with a hashing display.</p>
+
+<p><img src="/images/score256_4.png" alt="Score 256 Master Loop" title="Score-256 Master Loop handling" /></p></li>
 </ol>
 
 <h2 id="compatibility-issues">Compatibility Issues</h2>
@@ -115,6 +117,8 @@ if (!doNotTrack) {
 <p>First included in A013.</p>
 
 <p>Bugfix for SaveAs (Alarm, Time Signal, Default) in A014.</p>
+
+<p>Master loop setting approach reworked in A027</p>
 
 		</div>
 		
@@ -140,10 +144,10 @@ if (!doNotTrack) {
 	
 <nav class="post-nav flex">
 	<div class="post-nav__item post-nav__item--prev">
-		<a class="post-nav__link" href="/posts/tenori-on/perlayermidichannel/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Per layer midi channels</p></a>
+		<a class="post-nav__link" href="/posts/tenori-on/layercopy/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Quick Layer Copy</p></a>
 	</div>
 	<div class="post-nav__item post-nav__item--next">
-		<a class="post-nav__link" href="/posts/tenori-on/splits/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Splits</p></a>
+		<a class="post-nav__link" href="/posts/tenori-on/releases/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Releases</p></a>
 	</div>
 </nav>
 	
@@ -153,18 +157,18 @@ if (!doNotTrack) {
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/releases/">Releases</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/score256/">Extended (256 step) score</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/layercopy/">Quick Layer Copy</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/meta1_bc/">Meta Controller - Block Change</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/meta2_tr/">Meta Controller - Master Transpose</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/releases/">Releases</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/recorder/">MIDI recording</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/midiquiet/">Suppress Midi SysEx (updated)</a></li>
 		</ul>
 	</div>
 </div>
 <div class="widget-taglist widget">
 	<h4 class="widget__title">Tags</h4>
 	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="/tags/new-features" title="New features">New features (13)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/new-features" title="New features">New features (14)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/project-plan" title="Project plan">Project plan (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/stock-features" title="Stock features">Stock features (3)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/tools" title="Tools">Tools (2)</a>
