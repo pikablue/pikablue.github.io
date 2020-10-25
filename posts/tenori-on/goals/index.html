@@ -171,7 +171,7 @@ if (!doNotTrack) {
 <tr>
 <td><a href="#rnd">Randomizer</a></td>
 <td>Major</td>
-<td>Not started</td>
+<td>Partial; <a href="/posts/tenori-on/splits/">Probablistic splits</a></td>
 </tr>
 
 <tr>
@@ -204,7 +204,7 @@ if (!doNotTrack) {
 
 <p><strong>Solution</strong> : Include a menu setting for not sending SysEx codes when in normal mode, but leave remote mode alone, since that is how one TNR controls another.</p>
 
-<p><strong>Status</strong> : Completed in vA009. See <a href="/posts/tenori-on/midiquiet/">Midi quiet</a></p>
+<p><strong>Status</strong> : Completed in A009. See <a href="/posts/tenori-on/midiquiet/">Midi quiet</a></p>
 
 <hr />
 
@@ -214,9 +214,9 @@ if (!doNotTrack) {
 
 <p>It would be good to be able to change the block playing from a different midi controller, while in normal mode. In my case, to allow a foot controller to change the block number, so that swaps between verses and chorus can be done with the feet rather than with the hands. This is of course possible in remote mode, by sending sysex messages (providing that you have a foot controller that can send arbitrary sysex messages, which the Behringer FCB1010 can&rsquo;t but the Roland FC-300 can). Unforunately, in remote mode, no note on/note off messages are produced by the TNR, defeating the point of its use as a controller.</p>
 
-<p><strong>Solution</strong> : F3 &ldquo;Song Select&rdquo; can be used to change the block, whether in remote mode or not.</p>
+<p><strong>Solution</strong> : F3 &ldquo;Song Select&rdquo; can be used to change the block, whether in remote mode or not. The song select command can also be set to a CC message.</p>
 
-<p><strong>Status</strong> : Completed in vA010. See <a href="/posts/tenori-on/blockchange/">Block change</a></p>
+<p><strong>Status</strong> : Completed in A010. See <a href="/posts/tenori-on/blockchange/">Block change</a></p>
 
 <hr />
 
@@ -240,7 +240,7 @@ if (!doNotTrack) {
 
 <p><strong>Solution</strong> : In fact, in the code, there is an array interpreted as midi-channel-per-layer. However I haven&rsquo;t yet sorted out how to provide an easy user interface, nor how to save/load the data from a layer or song. Layers can certainly only output on one channel (adding output on multiple channels is too difficult). An approach where the tenori-on main grid can be used to do the map - e.g. the Y axis is the layer, and the X-axis is the channel (like the volume sliders) would be good.</p>
 
-<p><strong>Status</strong> : Completed in vA008. See <a href="/posts/tenori-on/perlayermidichannel/">Per layer midi channel</a></p>
+<p><strong>Status</strong> : Completed in A008. See <a href="/posts/tenori-on/perlayermidichannel/">Per layer midi channel</a></p>
 
 <hr />
 
@@ -345,7 +345,7 @@ Using &ldquo;Master scale&rdquo; works like &ldquo;Master loop point&rdquo; - at
 
 <p><strong>Solution</strong> : This would be a new layer type, probably a bit visually similar to Bounce, where the height of each note corresponded to how likely that note was to fire.</p>
 
-<p><strong>Status</strong> : <em>Open</em></p>
+<p><strong>Status</strong> : <em>Ongoing</em>. A partial implementation has been included via probability/chance splits : <a href="/posts/tenori-on/splits/">Splits</a></p>
 
 <hr />
 
@@ -429,17 +429,17 @@ Using &ldquo;Master scale&rdquo; works like &ldquo;Master loop point&rdquo; - at
 	<div class="widget__content">
 		<ul class="widget__list">
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/releases/">Releases</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/transport/">MIDI Transport Controls</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/meta_velpan/">Meta Controller - Velocity and Pan</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/splits/">Splits</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/score256/">Extended (256 step) score</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/layercopy/">Quick Layer Copy</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/meta1_bc/">Meta Controller - Block Change</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/meta2_tr/">Meta Controller - Master Transpose</a></li>
 		</ul>
 	</div>
 </div>
 <div class="widget-taglist widget">
 	<h4 class="widget__title">Tags</h4>
 	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="/tags/new-features" title="New features">New features (14)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/new-features" title="New features">New features (15)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/project-plan" title="Project plan">Project plan (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/stock-features" title="Stock features">Stock features (3)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/tools" title="Tools">Tools (2)</a>

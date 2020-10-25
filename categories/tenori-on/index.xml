@@ -6,7 +6,7 @@
     <description>Recent content in Tenori On on pika.blue</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 12 Sep 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 24 Oct 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://pika.blue/categories/tenori-on/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,10 +14,41 @@
     <item>
       <title>Releases</title>
       <link>http://pika.blue/posts/tenori-on/releases/</link>
-      <pubDate>Sat, 12 Sep 2020 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 24 Oct 2020 00:00:00 +0000</pubDate>
       
       <guid>http://pika.blue/posts/tenori-on/releases/</guid>
       <description>This page contains a link to the the releases so far.</description>
+    </item>
+    
+    <item>
+      <title>MIDI Transport Controls</title>
+      <link>http://pika.blue/posts/tenori-on/transport/</link>
+      <pubDate>Fri, 23 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/transport/</guid>
+      <description>&lt;p&gt;This page discusses the TNR&amp;rsquo;s baseline MIDI transport implementation, and some extensions.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Meta Controller - Velocity and Pan</title>
+      <link>http://pika.blue/posts/tenori-on/meta_velpan/</link>
+      <pubDate>Tue, 20 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/meta_velpan/</guid>
+      <description>&lt;p&gt;This function introduces a velocity and pan meta controller.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Splits</title>
+      <link>http://pika.blue/posts/tenori-on/splits/</link>
+      <pubDate>Tue, 20 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/splits/</guid>
+      <description>This function extends all layer modes with octave, velocity, note length, pan, and probabilistic splits.</description>
     </item>
     
     <item>
@@ -77,17 +108,6 @@
     </item>
     
     <item>
-      <title>MIDI Transport Controls</title>
-      <link>http://pika.blue/posts/tenori-on/transport/</link>
-      <pubDate>Thu, 11 Jun 2020 00:00:00 +0000</pubDate>
-      
-      <guid>http://pika.blue/posts/tenori-on/transport/</guid>
-      <description>&lt;p&gt;This page discusses the TNR&amp;rsquo;s baseline MIDI transport implementation, and some extensions.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
-    </item>
-    
-    <item>
       <title>Auditioning a TNW file</title>
       <link>http://pika.blue/posts/tenori-on/audition/</link>
       <pubDate>Wed, 03 Jun 2020 00:00:00 +0000</pubDate>
@@ -144,15 +164,6 @@
       
       <guid>http://pika.blue/posts/tenori-on/controller/</guid>
       <description>This function allows arbitrary CC (Midi control change) messages to be sent.</description>
-    </item>
-    
-    <item>
-      <title>Splits</title>
-      <link>http://pika.blue/posts/tenori-on/splits/</link>
-      <pubDate>Mon, 13 Apr 2020 00:00:00 +0000</pubDate>
-      
-      <guid>http://pika.blue/posts/tenori-on/splits/</guid>
-      <description>This function extends all layer modes (except push) with octave, velocity, or note length splits.</description>
     </item>
     
     <item>

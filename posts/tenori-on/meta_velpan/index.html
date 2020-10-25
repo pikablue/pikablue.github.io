@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Control Change</title>
+	<title>Meta Controller - Velocity and Pan</title>
 	<meta name="description" content="">
 	<meta name="generator" content="Hugo 0.48" />
 	
@@ -56,62 +56,33 @@ if (!doNotTrack) {
 <main class="main content">
 	<article class="post">
 		<header class="post__header">
-			<h1 class="post__title">Control Change</h1><div class="post__meta meta">
+			<h1 class="post__title">Meta Controller - Velocity and Pan</h1><div class="post__meta meta">
 <svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-<time class="post__meta-date meta-date" datetime="2020-04-16T00:00:00">April 16, 2020</time>
+<time class="post__meta-date meta-date" datetime="2020-10-20T00:00:00">October 20, 2020</time>
 <span class="post__meta-categories meta-categories">
 	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
 	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/tenori-on" rel="category">tenori-on</a></span>
 </span></div>
 		</header><div class="post__content clearfix">
-			
+			<p>This function introduces a velocity and pan meta controller.</p>
 
-<p>This function allows arbitrary CC (Midi control change) messages to be sent.</p>
+<p></p>
 
-<p>Essentially, this is performed by changing the layer operation type to &ldquo;control change&rdquo;, and then changing the &ldquo;instrument&rdquo; (using [L1] or the menu) to a particular CC message. Note &ldquo;pitch&rdquo; is then interpreted as a CC value between 0 and 127.</p>
+<p>These two meta controllers are instruments that, rather than playing notes, set the playing velocity (how hard the note is &ldquo;hit&rdquo;) and the pan position for another layer. in both cases, the value to use is indicated by the &ldquo;note&rdquo;. For the velocity, the lowest pitch provides a velocity of 1, and the highest pitch is a velocity of 127. For the pan, the lowest pitch is a pan position of far left, and the highest pitch is a pan position of far right.</p>
 
-<p>This function is a property of the layer, and is selected under the layer menu. When active, the main display will change slightly to indicate that it is not an &ldquo;INST&rdquo; that is being played, but a CC.</p>
+<p>This function is a property of the layer, and is selected under the layer menu. When active, the main display will change slightly to indicate that it is not an &ldquo;INST&rdquo; that is being played, but a META.</p>
 
-<table>
-<thead>
-<tr>
-<th><img src="/images/layeroperation.png" alt="" title="Layer Operation" /></th>
-<th><img src="/images/controlchange.png" alt="" title="Selecting control change" /></th>
-</tr>
-</thead>
+<p>The layer targetted for the pan or velocity change is, as for the Arp-4 meta controller, set via the layers &ldquo;midi channel&rdquo; menu setting - channel 1 means layer 1, channel 2 means layer 2, etc.</p>
 
-<tbody>
-<tr>
-<td></td>
-<td><img src="/images/ccplaying.png" alt="" title="Playing Control change" /></td>
-</tr>
-</tbody>
-</table>
-
-<p>A few notes:</p>
-
-<ol>
-<li><p>On swapping to the CC operation type, currently the layer contents are NOT cleared. Instead, the controller will be set to CC 03 (Undefined). This is to prevent bad things happening to any connected equipment if the layer is not empty, when the running instrument maps to a controller that the connected equipment interprets meaningfully (e.g. patch changes, or similar). CC03 is the most undefined - and therefore safest - CC I could find!</p></li>
-
-<li><p>The CC values issued are 16 fixed values between 0 and 127 inclusive. I haven&rsquo;t yet implemented a way to tailor the range, but plan to.</p></li>
-
-<li><p>There are only 127 Controllers, so don&rsquo;t be surprised if using [L1] and selecting a switch in the top half of the TNR doesn&rsquo;t do anything. I have tried to name the controllers with something meaningful based on the Midi specification.</p></li>
-
-<li><p>CC messages go out on the midi channel selected within the layer menu. So, when driving external synths, one layer can be used for notes, and another for a specific controller (e.g. timbre, etc.) on the same midi channel.</p></li>
-
-<li><p>Channel mode messages (controllers 121/0x79 to 127/0x7F) are available for use. There is no attempt made to catch &ldquo;illegal&rdquo; combinations of CC and data, e.g. sending &ldquo;Omni mode ON&rdquo; with non-zero value. These may set attached hardware into very strange modes.</p></li>
-
-<li><p>The TNR does output certain CC messages normally anyway, e.g. instrument change (CC_00, CC_20), layer volume (CC_07), reverb param (CC_5B), chorus param (CC_5D). Using this control change instrument set to these won&rsquo;t change anything internal to the TNR, e.g CC_07 won&rsquo;t change the internal TNR layer volume. (For that see a later release).</p></li>
-</ol>
+<p>The velocity controller can be used to add dynamic expression to another layer in a similar way to how a velocity split works, but allowing more dynamism. For example, a score layer with a velocity metacontroller can add on-the-beat emphasis to a random or even solo layer. A pan metacontroller allows for arpeggios in other layers to be played at random pan positions.</p>
 
 <h2 id="compatibility-issues">Compatibility Issues</h2>
 
-<p>Loading songs/blocks saved in previous releases will definately confuse it.</p>
+<p>None known.</p>
 
 <h2 id="releases">Releases</h2>
 
-<p>First included in A016.</p>
-
+<p>First included in A019; timing improved in A028</p>
 		</div>
 		
 <div class="post__tags tags clearfix">
@@ -136,10 +107,10 @@ if (!doNotTrack) {
 	
 <nav class="post-nav flex">
 	<div class="post-nav__item post-nav__item--prev">
-		<a class="post-nav__link" href="/posts/tenori-on/perlayermidichannel/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Per layer midi channels</p></a>
+		<a class="post-nav__link" href="/posts/tenori-on/splits/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Splits</p></a>
 	</div>
 	<div class="post-nav__item post-nav__item--next">
-		<a class="post-nav__link" href="/posts/tenori-on/tradetools/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Tools of the trade</p></a>
+		<a class="post-nav__link" href="/posts/tenori-on/transport/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">MIDI Transport Controls</p></a>
 	</div>
 </nav>
 	
