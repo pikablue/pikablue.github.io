@@ -58,7 +58,7 @@ if (!doNotTrack) {
 		<header class="post__header">
 			<h1 class="post__title">Splits</h1><div class="post__meta meta">
 <svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-<time class="post__meta-date meta-date" datetime="2020-10-20T00:00:00">October 20, 2020</time>
+<time class="post__meta-date meta-date" datetime="2020-11-22T00:00:00">November 22, 2020</time>
 <span class="post__meta-categories meta-categories">
 	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
 	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/tenori-on" rel="category">tenori-on</a></span>
@@ -66,7 +66,7 @@ if (!doNotTrack) {
 		</header><div class="post__content clearfix">
 			
 
-<p>This function extends all layer modes with octave, velocity, note length, pan, and probabilistic splits.</p>
+<p>This function extends all layer modes with octave, velocity, note length, pan, probabilistic and offbeat splits.</p>
 
 <ul>
 <li><p>It is quite frustrating that the normal TNR limits the &ldquo;playable&rdquo; range of one block to the range of the selected scale and the octave setting. This new feature allows the octave to be one higher, or one lower, than the selected setting dynamically.</p></li>
@@ -76,6 +76,8 @@ if (!doNotTrack) {
 <li><p>This feature allows the sound length to be dynamically halved, or doubled, allowing a larger range of expression.</p></li>
 
 <li><p>The probabilistic, or chance, split, provides true randomness to whether notes play.</p></li>
+
+<li><p>The offbeat split allows score layers to play repeated or offbeat notes, in each column.</p></li>
 </ul>
 
 <p>This function is a property of the layer, and is selected under the layer menu.</p>
@@ -97,46 +99,59 @@ if (!doNotTrack) {
 <table>
 <thead>
 <tr>
-<th>Position</th>
-<th>Octave</th>
-<th>Velocity</th>
-<th>Length</th>
-<th>Probability</th>
-<th>Pan</th>
+<th>Split type</th>
+<th>Top note</th>
+<th>Middle note</th>
+<th>Bottom note</th>
 </tr>
 </thead>
 
 <tbody>
 <tr>
-<td>Top</td>
+<td>Octave</td>
 <td>+1 octave</td>
-<td>127</td>
-<td>2x default</td>
-<td>100%</td>
-<td>Right</td>
-</tr>
-
-<tr>
-<td>Middle</td>
 <td>Default octave</td>
-<td>100</td>
-<td>default</td>
-<td>50%</td>
-<td>Centre</td>
+<td>-1 octave</td>
 </tr>
 
 <tr>
-<td>Bottom</td>
-<td>-1 octave</td>
+<td>Velocity</td>
+<td>127</td>
+<td>100</td>
 <td>73</td>
+</tr>
+
+<tr>
+<td>Length</td>
+<td>2x default</td>
+<td>default</td>
 <td><sup>1</sup>&frasl;<sub>2</sub> x default</td>
+</tr>
+
+<tr>
+<td>Probability</td>
+<td>100%</td>
+<td>50%</td>
 <td>25%</td>
+</tr>
+
+<tr>
+<td>Pan</td>
+<td>Right</td>
+<td>Center</td>
 <td>Left</td>
+</tr>
+
+<tr>
+<td>Offbeat</td>
+<td>Double note</td>
+<td>Onbeat single note</td>
+<td>Offbeat single note</td>
 </tr>
 </tbody>
 </table>
 
-<p>For layers where pitch increases vertically - i.e. score, random, draw - the top 3 rows of the TNR adjust the split expression value. For layers where pitch increases horizontally - i.e. bounce - the rightmost 3 rows of the adjust the split expression value.</p>
+<p>For layers where pitch increases vertically - i.e. score, random, draw - the top 3 rows of the TNR adjust the split expression value. For layers where pitch increases horizontally - i.e. bounce - the rightmost 3 rows of the adjust the split expression value. In push mode, the top <sup>1</sup>&frasl;<sub>4</sub> of the screen is the &ldquo;Top&rdquo; expression value, the bottom <sup>1</sup>&frasl;<sub>4</sub> of the grid is the &ldquo;Bottom&rdquo; expression value, and the middle <sup>1</sup>&frasl;<sub>2</sub> of the grid is the Middle expression value. Currently in solo mode, the split is handled as per bounce mode, but this may change in later releases since this is a particularly inefficient use of grid real estate.</p>
 
 <table>
 <thead>
@@ -154,17 +169,80 @@ if (!doNotTrack) {
 </tbody>
 </table>
 
-<p>Currently in solo mode, the split is handled as per bounce mode, but this may change in later releases since this is a particularly inefficient use of grid real estate.</p>
+<p>Not all layer types have all split types implemented.</p>
 
-<p>In push mode, the top <sup>1</sup>&frasl;<sub>4</sub> of the screen is the &ldquo;Top&rdquo; expression value, the bottom <sup>1</sup>&frasl;<sub>4</sub> of the grid is the &ldquo;Bottom&rdquo; expression value, and the middle <sup>1</sup>&frasl;<sub>2</sub> of the grid is the Middle expression value.</p>
+<table>
+<thead>
+<tr>
+<th>Split type</th>
+<th>Score<br>Score256</th>
+<th>Random<br>Bounce<br>Draw</th>
+<th>Push</th>
+<th>Solo</th>
+<th>Abacus</th>
+</tr>
+</thead>
 
-<ol>
-<li><p>All modes except Push have all split types implemented. Push does not implement Length or Probability/Chance splits, since they aren&rsquo;t meaningful, and also not Pan splits (currently).</p></li>
+<tbody>
+<tr>
+<td>Octave</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>N</td>
+</tr>
 
-<li><p>The split modified is retained until the next split modifier, i.e. the split latches. This is easily seen in score mode, and is fun to use in bounce mode, using the bounce to vary the velocity or octave randomly.</p></li>
+<tr>
+<td>Velocity</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>N</td>
+</tr>
 
-<li><p>In score mode, a split directive in the same column as a note will strictly apply (i.e. before) that note plays. This is required in order to make &ldquo;chords&rdquo; in score mode behave predictably. For the other layer types, this has not been enforced, and depends on the order in which the notes were originally entered.</p></li>
-</ol>
+<tr>
+<td>Length</td>
+<td>Y</td>
+<td>Y</td>
+<td>N</td>
+<td>Y</td>
+<td>N</td>
+</tr>
+
+<tr>
+<td>Probability</td>
+<td>Y</td>
+<td>Y</td>
+<td>N</td>
+<td>Y</td>
+<td>N</td>
+</tr>
+
+<tr>
+<td>Pan</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>N</td>
+</tr>
+
+<tr>
+<td>Offbeat</td>
+<td>Y</td>
+<td>N</td>
+<td>N</td>
+<td>N</td>
+<td>N</td>
+</tr>
+</tbody>
+</table>
+
+<p>The split modified is retained until the next split modifier, i.e. the split latches. This is easily seen in score mode, and is fun to use in bounce mode, using the bounce to vary the velocity or octave randomly.</p>
+
+<p>In score mode, a split directive in the same column as a note will strictly apply (i.e. before) that note plays. This is required in order to make &ldquo;chords&rdquo; in score mode behave predictably. For the other layer types, this has not been enforced, and depends on the order in which the notes were originally entered.</p>
 
 <h2 id="compatibility-issues">Compatibility Issues</h2>
 
@@ -172,7 +250,7 @@ if (!doNotTrack) {
 
 <h2 id="releases">Releases</h2>
 
-<p>First included in A015. Probabilistic/Chance and Pan splits in A028</p>
+<p>First included in A015. Probabilistic/Chance and Pan splits in A028. Offbeat splits in A029</p>
 
 		</div>
 		
@@ -198,10 +276,10 @@ if (!doNotTrack) {
 	
 <nav class="post-nav flex">
 	<div class="post-nav__item post-nav__item--prev">
-		<a class="post-nav__link" href="/posts/tenori-on/score256/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Extended (256 step) score</p></a>
+		<a class="post-nav__link" href="/posts/tenori-on/transport/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">MIDI Transport Controls</p></a>
 	</div>
 	<div class="post-nav__item post-nav__item--next">
-		<a class="post-nav__link" href="/posts/tenori-on/meta_velpan/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Meta Controller - Velocity and Pan</p></a>
+		<a class="post-nav__link" href="/posts/tenori-on/abacus/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Abacus layer type</p></a>
 	</div>
 </nav>
 	
@@ -212,17 +290,17 @@ if (!doNotTrack) {
 	<div class="widget__content">
 		<ul class="widget__list">
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/releases/">Releases</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/abacus/">Abacus layer type</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/splits/">Splits</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/transport/">MIDI Transport Controls</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/meta_velpan/">Meta Controller - Velocity and Pan</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/splits/">Splits</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/score256/">Extended (256 step) score</a></li>
 		</ul>
 	</div>
 </div>
 <div class="widget-taglist widget">
 	<h4 class="widget__title">Tags</h4>
 	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="/tags/new-features" title="New features">New features (15)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/new-features" title="New features">New features (16)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/project-plan" title="Project plan">Project plan (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/stock-features" title="Stock features">Stock features (3)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/tools" title="Tools">Tools (2)</a>

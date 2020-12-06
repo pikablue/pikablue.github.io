@@ -126,8 +126,7 @@ if (!doNotTrack) {
 
 <h2 id="not-safe-to-execute">Not Safe to execute</h2>
 
-<p>The following ones provide ways of updating other sections of the ROM. I&rsquo;m not sure which regions are modified.
-Since I don&rsquo;t have an image of the boot code, or Tone Generator code (or wave), I&rsquo;ve not gone any further with these. <strong>Updating any of these is likely to brick your TNR</strong>.</p>
+<p>The following ones provide ways of updating other sections of the ROM. I have an image of the boot code, and of the Tone generator code (and default sounds), but I&rsquo;ve never been brave enough to load them back into the TNR. Hence this health warning : <strong>Updating any of these is likely to brick your TNR</strong>.</p>
 
 <table>
 <thead>
@@ -142,19 +141,19 @@ Since I don&rsquo;t have an image of the boot code, or Tone Generator code (or w
 <tr>
 <td>[R1] &amp; [CANCEL]</td>
 <td>&ldquo;Main Prog Update&rdquo;</td>
-<td>Don&rsquo;t know. I assume that this updates the boot code? (otherwise what is the difference between this and &ldquo;ROM update&rdquo;.</td>
+<td>This updates the boot code of the TNR.</td>
 </tr>
 
 <tr>
 <td>[R2] &amp; [CANCEL]</td>
 <td>&ldquo;TG Prog Update&rdquo;</td>
-<td>Don&rsquo;t know. I assume that this updates the code running on the SWL01 (the Tone Generator).</td>
+<td>This updates the code running on the SWL01 (the Tone Generator).</td>
 </tr>
 
 <tr>
 <td>[R3] &amp; [CANCEL]</td>
 <td>&ldquo;TG Wave Update&rdquo;</td>
-<td>Don&rsquo;t know. I assume that this updates the instrument definitions running on the SWL01.</td>
+<td>This updates the instrument definitions running on the SWL01, as well as (via a separate file) the names of the instruments.</td>
 </tr>
 </tbody>
 </table>
@@ -197,17 +196,17 @@ Since I don&rsquo;t have an image of the boot code, or Tone Generator code (or w
 	<div class="widget__content">
 		<ul class="widget__list">
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/releases/">Releases</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/abacus/">Abacus layer type</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/splits/">Splits</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/transport/">MIDI Transport Controls</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/meta_velpan/">Meta Controller - Velocity and Pan</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/splits/">Splits</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/score256/">Extended (256 step) score</a></li>
 		</ul>
 	</div>
 </div>
 <div class="widget-taglist widget">
 	<h4 class="widget__title">Tags</h4>
 	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="/tags/new-features" title="New features">New features (15)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/new-features" title="New features">New features (16)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/project-plan" title="Project plan">Project plan (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/stock-features" title="Stock features">Stock features (3)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/tools" title="Tools">Tools (2)</a>

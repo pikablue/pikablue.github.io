@@ -6,10 +6,30 @@
     <description>Recent content in New Features on pika.blue</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 23 Oct 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 29 Nov 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://pika.blue/tags/new-features/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Abacus layer type</title>
+      <link>http://pika.blue/posts/tenori-on/abacus/</link>
+      <pubDate>Sun, 29 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/abacus/</guid>
+      <description>&lt;p&gt;This function adds a new Abacus layer type.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Splits</title>
+      <link>http://pika.blue/posts/tenori-on/splits/</link>
+      <pubDate>Sun, 22 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/splits/</guid>
+      <description>This function extends all layer modes with octave, velocity, note length, pan, probabilistic and offbeat splits.</description>
+    </item>
     
     <item>
       <title>MIDI Transport Controls</title>
@@ -31,15 +51,6 @@
       <description>&lt;p&gt;This function introduces a velocity and pan meta controller.&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Splits</title>
-      <link>http://pika.blue/posts/tenori-on/splits/</link>
-      <pubDate>Tue, 20 Oct 2020 00:00:00 +0000</pubDate>
-      
-      <guid>http://pika.blue/posts/tenori-on/splits/</guid>
-      <description>This function extends all layer modes with octave, velocity, note length, pan, and probabilistic splits.</description>
     </item>
     
     <item>
