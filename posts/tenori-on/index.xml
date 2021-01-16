@@ -6,7 +6,7 @@
     <description>Recent content on pika.blue</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 06 Dec 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 16 Jan 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://pika.blue/posts/tenori-on/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,10 +14,43 @@
     <item>
       <title>Releases</title>
       <link>http://pika.blue/posts/tenori-on/releases/</link>
-      <pubDate>Sun, 06 Dec 2020 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 16 Jan 2021 00:00:00 +0000</pubDate>
       
       <guid>http://pika.blue/posts/tenori-on/releases/</guid>
       <description>This page contains a link to the the releases so far.</description>
+    </item>
+    
+    <item>
+      <title>Animations</title>
+      <link>http://pika.blue/posts/tenori-on/animations/</link>
+      <pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/animations/</guid>
+      <description>&lt;p&gt;This change unlocks some existing animations in the TNR, and adds a few more.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Delayed Block Change</title>
+      <link>http://pika.blue/posts/tenori-on/delayedchange/</link>
+      <pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/delayedchange/</guid>
+      <description>&lt;p&gt;This function introduces delayed block changes, so that block changes only execute at the end of a bar.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Meta Controller - Send to Layer</title>
+      <link>http://pika.blue/posts/tenori-on/meta_send/</link>
+      <pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/meta_send/</guid>
+      <description>&lt;p&gt;This function introduces a &amp;ldquo;Send&amp;rdquo; meta controller, sending notes from one layer to another.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
     <item>

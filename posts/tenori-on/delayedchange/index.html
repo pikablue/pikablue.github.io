@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>(Limited) User sample pitch shift</title>
+	<title>Delayed Block Change</title>
 	<meta name="description" content="">
 	<meta name="generator" content="Hugo 0.48" />
 	
@@ -56,57 +56,60 @@ if (!doNotTrack) {
 <main class="main content">
 	<article class="post">
 		<header class="post__header">
-			<h1 class="post__title">(Limited) User sample pitch shift</h1><div class="post__meta meta">
+			<h1 class="post__title">Delayed Block Change</h1><div class="post__meta meta">
 <svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-<time class="post__meta-date meta-date" datetime="2020-05-21T00:00:00">May 21, 2020</time>
+<time class="post__meta-date meta-date" datetime="2021-01-01T00:00:00">January 01, 2021</time>
 <span class="post__meta-categories meta-categories">
 	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
 	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/tenori-on" rel="category">tenori-on</a></span>
 </span></div>
 		</header><div class="post__content clearfix">
-			<p>This function <em>doesn&rsquo;t</em> allow arbitrary pitch shifting of user samples, but does open up some of the TNR&rsquo;s base capability.</p>
+			<p>This function introduces delayed block changes, so that block changes only execute at the end of a bar.</p>
 
 <p></p>
 
-<p>The stock TNR can load 48 short user samples, in 3 banks of 16. One of the most requested features is the ability to change the pitch of these samples dynamically, on board. Until recently, I thought this was completely impossible due to the limitations of the underlying tone generator - the Yamaha SWL01.</p>
+<p>Probably the easiest way to explain this is to describe the original use case, which is unashamedly related to operation as a drum machine.</p>
 
-<p>However, I have recently learnt that it has been an open secret from the early days of the TNR that directing MIDI note-on messages into layers with user samples could result in pitch-shifted samples being played, so the SWL01 <em>does</em> have the underlying capability to do this, with several (OK, lots of) limitations.</p>
+<p><strong>Basic usage</strong></p>
 
-<p>When a layer instrument is one of the three User Sample banks, then the layer scale is internally forced to be chromatic. Additionally, transpose and octave shifts are ignored for this layer. Consequently, the lowest user sample is locked to MIDI note 60 (C3), the next one to note 61 (C#3), etc., up to 75 (Eb4). So, receiving a MIDI note 60 - either from a LED on screen, or from an external device - will play the first sample, MIDI note 61 will play the second sample, etc. <em>whatever the samples are</em>. This is an important point - if the user bank of samples consists of 16 samples which are tonal, pitched according to the chromatic scale, starting on C, then playing these samples will sound as you might expect.</p>
+<p>The goal was to have the TNR operating as a drummer, in a live performance environment, able to change on command between beat patterns used for the intro, verse, refrain, outro, etc., and perform sensible fills between them. Rather than pre-program numbers-of-bars between changes, each different pattern type is set as a different block, for example:</p>
 
-<p style="text-align:center;">
-<img src="/images/sample1.png" alt="Samples in score mode" style="max-width:300px" border="0">
-</p>
+<p>Block 1 = Intro ( a short fill at the end of the block)
+Block 2 = Verse ( a simple beat )
+Block 3 = Refrain ( a more complex beat )
+Block 4 = Bridge ( like verse, but with more cowbell )
+Block 5 = Outro ( a big show-off finish )</p>
 
-<p>So what happens if a note outside the MIDI range 60-75, for example, 76, is played? Of course, you can&rsquo;t generate this on-board from the stock TNR due to the restriction on octave and tranpose shifts, but you can play it in from an external MIDI keyboard.  What happens is best understood with an example where the user samples loaded are tonal and chromatic, because the TNR assumes this is the case. An incoming MIDI note 76 (E5)) takes the &ldquo;bottom&rdquo; sample - assumed to be C4 - and pitch shifts it up 16 semitones (frequency x ~2.5), resulting in an audible E5 as expected. I have tried to show this in the diagram below.</p>
+<p>Then, an external MIDI pedal is hooked up to the TNR, and the pedal is used to send &ldquo;block change&rdquo; MIDI commands when switches are pressed. (See <a href="/posts/tenori-on/blockchange/">Remote block change</a> and <a href="/posts/tenori-on/transport/">Block change by CC</a> ). Using a foot pedal allows the guitarist to indulge in multiple repeats of some solo bridge section before signalling that the band should move on to the refrain&hellip;</p>
 
-<p style="text-align:center;">
-<img src="/images/sample2.png" alt="Effect of off-grid notes" style="max-width:400px" border="0">
-</p>
+<p>The normal block change behavior would change the block immediately the foot pedal was pressed, so the user needs to time their foot press quite carefully near the end of the block. This is quite hard live, so the idea of &ldquo;delayed block change&rdquo; : pressing the foot pedal doesn&rsquo;t change the block immediately, but waits until the end of the current block&rsquo;s loop point before switching to another block. This means you can press it whenever you like in the bar before the block change is needed.</p>
 
-<p>In fact, this isn&rsquo;t really applying modern pitch shifting; it is simply playing the sample back at x2.5 speed, so the duration is shorter.</p>
+<p><strong>More complex usage</strong></p>
 
-<p>A similar thing happens if a note with MIDI note number lower than 60. For example, MIDI note 59 (B4) takes the top sample - the one in the top slot, notionally corresponding to an Eb5, and pitch shifts it down by 16 semitones.</p>
+<p>Of course, it would be nice if the drummer could &ldquo;fill&rdquo; just before the block change.</p>
 
-<p>This whole thing is a bit jarring, since the note pitch shifted is 16 semitones away, and not the closer one at 1 semitone away, so samples with a change in timbre across the range will sound strange.</p>
+<p>This is done by setting layers to only play when a block change is pending, or mute when a block change is pending. In this setting you would have:</p>
 
-<p>To extend the TNR functionality, therefore, I have removed the octave and tranpose  &ldquo;lock&rdquo; on playing user samples in release A023 onwards. So if the user sample set is chromatic, then the set will be shifted correctly to match. For example, playing the layer with +1 octave gives the following:</p>
+<ul>
+<li>Layer 1 : Score mode, Drums, mute if block change is pending. Layer contains the normal pattern</li>
+<li>Layer 2 : Score mode, Drums, play if block change is pending. Layer contains a fill pattern.</li>
+</ul>
 
-<p style="text-align:center;">
-<img src="/images/sample3.png" alt="Effect of +1 octave" style="max-width:400px" border="0">
-</p>
+<p>In this case, normally, layer 1 would be playing and layer 2 would be silent. Sending a block change would cause layer 1 - the normal beat - to be silent, and be replaced by layer 2 - a fill pattern. This fill would start occuring at the moment of pressing the block change.</p>
 
-<p>What happens for non-tonal sample sets? (e.g. voice recordings). Well, playing notes outside the 60-75 range will cause pitch shifting to occur, in fixed chunks of 16 semitones - i.e. no finer subdivision of the pitch is performed. This can be quite a nice effect for some samples (especially if you like voices sounding like chipmunks).</p>
+<p>This - of course - would play <em>the same</em> fill whenever block 1 to block 2 occurred, but it is hoped that the randomness associated with when the block change pedal is pressed would add some human randomness to the drum feel.</p>
 
-<p>Octave shifts are set per-layer, so the user can decide to raise the octave, or not, for this layer only. However tranpose is a master effect and applied to all layers. This can be undesirable - for example, if the user sample represents a drum set, and a master tranpose is applied in order for a song to follow a harmonic progression, then the allocation to drum samples will change - the nice kick drum rhythm suddenly appears on the cowbell, for example. With this in mind, release A023 also adds a per-layer attribute in which the layers response to transpose can be turned off (for drum set user samples) or left on (the default, for tonal samples).</p>
+<p>More human-ness can be added by having the fill layer be using a <a href="/posts/tenori-on/splits/">probability split</a>, so the fill would not always be played the same.</p>
 
-<p>This feature is under the layer menu:</p>
+<p><strong>How to setup</strong></p>
+
+<p>First, the TNR has to be told that block changes should be delayed. This is done in the Preference menu, under Block Change Delay. The options are &ldquo;None&rdquo;, which means the default behavior of not delaying block change, and then &ldquo;Layer 1&rdquo;, &ldquo;Layer 2&rdquo;, etc. This is the selection of <em>which</em> layer loop end the block change is pending on.</p>
 
 <table>
 <thead>
 <tr>
-<th><img src="/images/allowtranspose1.png" alt="" title="Allow Transpose" /></th>
-<th><img src="/images/allowtranspose2.png" alt="" title="Setting Blues 6 scale" /></th>
+<th><img src="/images/blockchangepreference.png" alt="" title="Preference/BlockChange" /></th>
+<th><img src="/images/blockchangedelay.png" alt="" title="Selecting Master layer" /></th>
 </tr>
 </thead>
 
@@ -114,29 +117,31 @@ if (!doNotTrack) {
 </tbody>
 </table>
 
-<p>A couple more points:</p>
+<p>(This selection is needed because different layers could be running at different speeds with different loop lenghts etc. etc. )</p>
 
-<ol>
-<li>The user samples are loaded assuming a chromatic scale starting on C. With the unlocking of the octave and transpose, the layer scale setting is also unlocked. If the layer scale is not set to chromatic, then some samples will never be heard without pitch shifting.</li>
-</ol>
+<p>Note that currently only Score/Score256 modes - with defined loop ending points - make sense to be selected here, but no check is made on whether the layer is indeed a score layer.</p>
 
-<p style="text-align:center;">
-<img src="/images/sample4.png" alt="Effect of Ionian scale" style="max-width:400px" border="0">
-</p>
+<p>Secondly, each layer has to be told whether it is always playing (the default), playing only with a pending block change, or muting when there is a pending block change. Since this is a per-layer setting, it is in the layer menu.</p>
 
-<ol>
-<li><p>The user manual states that the base scale used for user samples is Ionian, starting on C. It isn&rsquo;t; it&rsquo;s chromatic starting on C.</p></li>
+<table>
+<thead>
+<tr>
+<th><img src="/images/layermute.png" alt="" title="Layer Mute" /></th>
+<th><img src="/images/delaybehavior.png" alt="" title="Selecting Pending behavior" /></th>
+</tr>
+</thead>
 
-<li><p>I would love to open up the SWL01 CPU more to see if this 16-semitone shift limitation can be removed, but I have no documentation on the SWL01. If anybody has an application manual, or  anything similar, they could share, I would be very grateful.</p></li>
-</ol>
+<tbody>
+</tbody>
+</table>
 
 <h2 id="compatibility-issues">Compatibility Issues</h2>
 
-<p>Some songs/blocks loaded from previous release may have their layer transpose set to OFF rather than the default ON.</p>
+<p>None known.</p>
 
 <h2 id="releases">Releases</h2>
 
-<p>First included in A023.</p>
+<p>First included in A030</p>
 		</div>
 		
 <div class="post__tags tags clearfix">
@@ -161,10 +166,10 @@ if (!doNotTrack) {
 	
 <nav class="post-nav flex">
 	<div class="post-nav__item post-nav__item--prev">
-		<a class="post-nav__link" href="/posts/tenori-on/meta3_arp4/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Meta Controller - Arpeggio 4 (Arp4)</p></a>
+		<a class="post-nav__link" href="/posts/tenori-on/meta_send/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Meta Controller - Send to Layer</p></a>
 	</div>
 	<div class="post-nav__item post-nav__item--next">
-		<a class="post-nav__link" href="/posts/tenori-on/audition/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Auditioning a TNW file</p></a>
+		<a class="post-nav__link" href="/posts/tenori-on/animations/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Animations</p></a>
 	</div>
 </nav>
 	

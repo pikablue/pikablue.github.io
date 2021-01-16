@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>(Limited) User sample pitch shift</title>
+	<title>Meta Controller - Send to Layer</title>
 	<meta name="description" content="">
 	<meta name="generator" content="Hugo 0.48" />
 	
@@ -56,87 +56,41 @@ if (!doNotTrack) {
 <main class="main content">
 	<article class="post">
 		<header class="post__header">
-			<h1 class="post__title">(Limited) User sample pitch shift</h1><div class="post__meta meta">
+			<h1 class="post__title">Meta Controller - Send to Layer</h1><div class="post__meta meta">
 <svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-<time class="post__meta-date meta-date" datetime="2020-05-21T00:00:00">May 21, 2020</time>
+<time class="post__meta-date meta-date" datetime="2021-01-01T00:00:00">January 01, 2021</time>
 <span class="post__meta-categories meta-categories">
 	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
 	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/tenori-on" rel="category">tenori-on</a></span>
 </span></div>
 		</header><div class="post__content clearfix">
-			<p>This function <em>doesn&rsquo;t</em> allow arbitrary pitch shifting of user samples, but does open up some of the TNR&rsquo;s base capability.</p>
+			<p>This function introduces a &ldquo;Send&rdquo; meta controller, sending notes from one layer to another.</p>
 
 <p></p>
 
-<p>The stock TNR can load 48 short user samples, in 3 banks of 16. One of the most requested features is the ability to change the pitch of these samples dynamically, on board. Until recently, I thought this was completely impossible due to the limitations of the underlying tone generator - the Yamaha SWL01.</p>
+<p>When notes occur in a layer which is set to this meta controller, instead of playing, they are sent to whichever layer is indicated by the midi channel layer attribute. (i.e. &ldquo;midi channel&rdquo; = 1 means send to layer 1 etc.). They operate exactly in the same way that <a href="/posts/tenori-on/recorder/">MIDI recording</a> does.</p>
 
-<p>However, I have recently learnt that it has been an open secret from the early days of the TNR that directing MIDI note-on messages into layers with user samples could result in pitch-shifted samples being played, so the SWL01 <em>does</em> have the underlying capability to do this, with several (OK, lots of) limitations.</p>
-
-<p>When a layer instrument is one of the three User Sample banks, then the layer scale is internally forced to be chromatic. Additionally, transpose and octave shifts are ignored for this layer. Consequently, the lowest user sample is locked to MIDI note 60 (C3), the next one to note 61 (C#3), etc., up to 75 (Eb4). So, receiving a MIDI note 60 - either from a LED on screen, or from an external device - will play the first sample, MIDI note 61 will play the second sample, etc. <em>whatever the samples are</em>. This is an important point - if the user bank of samples consists of 16 samples which are tonal, pitched according to the chromatic scale, starting on C, then playing these samples will sound as you might expect.</p>
-
-<p style="text-align:center;">
-<img src="/images/sample1.png" alt="Samples in score mode" style="max-width:300px" border="0">
-</p>
-
-<p>So what happens if a note outside the MIDI range 60-75, for example, 76, is played? Of course, you can&rsquo;t generate this on-board from the stock TNR due to the restriction on octave and tranpose shifts, but you can play it in from an external MIDI keyboard.  What happens is best understood with an example where the user samples loaded are tonal and chromatic, because the TNR assumes this is the case. An incoming MIDI note 76 (E5)) takes the &ldquo;bottom&rdquo; sample - assumed to be C4 - and pitch shifts it up 16 semitones (frequency x ~2.5), resulting in an audible E5 as expected. I have tried to show this in the diagram below.</p>
-
-<p style="text-align:center;">
-<img src="/images/sample2.png" alt="Effect of off-grid notes" style="max-width:400px" border="0">
-</p>
-
-<p>In fact, this isn&rsquo;t really applying modern pitch shifting; it is simply playing the sample back at x2.5 speed, so the duration is shorter.</p>
-
-<p>A similar thing happens if a note with MIDI note number lower than 60. For example, MIDI note 59 (B4) takes the top sample - the one in the top slot, notionally corresponding to an Eb5, and pitch shifts it down by 16 semitones.</p>
-
-<p>This whole thing is a bit jarring, since the note pitch shifted is 16 semitones away, and not the closer one at 1 semitone away, so samples with a change in timbre across the range will sound strange.</p>
-
-<p>To extend the TNR functionality, therefore, I have removed the octave and tranpose  &ldquo;lock&rdquo; on playing user samples in release A023 onwards. So if the user sample set is chromatic, then the set will be shifted correctly to match. For example, playing the layer with +1 octave gives the following:</p>
-
-<p style="text-align:center;">
-<img src="/images/sample3.png" alt="Effect of +1 octave" style="max-width:400px" border="0">
-</p>
-
-<p>What happens for non-tonal sample sets? (e.g. voice recordings). Well, playing notes outside the 60-75 range will cause pitch shifting to occur, in fixed chunks of 16 semitones - i.e. no finer subdivision of the pitch is performed. This can be quite a nice effect for some samples (especially if you like voices sounding like chipmunks).</p>
-
-<p>Octave shifts are set per-layer, so the user can decide to raise the octave, or not, for this layer only. However tranpose is a master effect and applied to all layers. This can be undesirable - for example, if the user sample represents a drum set, and a master tranpose is applied in order for a song to follow a harmonic progression, then the allocation to drum samples will change - the nice kick drum rhythm suddenly appears on the cowbell, for example. With this in mind, release A023 also adds a per-layer attribute in which the layers response to transpose can be turned off (for drum set user samples) or left on (the default, for tonal samples).</p>
-
-<p>This feature is under the layer menu:</p>
-
-<table>
-<thead>
-<tr>
-<th><img src="/images/allowtranspose1.png" alt="" title="Allow Transpose" /></th>
-<th><img src="/images/allowtranspose2.png" alt="" title="Setting Blues 6 scale" /></th>
-</tr>
-</thead>
-
-<tbody>
-</tbody>
-</table>
-
-<p>A couple more points:</p>
+<p>This enables, for example:</p>
 
 <ol>
-<li>The user samples are loaded assuming a chromatic scale starting on C. With the unlocking of the octave and transpose, the layer scale setting is also unlocked. If the layer scale is not set to chromatic, then some samples will never be heard without pitch shifting.</li>
+<li><p>Abacus mode to be used to add a delay-echo effect.</p>
+
+<p>Set layer 1 to Abacus. Set layer 10 (Random) to Layer operation = Meta controller. Set layer 10 MIDI channel to 1. Use L1 to select the &ldquo;SendToLayer&rdquo; controller.  Now notes played in layer 10 will be sent to layer 1, giving an &ldquo;echo&rdquo; effect to each note played.</p></li>
+
+<li><p>Draw mode to be used as a generic recorder</p>
+
+<p>Set layer 12 to Draw (if it isn&rsquo;t already). Set layer 16 to Solo. Set layer 16&rsquo;s MIDI channel to 12, set the operation to Meta controller, and select the &ldquo;SendToLayer&rdquo; controller. Now the draw layer will &ldquo;record&rdquo; all the Solo notes played, up to the maximum number possible in Draw Mode, namely 64.</p></li>
 </ol>
 
-<p style="text-align:center;">
-<img src="/images/sample4.png" alt="Effect of Ionian scale" style="max-width:400px" border="0">
-</p>
-
-<ol>
-<li><p>The user manual states that the base scale used for user samples is Ionian, starting on C. It isn&rsquo;t; it&rsquo;s chromatic starting on C.</p></li>
-
-<li><p>I would love to open up the SWL01 CPU more to see if this 16-semitone shift limitation can be removed, but I have no documentation on the SWL01. If anybody has an application manual, or  anything similar, they could share, I would be very grateful.</p></li>
-</ol>
+<p>Pressing &ldquo;Clear&rdquo; will clear both the notes in the current meta layer, as well as the target send-to layer.</p>
 
 <h2 id="compatibility-issues">Compatibility Issues</h2>
 
-<p>Some songs/blocks loaded from previous release may have their layer transpose set to OFF rather than the default ON.</p>
+<p>None known.</p>
 
 <h2 id="releases">Releases</h2>
 
-<p>First included in A023.</p>
+<p>First included in A030</p>
 		</div>
 		
 <div class="post__tags tags clearfix">
@@ -161,10 +115,10 @@ if (!doNotTrack) {
 	
 <nav class="post-nav flex">
 	<div class="post-nav__item post-nav__item--prev">
-		<a class="post-nav__link" href="/posts/tenori-on/meta3_arp4/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Meta Controller - Arpeggio 4 (Arp4)</p></a>
+		<a class="post-nav__link" href="/posts/tenori-on/abacus/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Abacus layer type</p></a>
 	</div>
 	<div class="post-nav__item post-nav__item--next">
-		<a class="post-nav__link" href="/posts/tenori-on/audition/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Auditioning a TNW file</p></a>
+		<a class="post-nav__link" href="/posts/tenori-on/delayedchange/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Delayed Block Change</p></a>
 	</div>
 </nav>
 	
