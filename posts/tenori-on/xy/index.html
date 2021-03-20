@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Meta Controller - Send to Layer</title>
+	<title>XY layer type</title>
 	<meta name="description" content="">
 	<meta name="generator" content="Hugo 0.48" />
 	
@@ -56,41 +56,56 @@ if (!doNotTrack) {
 <main class="main content">
 	<article class="post">
 		<header class="post__header">
-			<h1 class="post__title">Meta Controller - Send to Layer</h1><div class="post__meta meta">
+			<h1 class="post__title">XY layer type</h1><div class="post__meta meta">
 <svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-<time class="post__meta-date meta-date" datetime="2021-01-01T00:00:00">January 01, 2021</time>
+<time class="post__meta-date meta-date" datetime="2021-03-16T00:00:00">March 16, 2021</time>
 <span class="post__meta-categories meta-categories">
 	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
 	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/tenori-on" rel="category">tenori-on</a></span>
 </span></div>
 		</header><div class="post__content clearfix">
-			<p>This function introduces a &ldquo;Send&rdquo; meta controller, sending notes from one layer to another.</p>
+			<p>This function adds a new 2 axis XY controller layer type.</p>
 
 <p></p>
 
-<p>When notes occur in a layer which is set to this meta controller, instead of playing, they are sent to whichever layer is indicated by the midi channel layer attribute. (i.e. &ldquo;midi channel&rdquo; = 1 means send to layer 1 etc.). They operate exactly in the same way that <a href="/posts/tenori-on/recorder/">MIDI recording</a> does.</p>
+<p>This layer type can be selected by changing the layer mode.</p>
 
-<p>This enables, for example:</p>
+<p><img src="/images/xy.png" alt="XY mode selection" title="XY mode selection" /></p>
 
-<ol>
-<li><p>Abacus mode to be used to add a delay-echo effect.</p>
+<h2 id="usage">Usage</h2>
 
-<p>Set layer 1 to Abacus. Set layer 10 (Random) to Layer operation = Meta controller. Set layer 10 MIDI channel to 1. Use L1 to select the &ldquo;SendToLayer&rdquo; controller.  Now notes played in layer 10 will be sent to layer 1, giving an &ldquo;echo&rdquo; effect to each note played.</p></li>
+<p>The XY layer is inspired by 2-axis controllers such as the Kaosspad, where movement along the X axis modifies one parameter, and movement along the Y axis modifies a different parameter.</p>
 
-<li><p>Draw mode to be used as a generic recorder</p>
+<p>In the TNR, the LED movement is identical to the existing Random layer type, where the illuminated LED travels between the &ldquo;notes&rdquo; entered in the grid.  However, unlike the normal random behavior where the &ldquo;note&rdquo; only sounds at each user entered point, in the XY type case messages are generated as the illuminated LED travels between points.</p>
 
-<p>Set layer 12 to Draw (if it isn&rsquo;t already). Set layer 16 to Solo. Set layer 16&rsquo;s MIDI channel to 12, set the operation to Meta controller, and select the &ldquo;SendToLayer&rdquo; controller. Now the draw layer will &ldquo;record&rdquo; all the Solo notes played, up to the maximum number possible in Draw Mode, namely 64.</p></li>
-</ol>
+<p>It is expected that the XY layer type is predominantly used with the &ldquo;Control Change&rdquo; or &ldquo;Meta Controller&rdquo; layer operation types. If the layer type is XY, and the layer operation is control change or meta controller, then pressing [L2] will allow the selection of the second axis&rsquo; controller. For example, using a meta controller, the X-axis could be set to &ldquo;Pan&rdquo; and the Y-axis could be set to &ldquo;Volume&rdquo;. Using [L1] sets the first axis&rsquo; controller as per normal, but the LCD display updates to show both.</p>
 
-<p>Pressing &ldquo;Clear&rdquo; will clear both the notes in the current meta layer, as well as the target send-to layer.</p>
+<table>
+<thead>
+<tr>
+<th><img src="/images/xyaxis1.png" alt="" title="Operation with L1" /></th>
+<th><img src="/images/xyaxis2.png" alt="" title="Operation with L2" /></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Operation with [L1]</td>
+<td>Operation with [L2]</td>
+</tr>
+</tbody>
+</table>
+
+<p>If the layer operation is an instrument type, e.g. a normal instrument or even a split, then each step of the LED&rsquo;s journey will generate two notes - one from the X-axis and one from the Y-axis. This is a bit odd, but there may be a creative use for this, so it wasn&rsquo;t disabled.</p>
 
 <h2 id="compatibility-issues">Compatibility Issues</h2>
 
-<p>None known.</p>
+<p>You cannot load songs or blocks with an XY layer type in previous
+versions.</p>
 
 <h2 id="releases">Releases</h2>
 
-<p>First included in A030</p>
+<p>First included in A031.</p>
 		</div>
 		
 <div class="post__tags tags clearfix">
@@ -115,10 +130,10 @@ if (!doNotTrack) {
 	
 <nav class="post-nav flex">
 	<div class="post-nav__item post-nav__item--prev">
-		<a class="post-nav__link" href="/posts/tenori-on/abacus/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Abacus layer type</p></a>
+		<a class="post-nav__link" href="/posts/tenori-on/meta_velpan/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Layer Meta Controllers</p></a>
 	</div>
 	<div class="post-nav__item post-nav__item--next">
-		<a class="post-nav__link" href="/posts/tenori-on/delayedchange/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Delayed Block Change</p></a>
+		<a class="post-nav__link" href="/posts/tenori-on/releases/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Releases</p></a>
 	</div>
 </nav>
 	

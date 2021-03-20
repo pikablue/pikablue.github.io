@@ -4,7 +4,17 @@
   
   <url>
     <loc>http://pika.blue/posts/tenori-on/releases/</loc>
-    <lastmod>2021-01-16T00:00:00+00:00</lastmod>
+    <lastmod>2021-03-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://pika.blue/posts/tenori-on/xy/</loc>
+    <lastmod>2021-03-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://pika.blue/posts/tenori-on/meta_velpan/</loc>
+    <lastmod>2021-03-13T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -35,11 +45,6 @@
   <url>
     <loc>http://pika.blue/posts/tenori-on/transport/</loc>
     <lastmod>2020-10-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://pika.blue/posts/tenori-on/meta_velpan/</loc>
-    <lastmod>2020-10-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -139,7 +144,7 @@
   
   <url>
     <loc>http://pika.blue/posts/tenori-on/</loc>
-    <lastmod>2021-01-16T00:00:00+00:00</lastmod>
+    <lastmod>2021-03-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -155,7 +160,7 @@
   
   <url>
     <loc>http://pika.blue/tags/new-features/</loc>
-    <lastmod>2021-01-01T00:00:00+00:00</lastmod>
+    <lastmod>2021-03-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -166,7 +171,7 @@
   
   <url>
     <loc>http://pika.blue/tags/project-plan/</loc>
-    <lastmod>2021-01-16T00:00:00+00:00</lastmod>
+    <lastmod>2021-03-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -182,13 +187,13 @@
   
   <url>
     <loc>http://pika.blue/tags/</loc>
-    <lastmod>2021-01-01T00:00:00+00:00</lastmod>
+    <lastmod>2021-03-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://pika.blue/categories/tenori-on/</loc>
-    <lastmod>2021-01-16T00:00:00+00:00</lastmod>
+    <lastmod>2021-03-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

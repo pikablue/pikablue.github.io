@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Meta Controller - Velocity and Pan</title>
+	<title>Layer Meta Controllers</title>
 	<meta name="description" content="">
 	<meta name="generator" content="Hugo 0.48" />
 	
@@ -56,25 +56,40 @@ if (!doNotTrack) {
 <main class="main content">
 	<article class="post">
 		<header class="post__header">
-			<h1 class="post__title">Meta Controller - Velocity and Pan</h1><div class="post__meta meta">
+			<h1 class="post__title">Layer Meta Controllers</h1><div class="post__meta meta">
 <svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-<time class="post__meta-date meta-date" datetime="2020-10-20T00:00:00">October 20, 2020</time>
+<time class="post__meta-date meta-date" datetime="2021-03-13T00:00:00">March 13, 2021</time>
 <span class="post__meta-categories meta-categories">
 	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
 	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/tenori-on" rel="category">tenori-on</a></span>
 </span></div>
 		</header><div class="post__content clearfix">
-			<p>This function introduces a velocity and pan meta controller.</p>
+			<p>This function introduces a number of layer meta controllers : Velocity, Pan, Volume, Sound length, Chorus amount, Reverb amount.</p>
 
 <p></p>
 
-<p>These two meta controllers are instruments that, rather than playing notes, set the playing velocity (how hard the note is &ldquo;hit&rdquo;) and the pan position for another layer. in both cases, the value to use is indicated by the &ldquo;note&rdquo;. For the velocity, the lowest pitch provides a velocity of 1, and the highest pitch is a velocity of 127. For the pan, the lowest pitch is a pan position of far left, and the highest pitch is a pan position of far right.</p>
+<p>These meta controllers are instruments that, rather than playing notes, set an aspect of another layers notes. This includes:</p>
+
+<ul>
+<li>Playing velocity (how hard the note is &ldquo;hit&rdquo;)</li>
+<li>Pan position</li>
+<li>Layer volume</li>
+<li>Sound length</li>
+<li>Chorus amount (per layer)</li>
+<li>Reverb amount (per layer)</li>
+</ul>
+
+<p>In all cases, the value to use is indicated by the &ldquo;note&rdquo;. For example, for the velocity, the lowest pitch provides a velocity of 1, and the highest pitch is a velocity of 127. For the pan, the lowest pitch is a pan position of far left, and the highest pitch is a pan position of far right.</p>
 
 <p>This function is a property of the layer, and is selected under the layer menu. When active, the main display will change slightly to indicate that it is not an &ldquo;INST&rdquo; that is being played, but a META.</p>
 
-<p>The layer targetted for the pan or velocity change is, as for the Arp-4 meta controller, set via the layers &ldquo;midi channel&rdquo; menu setting - channel 1 means layer 1, channel 2 means layer 2, etc.</p>
+<p>The layer targetted for the property change is, as for the Arp-4 meta controller, set via the layers &ldquo;midi channel&rdquo; menu setting - channel 1 means layer 1, channel 2 means layer 2, etc.</p>
 
-<p>The velocity controller can be used to add dynamic expression to another layer in a similar way to how a velocity split works, but allowing more dynamism. For example, a score layer with a velocity metacontroller can add on-the-beat emphasis to a random or even solo layer. A pan metacontroller allows for arpeggios in other layers to be played at random pan positions.</p>
+<p>The velocity controller can be used to add dynamic expression to another layer in a similar way to how a velocity split works, but allowing more dynamism. For example, a score layer with a velocity metacontroller can add on-the-beat emphasis to a random or even solo layer.</p>
+
+<p>A pan metacontroller allows for arpeggios in other layers to be played at random pan positions.</p>
+
+<p>The chorus and reverb amount is per-layer, unlike the Effect menu setting (which applies to all layers). This allows some subtle effects to be applied to notes.</p>
 
 <h2 id="compatibility-issues">Compatibility Issues</h2>
 
@@ -82,7 +97,8 @@ if (!doNotTrack) {
 
 <h2 id="releases">Releases</h2>
 
-<p>First included in A019; timing improved in A028</p>
+<p>First included in A019; timing improved in A028.
+Volume, length, chorus and reverb added in A031</p>
 		</div>
 		
 <div class="post__tags tags clearfix">
@@ -107,10 +123,10 @@ if (!doNotTrack) {
 	
 <nav class="post-nav flex">
 	<div class="post-nav__item post-nav__item--prev">
-		<a class="post-nav__link" href="/posts/tenori-on/score256/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Extended (256 step) score</p></a>
+		<a class="post-nav__link" href="/posts/tenori-on/animations/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Animations</p></a>
 	</div>
 	<div class="post-nav__item post-nav__item--next">
-		<a class="post-nav__link" href="/posts/tenori-on/transport/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">MIDI Transport Controls</p></a>
+		<a class="post-nav__link" href="/posts/tenori-on/xy/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">XY layer type</p></a>
 	</div>
 </nav>
 	
@@ -121,17 +137,17 @@ if (!doNotTrack) {
 	<div class="widget__content">
 		<ul class="widget__list">
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/releases/">Releases</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/xy/">XY layer type</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/meta_velpan/">Layer Meta Controllers</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/animations/">Animations</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/delayedchange/">Delayed Block Change</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/meta_send/">Meta Controller - Send to Layer</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/abacus/">Abacus layer type</a></li>
 		</ul>
 	</div>
 </div>
 <div class="widget-taglist widget">
 	<h4 class="widget__title">Tags</h4>
 	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="/tags/new-features" title="New features">New features (19)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/new-features" title="New features">New features (20)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/project-plan" title="Project plan">Project plan (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/stock-features" title="Stock features">Stock features (3)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/tools" title="Tools">Tools (2)</a>
