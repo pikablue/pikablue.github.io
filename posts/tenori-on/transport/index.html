@@ -58,7 +58,7 @@ if (!doNotTrack) {
 		<header class="post__header">
 			<h1 class="post__title">MIDI Transport Controls</h1><div class="post__meta meta">
 <svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-<time class="post__meta-date meta-date" datetime="2020-10-23T00:00:00">October 23, 2020</time>
+<time class="post__meta-date meta-date" datetime="2021-04-15T00:00:00">April 15, 2021</time>
 <span class="post__meta-categories meta-categories">
 	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
 	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/tenori-on" rel="category">tenori-on</a></span>
@@ -168,7 +168,7 @@ if (!doNotTrack) {
 <ul>
 <li>&ldquo;Off&rdquo; : The TNR does not respond to ANY incoming transport MIDI messages. This includes FA/FB/FC. This is included to prevent the TNR responding to transport commands intended for other sequencers on the same MIDI bus.</li>
 <li>&ldquo;Slave&rdquo; : The TNR only responds to incoming transport MIDI messages in Slave syncrhonisation mode. (This is the stock TNR behaviour)</li>
-<li>&ldquo;Master+Slave&rdquo; : The TNR responds to incoming transport MIDI messages in Master and Slave syncrhonisation mode. This allows external stop/start control of the TNR while still using the TNR as the source of clock messages.
+<li>&ldquo;Master+Slave&rdquo; : The TNR responds to incoming transport MIDI messages in both Master and Slave syncrhonisation mode. This allows external stop/start control of the TNR while still using the TNR as the source of clock messages. In this mode the TNR also generates a start/stop message (i.e. applies MIDI Thru to these messages).
 <br /></li>
 </ul>
 
@@ -220,9 +220,13 @@ if (!doNotTrack) {
 
 <p>Provided that SPP and BC messages are being listened to - i.e. Transport Mode is not Off and SPP and BC bytes are not OFF  - then this feature means that the TNR will respond even when playing. (This was originally not allowed in the MIDI Specification because processing SPP messages could cause the synth to stutter and miss F8 clock messages, ending up out-of-time).</p></li>
 
-<li><p>Compliant FA/FB behavior</p>
+<li><p>Selectable Compliant FA/FB behavior in MASTER mode</p>
 
-<p>When in Master mode, pressing &ldquo;Start&rdquo; on the TNR now issues <code>FB</code> (Continue) rather than <code>FA</code> (Start) since it always restarts from where it left off, i.e with SPP not equal to zero. Equally, in slave mode, receiving <code>FA</code> Start messages will result in the song position pointer going to zero and then starting. Both these behaviors are compliant to the MIDI specification.</p></li>
+<p>When in Master mode, pressing &ldquo;Start&rdquo; on the TNR by default issues &lsquo;FA&rsquo; (Start). An additional menu item has been added under the MIDI menu to allow the MIDI Start byte to be &ldquo;dynamic&rdquo;. In this mode, if the song position is at the start, then <code>FA</code> (Start) is issued, otherwise <code>FB</code> (Continue). Normally the latter will be the case since it always restarts from where it left off, i.e with SPP not equal to zero.</p></li>
+
+<li><p>Compliant behaviour in SLAVE mode</p>
+
+<p>In slave mode, receiving <code>FA</code> Start messages will result in the song position pointer going to zero and then starting. Both these behaviors are compliant to the MIDI specification.</p></li>
 </ol>
 
 <p>Together, this changes the table as follows:</p>
@@ -331,10 +335,10 @@ if (!doNotTrack) {
 	
 <nav class="post-nav flex">
 	<div class="post-nav__item post-nav__item--prev">
-		<a class="post-nav__link" href="/posts/tenori-on/score256/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Extended (256 step) score</p></a>
+		<a class="post-nav__link" href="/posts/tenori-on/splits/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Splits</p></a>
 	</div>
 	<div class="post-nav__item post-nav__item--next">
-		<a class="post-nav__link" href="/posts/tenori-on/splits/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Splits</p></a>
+		<a class="post-nav__link" href="/posts/tenori-on/releases/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Releases</p></a>
 	</div>
 </nav>
 	
@@ -345,10 +349,10 @@ if (!doNotTrack) {
 	<div class="widget__content">
 		<ul class="widget__list">
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/releases/">Releases</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/transport/">MIDI Transport Controls</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/splits/">Splits</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/xy/">XY layer type</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/meta_velpan/">Layer Meta Controllers</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/animations/">Animations</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/delayedchange/">Delayed Block Change</a></li>
 		</ul>
 	</div>
 </div>
