@@ -58,7 +58,7 @@ if (!doNotTrack) {
 		<header class="post__header">
 			<h1 class="post__title">TNR Hardware</h1><div class="post__meta meta">
 <svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-<time class="post__meta-date meta-date" datetime="2019-01-05T00:00:00">January 05, 2019</time>
+<time class="post__meta-date meta-date" datetime="2021-07-07T00:00:00">July 07, 2021</time>
 <span class="post__meta-categories meta-categories">
 	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
 	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/tenori-on" rel="category">tenori-on</a></span>
@@ -69,9 +69,9 @@ if (!doNotTrack) {
 			<img src="/images/hardware_small.jpg" alt="TNR Hardware" style="max-width:400px;">
 			</p>
 		</figure><div class="post__content clearfix">
-			
+			<p>This page describes the TNR hardware (as much as I know).</p>
 
-<p>This page describes the TNR hardware (as much as I know).</p>
+<p></p>
 
 <h2 id="teardown">Teardown</h2>
 
@@ -79,7 +79,7 @@ if (!doNotTrack) {
 
 <h2 id="service-manual">Service manual</h2>
 
-<p>The service manual is a fantastic resource for identifying how the peripherals are actually connected to the CPU, and therefore what the various registers are actually doing. This has been my main route of investigation into the software : for example, the service manual identifies that the MIDI connector is attached to pins 126 and 127 of the CPU. Looking up these pins in the CPU datasheet tells us that these are Ports F0 and F1, located at 0x003C in the memory map. Consequently, and code accessing 0x003C is to do with handling MIDI.</p>
+<p>The service manual is a fantastic resource for identifying how the peripherals are actually connected to the CPU, and therefore what the various registers are actually doing. This has been my main route of investigation into the software : for example, the service manual identifies that the MIDI connector is attached to pins 126 and 127 of the CPU. Looking up these pins in the CPU datasheet tells us that these are Ports F0 and F1, located at 0x003C in the memory map. Consequently, any code accessing 0x003C is to do with handling MIDI.</p>
 
 <p>The service manual for the TNR-O (the orange version) can be found on-line.</p>
 
@@ -101,9 +101,31 @@ if (!doNotTrack) {
 
 <p>I am reassembling using the excellent <a href="http://http://john.ccac.rwth-aachen.de:8000/as/">Macro Assembler AS</a>. When I couldn&rsquo;t get binary-identical reassembly for the 2.10 branch, Alfred - the developer of the assembler - made some specific enhancements to AS which enabled me to generate identical code, so much thanks to him.</p>
 
-<h2 id="tone-generator-yamaha-swl-01-ymw767-vtz">&ldquo;Tone Generator&rdquo; : Yamaha SWL-01 : YMW767-VTZ</h2>
+<h2 id="tone-generator-yamaha-swl-01-ymw767-vtz-x6055a00">&ldquo;Tone Generator&rdquo; : Yamaha SWL-01 : YMW767-VTZ : X6055A00</h2>
 
-<p>I can find very little information on this device. It is used in <a href="http://www.dtech.lv/techarticles_yamaha_chips.html">some Yamaha synths contemporaneous with the TNR; scroll down to find the SWL01</a>. This is essentially a second CPU. The TLCS-900 and SWL-01 communicate over the address and data bus, the SWL-01 is memory mapped into the TLCS-900 address space. However, the Flash memory used for storing the instruments, and user samples, is only accessible by the SWL; updating the user samples involves the TLCS-900 messaging the SWL, which then writes to its Flash memory - this is why updating user samples takes so long.</p>
+<p>There is almost no documentation on this device. This is a custom Yamaha sound chip from 2002, used in the following contemporaneous Yamaha products, as confirmed by their service manuals:</p>
+
+<ul>
+<li>CP-33 Stage piano</li>
+<li>DD-65/YDD-60 Digital percussion</li>
+<li>DGX-620/YPG-625 Portable Grand</li>
+<li>EZ-200/EZ-J200 Portatone</li>
+<li>KB-180/SKB-180 Digital Keyboard</li>
+<li>PSR-E213/YPT-210 Portatone</li>
+<li>PSR-VN300 Portatone</li>
+</ul>
+
+<p>(If anyone has any dumped firmware from these devices, please get in touch).</p>
+
+<p>It is not quite the same device as all the products attributed to the SWL01 in <a href="http://www.dtech.lv/techarticles_yamaha_chips.html">this list</a> but there are many similar features.</p>
+
+<p>It is actually based on an ARM7TDMI core, and operates as a second CPU connected to a DSP. In this respect it is similar to the Yamaha AICA chip used in the Sega Dreamcast, also from 2002; the dumped firmware running on the SWL-01 bears some similarities with the &ldquo;Manatee&rdquo; drivers present in Dreamcast games. (Thanks to Alex and the Dreamcast community for helping me here!)</p>
+
+<p>It has a small amount of local register space for the DSP, and is attached to a block of Flash ROM (TC58FVM7 B5BTG65CCH, 128Mbit) for both the running program, and the on-board sounds.</p>
+
+<p>The TLCS-900 and SWL-01 communicate over the address and data bus, the SWL-01 is memory mapped into the TLCS-900 address space. However, the Flash memory, used for storing the instruments and user samples, is only accessible by the SWL; updating the user samples involves the TLCS-900 messaging the SWL, which then writes to its Flash memory - this is why updating user samples takes so long.</p>
+
+<p>The Tone generator software running on the SWL01 is relatively safely updatable since unlike the Boot software on the TLCS it isn&rsquo;t responsible for its own patching. However I haven&rsquo;t managed to reassemble an image from source code yet, so modifications to the SWL01 code will have to wait.</p>
 
 <h2 id="lcd-module-wg12232d-ygh">LCD Module : WG12232D-YGH</h2>
 
@@ -114,15 +136,15 @@ if (!doNotTrack) {
 <p>Various blocks of memory are memory mapped onto the CPU&rsquo;s address bus. The memory mapping is set up by the boot code, and I haven&rsquo;t managed to work out how to dump an image to an SD card yet, so can&rsquo;t quite tell for sure how it is configured.</p>
 
 <ul>
-<li>There is some Flash memory : S29JL032H 70TFI010 (32Mbit device) : accessible by the CPU.</li>
+<li>There is some Flash memory : S29JL032H 70TFI010 (32Mbit device) : accessible by the TLCS CPU.</li>
 <li>There is 16Mbit of SDRAM  fitted; the schematic lists this as W9816GCH-7. This would be 143MHz/CL3. The parts list indicates it could also be W98G6IH-7 (which looks very similar) or even IS42S16100E-7TL. the schematic also indicates a further lump of RAM (M12L64164A) with the helpful label &ldquo;Not installed&rdquo; and &ldquo;For the future&rdquo;.</li>
-<li>There is a further bank of Flash memory (TC58FVM7 B5BTG65CCH, 128Mbit) attached to the Tone Generator.</li>
 </ul>
 
-<h1 id="dac">DAC</h1>
+<p>The Tone generator&rsquo;s Flash ROM is not memory mapped into the TLCS address space.</p>
 
-<p>The digital-to-analog converter (that makes the audio sound) is an <a href="https://media.digikey.com/pdf/Data%20Sheets/AKM%20Semiconductor%20Inc.%20PDFs/AK4385_9-30-10.pdf">AsahiKASEI AK4385</a> 24bit, up-tp-192kHz DAC.</p>
+<h2 id="dac">DAC</h2>
 
+<p>The digital-to-analog converter (that makes the audio sound) is an <a href="https://media.digikey.com/pdf/Data%20Sheets/AKM%20Semiconductor%20Inc.%20PDFs/AK4385_9-30-10.pdf">AsahiKASEI AK4385</a> 24bit, up-tp-192kHz DAC. This is attached to the Tone generator directly.</p>
 		</div>
 		
 <div class="post__tags tags clearfix">
@@ -147,10 +169,10 @@ if (!doNotTrack) {
 	
 <nav class="post-nav flex">
 	<div class="post-nav__item post-nav__item--prev">
-		<a class="post-nav__link" href="/posts/tenori-on/goals/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Tenori-On : Project Introduction and Goals</p></a>
+		<a class="post-nav__link" href="/posts/tenori-on/transport/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">MIDI Transport Controls</p></a>
 	</div>
 	<div class="post-nav__item post-nav__item--next">
-		<a class="post-nav__link" href="/posts/tenori-on/bootbuttons/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">TNR Power On Buttons</p></a>
+		<a class="post-nav__link" href="/posts/tenori-on/meta_sounds/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Sound Meta Controllers</p></a>
 	</div>
 </nav>
 	
@@ -161,17 +183,17 @@ if (!doNotTrack) {
 	<div class="widget__content">
 		<ul class="widget__list">
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/releases/">Releases</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/transport/">MIDI Transport Controls</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/splits/">Splits</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/xy/">XY layer type</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/effects/">Effects (reverb, chorus)</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/meta_velpan/">Layer Meta Controllers</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/life/">Life layer type</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/rain/">Rain layer type</a></li>
 		</ul>
 	</div>
 </div>
 <div class="widget-taglist widget">
 	<h4 class="widget__title">Tags</h4>
 	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="/tags/new-features" title="New features">New features (20)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/new-features" title="New features">New features (26)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/project-plan" title="Project plan">Project plan (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/stock-features" title="Stock features">Stock features (3)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/tools" title="Tools">Tools (2)</a>

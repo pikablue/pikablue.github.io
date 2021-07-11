@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Score X : Extended score</title>
+	<meta name="description" content="">
+	<meta name="generator" content="Hugo 0.48" />
+	
+	
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+	<link rel="stylesheet" href="/css/style.css">
+	<script type="text/javascript" src="/js/scripts.js"></script>
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-163129209-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container-outer">
+		<header class="header">
+	<div class="container container-inner">
+		<div class="logo" role="banner">
+			<a class="logo__link" href="/" title="pika.blue" rel="home">
+				<div class="logo__title">pika.blue</div>
+				<div class="logo__tagline">Random Project Repository </div>
+			</a>
+		</div>
+	</div>
+	<img style="position: absolute; top:24px; right: 32px" src="http://pika.blue/images/pikabluesmall.png" alt="logo" />
+	
+<nav class="menu">
+	<ul class="menu__list">
+		<li class="menu__item"><a class="menu__link" href="/">HOME</a></li>
+		<li class="menu__item"><a class="menu__link" href="/categories/tenori-on/">TENORI-ON</a></li>
+		<li class="menu__item"><a class="menu__link" href="/categories/fc-300/">FC-300</a></li>
+	</ul>
+</nav>
+
+</header>
+
+		<div class="wrapper flex">
+			
+<main class="main content">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Score X : Extended score</h1><div class="post__meta meta">
+<svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+<time class="post__meta-date meta-date" datetime="2021-07-10T00:00:00">July 10, 2021</time>
+<span class="post__meta-categories meta-categories">
+	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/tenori-on" rel="category">tenori-on</a></span>
+</span></div>
+		</header><div class="post__content clearfix">
+			
+
+<p>This function adds a new layer type - a score mode that groups the normal 16 blocks of 16 steps differently, allowing up to 1 section of 256 steps.</p>
+
+<p>This layer type can be selected via changing the layer mode</p>
+
+<table>
+<thead>
+<tr>
+<th><img src="/images/layermode.png" alt="" title="Layer Mode" /></th>
+<th><img src="/images/scorex_set.png" alt="" title="Selecting Score X" /></th>
+</tr>
+</thead>
+
+<tbody>
+</tbody>
+</table>
+
+<p>The normal score mode can be thought of as 16 blocks of 16 steps. ScoreX allows this to be grouped into a number of different configurations:</p>
+
+<ul>
+<li>1 section of 256 steps, linking 16 blocks together (the old score-256 behavior)</li>
+<li>2 sections of 128 steps, linking 8 blocks together</li>
+<li>4 sections of 64 steps, linking 4 blocks together</li>
+<li>8 sections of 32 steps, linking 2 blocks together</li>
+<li>16 sections of 16 steps, identical to the default score mode</li>
+</ul>
+
+<p>This is shown below:</p>
+
+<p><img src="/images/scorex_5.png" alt="ScoreX concept" title="ScoreX concept" /></p>
+
+<p>The grouping can be selected from within the Layer menu:</p>
+
+<table>
+<thead>
+<tr>
+<th><img src="/images/scorex_linklength.png" alt="" title="Link Length" /></th>
+<th><img src="/images/scorex_setlink.png" alt="" title="Setting link length" /></th>
+</tr>
+</thead>
+
+<tbody>
+</tbody>
+</table>
+
+<p>Fundamentally, this is implemented via chaining the blocks together. Loop points are set within the linked section of blocks; for example, the following shows a loop range setting that would be valid for 4, 8 or 16 block links, but not for 2-block links.</p>
+
+<p><img src="/images/scorex_1.png" alt="ScoreX concept" title="ScoreX concept" /></p>
+
+<p>Importantly, this means that there can be a difference between the block currently visible and being edited, and the block currently playing.</p>
+
+<p>The behavior of this new layer is quite complex, and a few changes have been made to the &ldquo;normal&rdquo; score layer type to support this.</p>
+
+<ol>
+<li><p>Changing the current block with [R5] will change the currently playing block, for score, random, draw etc. as normal. For scoreX, while it will change the block into which notes are entered (the &ldquo;current block&rdquo;), it will only change scoreX&rsquo;s playing block if the block change takes you into the next section.</p></li>
+
+<li><p>Changing the current block via remote methods - i.e. a meta controller block change, or a block change MIDI message - will not change the currently visible block for a scoreX. This is so that this layer can be used as a sequencer with block change meta controllers.</p></li>
+
+<li><p>The LCD display of loop start (top) / loop end in normal score, and scoreX, has been changed to include both the block, and the position within the block, for the loop start and end points. This is shown below, corresponding to the loop point example above. For normal score, you can just ignore the first value as it simply reports the current block. I haven&rsquo;t yet worked out a way of suppressing this information in normal score mode.</p>
+
+<p><img src="/images/scorex_2.png" alt="ScoreX LCD display" title="ScoreX Loop Point display" /></p></li>
+
+<li><p>To set loop points, [L4] is used as normal. Pressing [L4] and a key will set the start or end points, as normal, but at this block. For example, using a scoreX layer to create the 38 step pattern shown above:</p>
+
+<ul>
+<li>In block 1, press [L4] and the top half of the fifth column. This sets the LOOP TOP to 1 / 5</li>
+<li>Switch to block 3 using [R5] and a key from the third column</li>
+<li>Press [L4] and the bottom half of the 10th column. This sets the LOOP END to 3 / 10.</li>
+</ul></li>
+
+<li><p>A loop point &ldquo;off screen&rdquo; is displayed with a broken line at the edge of the current block, either the left edge, indicating that the loop point is on a lower block number than the current block, or the right edge, indicating that the loop point is on a higher block number than the current edge. For example, pressing [L4] when the current block is 1, 2 or 3 gives the results below.</p>
+
+<p><img src="/images/scorex_3.png" alt="ScoreX LED display" title="ScoreX Loop Point display" /></p></li>
+
+<li><p>If loop indicators are on, then when the currently playing position is not on the currently displayed block, the loop indicators will flash at the left of right edge of the block indicating the direction in which the currently playing position is.</p></li>
+
+<li><p>Animations for &ldquo;off screen&rdquo; notes aren&rsquo;t played.</p></li>
+
+<li><p>ScoreX respects master loop points in a different way to the normal score. The master loop setting does not overwrite the scoreX loop points. Instead, the master loop points are viewed as defining the length of the bar; playing a scoreX layer with loop points that span blocks will skip from the master loop end of one block to the master loop start of the next block. This feature is provided so that songs where the bars length is not 16 (e.g. in <sup>3</sup>&frasl;<sub>4</sub> or <sup>5</sup>&frasl;<sub>4</sub> or similar) can be sensibly used in scoreX without having to do complicated mental maths to work out where in each scoreX block the bar actually starts. Setting invalid loop points in a scoreX that are outside the master loop range is flagged with a hashing display.</p>
+
+<p><img src="/images/scorex_4.png" alt="Score X Master Loop" title="ScoreX Master Loop handling" /></p></li>
+</ol>
+
+<h2 id="compatibility-issues">Compatibility Issues</h2>
+
+<p>Loading songs/blocks saved in previous releases - since they can&rsquo;t contain scoreX layers, should probably work OK.</p>
+
+<p>Using previous releases to load songs created in this release, using scoreX, will not work.</p>
+
+<h2 id="releases">Releases</h2>
+
+<p>First included in A013.</p>
+
+<p>Bugfix for SaveAs (Alarm, Time Signal, Default) in A014.</p>
+
+<p>Master loop setting approach reworked in A027</p>
+
+<p>Changed from Score256 to ScoreX in A034</p>
+
+		</div>
+		
+<div class="post__tags tags clearfix">
+	<svg class="icon icon-tag" width="16" height="16" viewBox="0 0 16 16"><path d="M16 9.5c0 .373-.24.74-.5 1l-5 5c-.275.26-.634.5-1 .5-.373 0-.74-.24-1-.5L1 8a2.853 2.853 0 0 1-.7-1C.113 6.55 0 5.973 0 5.6V1.4C0 1.034.134.669.401.401.67.134 1.034 0 1.4 0h4.2c.373 0 .95.113 1.4.3.45.187.732.432 1 .7l7.5 7.502c.26.274.5.632.5.998zM3.5 5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item"><a class="tags__link btn" href="/tags/new-features/" rel="tag">new features</a></li>
+	</ul>
+</div>
+	</article>
+	
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="Pika Blue avatar" src="/images/pikablue.png" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">About Pika Blue</span>
+	</div>
+	<div class="authorbox__description">
+		Pika Blue is overly obsessed with midi controllers, especially unsupported ones with blinky lights .
+	</div>
+</div>
+	
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/posts/tenori-on/meta_sounds/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Sound Meta Controllers</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/posts/tenori-on/midicc/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Responses to MIDI CC messages</p></a>
+	</div>
+</nav>
+	
+</main>
+
+			<aside class="sidebar"><div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/releases/">Releases</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/effects/">Effects (reverb, chorus)</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/meta_velpan/">Layer Meta Controllers</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/life/">Life layer type</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/rain/">Rain layer type</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/new-features" title="New features">New features (26)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/project-plan" title="Project plan">Project plan (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/stock-features" title="Stock features">Stock features (3)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tools" title="Tools">Tools (2)</a>
+	</div>
+</div><div class="widget-social widget">
+	<h4 class="widget-social__title widget__title">Social</h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="Email" href="mailto:info@pika.blue">
+				<svg class="widget-social__link-icon icon-mail" viewBox="0 0 416 288" width="24" height="24" fill="#fff"><path d="m0 16v256 16h16 384 16v-16-256-16h-16-384-16zm347 16-139 92.5-139-92.5zm-148 125.5 9 5.5 9-5.5 167-111.5v210h-352v-210z"/></svg>
+				<span>info@pika.blue</span>
+			</a>
+		</div>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container container-inner">
+		<div class="footer__copyright">&copy; 2021 pika.blue. <span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and a modified <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span></div>
+	</div>
+</footer>
+
+	</div>
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+		label: "Menu",
+	});
+</script></body>
+</html>

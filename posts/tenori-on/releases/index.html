@@ -58,7 +58,7 @@ if (!doNotTrack) {
 		<header class="post__header">
 			<h1 class="post__title">Releases</h1><div class="post__meta meta">
 <svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-<time class="post__meta-date meta-date" datetime="2021-04-16T00:00:00">April 16, 2021</time>
+<time class="post__meta-date meta-date" datetime="2021-07-11T00:00:00">July 11, 2021</time>
 <span class="post__meta-categories meta-categories">
 	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
 	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/tenori-on" rel="category">tenori-on</a></span>
@@ -149,7 +149,7 @@ if (!doNotTrack) {
 <tbody>
 <tr>
 <td>PAKL</td>
-<td><a href="/posts/tenori-on/layercopy/">Quick layer copy</a> via R1<br> LCD Stack output for debugging <br> <a href="/posts/tenori-on/splits/">Splits in push mode</a><br> <a href="/posts/tenori-on/abacus/">Abacus layer type</a></td>
+<td>New feature testing<br><a href="/posts/tenori-on/layercopy/">Quick layer copy</a> via R1<br> LCD Stack output for debugging <br> <a href="/posts/tenori-on/splits/">Splits in push mode</a><br> <a href="/posts/tenori-on/abacus/">Abacus layer type</a></td>
 </tr>
 </tbody>
 </table>
@@ -158,9 +158,31 @@ if (!doNotTrack) {
 
 <h2 id="latest-release">Latest release</h2>
 
-<p>The latest release is A033. (April 16th 2021). The known <a href="#open">open bugs</a> in the latest release can be seen below.</p>
+<p>The latest release is A034. (July 8th 2021). The known <a href="#open">open bugs</a> in the latest release can be seen below.</p>
 
 <p>Each release contains, cumulatively, all the previous release features, so it is only necessary to download and install the latest release. The list of features in the latest release can most easily be seen by looking at the <a href="/tags/new-features">New Features</a> tag.</p>
+
+<table>
+<thead>
+<tr>
+<th>Release</th>
+<th>Adds</th>
+<th>Feature link</th>
+<th>Download link</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>A034</td>
+<td>ScoreX (was Score256) Layer Type<br>Rain Layer Type<br>Game of Life<br>Probability Meta<br>New effects types<br>Sound changing metas<br>New MIDI CCs</td>
+<td><a href="/posts/tenori-on/scorex/">ScoreX</a><br> <a href="/posts/tenori-on/rain/">Rain</a><br><a href="/posts/tenori-on/life/">Life</a><br> <a href="/posts/tenori-on/meta_velpan/">Probability meta</a><br> <a href="/posts/tenori-on/effects/">Effects</a><br> <a href="/posts/tenori-on/meta_sounds/">Sound metas</a><br><a href="/posts/tenori-on/midicc/">MIDI CC</a><br></td>
+<td><a href="/releases/A034.zip">A034 firmware</a></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="old-releases">Old releases</h2>
 
 <table>
 <thead>
@@ -179,22 +201,7 @@ if (!doNotTrack) {
 <td>Fix for bug 021, 022<br><a href="/posts/tenori-on/splits/">Accidentals</a></td>
 <td><a href="/releases/A033.zip">A033 firmware</a></td>
 </tr>
-</tbody>
-</table>
 
-<h2 id="old-releases">Old releases</h2>
-
-<table>
-<thead>
-<tr>
-<th>Release</th>
-<th>Adds</th>
-<th>Feature link</th>
-<th>Download link</th>
-</tr>
-</thead>
-
-<tbody>
 <tr>
 <td>A032</td>
 <td>Bugfix release</td>
@@ -233,7 +240,7 @@ if (!doNotTrack) {
 <tr>
 <td>A027</td>
 <td>Score256 bar length,<br>Quick Layer copy,<br>Bugfixes</td>
-<td>Score256 now uses master loop to set <a href="/posts/tenori-on/score256/">bar length</a> <br> <a href="/posts/tenori-on/layercopy/">Quick layer copy</a> via R1</td>
+<td>Score256 now uses master loop to set <a href="/posts/tenori-on/scorex/">bar length</a> <br> <a href="/posts/tenori-on/layercopy/">Quick layer copy</a> via R1</td>
 <td><a href="/releases/A027.zip">A027 firmware</a></td>
 </tr>
 
@@ -324,7 +331,7 @@ if (!doNotTrack) {
 <tr>
 <td><img src="/images/A013.jpg" alt="" title="A013" /></td>
 <td>256-step score</td>
-<td><a href="/posts/tenori-on/score256/">Score 256</a></td>
+<td><a href="/posts/tenori-on/scorex/">Score 256</a></td>
 <td><a href="/releases/A013.zip">A013 firmware</a></td>
 </tr>
 
@@ -371,12 +378,6 @@ if (!doNotTrack) {
 </thead>
 
 <tbody>
-<tr>
-<td>023</td>
-<td>BC meta fails to change block when visible layer is scr256</td>
-<td>A026</td>
-<td>Open</td>
-</tr>
 </tbody>
 </table>
 
@@ -546,6 +547,13 @@ if (!doNotTrack) {
 <td>A028</td>
 <td>Fixed in A033</td>
 </tr>
+
+<tr>
+<td>023</td>
+<td>BC meta fails to change block when visible layer is scr256</td>
+<td>A026</td>
+<td>Fixed on A034</td>
+</tr>
 </tbody>
 </table>
 
@@ -573,7 +581,7 @@ if (!doNotTrack) {
 	
 <nav class="post-nav flex">
 	<div class="post-nav__item post-nav__item--prev">
-		<a class="post-nav__link" href="/posts/tenori-on/transport/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">MIDI Transport Controls</p></a>
+		<a class="post-nav__link" href="/posts/tenori-on/effects/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Effects (reverb, chorus)</p></a>
 	</div>
 </nav>
 	
@@ -584,17 +592,17 @@ if (!doNotTrack) {
 	<div class="widget__content">
 		<ul class="widget__list">
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/releases/">Releases</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/transport/">MIDI Transport Controls</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/splits/">Splits</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/xy/">XY layer type</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/effects/">Effects (reverb, chorus)</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/meta_velpan/">Layer Meta Controllers</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/life/">Life layer type</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/rain/">Rain layer type</a></li>
 		</ul>
 	</div>
 </div>
 <div class="widget-taglist widget">
 	<h4 class="widget__title">Tags</h4>
 	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="/tags/new-features" title="New features">New features (20)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/new-features" title="New features">New features (26)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/project-plan" title="Project plan">Project plan (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/stock-features" title="Stock features">Stock features (3)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/tools" title="Tools">Tools (2)</a>

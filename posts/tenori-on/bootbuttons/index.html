@@ -83,7 +83,7 @@ if (!doNotTrack) {
 <tr>
 <td>[OK] &amp; [CANCEL]</td>
 <td>&ldquo;ROM Update&rdquo;</td>
-<td>Allows new &ldquo;Main&rdquo; firmware to be loaded. This is how Yamaha update the firmware (e.g. to v210) and can be rolled back if required.</td>
+<td>Allows new &ldquo;Main&rdquo;/TLCS firmware to be loaded. This is how Yamaha update the firmware (e.g. to v210) and can be rolled back if required.</td>
 </tr>
 
 <tr>
@@ -126,7 +126,7 @@ if (!doNotTrack) {
 
 <h2 id="not-safe-to-execute">Not Safe to execute</h2>
 
-<p>The following ones provide ways of updating other sections of the ROM. I have an image of the boot code, and of the Tone generator code (and default sounds), but I&rsquo;ve never been brave enough to load them back into the TNR. Hence this health warning : <strong>Updating any of these is likely to brick your TNR</strong>.</p>
+<p>The following ones provide ways of updating other sections of the ROM. I have an image of the boot code, and of the Tone generator code (and default sounds). The TG program and TG sounds are probably safe to load, but I haven&rsquo;t tried it yet, hence the caution. Updating the &ldquo;Main Prog&rdquo; is extremely dangerous, since the &ldquo;Main Prog&rdquo; is in fact responsible for providing its own update - i.e. if you corrupt the Main Prog, there is no way of recovering your TNR. <strong>Updating this will brick your TNR</strong>.</p>
 
 <table>
 <thead>
@@ -182,7 +182,7 @@ if (!doNotTrack) {
 	
 <nav class="post-nav flex">
 	<div class="post-nav__item post-nav__item--prev">
-		<a class="post-nav__link" href="/posts/tenori-on/hardware/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">TNR Hardware</p></a>
+		<a class="post-nav__link" href="/posts/tenori-on/goals/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Tenori-On : Project Introduction and Goals</p></a>
 	</div>
 	<div class="post-nav__item post-nav__item--next">
 		<a class="post-nav__link" href="/posts/tenori-on/perlayermidichannel/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Per layer midi channels</p></a>
@@ -196,17 +196,17 @@ if (!doNotTrack) {
 	<div class="widget__content">
 		<ul class="widget__list">
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/releases/">Releases</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/transport/">MIDI Transport Controls</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/splits/">Splits</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/xy/">XY layer type</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/effects/">Effects (reverb, chorus)</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/meta_velpan/">Layer Meta Controllers</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/life/">Life layer type</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/rain/">Rain layer type</a></li>
 		</ul>
 	</div>
 </div>
 <div class="widget-taglist widget">
 	<h4 class="widget__title">Tags</h4>
 	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="/tags/new-features" title="New features">New features (20)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/new-features" title="New features">New features (26)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/project-plan" title="Project plan">Project plan (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/stock-features" title="Stock features">Stock features (3)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/tools" title="Tools">Tools (2)</a>

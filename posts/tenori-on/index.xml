@@ -6,7 +6,7 @@
     <description>Recent content on pika.blue</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 16 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 11 Jul 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://pika.blue/posts/tenori-on/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,10 +14,96 @@
     <item>
       <title>Releases</title>
       <link>http://pika.blue/posts/tenori-on/releases/</link>
-      <pubDate>Fri, 16 Apr 2021 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 11 Jul 2021 00:00:00 +0000</pubDate>
       
       <guid>http://pika.blue/posts/tenori-on/releases/</guid>
       <description>This page contains a link to the the releases so far.</description>
+    </item>
+    
+    <item>
+      <title>Effects (reverb, chorus)</title>
+      <link>http://pika.blue/posts/tenori-on/effects/</link>
+      <pubDate>Sat, 10 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/effects/</guid>
+      <description>&lt;p&gt;This feature unlocks some marginally different effects already in the TNR.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Layer Meta Controllers</title>
+      <link>http://pika.blue/posts/tenori-on/meta_velpan/</link>
+      <pubDate>Sat, 10 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/meta_velpan/</guid>
+      <description>&lt;p&gt;This function introduces a number of layer meta controllers : Velocity, Pan, Volume, Sound length, Chorus amount, Reverb amount, Probability&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Life layer type</title>
+      <link>http://pika.blue/posts/tenori-on/life/</link>
+      <pubDate>Sat, 10 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/life/</guid>
+      <description>&lt;p&gt;This function combines Conway&amp;rsquo;s Game of Life to a score mode.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Rain layer type</title>
+      <link>http://pika.blue/posts/tenori-on/rain/</link>
+      <pubDate>Sat, 10 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/rain/</guid>
+      <description>&lt;p&gt;This function adds a new genuinely probabilistic layer type, called Rain.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Responses to MIDI CC messages</title>
+      <link>http://pika.blue/posts/tenori-on/midicc/</link>
+      <pubDate>Sat, 10 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/midicc/</guid>
+      <description>&lt;p&gt;This feature increases the number of MIDI CC message types that are recognised by the TNR.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Score X : Extended score</title>
+      <link>http://pika.blue/posts/tenori-on/scorex/</link>
+      <pubDate>Sat, 10 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/scorex/</guid>
+      <description>This function adds a new layer type - a score mode that groups the normal 16 blocks of 16 steps differently, allowing up to 1 section of 256 steps.</description>
+    </item>
+    
+    <item>
+      <title>Sound Meta Controllers</title>
+      <link>http://pika.blue/posts/tenori-on/meta_sounds/</link>
+      <pubDate>Sat, 10 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/meta_sounds/</guid>
+      <description>&lt;p&gt;This function introduces a number of meta controllers that affect the on-board sounds.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>TNR Hardware</title>
+      <link>http://pika.blue/posts/tenori-on/hardware/</link>
+      <pubDate>Wed, 07 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/hardware/</guid>
+      <description>&lt;p&gt;This page describes the TNR hardware (as much as I know).&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -53,10 +139,10 @@
     
     <item>
       <title>Layer Meta Controllers</title>
-      <link>http://pika.blue/posts/tenori-on/meta_velpan/</link>
+      <link>http://pika.blue/posts/tenori-on/meta_probability/</link>
       <pubDate>Sat, 13 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>http://pika.blue/posts/tenori-on/meta_velpan/</guid>
+      <guid>http://pika.blue/posts/tenori-on/meta_probability/</guid>
       <description>&lt;p&gt;This function introduces a number of layer meta controllers : Velocity, Pan, Volume, Sound length, Chorus amount, Reverb amount.&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
@@ -93,15 +179,6 @@
       <description>&lt;p&gt;This function adds a new Abacus layer type.&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Extended (256 step) score</title>
-      <link>http://pika.blue/posts/tenori-on/score256/</link>
-      <pubDate>Fri, 11 Sep 2020 00:00:00 +0000</pubDate>
-      
-      <guid>http://pika.blue/posts/tenori-on/score256/</guid>
-      <description>This function adds a new layer type - a 256 step score.</description>
     </item>
     
     <item>
@@ -226,15 +303,6 @@
       
       <guid>http://pika.blue/posts/tenori-on/bootbuttons/</guid>
       <description>This page describes the behaviour of the TNR when certain buttons are held down on power up/boot.</description>
-    </item>
-    
-    <item>
-      <title>TNR Hardware</title>
-      <link>http://pika.blue/posts/tenori-on/hardware/</link>
-      <pubDate>Sat, 05 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>http://pika.blue/posts/tenori-on/hardware/</guid>
-      <description>This page describes the TNR hardware (as much as I know).</description>
     </item>
     
     <item>

@@ -70,12 +70,13 @@ if (!doNotTrack) {
 
 <p>This layer type can be selected by changing the layer mode.</p>
 
-<p><img src="/images/abacus1.png" alt="Abacus mode selection" title="Abacus mode selection" /></p>
+<p><img src="/images/abacus_set.png" alt="Abacus mode selection" title="Abacus mode selection" /></p>
 
 <h2 id="usage">Usage</h2>
 
-<p>The Abacus layer is designed for realtime use, like the Solo layer.
-Each row has 10 beads. Pressing a bead will move that bead and any
+<p>The Abacus layer is designed for realtime use, like the Solo layer.</p>
+
+<p>Each row has 10 beads. Pressing a bead will move that bead and any
 &ldquo;inner&rdquo; beads over to the other side.  So, if you tap a bead attached to
 beads on its left side, it and all the beads to its right will move to
 the right.</p>
@@ -83,6 +84,44 @@ the right.</p>
 <p>When the first bead moves, the layer will play the sound of the note at
 the layer&rsquo;s velocity setting.  Every subsequent bead will be played
 slightly more quietly.  This creates a sort of a tape delay echo effect.</p>
+
+<p>This is described below.</p>
+
+<table>
+<thead>
+<tr>
+<th><img src="/images/abacus_start.png" alt="" title="Abacus start" /></th>
+<th>The Abacus layer has 16 rows with 10 beads in each row</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><img src="/images/abacus_001.png" alt="" title="Stage 1" /></td>
+<td>Pressing a bead on the left will move that bead and all the beads to the right of it&hellip;</td>
+</tr>
+
+<tr>
+<td><img src="/images/abacus_002.png" alt="" title="Stage 2" /></td>
+<td>&hellip;over to the right one by one, playing the sound&hellip;</td>
+</tr>
+
+<tr>
+<td><img src="/images/abacus_003.png" alt="" title="Stage 3" /></td>
+<td>&hellip;as each one arrives on the right&hellip;</td>
+</tr>
+
+<tr>
+<td>&hellip;</td>
+<td>&hellip;</td>
+</tr>
+
+<tr>
+<td><img src="/images/abacus_004.png" alt="" title="Stage 4" /></td>
+<td>&hellip;until all 7 beads are on the right. <br>Pressing [L4] during or after this will display &ldquo;153</td>
+</tr>
+</tbody>
+</table>
 
 <p>Tapping an unmoved bead on a row mid-animation will re-launch the
 animation from that point and moment in time. This can be used to send
@@ -146,7 +185,7 @@ versions.</p>
 	
 <nav class="post-nav flex">
 	<div class="post-nav__item post-nav__item--prev">
-		<a class="post-nav__link" href="/posts/tenori-on/score256/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Extended (256 step) score</p></a>
+		<a class="post-nav__link" href="/posts/tenori-on/layercopy/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Quick Layer Copy</p></a>
 	</div>
 	<div class="post-nav__item post-nav__item--next">
 		<a class="post-nav__link" href="/posts/tenori-on/meta_send/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Meta Controller - Send to Layer</p></a>
@@ -160,17 +199,17 @@ versions.</p>
 	<div class="widget__content">
 		<ul class="widget__list">
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/releases/">Releases</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/transport/">MIDI Transport Controls</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/splits/">Splits</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/xy/">XY layer type</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/effects/">Effects (reverb, chorus)</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/meta_velpan/">Layer Meta Controllers</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/life/">Life layer type</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/rain/">Rain layer type</a></li>
 		</ul>
 	</div>
 </div>
 <div class="widget-taglist widget">
 	<h4 class="widget__title">Tags</h4>
 	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="/tags/new-features" title="New features">New features (20)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/new-features" title="New features">New features (26)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/project-plan" title="Project plan">Project plan (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/stock-features" title="Stock features">Stock features (3)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/tools" title="Tools">Tools (2)</a>

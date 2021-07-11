@@ -6,10 +6,21 @@
     <description>Recent content in Stock Features on pika.blue</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 15 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 07 Jul 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://pika.blue/tags/stock-features/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>TNR Hardware</title>
+      <link>http://pika.blue/posts/tenori-on/hardware/</link>
+      <pubDate>Wed, 07 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/hardware/</guid>
+      <description>&lt;p&gt;This page describes the TNR hardware (as much as I know).&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>MIDI Transport Controls</title>
@@ -29,15 +40,6 @@
       
       <guid>http://pika.blue/posts/tenori-on/bootbuttons/</guid>
       <description>This page describes the behaviour of the TNR when certain buttons are held down on power up/boot.</description>
-    </item>
-    
-    <item>
-      <title>TNR Hardware</title>
-      <link>http://pika.blue/posts/tenori-on/hardware/</link>
-      <pubDate>Sat, 05 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>http://pika.blue/posts/tenori-on/hardware/</guid>
-      <description>This page describes the TNR hardware (as much as I know).</description>
     </item>
     
   </channel>
