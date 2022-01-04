@@ -6,7 +6,7 @@
     <description>Recent content in Tenori On on pika.blue</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 01 Sep 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 02 Jan 2022 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://pika.blue/categories/tenori-on/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,10 +14,19 @@
     <item>
       <title>Releases</title>
       <link>http://pika.blue/posts/tenori-on/releases/</link>
-      <pubDate>Wed, 01 Sep 2021 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 02 Jan 2022 00:00:00 +0000</pubDate>
       
       <guid>http://pika.blue/posts/tenori-on/releases/</guid>
       <description>This page contains a link to the releases so far.</description>
+    </item>
+    
+    <item>
+      <title>Splits</title>
+      <link>http://pika.blue/posts/tenori-on/splits/</link>
+      <pubDate>Sat, 01 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/splits/</guid>
+      <description>This function extends all layer modes with octave, velocity, note length, pan, probabilistic, offbeat, sharp/flat, sustain and portamento splits.</description>
     </item>
     
     <item>
@@ -115,15 +124,6 @@
       <description>&lt;p&gt;This page discusses the TNR&amp;rsquo;s baseline MIDI transport implementation, and some extensions.&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Splits</title>
-      <link>http://pika.blue/posts/tenori-on/splits/</link>
-      <pubDate>Thu, 15 Apr 2021 00:00:00 +0000</pubDate>
-      
-      <guid>http://pika.blue/posts/tenori-on/splits/</guid>
-      <description>This function extends all layer modes with octave, velocity, note length, pan, probabilistic, offbeat and sharp/flat splits.</description>
     </item>
     
     <item>
