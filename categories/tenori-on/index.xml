@@ -6,7 +6,7 @@
     <description>Recent content in Tenori On on pika.blue</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 02 Jan 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 12 Nov 2022 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://pika.blue/categories/tenori-on/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,10 +14,34 @@
     <item>
       <title>Releases</title>
       <link>http://pika.blue/posts/tenori-on/releases/</link>
-      <pubDate>Sun, 02 Jan 2022 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 12 Nov 2022 00:00:00 +0000</pubDate>
       
       <guid>http://pika.blue/posts/tenori-on/releases/</guid>
-      <description>This page contains a link to the releases so far.</description>
+      <description>&lt;p&gt;This page contains a link to the releases so far.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Multi Layer L4</title>
+      <link>http://pika.blue/posts/tenori-on/multilayerl4/</link>
+      <pubDate>Fri, 11 Nov 2022 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/multilayerl4/</guid>
+      <description>&lt;p&gt;This function adds the ability to set loop top/ends for all ScoreX layers from a single screen.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Push inlays</title>
+      <link>http://pika.blue/posts/tenori-on/pushinlays/</link>
+      <pubDate>Fri, 11 Nov 2022 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/pushinlays/</guid>
+      <description>&lt;p&gt;This function adds the option of a visual markings or &amp;ldquo;inlays&amp;rdquo; when using Push mode.  This can be useful when playing far from the edge of the device or in low ambient lighting.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
     <item>

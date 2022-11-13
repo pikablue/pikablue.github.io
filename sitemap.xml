@@ -4,6 +4,21 @@
   
   <url>
     <loc>http://pika.blue/posts/tenori-on/releases/</loc>
+    <lastmod>2022-11-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://pika.blue/posts/tenori-on/multilayerl4/</loc>
+    <lastmod>2022-11-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://pika.blue/posts/tenori-on/pushinlays/</loc>
+    <lastmod>2022-11-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://pika.blue/working/filemanager/</loc>
     <lastmod>2022-01-02T00:00:00+00:00</lastmod>
   </url>
   
@@ -169,7 +184,7 @@
   
   <url>
     <loc>http://pika.blue/posts/tenori-on/</loc>
-    <lastmod>2022-01-02T00:00:00+00:00</lastmod>
+    <lastmod>2022-11-12T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -189,7 +204,7 @@
   
   <url>
     <loc>http://pika.blue/tags/new-features/</loc>
-    <lastmod>2022-01-01T00:00:00+00:00</lastmod>
+    <lastmod>2022-11-11T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -200,7 +215,7 @@
   
   <url>
     <loc>http://pika.blue/tags/project-plan/</loc>
-    <lastmod>2022-01-02T00:00:00+00:00</lastmod>
+    <lastmod>2022-11-12T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -216,19 +231,31 @@
   
   <url>
     <loc>http://pika.blue/tags/</loc>
-    <lastmod>2022-01-01T00:00:00+00:00</lastmod>
+    <lastmod>2022-11-11T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://pika.blue/categories/tenori-on/</loc>
-    <lastmod>2022-01-02T00:00:00+00:00</lastmod>
+    <lastmod>2022-11-12T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://pika.blue/tags/tools/</loc>
     <lastmod>2020-06-03T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://pika.blue/categories/working/</loc>
+    <lastmod>2022-01-02T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://pika.blue/working/</loc>
+    <lastmod>2022-01-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
