@@ -34,6 +34,17 @@
     </item>
     
     <item>
+      <title>Send to Layer</title>
+      <link>http://pika.blue/posts/tenori-on/sendto/</link>
+      <pubDate>Fri, 11 Nov 2022 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/sendto/</guid>
+      <description>&lt;p&gt;This function acts similarly to the &amp;ldquo;Send&amp;rdquo; metacontroller, but is enabled &amp;amp; disabled via key combination.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>Splits</title>
       <link>http://pika.blue/posts/tenori-on/splits/</link>
       <pubDate>Sat, 01 Jan 2022 00:00:00 +0000</pubDate>
