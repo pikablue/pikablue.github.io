@@ -6,7 +6,7 @@
     <description>Recent content in Tenori On on pika.blue</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 12 Nov 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 08 Jul 2023 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://pika.blue/categories/tenori-on/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,10 +14,32 @@
     <item>
       <title>Releases</title>
       <link>http://pika.blue/posts/tenori-on/releases/</link>
-      <pubDate>Sat, 12 Nov 2022 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 08 Jul 2023 00:00:00 +0000</pubDate>
       
       <guid>http://pika.blue/posts/tenori-on/releases/</guid>
       <description>&lt;p&gt;This page contains a link to the releases so far.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Encoder debounce</title>
+      <link>http://pika.blue/posts/tenori-on/debounce/</link>
+      <pubDate>Wed, 05 Jul 2023 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/debounce/</guid>
+      <description>&lt;p&gt;This always-on function tries to improve the performance of failing rotary encoders.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Chord Meta</title>
+      <link>http://pika.blue/posts/tenori-on/chord/</link>
+      <pubDate>Tue, 09 May 2023 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/chord/</guid>
+      <description>&lt;p&gt;This function introduces a chord selection meta controller.&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
     </item>

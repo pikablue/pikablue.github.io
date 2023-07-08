@@ -6,10 +6,32 @@
     <description>Recent content in New Features on pika.blue</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 11 Nov 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 05 Jul 2023 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://pika.blue/tags/new-features/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Encoder debounce</title>
+      <link>http://pika.blue/posts/tenori-on/debounce/</link>
+      <pubDate>Wed, 05 Jul 2023 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/debounce/</guid>
+      <description>&lt;p&gt;This always-on function tries to improve the performance of failing rotary encoders.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Chord Meta</title>
+      <link>http://pika.blue/posts/tenori-on/chord/</link>
+      <pubDate>Tue, 09 May 2023 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/chord/</guid>
+      <description>&lt;p&gt;This function introduces a chord selection meta controller.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Multi Layer L4</title>

@@ -58,7 +58,7 @@ if (!doNotTrack) {
 		<header class="post__header">
 			<h1 class="post__title">Releases</h1><div class="post__meta meta">
 <svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-<time class="post__meta-date meta-date" datetime="2022-11-12T00:00:00">November 12, 2022</time>
+<time class="post__meta-date meta-date" datetime="2023-07-08T00:00:00">July 08, 2023</time>
 <span class="post__meta-categories meta-categories">
 	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
 	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/tenori-on" rel="category">tenori-on</a></span>
@@ -158,9 +158,47 @@ if (!doNotTrack) {
 
 <h2 id="latest-release">Latest release</h2>
 
-<p>The latest release is A036. (November 12th 2022). The known <a href="#open">open bugs</a> in the latest release can be seen below.</p>
+<p>The latest release is A037. (July 8th 2023). The known <a href="#open">open bugs</a> in the latest release can be seen below.</p>
 
 <p>Each release contains, cumulatively, all the previous release features, so it is only necessary to download and install the latest release. The list of features in the latest release can most easily be seen by looking at the <a href="/tags/new-features">New Features</a> tag.</p>
+
+<table>
+<thead>
+<tr>
+<th>Release</th>
+<th>Adds</th>
+<th>Feature link</th>
+<th>Download link</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>A037</td>
+<td>Chord Meta<br>Encoder debounce<br>Better split handling<br>Bugfixes</td>
+<td><a href="/posts/tenori-on/chord/">Chord Meta</a> <br> <a href="/posts/tenori-on/debounce/">Debounce</a></td>
+<td><a href="/releases/A037.zip">A037 firmware</a></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="open">List of open bugs</h2>
+
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Issue</th>
+<th>Appears in</th>
+<th>Fix status</th>
+</tr>
+</thead>
+
+<tbody>
+</tbody>
+</table>
+
+<h2 id="old-releases">Old releases</h2>
 
 <table>
 <thead>
@@ -179,44 +217,7 @@ if (!doNotTrack) {
 <td><a href="/posts/tenori-on/splits/">Splits</a> <br> <a href="/posts/tenori-on/pushinlays/">Push inlays</a> <br> <a href="/posts/tenori-on/multilayerl4/">Multi layer loop points</a><br><a href="/posts/tenori-on/sendto/">Send</a><br>#027 and #028</td>
 <td><a href="/releases/A036.zip">A036 firmware</a></td>
 </tr>
-</tbody>
-</table>
 
-<h2 id="open">List of open bugs</h2>
-
-<table>
-<thead>
-<tr>
-<th>ID</th>
-<th>Issue</th>
-<th>Appears in</th>
-<th>Fix status</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>029</td>
-<td>Incorrect character separator in Meta and CC instrument name (very minor)</td>
-<td>A036</td>
-<td>Open</td>
-</tr>
-</tbody>
-</table>
-
-<h2 id="old-releases">Old releases</h2>
-
-<table>
-<thead>
-<tr>
-<th>Release</th>
-<th>Adds</th>
-<th>Feature link</th>
-<th>Download link</th>
-</tr>
-</thead>
-
-<tbody>
 <tr>
 <td>A035</td>
 <td>Sustain and Portamento Splits<br>Bugfixes</td>
@@ -609,6 +610,20 @@ if (!doNotTrack) {
 <td>?</td>
 <td>Fixed in A036</td>
 </tr>
+
+<tr>
+<td>029</td>
+<td>Incorrect character separator in Meta and CC instrument name (very minor)</td>
+<td>A036</td>
+<td>Fixed in A037</td>
+</tr>
+
+<tr>
+<td>030</td>
+<td>L+R Button combinations not working reliably after menu operations</td>
+<td>A036</td>
+<td>Fixed in A037</td>
+</tr>
 </tbody>
 </table>
 		</div>
@@ -635,7 +650,7 @@ if (!doNotTrack) {
 	
 <nav class="post-nav flex">
 	<div class="post-nav__item post-nav__item--prev">
-		<a class="post-nav__link" href="/posts/tenori-on/multilayerl4/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Multi Layer L4</p></a>
+		<a class="post-nav__link" href="/posts/tenori-on/debounce/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Encoder debounce</p></a>
 	</div>
 </nav>
 	
@@ -646,17 +661,17 @@ if (!doNotTrack) {
 	<div class="widget__content">
 		<ul class="widget__list">
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/releases/">Releases</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/debounce/">Encoder debounce</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/chord/">Chord Meta</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/multilayerl4/">Multi Layer L4</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/pushinlays/">Push inlays</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/sendto/">Send to Layer</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/splits/">Splits</a></li>
 		</ul>
 	</div>
 </div>
 <div class="widget-taglist widget">
 	<h4 class="widget__title">Tags</h4>
 	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="/tags/new-features" title="New features">New features (29)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/new-features" title="New features">New features (31)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/project-plan" title="Project plan">Project plan (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/stock-features" title="Stock features">Stock features (3)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/tools" title="Tools">Tools (2)</a>
@@ -676,7 +691,7 @@ if (!doNotTrack) {
 		</div>
 		<footer class="footer">
 	<div class="container container-inner">
-		<div class="footer__copyright">&copy; 2022 pika.blue. <span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and a modified <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span></div>
+		<div class="footer__copyright">&copy; 2023 pika.blue. <span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and a modified <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span></div>
 	</div>
 </footer>
 
@@ -686,5 +701,7 @@ if (!doNotTrack) {
 		navClass: "menu--collapse",
 		label: "Menu",
 	});
-</script></body>
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+</body>
 </html>

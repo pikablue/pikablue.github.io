@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Chord Meta</title>
+	<meta name="description" content="">
+	<meta name="generator" content="Hugo 0.48" />
+	
+	
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+	<link rel="stylesheet" href="/css/style.css">
+	<script type="text/javascript" src="/js/scripts.js"></script>
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-163129209-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container-outer">
+		<header class="header">
+	<div class="container container-inner">
+		<div class="logo" role="banner">
+			<a class="logo__link" href="/" title="pika.blue" rel="home">
+				<div class="logo__title">pika.blue</div>
+				<div class="logo__tagline">Random Project Repository </div>
+			</a>
+		</div>
+	</div>
+	<img style="position: absolute; top:24px; right: 32px" src="http://pika.blue/images/pikabluesmall.png" alt="logo" />
+	
+<nav class="menu">
+	<ul class="menu__list">
+		<li class="menu__item"><a class="menu__link" href="/">HOME</a></li>
+		<li class="menu__item"><a class="menu__link" href="/categories/tenori-on/">TENORI-ON</a></li>
+		<li class="menu__item"><a class="menu__link" href="/categories/fc-300/">FC-300</a></li>
+	</ul>
+</nav>
+
+</header>
+
+		<div class="wrapper flex">
+			
+<main class="main content">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Chord Meta</h1><div class="post__meta meta">
+<svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+<time class="post__meta-date meta-date" datetime="2023-05-09T00:00:00">May 09, 2023</time>
+<span class="post__meta-categories meta-categories">
+	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/tenori-on" rel="category">tenori-on</a></span>
+</span></div>
+		</header><div class="post__content clearfix">
+			<p>This function introduces a chord selection meta controller.</p>
+
+<p></p>
+
+<p>This is inspired by several synthesisers that have chord generators, for example the excellent <a href="https://conductivelabs.com/ndlr/">NDLR from Conductive Labs</a>. This controller generates a custom scale, only containing the notes from the chord, that other layers can use to play notes from - it does not play notes on its own.</p>
+
+<p>Two meta controllers are provided - a basic &ldquo;Chord&rdquo; meta controller, and a more advanced &ldquo;Chord Extend&rdquo; meta controller inteded only for Score type layers that allows finer control over the chord.</p>
+
+<p>You don&rsquo;t need any music theory to use this, but some of the explanation below might have some <a href="https://en.wikipedia.org/wiki/Chord_notation">theory</a> in it. Easiest explanation is to just try it.</p>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({ tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]} })
+</script>
+
+<h2 id="basic-chord-meta-controller">Basic Chord Meta controller</h2>
+
+<p><strong>Introduction</strong></p>
+
+<p>The meta controller is selected in the usual way. Pick a score layer. Set the layer mode to &ldquo;Meta Controller&rdquo; and then select, using [L1] the Chord meta controller:</p>
+
+<table>
+<thead>
+<tr>
+<th><img src="/images/layeroperation.png" alt="" title="Layer Operation" /></th>
+<th><img src="/images/metainstrument.png" alt="" title="Selecting Meta controller" /></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><img src="/images/meta4_chord.png" alt="" title="Selecting chord" /></td>
+<td><img src="/images/chordplaying.png" alt="" title="Playing Chord Meta" /></td>
+</tr>
+</tbody>
+</table>
+
+<p>The destination for the generated chord notes has to be selected, via the &ldquo;Midi channel&rdquo; menu. By selecting midi channel 1, you select layer scale 1. (I will at some point make the midi channel menu item context dependent).</p>
+
+<table>
+<thead>
+<tr>
+<th><img src="/images/midichannel.png" alt="" title="Midi Channel" /></th>
+<th><img src="/images/midichannelchoose.png" alt="" title="Selecting destination scale" /></th>
+</tr>
+</thead>
+
+<tbody>
+</tbody>
+</table>
+
+<p>If you want to hear sounds, go to another layer that contains an actual instrument, and set <em>its</em> layer scale to Layer scale user 1. Enter a whole bunch of notes. You won&rsquo;t hear anything at the moment.</p>
+
+<table>
+<thead>
+<tr>
+<th><img src="/images/layerscale.png" alt="" title="Layer Scale" /></th>
+<th><img src="/images/layerscalechoose.png" alt="" title="Selecting source scale" /></th>
+</tr>
+</thead>
+
+<tbody>
+</tbody>
+</table>
+
+<p>Go back to the Chord layer. Set an LED, e.g. on the bottom row.  When encountered, the layer scale will be set to the &ldquo;I&rdquo; chord (i.e. 1/3/5 of the current scale). You will hear the instrument layer playing notes from this chord.</p>
+
+<p>Changing the note in the chord layer will change the generated chord. You can, for example, generate the ubiquitous &ldquo;I-V-vi-iv&rdquo; sequence.</p>
+
+<p><strong>Details 1 - the generated scale</strong></p>
+
+<p>The bottom 4 notes of the generated scale are guaranteed to be the root, 3rd, 5th and 7th (or, if not present in the chord, the root again). This is intended to drive &ldquo;drone&rdquo; type notes.</p>
+
+<p>The remainder 12 notes of the generated scale follow the 1-3-5 and 7 if available, repeatedly, allowing arpeggiated motifs. The transposition and chord inversion are chosen to try to make the XXth note match C4 so that changing from triad chords to seventh chords doesn&rsquo;t change the playing octave too much.</p>
+
+<p><strong>Details 2 - the nature of the chord</strong></p>
+
+<p>The chord generated will depend on (a) the actual scale mode (Ionian, Dorian, Harmonic minor etc.) and (b) the note selected in the chord layer. The bottom most note will select the I chord, then - going up - the II, III, IV, V, VI, VII. Whether the chord is Major (e.g. IV) or minor (e.g. iv) depends on the scale mode since the notes are selected from within the scale mode. Relevant notes are chosen within the allowed scale. A ferocious looking table of chord equivalence is provided below.</p>
+
+<p>Continuing up the note selection, a 7th is added, to give I<sup>7</sup>, II<sup>7</sup>, III<sup>7</sup>, etc.</p>
+
+<p>The chords generated are as follows. The assumption is that the root note of the scale is C. I&rsquo;ve tried to use common representation.</p>
+
+<ul>
+<li>Triads
+
+<ul>
+<li>C = C Major</li>
+<li>Cm = C minor</li>
+<li>C<sup>$\circ$</sup> = C diminished</li>
+<li>C+ = C augmented</li>
+</ul></li>
+<li>Seventh chords
+
+<ul>
+<li>C<sup>maj7</sup> = C major 7th</li>
+<li>Cm<sup>7</sup> = C minor 7th</li>
+<li>Cm<sup>M7</sup> = C minor-major 7th</li>
+<li>C<sup>$\circ$7</sup> = C diminished 7th</li>
+<li>C<sup>$\varnothing$</sup> = C half-diminished 7th (i.e. minor seventh flat five)</li>
+<li>C+<sup>M7</sup> = C augmented major 7th</li>
+<li>C<sup>7</sup> = C dominant seventh</li>
+</ul></li>
+</ul>
+
+<table>
+<thead>
+<tr>
+<th>LED</th>
+<th>Chord</th>
+<th>Ionian</th>
+<th>Dorian</th>
+<th>Phyrigian</th>
+<th>Lydian</th>
+<th>Mixolydian</th>
+<th>Aeolian</th>
+<th>Locrian</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>1</td>
+<td>I or i</td>
+<td>C</td>
+<td>Cm</td>
+<td>Cm</td>
+<td>C</td>
+<td>C</td>
+<td>Cm</td>
+<td>C<sup>$\circ$</sup></td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>II or ii</td>
+<td>Dm</td>
+<td>Dm</td>
+<td>C#</td>
+<td>D</td>
+<td>Dm</td>
+<td>D<sup>$\circ$</sup></td>
+<td>C#</td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>III or iii</td>
+<td>Em</td>
+<td>D#</td>
+<td>D#</td>
+<td>Em</td>
+<td>E<sup>$\circ$</sup></td>
+<td>D#</td>
+<td>D#m</td>
+</tr>
+
+<tr>
+<td>4</td>
+<td>IV or iv</td>
+<td>F</td>
+<td>F</td>
+<td>Fm</td>
+<td>F#<sup>$\circ$</sup></td>
+<td>F</td>
+<td>Fm</td>
+<td>Fm</td>
+</tr>
+
+<tr>
+<td>5</td>
+<td>V or v</td>
+<td>G</td>
+<td>Gm</td>
+<td>G<sup>$\circ$</sup></td>
+<td>G</td>
+<td>Gm</td>
+<td>Gm</td>
+<td>F#</td>
+</tr>
+
+<tr>
+<td>6</td>
+<td>VI or vi</td>
+<td>Am</td>
+<td>A<sup>$\circ$</sup></td>
+<td>G#</td>
+<td>Am</td>
+<td>Am</td>
+<td>G#</td>
+<td>G#</td>
+</tr>
+
+<tr>
+<td>7</td>
+<td>VII or vii</td>
+<td>B<sup>$\circ$</sup></td>
+<td>A#</td>
+<td>A#m</td>
+<td>Bm</td>
+<td>A#</td>
+<td>A#</td>
+<td>A#m</td>
+</tr>
+
+<tr>
+<td>8</td>
+<td>I<sup>7</sup> or i<sup>7</sup></td>
+<td>C<sup>maj7</sup></td>
+<td>Cm<sup>7</sup></td>
+<td>Cm<sup>7</sup></td>
+<td>C<sup>maj7</sup></td>
+<td>C<sup>maj7</sup></td>
+<td>Cm<sup>7</sup></td>
+<td>C<sup>$\varnothing$</sup></td>
+</tr>
+
+<tr>
+<td>9</td>
+<td>II<sup>7</sup> or ii<sup>7</sup></td>
+<td>Dm<sup>7</sup></td>
+<td>Dm <sup>7</sup></td>
+<td>C#<sup>maj7</sup></td>
+<td>D<sup>maj7</sup></td>
+<td>Dm<sup>7</sup></td>
+<td>D<sup>$\varnothing$</sup></td>
+<td>C#<sup>maj7</sup></td>
+</tr>
+
+<tr>
+<td>10</td>
+<td>III<sup>7</sup> or iii<sup>7</sup></td>
+<td>Em<sup>7</sup></td>
+<td>D#<sup>maj7</sup></td>
+<td>D#<sup>maj7</sup></td>
+<td>Em<sup>7</sup></td>
+<td>E<sup>$\varnothing$</sup></td>
+<td>D#<sup>maj7</sup></td>
+<td>D#m<sup>7</sup></td>
+</tr>
+
+<tr>
+<td>11</td>
+<td>IV<sup>7</sup> or iv<sup>7</sup></td>
+<td>F<sup>maj7</sup></td>
+<td>F<sup>maj7</sup></td>
+<td>Fm<sup>7</sup></td>
+<td>F#<sup>$\varnothing$</sup></td>
+<td>F<sup>maj7</sup></td>
+<td>Fm<sup>7</sup></td>
+<td>Fm<sup>7</sup></td>
+</tr>
+
+<tr>
+<td>12</td>
+<td>V<sup>7</sup> or v<sup>7</sup></td>
+<td>G<sup>maj7</sup></td>
+<td>Gm<sup>7</sup></td>
+<td>G<sup>$\varnothing$</sup></td>
+<td>G<sup>maj7</sup></td>
+<td>Gm<sup>7</sup></td>
+<td>Gm<sup>7</sup></td>
+<td>F#<sup>maj7</sup></td>
+</tr>
+
+<tr>
+<td>13</td>
+<td>VI<sup>7</sup> or vi<sup>7</sup></td>
+<td>Am<sup>7</sup></td>
+<td>A<sup>$\varnothing$</sup></td>
+<td>G#<sup>maj7</sup></td>
+<td>Am<sup>7</sup></td>
+<td>Am<sup>7</sup></td>
+<td>G#<sup>maj7</sup></td>
+<td>G#<sup>maj7</sup></td>
+</tr>
+
+<tr>
+<td>14</td>
+<td>VII<sup>7</sup> or vii<sup>7</sup></td>
+<td>B<sup>$\varnothing$</sup></td>
+<td>A#<sup>maj7</sup></td>
+<td>A#m<sup>7</sup></td>
+<td>Bm<sup>7</sup></td>
+<td>A#<sup>maj7</sup></td>
+<td>A#<sup>maj7</sup></td>
+<td>A#m<sup>7</sup></td>
+</tr>
+
+<tr>
+<td>15</td>
+<td>I<sup>7</sup> or i<sup>7</sup></td>
+<td>C<sup>maj7</sup></td>
+<td>Cm<sup>7</sup></td>
+<td>Cm<sup>7</sup></td>
+<td>C<sup>maj7</sup></td>
+<td>C<sup>maj7</sup></td>
+<td>Cm<sup>7</sup></td>
+<td>C<sup>$\varnothing$</sup></td>
+</tr>
+
+<tr>
+<td>16</td>
+<td>II<sup>7</sup> or ii<sup>7</sup></td>
+<td>Dm<sup>7</sup></td>
+<td>Dm <sup>7</sup></td>
+<td>C#<sup>maj7</sup></td>
+<td>D<sup>maj7</sup></td>
+<td>Dm<sup>7</sup></td>
+<td>D<sup>$\varnothing$</sup></td>
+<td>C#<sup>maj7</sup></td>
+</tr>
+</tbody>
+</table>
+
+<p>For Chromatic and &ldquo;User&rdquo; scales, all chords are Major.</p>
+
+<table>
+<thead>
+<tr>
+<th>LED</th>
+<th>Okinawa</th>
+<th>Harm<br>Minor</th>
+<th>Melodic<br>Minor</th>
+<th>Bebop<br>Dominant</th>
+<th>Blues 6</th>
+<th>Blues 9</th>
+<th>Whole tone</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>1</td>
+<td>C</td>
+<td>Cm</td>
+<td>Cm</td>
+<td>C</td>
+<td>Cm</td>
+<td>C</td>
+<td>C+</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>Em</td>
+<td>Dm<sup>$\circ$</sup></td>
+<td>Dm</td>
+<td>Dm</td>
+<td>D#m</td>
+<td>Dm</td>
+<td>D+</td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>Fsus2</td>
+<td>D#+</td>
+<td>D#+</td>
+<td>E<sup>$\circ$</sup></td>
+<td>Fsus2</td>
+<td>D#</td>
+<td>E+</td>
+</tr>
+
+<tr>
+<td>4</td>
+<td>G6</td>
+<td>Fm</td>
+<td>F</td>
+<td>F</td>
+<td>F#6</td>
+<td>E<sup>$\circ$</sup></td>
+<td>F#+</td>
+</tr>
+
+<tr>
+<td>5</td>
+<td>Bsus4(#5)</td>
+<td>G</td>
+<td>G</td>
+<td>G</td>
+<td>D#/G</td>
+<td>F</td>
+<td>G#+</td>
+</tr>
+
+<tr>
+<td>6</td>
+<td>C</td>
+<td>G#</td>
+<td>A<sup>$\circ$</sup></td>
+<td>Am</td>
+<td>D#m/A#</td>
+<td>Gm</td>
+<td>A#+</td>
+</tr>
+
+<tr>
+<td>7</td>
+<td>Em</td>
+<td>B<sup>$\circ$</sup></td>
+<td>B<sup>$\circ$</sup></td>
+<td>A#</td>
+<td>Cm<sup>7</sup></td>
+<td>Am</td>
+<td>C+</td>
+</tr>
+
+<tr>
+<td>8</td>
+<td>Fsus2</td>
+<td>Cm<sup>M7</sup></td>
+<td>Cm<sup>M7</sup></td>
+<td>B<sup>$\circ$</sup></td>
+<td>D#m</td>
+<td>A#</td>
+<td>D+</td>
+</tr>
+
+<tr>
+<td>9</td>
+<td>G6</td>
+<td>D<sup>$\varnothing$</sup></td>
+<td>Dm<sup>7</sup></td>
+<td>C<sup>7</sup></td>
+<td>Fsus2<sup>7</sup></td>
+<td>B<sup>$\circ$</sup></td>
+<td>E+</td>
+</tr>
+
+<tr>
+<td>10</td>
+<td>Bsus4(#5)</td>
+<td>D#+<sup>M7</sup></td>
+<td>D#+<sup>M7</sup></td>
+<td>Dm<sup>7</sup></td>
+<td>F#6</td>
+<td>C<sup>7</sup></td>
+<td>F#+</td>
+</tr>
+
+<tr>
+<td>11</td>
+<td>C</td>
+<td>Fm<sup>7</sup></td>
+<td>F<sup>7</sup></td>
+<td>E<sup>$\varnothing$</sup></td>
+<td>D#sus2/G</td>
+<td>Dm<sup>7</sup></td>
+<td>G#+</td>
+</tr>
+
+<tr>
+<td>12</td>
+<td>Em</td>
+<td>G<sup>maj7</sup></td>
+<td>G<sup>maj7</sup></td>
+<td>F<sup>7</sup></td>
+<td>D#m/A#</td>
+<td>D#<sup>maj7</sup></td>
+<td>A#+</td>
+</tr>
+
+<tr>
+<td>13</td>
+<td>Fsus2</td>
+<td>G#<sup>maj7</sup></td>
+<td>Am<sup>7</sup></td>
+<td>Gm<sup>7</sup></td>
+<td>Cm<sup>7</sup></td>
+<td>E<sup>$\varnothing$</sup></td>
+<td>C+</td>
+</tr>
+
+<tr>
+<td>14</td>
+<td>G6</td>
+<td>B<sup>$\circ$7</sup></td>
+<td>B<sup>$\varnothing$</sup></td>
+<td>Am<sup>7</sup></td>
+<td>D#m</td>
+<td>F<sup>7</sup></td>
+<td>D+</td>
+</tr>
+
+<tr>
+<td>15</td>
+<td>Bsus4(#5)</td>
+<td>Cm<sup>M7</sup></td>
+<td>Cm<sup>M7</sup></td>
+<td>A# <sup>maj7</sup></td>
+<td>Fsus2<sup>7</sup></td>
+<td>Gm<sup>7</sup></td>
+<td>E+</td>
+</tr>
+
+<tr>
+<td>16</td>
+<td>C</td>
+<td>D<sup>$\varnothing$</sup></td>
+<td>Dm<sup>7</sup></td>
+<td>B<sup>$\varnothing$</sup></td>
+<td>F#6</td>
+<td>Am<sup>7</sup></td>
+<td>F#+</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="extended-chord-meta-controller">Extended Chord meta controller</h2>
+
+<p>This is a slightly modified version of the above meta controller. It is selected in the usual way. Pick a score layer. Set the layer mode to &ldquo;Meta Controller&rdquo; and then select, using [L1] the Chord Extend meta controller:</p>
+
+<table>
+<thead>
+<tr>
+<th><img src="/images/metainstrument.png" alt="" title="Selecting Meta controller" /></th>
+<th><img src="/images/meta5_chordx.png" alt="" title="Selecting chord extend" /></th>
+</tr>
+</thead>
+
+<tbody>
+</tbody>
+</table>
+
+<p>This meta controller is for people who want finer detail control over the chords selected. It only operates correctly in score or scoreX modes; if this is applied to a non-score layer, it reverts to the behavior of the normal chord meta.</p>
+
+<p>In score mode with the chord extend meta controller, the bottom 10 LEDs operate exactly as the chord meta controller, selecting a particular chord from the scale. However the top 6 LEDs act as chord modifier.</p>
+
+<ul>
+<li>the top 2 LEDs show the nature of the 3rd in the chord.</li>
+<li>the next 2 LEDs show the nature of the 5th in the chord</li>
+<li>the next 2 LEDs show the nature of the 7th in the chord</li>
+</ul>
+
+<p><img src="/images/chordmodifiers1.png" alt="" title="Chord modifiers" /></p>
+
+<p>By selecting different combinations, large numbers of chord types can be selected. Below gives some examples of the most common chord types assuming the root note is C, but all sorts of advanced triads or 7th chords can be defined this way.</p>
+
+<p><img src="/images/chordmodifiers2.png" alt="" title="Example Chord modifiers" /></p>
+
+<p>When changing the root note, the modifiers default to those matching the chord in the normal Chord metacontroller table above.</p>
+
+<h2 id="compatibility-issues">Compatibility Issues</h2>
+
+<p>None known.</p>
+
+<h2 id="releases">Releases</h2>
+
+<p>First included in A037</p>
+		</div>
+		
+<div class="post__tags tags clearfix">
+	<svg class="icon icon-tag" width="16" height="16" viewBox="0 0 16 16"><path d="M16 9.5c0 .373-.24.74-.5 1l-5 5c-.275.26-.634.5-1 .5-.373 0-.74-.24-1-.5L1 8a2.853 2.853 0 0 1-.7-1C.113 6.55 0 5.973 0 5.6V1.4C0 1.034.134.669.401.401.67.134 1.034 0 1.4 0h4.2c.373 0 .95.113 1.4.3.45.187.732.432 1 .7l7.5 7.502c.26.274.5.632.5.998zM3.5 5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item"><a class="tags__link btn" href="/tags/new-features/" rel="tag">new features</a></li>
+	</ul>
+</div>
+	</article>
+	
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="Pika Blue avatar" src="/images/pikablue.png" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">About Pika Blue</span>
+	</div>
+	<div class="authorbox__description">
+		Pika Blue is overly obsessed with midi controllers, especially unsupported ones with blinky lights .
+	</div>
+</div>
+	
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/posts/tenori-on/multilayerl4/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Multi Layer L4</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/posts/tenori-on/debounce/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Encoder debounce</p></a>
+	</div>
+</nav>
+	
+</main>
+
+			<aside class="sidebar"><div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/releases/">Releases</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/debounce/">Encoder debounce</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/chord/">Chord Meta</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/multilayerl4/">Multi Layer L4</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/pushinlays/">Push inlays</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/new-features" title="New features">New features (31)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/project-plan" title="Project plan">Project plan (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/stock-features" title="Stock features">Stock features (3)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tools" title="Tools">Tools (2)</a>
+	</div>
+</div><div class="widget-social widget">
+	<h4 class="widget-social__title widget__title">Social</h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="Email" href="mailto:info@pika.blue">
+				<svg class="widget-social__link-icon icon-mail" viewBox="0 0 416 288" width="24" height="24" fill="#fff"><path d="m0 16v256 16h16 384 16v-16-256-16h-16-384-16zm347 16-139 92.5-139-92.5zm-148 125.5 9 5.5 9-5.5 167-111.5v210h-352v-210z"/></svg>
+				<span>info@pika.blue</span>
+			</a>
+		</div>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container container-inner">
+		<div class="footer__copyright">&copy; 2023 pika.blue. <span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and a modified <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span></div>
+	</div>
+</footer>
+
+	</div>
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+		label: "Menu",
+	});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+</body>
+</html>
