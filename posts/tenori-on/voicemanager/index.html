@@ -12,40 +12,28 @@
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
 	<link rel="dns-prefetch" href="//fonts.gstatic.com">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
-	<link rel="stylesheet" href="../../css/style.css">
-	<script type="text/javascript" src="../../js/scripts.js"></script>
-	<link rel="shortcut icon" href="../../favicon.ico">
-		
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-163129209-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
+	<link rel="stylesheet" href="/css/style.css">
+	<script type="text/javascript" src="/js/scripts.js"></script>
+	<link rel="shortcut icon" href="/favicon.ico">
 </head>
 <body class="body">
 	<div class="container container-outer">
 		<header class="header">
 	<div class="container container-inner">
 		<div class="logo" role="banner">
-			<a class="logo__link" href="../../" title="pika.blue" rel="home">
+			<a class="logo__link" href="/" title="pika.blue" rel="home">
 				<div class="logo__title">pika.blue</div>
 				<div class="logo__tagline">Random Project Repository </div>
 			</a>
 		</div>
 	</div>
-	<img style="position: absolute; top:24px; right: 32px" src="http://pika.blue/images/pikabluesmall.png" alt="logo" />
+	<img style="position: absolute; top:24px; right: 32px" src="http://localhost:1313//images/pikabluesmall.png" alt="logo" />
 	
 <nav class="menu">
 	<ul class="menu__list">
-		<li class="menu__item"><a class="menu__link" href="../../">HOME</a></li>
-		<li class="menu__item"><a class="menu__link" href="../../categories/tenori-on/">TENORI-ON</a></li>
-		<li class="menu__item"><a class="menu__link" href="../../categories/fc-300/">FC-300</a></li>
+		<li class="menu__item"><a class="menu__link" href="/">HOME</a></li>
+		<li class="menu__item"><a class="menu__link" href="/categories/tenori-on/">TENORI-ON</a></li>
+		<li class="menu__item"><a class="menu__link" href="/categories/fc-300/">FC-300</a></li>
 	</ul>
 </nav>
 
@@ -61,7 +49,7 @@ if (!doNotTrack) {
 <time class="post__meta-date meta-date" datetime="2022-01-02T00:00:00">January 02, 2022</time>
 <span class="post__meta-categories meta-categories">
 	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
-	<span class="meta-categories__list"><a class="meta-categories__link" href="../../categories/working" rel="category">working</a></span>
+	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/working" rel="category">working</a></span>
 </span></div>
 		</header><div class="post__content clearfix">
 			<p>This page is a Javascript implementation of the User Voice Manager.</p>
@@ -89,7 +77,7 @@ button {
  
 button:hover {
    background-color: #357535;
-}
+} 
 
 button:disabled, button[disabled=disabled] {
   background-color: #B0B0B0;
@@ -145,14 +133,14 @@ button:disabled, button[disabled=disabled] {
 <p><button class="but" id="loadTnw">Load TNW file</button>
 <button class="but" id="saveTnw" disabled>Save TNW file</button></p>
 
-<script type="text/javascript" src="../../js/voicemanager.js"></script>
+<script type="text/javascript" src="/js/voicemanager.js"></script>
 		</div>
 		
 	</article>
 	
 <div class="authorbox clearfix">
 	<figure class="authorbox__avatar">
-		<img alt="Pika Blue avatar" src="../../images/pikablue.png" class="avatar" height="90" width="90">
+		<img alt="Pika Blue avatar" src="/images/pikablue.png" class="avatar" height="90" width="90">
 	</figure>
 	<div class="authorbox__header">
 		<span class="authorbox__name">About Pika Blue</span>
@@ -163,8 +151,11 @@ button:disabled, button[disabled=disabled] {
 </div>
 	
 <nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/posts/tenori-on/splits/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Splits</p></a>
+	</div>
 	<div class="post-nav__item post-nav__item--next">
-		<a class="post-nav__link" href="../../working/voiceman/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">User Voice Manager</p></a>
+		<a class="post-nav__link" href="/posts/tenori-on/sendto/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Send to Layer</p></a>
 	</div>
 </nav>
 	
@@ -174,22 +165,22 @@ button:disabled, button[disabled=disabled] {
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
-			<li class="widget__item"><a class="widget__link" href="../../posts/tenori-on/releases/">Releases</a></li>
-			<li class="widget__item"><a class="widget__link" href="../../posts/tenori-on/videos/">Videos</a></li>
-			<li class="widget__item"><a class="widget__link" href="../../posts/tenori-on/debounce/">Encoder debounce</a></li>
-			<li class="widget__item"><a class="widget__link" href="../../posts/tenori-on/chord/">Chord Meta</a></li>
-			<li class="widget__item"><a class="widget__link" href="../../posts/tenori-on/multilayerl4/">Multi Layer L4</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/videos/">Videos</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/releases/">Releases</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/debounce/">Encoder debounce</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/chord/">Chord Meta</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/multilayerl4/">Multi Layer L4</a></li>
 		</ul>
 	</div>
 </div>
 <div class="widget-taglist widget">
 	<h4 class="widget__title">Tags</h4>
 	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="../../tags/new-features" title="New features">New features (31)</a>
-		<a class="widget-taglist__link widget__link btn" href="../../tags/project-plan" title="Project plan">Project plan (2)</a>
-		<a class="widget-taglist__link widget__link btn" href="../../tags/stock-features" title="Stock features">Stock features (3)</a>
-		<a class="widget-taglist__link widget__link btn" href="../../tags/tools" title="Tools">Tools (2)</a>
-		<a class="widget-taglist__link widget__link btn" href="../../tags/videos" title="Videos">Videos (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/new-features" title="New features">New features (31)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/project-plan" title="Project plan">Project plan (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/stock-features" title="Stock features">Stock features (3)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/tools" title="Tools">Tools (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/videos" title="Videos">Videos (1)</a>
 	</div>
 </div><div class="widget-social widget">
 	<h4 class="widget-social__title widget__title">Social</h4>
@@ -206,7 +197,7 @@ button:disabled, button[disabled=disabled] {
 		</div>
 		<footer class="footer">
 	<div class="container container-inner">
-		<div class="footer__copyright">&copy; 2024 pika.blue. <span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and a modified <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span></div>
+		<div class="footer__copyright">&copy; 2023 pika.blue. <span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and a modified <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span></div>
 	</div>
 </footer>
 
@@ -218,5 +209,5 @@ button:disabled, button[disabled=disabled] {
 	});
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
-</body>
+<script data-no-instant>document.write('<script src="/livereload.js?port=1313&mindelay=10"></' + 'script>')</script></body>
 </html>

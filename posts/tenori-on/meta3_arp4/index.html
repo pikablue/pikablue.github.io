@@ -12,9 +12,9 @@
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
 	<link rel="dns-prefetch" href="//fonts.gstatic.com">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
-	<link rel="stylesheet" href="/css/style.css">
-	<script type="text/javascript" src="/js/scripts.js"></script>
-	<link rel="shortcut icon" href="/favicon.ico">
+	<link rel="stylesheet" href="../../../css/style.css">
+	<script type="text/javascript" src="../../../js/scripts.js"></script>
+	<link rel="shortcut icon" href="../../../favicon.ico">
 		
 <script type="application/javascript">
 var doNotTrack = false;
@@ -33,7 +33,7 @@ if (!doNotTrack) {
 		<header class="header">
 	<div class="container container-inner">
 		<div class="logo" role="banner">
-			<a class="logo__link" href="/" title="pika.blue" rel="home">
+			<a class="logo__link" href="../../../" title="pika.blue" rel="home">
 				<div class="logo__title">pika.blue</div>
 				<div class="logo__tagline">Random Project Repository </div>
 			</a>
@@ -43,9 +43,9 @@ if (!doNotTrack) {
 	
 <nav class="menu">
 	<ul class="menu__list">
-		<li class="menu__item"><a class="menu__link" href="/">HOME</a></li>
-		<li class="menu__item"><a class="menu__link" href="/categories/tenori-on/">TENORI-ON</a></li>
-		<li class="menu__item"><a class="menu__link" href="/categories/fc-300/">FC-300</a></li>
+		<li class="menu__item"><a class="menu__link" href="../../../">HOME</a></li>
+		<li class="menu__item"><a class="menu__link" href="../../../categories/tenori-on/">TENORI-ON</a></li>
+		<li class="menu__item"><a class="menu__link" href="../../../categories/fc-300/">FC-300</a></li>
 	</ul>
 </nav>
 
@@ -61,7 +61,7 @@ if (!doNotTrack) {
 <time class="post__meta-date meta-date" datetime="2020-05-07T00:00:00">May 07, 2020</time>
 <span class="post__meta-categories meta-categories">
 	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
-	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/tenori-on" rel="category">tenori-on</a></span>
+	<span class="meta-categories__list"><a class="meta-categories__link" href="../../../categories/tenori-on" rel="category">tenori-on</a></span>
 </span></div>
 		</header><div class="post__content clearfix">
 			<p>This function introduces an implementaton of an arpeggiator.</p>
@@ -75,20 +75,20 @@ if (!doNotTrack) {
 <table>
 <thead>
 <tr>
-<th><img src="/images/layeroperation.png" alt="" title="Layer Operation" /></th>
-<th><img src="/images/metainstrument.png" alt="" title="Selecting Meta controller" /></th>
+<th><img src="../../../images/layeroperation.png" alt="" title="Layer Operation" /></th>
+<th><img src="../../../images/metainstrument.png" alt="" title="Selecting Meta controller" /></th>
 </tr>
 </thead>
 
 <tbody>
 <tr>
-<td><img src="/images/meta3_arp4.png" alt="" title="Selecting Arp-4" /></td>
-<td><img src="/images/arp4playing.png" alt="" title="Playing Meta" /></td>
+<td><img src="../../../images/meta3_arp4.png" alt="" title="Selecting Arp-4" /></td>
+<td><img src="../../../images/arp4playing.png" alt="" title="Playing Meta" /></td>
 </tr>
 </tbody>
 </table>
 
-<p>The controller constructs a scale from 4 notes defined in the layer, repeated across 4 octaves (one octave lower than the original notes, the original notes, then +1 octave and +2 octave). The scale number (see <a href="/posts/tenori-on/perlayerscales/">Per layer scales</a>) is taken from the &ldquo;midi channel&rdquo; number of the layer. That is, to write to scale set 1, the midi channel should be 1, whereas to write to scale set 8, the midi channel should be set to 8. (No midi information is output by this meta controller).</p>
+<p>The controller constructs a scale from 4 notes defined in the layer, repeated across 4 octaves (one octave lower than the original notes, the original notes, then +1 octave and +2 octave). The scale number (see <a href="../../../posts/tenori-on/perlayerscales/">Per layer scales</a>) is taken from the &ldquo;midi channel&rdquo; number of the layer. That is, to write to scale set 1, the midi channel should be 1, whereas to write to scale set 8, the midi channel should be set to 8. (No midi information is output by this meta controller).</p>
 
 <p>How the four notes are defined depends slightly on the layer mode. For all non-score modes, where chords are impossible (e.g. random) or not necessarily deliberate (e.g. bounce), each new note pushes out the oldest one in the four-note unit. So, if Arp4 is used in random mode, once 4 notes are entered, then the scale defined will always be &ldquo;full&rdquo;, with no missing notes.</p>
 
@@ -128,14 +128,14 @@ if (!doNotTrack) {
 <div class="post__tags tags clearfix">
 	<svg class="icon icon-tag" width="16" height="16" viewBox="0 0 16 16"><path d="M16 9.5c0 .373-.24.74-.5 1l-5 5c-.275.26-.634.5-1 .5-.373 0-.74-.24-1-.5L1 8a2.853 2.853 0 0 1-.7-1C.113 6.55 0 5.973 0 5.6V1.4C0 1.034.134.669.401.401.67.134 1.034 0 1.4 0h4.2c.373 0 .95.113 1.4.3.45.187.732.432 1 .7l7.5 7.502c.26.274.5.632.5.998zM3.5 5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>
 	<ul class="tags__list">
-		<li class="tags__item"><a class="tags__link btn" href="/tags/new-features/" rel="tag">new features</a></li>
+		<li class="tags__item"><a class="tags__link btn" href="../../../tags/new-features/" rel="tag">new features</a></li>
 	</ul>
 </div>
 	</article>
 	
 <div class="authorbox clearfix">
 	<figure class="authorbox__avatar">
-		<img alt="Pika Blue avatar" src="/images/pikablue.png" class="avatar" height="90" width="90">
+		<img alt="Pika Blue avatar" src="../../../images/pikablue.png" class="avatar" height="90" width="90">
 	</figure>
 	<div class="authorbox__header">
 		<span class="authorbox__name">About Pika Blue</span>
@@ -147,10 +147,10 @@ if (!doNotTrack) {
 	
 <nav class="post-nav flex">
 	<div class="post-nav__item post-nav__item--prev">
-		<a class="post-nav__link" href="/posts/tenori-on/perlayerscales/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Per layer scales (expanded)</p></a>
+		<a class="post-nav__link" href="../../../posts/tenori-on/perlayerscales/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Per layer scales (expanded)</p></a>
 	</div>
 	<div class="post-nav__item post-nav__item--next">
-		<a class="post-nav__link" href="/posts/tenori-on/resample1/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">(Limited) User sample pitch shift</p></a>
+		<a class="post-nav__link" href="../../../posts/tenori-on/resample1/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">(Limited) User sample pitch shift</p></a>
 	</div>
 </nav>
 	
@@ -160,22 +160,22 @@ if (!doNotTrack) {
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/videos/">Videos</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/releases/">Releases</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/debounce/">Encoder debounce</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/chord/">Chord Meta</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/multilayerl4/">Multi Layer L4</a></li>
+			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/releases/">Releases</a></li>
+			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/videos/">Videos</a></li>
+			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/debounce/">Encoder debounce</a></li>
+			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/chord/">Chord Meta</a></li>
+			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/multilayerl4/">Multi Layer L4</a></li>
 		</ul>
 	</div>
 </div>
 <div class="widget-taglist widget">
 	<h4 class="widget__title">Tags</h4>
 	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="/tags/new-features" title="New features">New features (31)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/project-plan" title="Project plan">Project plan (2)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/stock-features" title="Stock features">Stock features (3)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/tools" title="Tools">Tools (2)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/videos" title="Videos">Videos (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="../../../tags/new-features" title="New features">New features (31)</a>
+		<a class="widget-taglist__link widget__link btn" href="../../../tags/project-plan" title="Project plan">Project plan (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="../../../tags/stock-features" title="Stock features">Stock features (3)</a>
+		<a class="widget-taglist__link widget__link btn" href="../../../tags/tools" title="Tools">Tools (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="../../../tags/videos" title="Videos">Videos (1)</a>
 	</div>
 </div><div class="widget-social widget">
 	<h4 class="widget-social__title widget__title">Social</h4>
@@ -192,7 +192,7 @@ if (!doNotTrack) {
 		</div>
 		<footer class="footer">
 	<div class="container container-inner">
-		<div class="footer__copyright">&copy; 2023 pika.blue. <span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and a modified <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span></div>
+		<div class="footer__copyright">&copy; 2024 pika.blue. <span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and a modified <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span></div>
 	</div>
 </footer>
 

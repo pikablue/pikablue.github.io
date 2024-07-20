@@ -1,3 +1,7 @@
+
+// import FileSaver from './js/FileSaver.js';
+
+
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
 const data = new Array(16);
@@ -179,26 +183,18 @@ function fnDead(e) {
 
 // Function to download data to a file
 function fnSaveAs(data, filename) {
-    let file = new Blob([data], {type: "application/octet-stream"});
-    if (window.navigator.msSaveOrOpenBlob) // IE10+
-        window.navigator.msSaveOrOpenBlob(file, filename);
-    else { // Others
-		let url = URL.createObjectURL(file);
-		let a = document.createElement("a");
-        a.href = url;
-        a.download = filename;
-        document.body.appendChild(a);
- 		console.log(a);
-        a.click();
-        setTimeout(function() {
-            document.body.removeChild(a);
-            window.URL.revokeObjectURL(url);  
-        }, 0); 
-    }
+	console.log("fnSaveAs "+filename);
+	
+	let file = new Blob([data], {"type":"application/octet-stream"});
+
+// FileSaver method
+	saveAs(file,filename);	
+	return;
+
 }
 
 function fnSaveTnw() {
-	console.log("SaveTNW");
+	console.log("SaveTNW 1");
 
 	// Check the header from the server
 	if (headerBuffer == null) {
@@ -223,7 +219,7 @@ function fnSaveTnw() {
 	}
 		
 	
-	// fnSaveAs(data[16],"Testing.TNW");
+	fnSaveAs(data[16],"Testing.TNW");
 }
 
 function fnLoadTnw() {

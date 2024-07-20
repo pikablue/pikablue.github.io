@@ -12,9 +12,9 @@
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
 	<link rel="dns-prefetch" href="//fonts.gstatic.com">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
-	<link rel="stylesheet" href="/css/style.css">
-	<script type="text/javascript" src="/js/scripts.js"></script>
-	<link rel="shortcut icon" href="/favicon.ico">
+	<link rel="stylesheet" href="../../../css/style.css">
+	<script type="text/javascript" src="../../../js/scripts.js"></script>
+	<link rel="shortcut icon" href="../../../favicon.ico">
 		
 <script type="application/javascript">
 var doNotTrack = false;
@@ -33,7 +33,7 @@ if (!doNotTrack) {
 		<header class="header">
 	<div class="container container-inner">
 		<div class="logo" role="banner">
-			<a class="logo__link" href="/" title="pika.blue" rel="home">
+			<a class="logo__link" href="../../../" title="pika.blue" rel="home">
 				<div class="logo__title">pika.blue</div>
 				<div class="logo__tagline">Random Project Repository </div>
 			</a>
@@ -43,9 +43,9 @@ if (!doNotTrack) {
 	
 <nav class="menu">
 	<ul class="menu__list">
-		<li class="menu__item"><a class="menu__link" href="/">HOME</a></li>
-		<li class="menu__item"><a class="menu__link" href="/categories/tenori-on/">TENORI-ON</a></li>
-		<li class="menu__item"><a class="menu__link" href="/categories/fc-300/">FC-300</a></li>
+		<li class="menu__item"><a class="menu__link" href="../../../">HOME</a></li>
+		<li class="menu__item"><a class="menu__link" href="../../../categories/tenori-on/">TENORI-ON</a></li>
+		<li class="menu__item"><a class="menu__link" href="../../../categories/fc-300/">FC-300</a></li>
 	</ul>
 </nav>
 
@@ -61,7 +61,7 @@ if (!doNotTrack) {
 <time class="post__meta-date meta-date" datetime="2021-07-10T00:00:00">July 10, 2021</time>
 <span class="post__meta-categories meta-categories">
 	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
-	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/tenori-on" rel="category">tenori-on</a></span>
+	<span class="meta-categories__list"><a class="meta-categories__link" href="../../../categories/tenori-on" rel="category">tenori-on</a></span>
 </span></div>
 		</header><div class="post__content clearfix">
 			
@@ -73,8 +73,8 @@ if (!doNotTrack) {
 <table>
 <thead>
 <tr>
-<th><img src="/images/layermode.png" alt="" title="Layer Mode" /></th>
-<th><img src="/images/scorex_set.png" alt="" title="Selecting Score X" /></th>
+<th><img src="../../../images/layermode.png" alt="" title="Layer Mode" /></th>
+<th><img src="../../../images/scorex_set.png" alt="" title="Selecting Score X" /></th>
 </tr>
 </thead>
 
@@ -94,15 +94,15 @@ if (!doNotTrack) {
 
 <p>This is shown below:</p>
 
-<p><img src="/images/scorex_5.png" alt="ScoreX concept" title="ScoreX concept" /></p>
+<p><img src="../../../images/scorex_5.png" alt="ScoreX concept" title="ScoreX concept" /></p>
 
 <p>The grouping can be selected from within the Layer menu:</p>
 
 <table>
 <thead>
 <tr>
-<th><img src="/images/scorex_linklength.png" alt="" title="Link Length" /></th>
-<th><img src="/images/scorex_setlink.png" alt="" title="Setting link length" /></th>
+<th><img src="../../../images/scorex_linklength.png" alt="" title="Link Length" /></th>
+<th><img src="../../../images/scorex_setlink.png" alt="" title="Setting link length" /></th>
 </tr>
 </thead>
 
@@ -112,7 +112,7 @@ if (!doNotTrack) {
 
 <p>Fundamentally, this is implemented via chaining the blocks together. Loop points are set within the linked section of blocks; for example, the following shows a loop range setting that would be valid for 4, 8 or 16 block links, but not for 2-block links.</p>
 
-<p><img src="/images/scorex_1.png" alt="ScoreX concept" title="ScoreX concept" /></p>
+<p><img src="../../../images/scorex_1.png" alt="ScoreX concept" title="ScoreX concept" /></p>
 
 <p>Importantly, this means that there can be a difference between the block currently visible and being edited, and the block currently playing.</p>
 
@@ -125,7 +125,7 @@ if (!doNotTrack) {
 
 <li><p>The LCD display of loop start (top) / loop end in normal score, and scoreX, has been changed to include both the block, and the position within the block, for the loop start and end points. This is shown below, corresponding to the loop point example above. For normal score, you can just ignore the first value as it simply reports the current block. I haven&rsquo;t yet worked out a way of suppressing this information in normal score mode.</p>
 
-<p><img src="/images/scorex_2.png" alt="ScoreX LCD display" title="ScoreX Loop Point display" /></p></li>
+<p><img src="../../../images/scorex_2.png" alt="ScoreX LCD display" title="ScoreX Loop Point display" /></p></li>
 
 <li><p>To set loop points, [L4] is used as normal. Pressing [L4] and a key will set the start or end points, as normal, but at this block. For example, using a scoreX layer to create the 38 step pattern shown above:</p>
 
@@ -137,7 +137,7 @@ if (!doNotTrack) {
 
 <li><p>A loop point &ldquo;off screen&rdquo; is displayed with a broken line at the edge of the current block, either the left edge, indicating that the loop point is on a lower block number than the current block, or the right edge, indicating that the loop point is on a higher block number than the current edge. For example, pressing [L4] when the current block is 1, 2 or 3 gives the results below.</p>
 
-<p><img src="/images/scorex_3.png" alt="ScoreX LED display" title="ScoreX Loop Point display" /></p></li>
+<p><img src="../../../images/scorex_3.png" alt="ScoreX LED display" title="ScoreX Loop Point display" /></p></li>
 
 <li><p>If loop indicators are on, then when the currently playing position is not on the currently displayed block, the loop indicators will flash at the left of right edge of the block indicating the direction in which the currently playing position is.</p></li>
 
@@ -145,7 +145,7 @@ if (!doNotTrack) {
 
 <li><p>ScoreX respects master loop points in a different way to the normal score. The master loop setting does not overwrite the scoreX loop points. Instead, the master loop points are viewed as defining the length of the bar; playing a scoreX layer with loop points that span blocks will skip from the master loop end of one block to the master loop start of the next block. This feature is provided so that songs where the bars length is not 16 (e.g. in <sup>3</sup>&frasl;<sub>4</sub> or <sup>5</sup>&frasl;<sub>4</sub> or similar) can be sensibly used in scoreX without having to do complicated mental maths to work out where in each scoreX block the bar actually starts. Setting invalid loop points in a scoreX that are outside the master loop range is flagged with a hashing display.</p>
 
-<p><img src="/images/scorex_4.png" alt="Score X Master Loop" title="ScoreX Master Loop handling" /></p></li>
+<p><img src="../../../images/scorex_4.png" alt="Score X Master Loop" title="ScoreX Master Loop handling" /></p></li>
 </ol>
 
 <h2 id="compatibility-issues">Compatibility Issues</h2>
@@ -169,14 +169,14 @@ if (!doNotTrack) {
 <div class="post__tags tags clearfix">
 	<svg class="icon icon-tag" width="16" height="16" viewBox="0 0 16 16"><path d="M16 9.5c0 .373-.24.74-.5 1l-5 5c-.275.26-.634.5-1 .5-.373 0-.74-.24-1-.5L1 8a2.853 2.853 0 0 1-.7-1C.113 6.55 0 5.973 0 5.6V1.4C0 1.034.134.669.401.401.67.134 1.034 0 1.4 0h4.2c.373 0 .95.113 1.4.3.45.187.732.432 1 .7l7.5 7.502c.26.274.5.632.5.998zM3.5 5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>
 	<ul class="tags__list">
-		<li class="tags__item"><a class="tags__link btn" href="/tags/new-features/" rel="tag">new features</a></li>
+		<li class="tags__item"><a class="tags__link btn" href="../../../tags/new-features/" rel="tag">new features</a></li>
 	</ul>
 </div>
 	</article>
 	
 <div class="authorbox clearfix">
 	<figure class="authorbox__avatar">
-		<img alt="Pika Blue avatar" src="/images/pikablue.png" class="avatar" height="90" width="90">
+		<img alt="Pika Blue avatar" src="../../../images/pikablue.png" class="avatar" height="90" width="90">
 	</figure>
 	<div class="authorbox__header">
 		<span class="authorbox__name">About Pika Blue</span>
@@ -188,10 +188,10 @@ if (!doNotTrack) {
 	
 <nav class="post-nav flex">
 	<div class="post-nav__item post-nav__item--prev">
-		<a class="post-nav__link" href="/posts/tenori-on/meta_sounds/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Sound Meta Controllers</p></a>
+		<a class="post-nav__link" href="../../../posts/tenori-on/meta_sounds/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Sound Meta Controllers</p></a>
 	</div>
 	<div class="post-nav__item post-nav__item--next">
-		<a class="post-nav__link" href="/posts/tenori-on/midicc/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Responses to MIDI CC messages</p></a>
+		<a class="post-nav__link" href="../../../posts/tenori-on/midicc/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Responses to MIDI CC messages</p></a>
 	</div>
 </nav>
 	
@@ -201,22 +201,22 @@ if (!doNotTrack) {
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/videos/">Videos</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/releases/">Releases</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/debounce/">Encoder debounce</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/chord/">Chord Meta</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/multilayerl4/">Multi Layer L4</a></li>
+			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/releases/">Releases</a></li>
+			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/videos/">Videos</a></li>
+			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/debounce/">Encoder debounce</a></li>
+			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/chord/">Chord Meta</a></li>
+			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/multilayerl4/">Multi Layer L4</a></li>
 		</ul>
 	</div>
 </div>
 <div class="widget-taglist widget">
 	<h4 class="widget__title">Tags</h4>
 	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="/tags/new-features" title="New features">New features (31)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/project-plan" title="Project plan">Project plan (2)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/stock-features" title="Stock features">Stock features (3)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/tools" title="Tools">Tools (2)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/videos" title="Videos">Videos (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="../../../tags/new-features" title="New features">New features (31)</a>
+		<a class="widget-taglist__link widget__link btn" href="../../../tags/project-plan" title="Project plan">Project plan (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="../../../tags/stock-features" title="Stock features">Stock features (3)</a>
+		<a class="widget-taglist__link widget__link btn" href="../../../tags/tools" title="Tools">Tools (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="../../../tags/videos" title="Videos">Videos (1)</a>
 	</div>
 </div><div class="widget-social widget">
 	<h4 class="widget-social__title widget__title">Social</h4>
@@ -233,7 +233,7 @@ if (!doNotTrack) {
 		</div>
 		<footer class="footer">
 	<div class="container container-inner">
-		<div class="footer__copyright">&copy; 2023 pika.blue. <span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and a modified <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span></div>
+		<div class="footer__copyright">&copy; 2024 pika.blue. <span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and a modified <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span></div>
 	</div>
 </footer>
 

@@ -12,9 +12,9 @@
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
 	<link rel="dns-prefetch" href="//fonts.gstatic.com">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
-	<link rel="stylesheet" href="/css/style.css">
-	<script type="text/javascript" src="/js/scripts.js"></script>
-	<link rel="shortcut icon" href="/favicon.ico">
+	<link rel="stylesheet" href="../../../css/style.css">
+	<script type="text/javascript" src="../../../js/scripts.js"></script>
+	<link rel="shortcut icon" href="../../../favicon.ico">
 		
 <script type="application/javascript">
 var doNotTrack = false;
@@ -33,7 +33,7 @@ if (!doNotTrack) {
 		<header class="header">
 	<div class="container container-inner">
 		<div class="logo" role="banner">
-			<a class="logo__link" href="/" title="pika.blue" rel="home">
+			<a class="logo__link" href="../../../" title="pika.blue" rel="home">
 				<div class="logo__title">pika.blue</div>
 				<div class="logo__tagline">Random Project Repository </div>
 			</a>
@@ -43,9 +43,9 @@ if (!doNotTrack) {
 	
 <nav class="menu">
 	<ul class="menu__list">
-		<li class="menu__item"><a class="menu__link" href="/">HOME</a></li>
-		<li class="menu__item"><a class="menu__link" href="/categories/tenori-on/">TENORI-ON</a></li>
-		<li class="menu__item"><a class="menu__link" href="/categories/fc-300/">FC-300</a></li>
+		<li class="menu__item"><a class="menu__link" href="../../../">HOME</a></li>
+		<li class="menu__item"><a class="menu__link" href="../../../categories/tenori-on/">TENORI-ON</a></li>
+		<li class="menu__item"><a class="menu__link" href="../../../categories/fc-300/">FC-300</a></li>
 	</ul>
 </nav>
 
@@ -61,7 +61,7 @@ if (!doNotTrack) {
 <time class="post__meta-date meta-date" datetime="2020-05-21T00:00:00">May 21, 2020</time>
 <span class="post__meta-categories meta-categories">
 	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
-	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/tenori-on" rel="category">tenori-on</a></span>
+	<span class="meta-categories__list"><a class="meta-categories__link" href="../../../categories/tenori-on" rel="category">tenori-on</a></span>
 </span></div>
 		</header><div class="post__content clearfix">
 			<p>This function <em>doesn&rsquo;t</em> allow arbitrary pitch shifting of user samples, but does open up some of the TNR&rsquo;s base capability.</p>
@@ -75,13 +75,13 @@ if (!doNotTrack) {
 <p>When a layer instrument is one of the three User Sample banks, then the layer scale is internally forced to be chromatic. Additionally, transpose and octave shifts are ignored for this layer. Consequently, the lowest user sample is locked to MIDI note 60 (C3), the next one to note 61 (C#3), etc., up to 75 (Eb4). So, receiving a MIDI note 60 - either from a LED on screen, or from an external device - will play the first sample, MIDI note 61 will play the second sample, etc. <em>whatever the samples are</em>. This is an important point - if the user bank of samples consists of 16 samples which are tonal, pitched according to the chromatic scale, starting on C, then playing these samples will sound as you might expect.</p>
 
 <p style="text-align:center;">
-<img src="/images/sample1.png" alt="Samples in score mode" style="max-width:300px" border="0">
+<img src="../../../images/sample1.png" alt="Samples in score mode" style="max-width:300px" border="0">
 </p>
 
 <p>So what happens if a note outside the MIDI range 60-75, for example, 76, is played? Of course, you can&rsquo;t generate this on-board from the stock TNR due to the restriction on octave and tranpose shifts, but you can play it in from an external MIDI keyboard.  What happens is best understood with an example where the user samples loaded are tonal and chromatic, because the TNR assumes this is the case. An incoming MIDI note 76 (E5)) takes the &ldquo;bottom&rdquo; sample - assumed to be C4 - and pitch shifts it up 16 semitones (frequency x ~2.5), resulting in an audible E5 as expected. I have tried to show this in the diagram below.</p>
 
 <p style="text-align:center;">
-<img src="/images/sample2.png" alt="Effect of off-grid notes" style="max-width:400px" border="0">
+<img src="../../../images/sample2.png" alt="Effect of off-grid notes" style="max-width:400px" border="0">
 </p>
 
 <p>In fact, this isn&rsquo;t really applying modern pitch shifting; it is simply playing the sample back at x2.5 speed, so the duration is shorter.</p>
@@ -93,7 +93,7 @@ if (!doNotTrack) {
 <p>To extend the TNR functionality, therefore, I have removed the octave and tranpose  &ldquo;lock&rdquo; on playing user samples in release A023 onwards. So if the user sample set is chromatic, then the set will be shifted correctly to match. For example, playing the layer with +1 octave gives the following:</p>
 
 <p style="text-align:center;">
-<img src="/images/sample3.png" alt="Effect of +1 octave" style="max-width:400px" border="0">
+<img src="../../../images/sample3.png" alt="Effect of +1 octave" style="max-width:400px" border="0">
 </p>
 
 <p>What happens for non-tonal sample sets? (e.g. voice recordings). Well, playing notes outside the 60-75 range will cause pitch shifting to occur, in fixed chunks of 16 semitones - i.e. no finer subdivision of the pitch is performed. This can be quite a nice effect for some samples (especially if you like voices sounding like chipmunks).</p>
@@ -105,8 +105,8 @@ if (!doNotTrack) {
 <table>
 <thead>
 <tr>
-<th><img src="/images/allowtranspose1.png" alt="" title="Allow Transpose" /></th>
-<th><img src="/images/allowtranspose2.png" alt="" title="Setting Blues 6 scale" /></th>
+<th><img src="../../../images/allowtranspose1.png" alt="" title="Allow Transpose" /></th>
+<th><img src="../../../images/allowtranspose2.png" alt="" title="Setting Blues 6 scale" /></th>
 </tr>
 </thead>
 
@@ -121,7 +121,7 @@ if (!doNotTrack) {
 </ol>
 
 <p style="text-align:center;">
-<img src="/images/sample4.png" alt="Effect of Ionian scale" style="max-width:400px" border="0">
+<img src="../../../images/sample4.png" alt="Effect of Ionian scale" style="max-width:400px" border="0">
 </p>
 
 <ol>
@@ -142,14 +142,14 @@ if (!doNotTrack) {
 <div class="post__tags tags clearfix">
 	<svg class="icon icon-tag" width="16" height="16" viewBox="0 0 16 16"><path d="M16 9.5c0 .373-.24.74-.5 1l-5 5c-.275.26-.634.5-1 .5-.373 0-.74-.24-1-.5L1 8a2.853 2.853 0 0 1-.7-1C.113 6.55 0 5.973 0 5.6V1.4C0 1.034.134.669.401.401.67.134 1.034 0 1.4 0h4.2c.373 0 .95.113 1.4.3.45.187.732.432 1 .7l7.5 7.502c.26.274.5.632.5.998zM3.5 5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>
 	<ul class="tags__list">
-		<li class="tags__item"><a class="tags__link btn" href="/tags/new-features/" rel="tag">new features</a></li>
+		<li class="tags__item"><a class="tags__link btn" href="../../../tags/new-features/" rel="tag">new features</a></li>
 	</ul>
 </div>
 	</article>
 	
 <div class="authorbox clearfix">
 	<figure class="authorbox__avatar">
-		<img alt="Pika Blue avatar" src="/images/pikablue.png" class="avatar" height="90" width="90">
+		<img alt="Pika Blue avatar" src="../../../images/pikablue.png" class="avatar" height="90" width="90">
 	</figure>
 	<div class="authorbox__header">
 		<span class="authorbox__name">About Pika Blue</span>
@@ -161,10 +161,10 @@ if (!doNotTrack) {
 	
 <nav class="post-nav flex">
 	<div class="post-nav__item post-nav__item--prev">
-		<a class="post-nav__link" href="/posts/tenori-on/meta3_arp4/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Meta Controller - Arpeggio 4 (Arp4)</p></a>
+		<a class="post-nav__link" href="../../../posts/tenori-on/meta3_arp4/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Meta Controller - Arpeggio 4 (Arp4)</p></a>
 	</div>
 	<div class="post-nav__item post-nav__item--next">
-		<a class="post-nav__link" href="/posts/tenori-on/audition/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Auditioning a TNW file</p></a>
+		<a class="post-nav__link" href="../../../posts/tenori-on/audition/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Auditioning a TNW file</p></a>
 	</div>
 </nav>
 	
@@ -174,22 +174,22 @@ if (!doNotTrack) {
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/videos/">Videos</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/releases/">Releases</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/debounce/">Encoder debounce</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/chord/">Chord Meta</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/multilayerl4/">Multi Layer L4</a></li>
+			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/releases/">Releases</a></li>
+			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/videos/">Videos</a></li>
+			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/debounce/">Encoder debounce</a></li>
+			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/chord/">Chord Meta</a></li>
+			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/multilayerl4/">Multi Layer L4</a></li>
 		</ul>
 	</div>
 </div>
 <div class="widget-taglist widget">
 	<h4 class="widget__title">Tags</h4>
 	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="/tags/new-features" title="New features">New features (31)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/project-plan" title="Project plan">Project plan (2)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/stock-features" title="Stock features">Stock features (3)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/tools" title="Tools">Tools (2)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/videos" title="Videos">Videos (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="../../../tags/new-features" title="New features">New features (31)</a>
+		<a class="widget-taglist__link widget__link btn" href="../../../tags/project-plan" title="Project plan">Project plan (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="../../../tags/stock-features" title="Stock features">Stock features (3)</a>
+		<a class="widget-taglist__link widget__link btn" href="../../../tags/tools" title="Tools">Tools (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="../../../tags/videos" title="Videos">Videos (1)</a>
 	</div>
 </div><div class="widget-social widget">
 	<h4 class="widget-social__title widget__title">Social</h4>
@@ -206,7 +206,7 @@ if (!doNotTrack) {
 		</div>
 		<footer class="footer">
 	<div class="container container-inner">
-		<div class="footer__copyright">&copy; 2023 pika.blue. <span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and a modified <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span></div>
+		<div class="footer__copyright">&copy; 2024 pika.blue. <span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and a modified <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span></div>
 	</div>
 </footer>
 

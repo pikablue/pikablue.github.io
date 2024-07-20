@@ -12,9 +12,9 @@
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
 	<link rel="dns-prefetch" href="//fonts.gstatic.com">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
-	<link rel="stylesheet" href="/css/style.css">
-	<script type="text/javascript" src="/js/scripts.js"></script>
-	<link rel="shortcut icon" href="/favicon.ico">
+	<link rel="stylesheet" href="../../../css/style.css">
+	<script type="text/javascript" src="../../../js/scripts.js"></script>
+	<link rel="shortcut icon" href="../../../favicon.ico">
 		
 <script type="application/javascript">
 var doNotTrack = false;
@@ -33,7 +33,7 @@ if (!doNotTrack) {
 		<header class="header">
 	<div class="container container-inner">
 		<div class="logo" role="banner">
-			<a class="logo__link" href="/" title="pika.blue" rel="home">
+			<a class="logo__link" href="../../../" title="pika.blue" rel="home">
 				<div class="logo__title">pika.blue</div>
 				<div class="logo__tagline">Random Project Repository </div>
 			</a>
@@ -43,9 +43,9 @@ if (!doNotTrack) {
 	
 <nav class="menu">
 	<ul class="menu__list">
-		<li class="menu__item"><a class="menu__link" href="/">HOME</a></li>
-		<li class="menu__item"><a class="menu__link" href="/categories/tenori-on/">TENORI-ON</a></li>
-		<li class="menu__item"><a class="menu__link" href="/categories/fc-300/">FC-300</a></li>
+		<li class="menu__item"><a class="menu__link" href="../../../">HOME</a></li>
+		<li class="menu__item"><a class="menu__link" href="../../../categories/tenori-on/">TENORI-ON</a></li>
+		<li class="menu__item"><a class="menu__link" href="../../../categories/fc-300/">FC-300</a></li>
 	</ul>
 </nav>
 
@@ -61,7 +61,7 @@ if (!doNotTrack) {
 <time class="post__meta-date meta-date" datetime="2020-06-03T00:00:00">June 03, 2020</time>
 <span class="post__meta-categories meta-categories">
 	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
-	<span class="meta-categories__list"><a class="meta-categories__link" href="/categories/tenori-on" rel="category">tenori-on</a></span>
+	<span class="meta-categories__list"><a class="meta-categories__link" href="../../../categories/tenori-on" rel="category">tenori-on</a></span>
 </span></div>
 		</header><div class="post__content clearfix">
 			<p>This is a small utility for auditioning sample (TNW) files without having to load them to the TNR.</p>
@@ -69,13 +69,13 @@ if (!doNotTrack) {
 <p>Yamaha provide a User Voice Manager which enables you to assemble WAV/AIFF sound files into Tenori-on specific sample files, for uploading onto your TNR. However, while the tool can create TNW files, it can&rsquo;t load them, so it is not possible to use it to audition the contents of previous created files.</p>
 
 <p style="text-align:center;">
-<img src="/images/voicemanager.jpg" alt="TENORI-ON User Voice Manager" style="max-width:300px" border="0">
+<img src="../../../images/voicemanager.jpg" alt="TENORI-ON User Voice Manager" style="max-width:300px" border="0">
 </p>
 
 <p>Here is, therefore, a small utility to read TNW files, and both play the contained sounds and extract the contents into individual WAV files.</p>
 
 <p style="text-align:center;">
-<img src="/images/auditionTNW.png" alt="SD extender" style="max-width:400px" border="0">
+<img src="../../../images/auditionTNW.png" alt="SD extender" style="max-width:400px" border="0">
 </p>
 
 <p>In an attempt to be cross-platform, this was written as a script in <a href="https://www.tcl.tk">Tcl/Tk</a>. For Windows, this uses <em>TWAPI</em> to play the sounds. For MacOS, an attempt has been made to use <em>afplay</em> to audition the sounds, but this may not work.
@@ -84,7 +84,7 @@ Although there are lots of ways of providing binary distributions of TCL scripts
 <p>To install it:</p>
 
 <ol>
-<li><p>Download the script from here :  <a href="/data/AuditionTNW.tcl">AuditionTNW.tcl</a></p></li>
+<li><p>Download the script from here :  <a href="../../../data/AuditionTNW.tcl">AuditionTNW.tcl</a></p></li>
 
 <li><p>(Windows, option 1) Download the Freewrap executable for your platform : <a href="http://freewrap.sourceforge.net/">Freewrap on Sourceforge</a>.  Use Freewrap to create a standalone version of the AuditionTNW script by dragging and dropping the script onto the Freewrap executable.</p></li>
 
@@ -95,21 +95,21 @@ Although there are lots of ways of providing binary distributions of TCL scripts
 <li><p>(MacOs) Download a TclKit, e.g. from here : <a href="http://tclkits.rkeene.org/fossil/wiki/Downloads">Prebuilt TclKits</a>. Use this to run the script.</p></li>
 </ol>
 
-<p>Some notes on the TNW file format can be found as a zipped, OpenDocument Spreadsheet here : <a href="/data/TNW_Format_v1.zip">TNW Format</a></p>
+<p>Some notes on the TNW file format can be found as a zipped, OpenDocument Spreadsheet here : <a href="../../../data/TNW_Format_v1.zip">TNW Format</a></p>
 
 		</div>
 		
 <div class="post__tags tags clearfix">
 	<svg class="icon icon-tag" width="16" height="16" viewBox="0 0 16 16"><path d="M16 9.5c0 .373-.24.74-.5 1l-5 5c-.275.26-.634.5-1 .5-.373 0-.74-.24-1-.5L1 8a2.853 2.853 0 0 1-.7-1C.113 6.55 0 5.973 0 5.6V1.4C0 1.034.134.669.401.401.67.134 1.034 0 1.4 0h4.2c.373 0 .95.113 1.4.3.45.187.732.432 1 .7l7.5 7.502c.26.274.5.632.5.998zM3.5 5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>
 	<ul class="tags__list">
-		<li class="tags__item"><a class="tags__link btn" href="/tags/tools/" rel="tag">tools</a></li>
+		<li class="tags__item"><a class="tags__link btn" href="../../../tags/tools/" rel="tag">tools</a></li>
 	</ul>
 </div>
 	</article>
 	
 <div class="authorbox clearfix">
 	<figure class="authorbox__avatar">
-		<img alt="Pika Blue avatar" src="/images/pikablue.png" class="avatar" height="90" width="90">
+		<img alt="Pika Blue avatar" src="../../../images/pikablue.png" class="avatar" height="90" width="90">
 	</figure>
 	<div class="authorbox__header">
 		<span class="authorbox__name">About Pika Blue</span>
@@ -121,10 +121,10 @@ Although there are lots of ways of providing binary distributions of TCL scripts
 	
 <nav class="post-nav flex">
 	<div class="post-nav__item post-nav__item--prev">
-		<a class="post-nav__link" href="/posts/tenori-on/resample1/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">(Limited) User sample pitch shift</p></a>
+		<a class="post-nav__link" href="../../../posts/tenori-on/resample1/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">(Limited) User sample pitch shift</p></a>
 	</div>
 	<div class="post-nav__item post-nav__item--next">
-		<a class="post-nav__link" href="/posts/tenori-on/midiquiet/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Suppress Midi SysEx (updated)</p></a>
+		<a class="post-nav__link" href="../../../posts/tenori-on/midiquiet/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Suppress Midi SysEx (updated)</p></a>
 	</div>
 </nav>
 	
@@ -134,22 +134,22 @@ Although there are lots of ways of providing binary distributions of TCL scripts
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/videos/">Videos</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/releases/">Releases</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/debounce/">Encoder debounce</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/chord/">Chord Meta</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/tenori-on/multilayerl4/">Multi Layer L4</a></li>
+			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/releases/">Releases</a></li>
+			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/videos/">Videos</a></li>
+			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/debounce/">Encoder debounce</a></li>
+			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/chord/">Chord Meta</a></li>
+			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/multilayerl4/">Multi Layer L4</a></li>
 		</ul>
 	</div>
 </div>
 <div class="widget-taglist widget">
 	<h4 class="widget__title">Tags</h4>
 	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="/tags/new-features" title="New features">New features (31)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/project-plan" title="Project plan">Project plan (2)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/stock-features" title="Stock features">Stock features (3)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/tools" title="Tools">Tools (2)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/videos" title="Videos">Videos (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="../../../tags/new-features" title="New features">New features (31)</a>
+		<a class="widget-taglist__link widget__link btn" href="../../../tags/project-plan" title="Project plan">Project plan (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="../../../tags/stock-features" title="Stock features">Stock features (3)</a>
+		<a class="widget-taglist__link widget__link btn" href="../../../tags/tools" title="Tools">Tools (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="../../../tags/videos" title="Videos">Videos (1)</a>
 	</div>
 </div><div class="widget-social widget">
 	<h4 class="widget-social__title widget__title">Social</h4>
@@ -166,7 +166,7 @@ Although there are lots of ways of providing binary distributions of TCL scripts
 		</div>
 		<footer class="footer">
 	<div class="container container-inner">
-		<div class="footer__copyright">&copy; 2023 pika.blue. <span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and a modified <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span></div>
+		<div class="footer__copyright">&copy; 2024 pika.blue. <span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and a modified <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span></div>
 	</div>
 </footer>
 
