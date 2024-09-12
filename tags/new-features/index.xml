@@ -6,10 +6,28 @@
     <description>Recent content in New Features on pika.blue</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 05 Jul 2023 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 03 Sep 2024 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://pika.blue/tags/new-features/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Auditioning Mode</title>
+      <link>http://pika.blue/posts/tenori-on/auditionset/</link>
+      <pubDate>Tue, 03 Sep 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/auditionset/</guid>
+      <description>This function allows the audition behavior of Score and Random modes to be tailored.</description>
+    </item>
+    
+    <item>
+      <title>Screen Echo</title>
+      <link>http://pika.blue/posts/tenori-on/screenecho/</link>
+      <pubDate>Tue, 03 Sep 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/screenecho/</guid>
+      <description>PAKL has developed a cross-platform app for displaying the current TNR LCD screen on a computer.</description>
+    </item>
     
     <item>
       <title>Encoder debounce</title>

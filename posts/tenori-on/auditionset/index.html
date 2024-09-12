@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Life layer type</title>
+	<title>Auditioning Mode</title>
 	<meta name="description" content="">
 	<meta name="generator" content="Hugo 0.48" />
 	
@@ -56,25 +56,33 @@ if (!doNotTrack) {
 <main class="main content">
 	<article class="post">
 		<header class="post__header">
-			<h1 class="post__title">Life layer type</h1><div class="post__meta meta">
+			<h1 class="post__title">Auditioning Mode</h1><div class="post__meta meta">
 <svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-<time class="post__meta-date meta-date" datetime="2021-07-10T00:00:00">July 10, 2021</time>
+<time class="post__meta-date meta-date" datetime="2024-09-03T00:00:00">September 03, 2024</time>
 <span class="post__meta-categories meta-categories">
 	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
 	<span class="meta-categories__list"><a class="meta-categories__link" href="../../../categories/tenori-on" rel="category">tenori-on</a></span>
 </span></div>
 		</header><div class="post__content clearfix">
-			<p>This function combines Conway&rsquo;s Game of Life to a score mode.</p>
+			<p>This function allows the audition behavior of Score and Random modes to be tailored.</p>
 
-<p></p>
+<p>In the native Yamaha firmware, both Score and Random modes provide an audition mode, where pressing an LED key for a short time plays the note, but does not set it persistently on the grid. This can be useful in a performance setting, where the player wants to check a note is the right one, before actually setting it.</p>
 
-<p>This layer type can be selected by changing the layer mode.</p>
+<p>With this in mind, this behavior is now made more flexible by allowing:</p>
+
+<ul>
+<li>the auditioned note to be played quieter than the normal layer output</li>
+<li>the auditioned note to be played just over MIDI, or just locally</li>
+<li>the auditioned note even to be played with the settings from a completely different layer.</li>
+</ul>
+
+<p>The behavior is controlled in two places. Within the layer menu, a per-layer setting allows the auditioned note to be either played with the instrument on this layer, or sent to an other layer.</p>
 
 <table>
 <thead>
 <tr>
-<th><img src="../../../images/layermode.png" alt="" title="Layer Mode" /></th>
-<th><img src="../../../images/life_set.png" alt="" title="Selecting Life" /></th>
+<th><img src="../../../images/layerauditionmenu.png" alt="" title="Layer Audition menu" /></th>
+<th><img src="../../../images/layerauditionself.png" alt="" title="Setting to Self" /></th>
 </tr>
 </thead>
 
@@ -82,40 +90,47 @@ if (!doNotTrack) {
 </tbody>
 </table>
 
-<p>Life is a version of the Score layer type, in which the LED cells are updated at the end of each loop, using the rules from <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Game of Life</a> invented by the late <a href="https://en.wikipedia.org/wiki/John_Horton_Conway">John Conway</a>.</p>
-
-<p>Some notes:</p>
-
-<ol>
-<li>The left edge of the grid is connected to the right edge of the grid, and similarly for top and bottom.</li>
-<li>This layer type was intended more as a tribute than a serious musical object, many others have had the <a href="https://www.youtube.com/watch?v=x22zysfrVSk">same idea</a></li>
-<li>A couple of fun shapes to try are below.</li>
-</ol>
+<p>Then within the preference menu, the audition settings page has the following options which apply to all Score and Random layers.</p>
 
 <table>
 <thead>
 <tr>
-<th><img src="../../../images/life_glider.png" alt="" title="Glider" /></th>
-<th><img src="../../../images/life_century.png" alt="" title="Century" /></th>
+<th><img src="../../../images/auditionsettingsmenu.png" alt="" title="Audition Settings menu" /></th>
+<th><img src="../../../images/auditionsettingssub.png" alt="" title="Selecting Sub" /></th>
 </tr>
 </thead>
 
 <tbody>
-<tr>
-<td>Glider</td>
-<td>Century</td>
-</tr>
 </tbody>
 </table>
 
-<h2 id="compatibility-issues">Compatibility Issues</h2>
+<p><strong>Options applying when layer audition = &ldquo;Self&rdquo;</strong></p>
 
-<p>You cannot load songs or blocks with a Life layer type in previous
-versions.</p>
+<ul>
+<li>Velocity Set or Sub, and a value
 
-<h2 id="releases">Releases</h2>
+<ul>
+<li>Set : this sets the velocity of the auditioned note to the given fixed absolute value</li>
+<li>Sub : subtracts the value from the layers current velocity, and uses that</li>
+</ul></li>
+<li>Output type
 
-<p>First included in A034.</p>
+<ul>
+<li>No Output : no audition at all</li>
+<li>Local only : note is only generated on the TNR itself</li>
+<li>MIDI only : note is only output over MIDI, and no local note is played</li>
+<li>Local+MIDI : the note is played by both the TNR and output over MIDI</li>
+</ul></li>
+</ul>
+
+<p><strong>Options applying when layer audition = &ldquo;Other&rdquo;</strong></p>
+
+<ul>
+<li>Layer : this is the layer number that is the target for all layers whose audition mode is set to &ldquo;other&rdquo;</li>
+</ul>
+
+<p>The default behavior duplicating the Yamaha firmware is for all layers to have audition mode set to &ldquo;Self&rdquo;, then the preferences set to &ldquo;Sub&rdquo;, &ldquo;0&rdquo;, &ldquo;Local+MIDI&rdquo;.</p>
+
 		</div>
 		
 <div class="post__tags tags clearfix">
@@ -140,10 +155,10 @@ versions.</p>
 	
 <nav class="post-nav flex">
 	<div class="post-nav__item post-nav__item--prev">
-		<a class="post-nav__link" href="../../../posts/tenori-on/rain/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Rain layer type</p></a>
+		<a class="post-nav__link" href="../../../posts/tenori-on/screenecho/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Screen Echo</p></a>
 	</div>
 	<div class="post-nav__item post-nav__item--next">
-		<a class="post-nav__link" href="../../../posts/tenori-on/meta_velpan/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Layer Meta Controllers</p></a>
+		<a class="post-nav__link" href="../../../posts/tenori-on/releases/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Releases</p></a>
 	</div>
 </nav>
 	

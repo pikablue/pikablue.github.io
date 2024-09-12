@@ -4,13 +4,14 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>User Voice Manager</title>
-	<meta name="description" content="">
+	<title>Introduction</title>
+	<meta name="description" content="Pika Blue&#39;s collection of projects">
 	<meta name="generator" content="Hugo 0.48" />
 	
 	
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
 	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="alternate" type="application/rss&#43;xml" href="../../index.xml">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
 	<link rel="stylesheet" href="../../css/style.css">
 	<script type="text/javascript" src="../../js/scripts.js"></script>
@@ -43,7 +44,7 @@ if (!doNotTrack) {
 	
 <nav class="menu">
 	<ul class="menu__list">
-		<li class="menu__item"><a class="menu__link" href="../../">HOME</a></li>
+		<li class="menu__item menu__item--active"><a class="menu__link" href="../../">HOME</a></li>
 		<li class="menu__item"><a class="menu__link" href="../../categories/tenori-on/">TENORI-ON</a></li>
 		<li class="menu__item"><a class="menu__link" href="../../categories/fc-300/">FC-300</a></li>
 	</ul>
@@ -53,121 +54,38 @@ if (!doNotTrack) {
 
 		<div class="wrapper flex">
 			
-<main class="main content">
-	<article class="post">
-		<header class="post__header">
-			<h1 class="post__title">User Voice Manager</h1><div class="post__meta meta">
-<svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-<time class="post__meta-date meta-date" datetime="2022-01-02T00:00:00">January 02, 2022</time>
+<main class="main list content" role="main">
+	<div class="page-content">
+		<p>This site is a repository for my projects. The keen eyed amongst you will notice that they generally concern midi controllers, especially those with blinky lights.
+Those with really keen eyes will notice that most things are unfinished, including this website.</p>
+
+	</div><article class="list__item post">
+	<div class="list__content clearfix">
+		<header class="list__header">
+				<h3 class="list__title post__title ">
+					<a href="../../posts/tenori-on/blockchange/" rel="bookmark">
+					Remote block change
+					</a>
+				</h3><div class="list__meta meta">
 <span class="post__meta-categories meta-categories">
 	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
-	<span class="meta-categories__list"><a class="meta-categories__link" href="../../categories/working" rel="category">working</a></span>
+	<span class="meta-categories__list"><a class="meta-categories__link" href="../../categories/tenori-on" rel="category">tenori-on</a></span>
 </span></div>
-		</header><div class="post__content clearfix">
-			<p>This page is a Javascript implementation of the User Voice Manager.</p>
-
-<p></p>
-
-<p>Click on the number to load an audio file into that slot. Once loaded, the audio can be played, saved (to an audio file) or removed. Once assembled, click on &ldquo;Save TNW file&rdquo; at the bottom to save as a user voice file.</p>
-
-<p>This can also be used to load existing TNW files and modify or preview them.</p>
-
-<style>
-button {
-  background-color: #4CAF50;
-  border: none;
-  border-radius: 4px;
-  color: white;
-  padding: 1px 5px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  cursor: pointer;
-  transition-duration: 0.4s;
- }
- 
-button:hover {
-   background-color: #357535;
-}
-
-button:disabled, button[disabled=disabled] {
-  background-color: #B0B0B0;
-  border: none;
-  border-radius: 4px;
-  color: white;
-  padding: 1px 5px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  cursor: not-allowed;
-  transition-duration: 0.4s;
- }
- 
- .fle {
-    background: lightgrey;
-}
-
- </style>
- 
-
-<table>
-<thead>
-<tr>
-<th align="center">Load</th>
-<th align="center">File</th>
-<th align="center">Play</th>
-<th align="center">Save</th>
-<th align="center">Del</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td align="center"><button class="but load" id="load16">16</button></td>
-<td align="center"><div id="file16" class="fle">Not Loaded</div></td>
-<td align="center"><button class="but play" id="play16" disabled> &#x25ba; </button></td>
-<td align="center"><button class="but save" id="save16" disabled> &#128427; </button></td>
-<td align="center"><button class="but dead" id="dead16" disabled> &#10799; </button></td>
-</tr>
-
-<tr>
-<td align="center"><button class="but load" id="load15">15</button></td>
-<td align="center"><div id="file15"  class="fle">Not Loaded</div></td>
-<td align="center"><button class="but play" id="play15" disabled> &#x25ba; </button></td>
-<td align="center"><button class="but save" id="save15" disabled> &#128427; </button></td>
-<td align="center"><button class="but dead" id="dead15" disabled> &#10799; </button></td>
-</tr>
-</tbody>
-</table>
-
-<p><button class="but" id="loadTnw">Load TNW file</button>
-<button class="but" id="saveTnw" disabled>Save TNW file</button></p>
-
-<script type="text/javascript" src="../../js/voicemanager.js"></script>
+		</header>
+		<div class="list__excerpt post__content">
+			This function adds the ability to change the block remotely, without being in remote mode.
 		</div>
-		
-	</article>
+		<div class="list__footer">
+			<a class="list__footer-readmore btn" href="../../posts/tenori-on/blockchange/">Read more…</a>
+		</div>
+	</div>
+</article>
 	
-<div class="authorbox clearfix">
-	<figure class="authorbox__avatar">
-		<img alt="Pika Blue avatar" src="../../images/pikablue.png" class="avatar" height="90" width="90">
-	</figure>
-	<div class="authorbox__header">
-		<span class="authorbox__name">About Pika Blue</span>
-	</div>
-	<div class="authorbox__description">
-		Pika Blue is overly obsessed with midi controllers, especially unsupported ones with blinky lights .
-	</div>
+<div class="pagination">
+	<a class="pagination__item pagination__item--prev btn" href="../../page/4/">«</a>
+	<span class="pagination__item pagination__item--current">5/5</span>
 </div>
-	
-<nav class="post-nav flex">
-	<div class="post-nav__item post-nav__item--next">
-		<a class="post-nav__link" href="../../working/voiceman/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">User Voice Manager</p></a>
-	</div>
-</nav>
-	
+
 </main>
 
 			<aside class="sidebar"><div class="widget-recent widget">
@@ -216,7 +134,5 @@ button:disabled, button[disabled=disabled] {
 		navClass: "menu--collapse",
 		label: "Menu",
 	});
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
-</body>
+</script></body>
 </html>
