@@ -4,7 +4,12 @@
   
   <url>
     <loc>http://pika.blue/posts/tenori-on/releases/</loc>
-    <lastmod>2024-09-20T00:00:00+00:00</lastmod>
+    <lastmod>2024-09-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://pika.blue/posts/tenori-on/emulated/</loc>
+    <lastmod>2024-09-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -219,7 +224,7 @@
   
   <url>
     <loc>http://pika.blue/posts/tenori-on/</loc>
-    <lastmod>2024-09-20T00:00:00+00:00</lastmod>
+    <lastmod>2024-09-22T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -239,7 +244,7 @@
   
   <url>
     <loc>http://pika.blue/tags/new-features/</loc>
-    <lastmod>2024-09-03T00:00:00+00:00</lastmod>
+    <lastmod>2024-09-21T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -250,7 +255,7 @@
   
   <url>
     <loc>http://pika.blue/tags/project-plan/</loc>
-    <lastmod>2024-09-20T00:00:00+00:00</lastmod>
+    <lastmod>2024-09-22T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -266,13 +271,13 @@
   
   <url>
     <loc>http://pika.blue/tags/</loc>
-    <lastmod>2024-09-03T00:00:00+00:00</lastmod>
+    <lastmod>2024-09-21T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://pika.blue/categories/tenori-on/</loc>
-    <lastmod>2024-09-20T00:00:00+00:00</lastmod>
+    <lastmod>2024-09-22T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

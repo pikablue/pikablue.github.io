@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>MIDI recording</title>
+	<title>Rotary Dial Emulation</title>
 	<meta name="description" content="">
 	<meta name="generator" content="Hugo 0.48" />
 	
@@ -56,29 +56,29 @@
 <main class="main content">
 	<article class="post">
 		<header class="post__header">
-			<h1 class="post__title">MIDI recording</h1><div class="post__meta meta">
+			<h1 class="post__title">Rotary Dial Emulation</h1><div class="post__meta meta">
 <svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-<time class="post__meta-date meta-date" datetime="2020-06-13T00:00:00">June 13, 2020</time>
+<time class="post__meta-date meta-date" datetime="2024-09-21T00:00:00">September 21, 2024</time>
 <span class="post__meta-categories meta-categories">
 	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
 	<span class="meta-categories__list"><a class="meta-categories__link" href="../../../categories/tenori-on" rel="category">tenori-on</a></span>
 </span></div>
 		</header><div class="post__content clearfix">
-			
+			<p>This function permits use of LED buttons instead of the rotary dial, for situations where the rotary encoder is failing.</p>
 
-<p>This function adds MIDI (note on) recording to all layers.</p>
+<p></p>
 
-<p>The baseline TNR already implements external setting of notes via remote (SysEx) messaging. Also, receiving note-on/note-off messages already stimulates the tone generator to play the correct sound, but does not set the notes in the grid.</p>
+<p>A jumpy rotary dial is an unfortunate feature of ageing TNRs. Firmware efforts have been made to improve the situation (See XXX), but in many cases, this is not sufficient. The encoder is repairable, but this requires some electronics skill and a degree of bravery&hellip;</p>
 
-<p>This modification joins the two, so that the TNR can record incoming midi note-on streams. The behaviour is slightly different depending on the layer targetted.</p>
+<p>Unfortunately, the rotary encoder is the only way to navigate the menu and access most menu items. This feature allows LED presses to be used instead, where pressing in the top half of the button grid moves the menu item up, and the bottom half moves it down.</p>
 
-<p>This function is found under the MIDI menu:</p>
+<p>This feature can be enabled and disabled via the System menu, under the setting &ldquo;Rotary Emulation&rdquo;</p>
 
 <table>
 <thead>
 <tr>
-<th><img src="../../../images/recordmode.png" alt="" title="MIDI Recording menu" /></th>
-<th><img src="../../../images/recordtime.png" alt="" title="Selecting record mode" /></th>
+<th><img src="../../../images/systemrotarymenu.png" alt="" title="System menu" /></th>
+<th><img src="../../../images/rotaryemulation.png" alt="" title="Setting Rotary Emulation" /></th>
 </tr>
 </thead>
 
@@ -86,58 +86,15 @@
 </tbody>
 </table>
 
-<p>Some notes:</p>
+<p>Importantly, this feature can also be force enabled by simultaneously holding [R1] and [R2] during power-on; this is used in the catch-22 case where activating the feature via the menu is not possible since the rotary encoder is so bad&hellip;</p>
 
-<ol>
-<li><p>The function is enabled by the Record Mode entry under the MIDI menu. This enables the recording mode to be switched between &ldquo;Time&rdquo; and &ldquo;Velocity&rdquo;</p></li>
+<p>If the feature is enabled, the boot-up screen replaces the text &ldquo;Advance&rdquo; with &ldquo;Emulate&rdquo;.</p>
 
-<li><p>Only Note-on information is recorded. The internal workings of the TNR rely on knowing the sound duration when the note-on occurs; the durations are not established from the note-off event. Play back of recorded data uses the layer&rsquo;s sound length time.</p></li>
-
-<li><p>Velocity is not recorded. (The TNR doesn&rsquo;t generally handle velocity). The velocity output of played back notes is fixed at 100.</p></li>
-
-<li><p>Notes incoming on midi channel 1 will be recorded on layer 1, those on midi channel 2 will record on layer 2, irrespective of what the output midi channel is set to for that layer. This is deliberate in order to disambiguate from cases where several layers have the same midi channel number, as well as to avoid the need to &ldquo;hunt&rdquo; the layers for matching midi channels.</p></li>
-
-<li><p>Only notes that the TNR could play with the current settings are recorded. That means that only notes in the current layer scale, within the current transpose and octave range, are recorded. Incoming notes not in the scale may be heard - since the tone generator will still play them - but they will not be recorded.</p></li>
-
-<li><p>All loops are in continuous punch-in/overwrite mode. Deletion of notes has to be via interaction with the TNR itself, e.g. via layer clear, or specific deselection of notes.</p></li>
-
-<li><p>The behaviour is different for different layer types. In &ldquo;Time&rdquo; mode, the following occurs</p>
-
-<ul>
-<li>Score records notes at the current loop position as might be anticipated. Quantization occurs at the loop speed of the layer.</li>
-<li>Random records the pitch, but the other on-screen axis position is random. Consequently the timing of the playback is random.</li>
-<li>Draw records the pitch, but the other on-screen axis position is random. The timing is quantized at draw&rsquo;s loop tick (which is 24 times faster than score&rsquo;s, for the same loop speed). Draw is therefore a good general recording target if you don&rsquo;t want quantized data, and don&rsquo;t need to edit it afterwards.</li>
-<li>Bounce records the pitch, but assumes you are pressing the top row.</li>
-<li>Push records the pitch, but the other on-screen axis position is random.</li>
-<li>Score256 does not have recording capability (yet).</li>
-</ul></li>
-
-<li><p>In &ldquo;Velocity&rdquo; mode, the following occurs</p>
-
-<ul>
-<li>Score uses the incoming note velocity to determine which column to draw the note, split evenly from <code>01-7F</code>. HIgh velocities are drawn on the right, low ones on the left.</li>
-<li>Random records the pitch, but the other on-screen axis position is determined by velocity. The timing of the playback is therefore not random, as such, but it is difficult to control.</li>
-<li>Draw records the pitch, the other on-screen axis position is taken from the velocity. The time-quantization is as per the &ldquo;Time&rdquo; mode</li>
-<li>Bounce records the pitch, but places notes towards the bottom for high velocities, and the top for low velocities. Bounce therefore provides the only way in which notes can be turned off, since a high velocity corresponds to the bottom row, which is Off in bounce mode.</li>
-<li>Push records the pitch, the other axis is dictated by the incoming velocity.</li>
-<li>Score256 does not have recording capability (yet).<br /></li>
-</ul></li>
-
-<li><p>Only layers that are set to &ldquo;pure&rdquo; instruments can be recorded to. Layers with velocity, octave or duration splits, or controller layers, or meta controller layers, can not record incoming notes.</p></li>
-
-<li><p>It might be nice to have a &ldquo;clear track&rdquo; or &ldquo;clear note&rdquo; message - e.g. a low note not likely to represent a real recorded note, or a controller message - in order to allow hands-free recording. Again, suggestions welcome.</p></li>
-</ol>
-
-<p>I also sorted out what - to me - was a discrepancy. In the original TNR firmware, received patch change commands (<code>B0 00 3F / B0 20 01 / C0 nn</code>) would change the on-board tone of the Tone Generator, but not actually update the instrument on the screen. This is now corrected so that the displayed instrument always tracks the instrument that the tone generator is playing.</p>
-
-<h2 id="compatibility-issues">Compatibility Issues</h2>
-
-<p>None known - there may be compatibility issues with hardware setups if the TNR was previously being bombarded by note-on messages.</p>
+<p>Note that when active, the TNR default behavior changes : normally, LED presses while the menu is active result in notes being played on the grid, but when this feature is active, this will not happen since the LED presses are interpreted as</p>
 
 <h2 id="releases">Releases</h2>
 
-<p>First included in A018, broken in A019, and fixed in A021. (Let&rsquo;s hope it stays fixed).</p>
-
+<p>First included in A039.</p>
 		</div>
 		
 <div class="post__tags tags clearfix">
@@ -162,10 +119,10 @@
 	
 <nav class="post-nav flex">
 	<div class="post-nav__item post-nav__item--prev">
-		<a class="post-nav__link" href="../../../posts/tenori-on/midiquiet/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Suppress Midi SysEx (updated)</p></a>
+		<a class="post-nav__link" href="../../../posts/tenori-on/auditionset/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Auditioning Mode</p></a>
 	</div>
 	<div class="post-nav__item post-nav__item--next">
-		<a class="post-nav__link" href="../../../posts/tenori-on/meta2_tr/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Meta Controller - Master Transpose</p></a>
+		<a class="post-nav__link" href="../../../posts/tenori-on/releases/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Releases</p></a>
 	</div>
 </nav>
 	

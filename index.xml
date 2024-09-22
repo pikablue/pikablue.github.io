@@ -14,10 +14,21 @@
     <item>
       <title>Releases</title>
       <link>http://pika.blue/posts/tenori-on/releases/</link>
-      <pubDate>Fri, 20 Sep 2024 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 22 Sep 2024 00:00:00 +0000</pubDate>
       
       <guid>http://pika.blue/posts/tenori-on/releases/</guid>
       <description>&lt;p&gt;This page contains a link to the releases so far.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Rotary Dial Emulation</title>
+      <link>http://pika.blue/posts/tenori-on/emulated/</link>
+      <pubDate>Sat, 21 Sep 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/emulated/</guid>
+      <description>&lt;p&gt;This function permits use of LED buttons instead of the rotary dial, for situations where the rotary encoder is failing.&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
     </item>
