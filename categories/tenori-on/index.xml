@@ -326,15 +326,6 @@
     </item>
     
     <item>
-      <title>Auditioning a TNW file</title>
-      <link>http://pika.blue/posts/tenori-on/audition/</link>
-      <pubDate>Wed, 03 Jun 2020 00:00:00 +0000</pubDate>
-      
-      <guid>http://pika.blue/posts/tenori-on/audition/</guid>
-      <description>This is a small utility for auditioning sample (TNW) files without having to load them to the TNR.</description>
-    </item>
-    
-    <item>
       <title>(Limited) User sample pitch shift</title>
       <link>http://pika.blue/posts/tenori-on/resample1/</link>
       <pubDate>Thu, 21 May 2020 00:00:00 +0000</pubDate>

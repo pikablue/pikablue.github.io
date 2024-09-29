@@ -12,6 +12,17 @@
     
     
     <item>
+      <title>TNW file auditioning</title>
+      <link>http://pika.blue/posts/tenori-on/voiceman/</link>
+      <pubDate>Sun, 29 Sep 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/voiceman/</guid>
+      <description>&lt;p&gt;This page is an online tool for auditioning TNW (samplings) files.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>Releases</title>
       <link>http://pika.blue/posts/tenori-on/releases/</link>
       <pubDate>Sun, 22 Sep 2024 00:00:00 +0000</pubDate>
@@ -49,17 +60,6 @@
       
       <guid>http://pika.blue/posts/tenori-on/screenecho/</guid>
       <description>PAKL has developed a cross-platform app for displaying the current TNR LCD screen on a computer.</description>
-    </item>
-    
-    <item>
-      <title>User Voice Manager</title>
-      <link>http://pika.blue/working/voiceman/</link>
-      <pubDate>Mon, 16 Oct 2023 00:00:00 +0000</pubDate>
-      
-      <guid>http://pika.blue/working/voiceman/</guid>
-      <description>&lt;p&gt;This page is a Javascript implementation of the User Voice Manager.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -334,15 +334,6 @@
       
       <guid>http://pika.blue/posts/tenori-on/midiquiet/</guid>
       <description>This function manages the output of MIDI SysEx messages everytime you press a button in normal mode, and CC messages when instruments are changed.</description>
-    </item>
-    
-    <item>
-      <title>Auditioning a TNW file</title>
-      <link>http://pika.blue/posts/tenori-on/audition/</link>
-      <pubDate>Wed, 03 Jun 2020 00:00:00 +0000</pubDate>
-      
-      <guid>http://pika.blue/posts/tenori-on/audition/</guid>
-      <description>This is a small utility for auditioning sample (TNW) files without having to load them to the TNR.</description>
     </item>
     
     <item>

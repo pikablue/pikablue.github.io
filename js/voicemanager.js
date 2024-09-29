@@ -1,7 +1,11 @@
-const DEBUG = false;
+// v1 : Audition only
+
+
+// ==========================================================
+// Global Variable declarations
+const DEBUG = true;
 
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-
 
 // 16 bit, 24kHz, Mono
 const WAVMONO  = "57415645666D7420100000000100010044AC000010B102000200100064617461"
@@ -14,63 +18,41 @@ const MAXFILESIZE = 2739296;
 
 // __________________________________________________________
 // A FileReader object to allow us to load files
-
-
 const reader = new FileReader();
 
 // __________________________________________________________
 // The data array area for the individual sound files
 // these are loaded as WAV files. 
-const data = new Array(16);
+const dataWAV = new Array(16);
 
-for (let i =0; i<data.length; i++) {
-		data[i] = new ArrayBuffer();
+for (let i =0; i<dataWAV.length; i++) {
+		dataWAV[i] = new ArrayBuffer();
 }
 
+// Number of currently occupied slots
+let numberLoaded = 0;
+
 // __________________________________________________________
-// The data area for the TNW file
+// Global name of input file (TNW or WAV) just for populating text fields
+const inputFile = "";
+
+// __________________________________________________________
+// The data areas for the TNW file
 let dataTNW = new ArrayBuffer();
 
 let filenameTNW = "";
 
+let headerTNW = new ArrayBuffer();
+
 // __________________________________________________________
-// Attach handlers to all the individual load/play/save/dead buttons
+// Array of all the individual load/play/save/dead buttons
 const load = document.querySelectorAll("button.load");
 const play = document.querySelectorAll("button.play");
 const save = document.querySelectorAll("button.save");
 const dead = document.querySelectorAll("button.dead");
 
-let numberLoaded = 0;
-
-if (DEBUG) {console.log("Number of buttons",load.length);}
-
-for (let i = 0; i< load.length; i++) {
-	load[i].addEventListener('click', function() { fnLoadWav(this); }, false);
-}
-
-for (let i = 0; i< play.length; i++) {
-	play[i].addEventListener('click', function() { fnPlayWav(this); }, false);
-}
-
-for (let i = 0; i< save.length; i++) {
-	save[i].addEventListener('click', function() { fnSaveWav(this); }, false);
-}
-
-for (let i = 0; i< dead.length; i++) {
-	dead[i].addEventListener('click', function() { fnDeadWav(this); }, false);
-}
-
-// __________________________________________________________
-// Attach hander to the save/load TNW file
-
-document.getElementById("saveTnw").addEventListener('click', function() { fnSaveTnw(); }, false );
-
-document.getElementById("loadTnw").addEventListener('click', function() { fnLoadTnw(); }, false );
-
-// __________________________________________________________
-
-const inputFile = "";
-
+// ==========================================================
+// Functions
 
 // __________________________________________________________
 // Utility functions
@@ -108,18 +90,17 @@ function memcpy (src, srcOffset, dst, dstOffset, length) {
     return dst
 }
 // __________________________________________________________
-// Decode the TNW word into a WAV word
+// Decode the TNW word into a WAV word or vice versa
 function fnDecode(wordin) {
 	let in1 = (wordin & 0xF000) >> 12;
 	let in2 = (wordin & 0x0F00) >> 8;
 	let in3 = (wordin & 0x00F0) >> 4;
 	let in4 = (wordin & 0x000F)     ;
 	
-	let ci = 64*(in1 & 12)+ 32*(in2 & 7) + 4*(in3 & 7) + (in4 & 3);
-	let c3 = Number("0x"+CORRECTION[ci]);
-	let out3 = (in2 + in3 + c3) & 0xF;
-	return (in4 + (out3<<4) + (in2<<8) + (in1<<12) );
-
+	let ci = 64*(in3 & 12)+ 32*(in4 & 7) + 4*(in1 & 7) + (in2 & 3);
+	let c1 = Number("0x"+CORRECTION[ci]);
+	let out1 = (in4 + in1 + c1) & 0xF;
+	return ((out1<<12) + (in2<<8) + (in3<<4) + in4);
 }
 
 // __________________________________________________________
@@ -133,21 +114,19 @@ function fnSaveAs(data, filename) {
 }
 
 // __________________________________________________________
-// Fetch the header and code tables for later use
-let headerBuffer = null;
-fnFetchHeader();
-
-
-function fnFetchHeader() {
-	const req = new XMLHttpRequest();
-	req.open("GET", "/data/header.tnw",true);
-	req.responseType = "arrayBuffer";
-	
-	req.onload = (event) => {
-		headerBuffer = req.response;
-	};
-	
-	req.send(null);
+// Fetch the TNW header for later use
+async function fnFetchHeader() {
+	const url = "/data/header.tnw";
+	try {
+		const response = await fetch(url);
+		if (!response.ok) {
+			throw new Error(`Response status: ${response.status}`);
+		}
+		headerTNW = await response.arrayBuffer();
+		console.log(headerTNW);
+	} catch (error) {
+		console.error(error.message);
+	}
 }
 
 // __________________________________________________________
@@ -168,9 +147,106 @@ function fnLoadWav(e) {
 	input.click();
 }
 
+// Converts Uint32 to string
+function fnChunkName(a) {
+	return String.fromCharCode(a>>24,(a>>16)&0xFF,(a>>8)&0xFF, a&0xFF);
+}
+
+// Checks the format
+// ab is an arraybuffer
+function fnWavCheck(ab) {
+	if (DEBUG)  {console.log("fnWavCheck");}
+	
+	if (ab.byteLength == 0) {
+		console.log("Buffer is empty");
+		return;
+	}
+	
+	if (ab.bytelength < 44) {
+		console.log("Buffer is too short");
+		return;
+	}
+	// Byte version
+	let wavView = new DataView(ab);
+
+	// Check first header
+	let temp = wavView.getUint32(0,false);
+	if ( fnChunkName(temp) != "RIFF" ) { console.log("ChunkID is not RIFF");}
+	temp = wavView.getUint32(8,false);
+	if ( fnChunkName(temp) != "WAVE" ) { console.log("Format field is not WAVE");}
+	let dataptr = 12;		// the dataptr to the first header
+
+	let audioformat = 0;
+	let channels = 0;
+	let rate = 0;
+	let bits = 0;
+	let audiostart = 0;
+	let audiolength = 0;
+	
+	while (dataptr<ab.byteLength) {		
+		temp = wavView.getUint32(dataptr,false);
+		if ( fnChunkName(temp) == "fmt " ) { 
+			console.log("SubchunkID is fmt");
+			audioformat = wavView.getUint16(dataptr+8,true);	// PCM=1
+			channels = wavView.getUint16(dataptr+10,true);	// mono or stereo
+			rate = wavView.getUint32(dataptr+12,true);		// 
+			bits = wavView.getUint16(dataptr+22,true);
+			// jump to next chunk
+			dataptr += wavView.getUint32(dataptr+4,true) + 8;
+		} else if ( fnChunkName(temp) == "data" ) {
+			console.log("SubchunkID is data");
+			audiolength = wavView.getUint32(dataptr+4, true);	// reported length
+			audiostart = dataptr+8;
+			// check that this doesn't go beyond the file!
+			if (audiolength+dataptr+8 > ab.byteLength) {
+				let truelength = ab.byteLength-dataptr-8;
+				console.log("Reported length <"+audiolength+"> is not the actual length <"+truelength+">");
+				console.log("Truncating...");
+				wavView.setUint32(dataptr+4,truelength,true);
+			}
+			// jump to next chunk
+			dataptr += wavView.getUint32(dataptr+4,true) + 8;
+		} else {
+			console.log("Unrecognized subchunk : "+ fnChunkName(temp) );
+			// remove the chunk
+			let chunklen = wavView.getUint32(dataptr+4,true)+8;
+			console.log("removing : "+ chunklen + " from "+ab.byteLength );
+			//ab = ab.splice(dataptr,chunklen);
+			console.log ("now = "+ab.byteLength);
+		}
+	}
+	
+	// Truncate the WAV file to 171168 = 0x29CA0 bytes (TNR max)
+	let maxwav = 171168;
+	
+	if (audiolength>maxwav) {
+		console.log("Truncating WAV file from "+audiolength);
+		//ab.splice(audiostart+maxwav,audiolength-maxwav);
+		wavView.setUint32(autiostart-4,maxwav, true);
+		audiolength = maxwav;
+	}
+		
+			
+	
+			
+	if (DEBUG) {
+		console.log("  PCM:" + audioformat);
+		console.log("  M/S:" + channels);
+		console.log("  Rate:" + rate);
+		console.log("  bits:" + bits);
+		console.log("  start:" + audiostart);
+		console.log("  length:" + audiolength);
+	}
+	
+	return;
+
+}		
+
+
+
 function fnWavInput(n, inputFile) {
 	
-	if (DEBUG) {console.log(n, inputFile);}
+	if (DEBUG) {console.log("fnWavInput",n, inputFile);}
 	
 	// Check for non-zero
 	if (inputFile.name=="") {
@@ -188,7 +264,10 @@ function fnWavInput(n, inputFile) {
 	
 	reader.onload = function() {
 		if (DEBUG) {console.log(reader.result);}
-		data[n-1]=reader.result;
+		dataWAV[n-1]=reader.result;
+		
+		fnWavCheck(dataWAV[n-1]);
+		
 		// console.log(buf2hex(r.result));
 
 		// Check if we are adding a new one
@@ -205,8 +284,7 @@ function fnWavInput(n, inputFile) {
 		document.getElementById("save"+n).disabled = false;
 		document.getElementById("dead"+n).disabled = false;
 	
-		// For the moment, disable the saveTnw button
-		// document.getElementById("saveTnw").disabled = false;
+		// Enable the saveTnw button
 		document.getElementById("saveTnw").disabled = true;
 
 
@@ -218,7 +296,8 @@ function fnWavInput(n, inputFile) {
 	};
 	
 	// Limit the file size to 171052 bytes (2s)
-	const blob = inputFile.slice(0, 171052);
+	// Limit the file size to the max size of the TNR file (!)
+	const blob = inputFile.slice(0, MAXFILESIZE);
 	reader.readAsArrayBuffer(blob);
 
 }
@@ -226,14 +305,14 @@ function fnWavInput(n, inputFile) {
 // __________________________________________________________
 // Playing a WAV file
 function fnPlayWav(e) {
-	if (DEBUG) {onsole.log("fnPlayWav"+e.id);}
+	if (DEBUG) {console.log("fnPlayWav"+e.id);}
 
 	// get the ID number
 	const n = e.id.substr(4,2);
 
 	// play the file
 	audioCtx.resume();
-	const a = data[n-1].slice(0);	// Copy to avoid the buffer detaching
+	const a = dataWAV[n-1].slice(0);	// Copy to avoid the buffer detaching
 	audioCtx.decodeAudioData(a).then(function(buffer) {		
 		let soundSource = audioCtx.createBufferSource();
 		soundSource.buffer = buffer;
@@ -252,7 +331,7 @@ function fnSaveWav(e) {
 	if (filename) {
 		// get the ID number
 		const n = e.id.substr(4,2);
-		fnSaveAs(data[n-1],filename);
+		fnSaveAs(dataWAV[n-1],filename);
 	}
 }
 
@@ -272,7 +351,7 @@ function fnDeadWav(e) {
 	document.getElementById("dead"+n).disabled = true;
 	
 	// Clear the slot
-	data[n-1].length = 0;
+	dataWAV[n-1].length = 0;
 	
 	// If all are dead, disable the Save TNW button
 	if (numberLoaded > 0) {
@@ -289,26 +368,36 @@ function fnDeadWav(e) {
 // __________________________________________________________
 // Generating and Saving a TNW file
 function fnSaveTnw() {
-	if (DEBUG) {console.log("SaveTNW");}
+	if (DEBUG) {console.log("fnSaveTNW",headerTNW.byteLength);}
 
 	// Check the header from the server
-	if (headerBuffer == null) {
+	if (headerTNW.byteLength != 0x860) {
 		if (DEBUG) {console.log("Header file not retrieved correctly");}
+		window.alert("TNW header file not retrieved correctly from website");
 		return;
 	}
 	
-	// Go through each of the buffers from the start
-	// Decode the file : 16 or 8 bit, mono or stereo
-	for (let i =0; i<data.length; i++) {
-		if (data[i].byteLength == 0) continue;
-		// Byte version
-		let view = new Uint16Array(data[i]);
-		// Assume WAV for the moment
-		let format = view[10];	// mono or stereo
-		let channels = view[11];	// mono or stereo
-		let rate = (2^8)*view[12] + view[13];		// 
-		let bits = view[17];
-		if (DEBUG) {console.log("Index " + i + " PCM:" + format + " M/S:" + channels + " Rate:" + rate + " bits:" + bits);}
+	// Copy the header into the TNW data buffer
+	new Uint8Array(dataTNW,0,headerTNW.byteLength).set(new Uint8Array(headerTNW),0);
+
+
+	let view = new DataView(dataTNW);
+	
+	// Go through each of the slots from the start
+	let audioPointerByte = 0x860;	// cumulative audio pointer
+	let audioPointerOff  = 0;		// cumulative audio pointer in blocks of 0x20 bytes
+	for (let i =0; i<dataWAV.length; i++) {
+		// get the amount of audio data we actually have
+		
+		
+		// Assemble the L and R decoded audio from the WAV file
+		// just a
+		let outdata = new ArrayBuffer();
+		let left = new ArrayBuffer();
+		
+		// L channel : write the slot start and length
+		let temp = 0x3AE + (i*30);	// 30 bytes per slot descriptor
+		
 		
 
 	}
@@ -320,7 +409,7 @@ function fnSaveTnw() {
 // __________________________________________________________
 // Loading and unpacking a TNW file
 function fnLoadTnw() {
-	if (DEBUG) {console.log("LoadTNW");}
+	if (DEBUG) {console.log("fnLoadTNW");}
 	
 	// Create and launch the handler
 	let input = document.createElement('input');
@@ -362,7 +451,6 @@ function fnTnwInput(inputFile) {
 		// document.getElementById("file"+n).textContent = inputFile.name;
 
 		// enable the TNW save if it isn't already
-		// For the moment, disable the saveTnw button		
 		document.getElementById("saveTnw").disabled = true;
 
 	};
@@ -379,6 +467,8 @@ function fnTnwInput(inputFile) {
 // This function parses the TNW file into their originating 
 // WAV files
 function fnTnwParse() {
+		if (DEBUG) {console.log("fnTnwParse");}
+		
 		// Disable the buttons just in case the slot loading fails
 		numberLoaded = 0;
 		for (let i=0; i<16; i++) {
@@ -444,7 +534,7 @@ function fnTnwParse() {
 		for (let i=0; i<16; i++) {
 			let slength = sampleLength[i]
 			if (slength === 0) {
-				data[i].length = 0;
+				dataWAV[i].length = 0;
 				continue;
 			}
 
@@ -473,21 +563,21 @@ function fnTnwParse() {
 			// Now we read the TNW data, converting the bytes and interleaving the data in the WAV file if required
 			let wavPointer = 44;	// WAV file write pointer
 			for (let j=0; j<slength ; j+=2) {
-				let wordin = tnwView.getUint16(lstart+j, false);
+				let wordin = tnwView.getUint16(lstart+j, true);
 				let wordout = fnDecode(wordin);
-				wavView.setUint16(wavPointer,wordout, false);
+				wavView.setUint16(wavPointer,wordout, true);
 
 				wavPointer += 2;
 				if (lstart !== rstart) {	// stereo
-					wordin = tnwView.getUint16(rstart+j, false);
+					wordin = tnwView.getUint16(rstart+j, true);
 					wordout = fnDecode(wordin);
-					wavView.setUint16(wavPointer,wordout, false);
+					wavView.setUint16(wavPointer,wordout, true);
 					wavPointer += 2;
 				}
 			}
 			
 			// load the wav file into the slot
-			data[i] = wavData;
+			dataWAV[i] = wavData;
 			
 			// enable the buttons; set the filename
 			let n = i+1;
@@ -496,8 +586,38 @@ function fnTnwParse() {
 			document.getElementById("dead"+n).disabled = false;
 			document.getElementById("file"+n).textContent = filenameTNW+"_"+n;
 
-
 	}
-				
-	
 }
+
+// ==========================================================
+// Startup code at top level
+// __________________________________________________________
+// Attach handlers to all the individual load/play/save/dead buttons
+
+if (DEBUG) {console.log("Number of buttons",load.length);}
+
+for (let i = 0; i< load.length; i++) {
+	// load[i].addEventListener('click', function() { fnLoadWav(this); }, false);
+}
+
+for (let i = 0; i< play.length; i++) {
+	play[i].addEventListener('click', function() { fnPlayWav(this); }, false);
+}
+
+for (let i = 0; i< save.length; i++) {
+	save[i].addEventListener('click', function() { fnSaveWav(this); }, false);
+}
+
+for (let i = 0; i< dead.length; i++) {
+	dead[i].addEventListener('click', function() { fnDeadWav(this); }, false);
+}
+
+// __________________________________________________________
+// Attach hander to the save/load TNW file
+
+// document.getElementById("saveTnw").addEventListener('click', function() { fnSaveTnw(); }, false );
+
+document.getElementById("loadTnw").addEventListener('click', function() { fnLoadTnw(); }, false );
+
+// Load the TNW header
+fnFetchHeader();

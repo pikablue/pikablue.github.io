@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://pika.blue/posts/tenori-on/voiceman/</loc>
+    <lastmod>2024-09-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://pika.blue/posts/tenori-on/releases/</loc>
     <lastmod>2024-09-22T00:00:00+00:00</lastmod>
   </url>
@@ -20,11 +25,6 @@
   <url>
     <loc>http://pika.blue/posts/tenori-on/screenecho/</loc>
     <lastmod>2024-09-03T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://pika.blue/working/voiceman/</loc>
-    <lastmod>2023-10-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -158,11 +158,6 @@
   </url>
   
   <url>
-    <loc>http://pika.blue/posts/tenori-on/audition/</loc>
-    <lastmod>2020-06-03T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://pika.blue/posts/tenori-on/resample1/</loc>
     <lastmod>2020-05-21T00:00:00+00:00</lastmod>
   </url>
@@ -219,7 +214,7 @@
   
   <url>
     <loc>http://pika.blue/posts/tenori-on/</loc>
-    <lastmod>2024-09-22T00:00:00+00:00</lastmod>
+    <lastmod>2024-09-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -277,26 +272,20 @@
   </url>
   
   <url>
+    <loc>http://pika.blue/categories/tools/</loc>
+    <lastmod>2024-09-29T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://pika.blue/tags/tools/</loc>
-    <lastmod>2020-06-03T00:00:00+00:00</lastmod>
+    <lastmod>2020-04-22T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://pika.blue/tags/videos/</loc>
     <lastmod>2023-07-09T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://pika.blue/categories/working/</loc>
-    <lastmod>2023-10-16T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://pika.blue/working/</loc>
-    <lastmod>2023-10-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

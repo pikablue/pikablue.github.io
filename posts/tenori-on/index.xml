@@ -6,10 +6,21 @@
     <description>Recent content on pika.blue</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 22 Sep 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 29 Sep 2024 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://pika.blue/posts/tenori-on/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>TNW file auditioning</title>
+      <link>http://pika.blue/posts/tenori-on/voiceman/</link>
+      <pubDate>Sun, 29 Sep 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/voiceman/</guid>
+      <description>&lt;p&gt;This page is an online tool for auditioning TNW (samplings) files.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Releases</title>
@@ -323,15 +334,6 @@
       
       <guid>http://pika.blue/posts/tenori-on/midiquiet/</guid>
       <description>This function manages the output of MIDI SysEx messages everytime you press a button in normal mode, and CC messages when instruments are changed.</description>
-    </item>
-    
-    <item>
-      <title>Auditioning a TNW file</title>
-      <link>http://pika.blue/posts/tenori-on/audition/</link>
-      <pubDate>Wed, 03 Jun 2020 00:00:00 +0000</pubDate>
-      
-      <guid>http://pika.blue/posts/tenori-on/audition/</guid>
-      <description>This is a small utility for auditioning sample (TNW) files without having to load them to the TNR.</description>
     </item>
     
     <item>
