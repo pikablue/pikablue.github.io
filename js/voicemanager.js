@@ -69,26 +69,6 @@ function hex2buf(string) {
     return uint8array;
 }
 
-function memcpy (src, srcOffset, dst, dstOffset, length) {
-    var i
-
-    src = src.subarray || src.slice ? src : src.buffer
-    dst = dst.subarray || dst.slice ? dst : dst.buffer
-
-    src = srcOffset ? src.subarray ?
-        src.subarray(srcOffset, length && srcOffset + length) :
-        src.slice(srcOffset, length && srcOffset + length) : src
-
-    if (dst.set) {
-        dst.set(src, dstOffset)
-    } else {
-        for (i=0; i<src.length; i++) {
-            dst[i + dstOffset] = src[i]
-        }
-    }
-
-    return dst
-}
 // __________________________________________________________
 // Decode the TNW word into a WAV word or vice versa
 function fnDecode(wordin) {
@@ -123,7 +103,7 @@ async function fnFetchHeader() {
 			throw new Error(`Response status: ${response.status}`);
 		}
 		headerTNW = await response.arrayBuffer();
-		console.log(headerTNW);
+		if (DEBUG) {console.log(headerTNW);}
 	} catch (error) {
 		console.error(error.message);
 	}
@@ -149,13 +129,29 @@ function fnLoadWav(e) {
 
 // Converts Uint32 to string
 function fnChunkName(a) {
-	return String.fromCharCode(a>>24,(a>>16)&0xFF,(a>>8)&0xFF, a&0xFF);
+	return String.fromCharCode((a>>24)&0xFF,(a>>16)&0xFF,(a>>8)&0xFF, a&0xFF);
+}
+
+// concatenates arraybuffers...
+function concat(a,b) {
+	let c = new Uint8Array(a.byteLength + b.byteLength);
+	c.set(new Uint8Array(a),0);
+	c.set(new Uint8Array(b), a.byteLength);
+	return c.buffer;
+}
+
+// adds data to dataView
+function dataWAVadd(n,a) {
+	dataWAV[n] = concat(dataWAV[n] ,a);
 }
 
 // Checks the format, and trims if needed
 // ab is the input arraybuffer
 function fnWavCheck(n,ab) {
 	if (DEBUG)  {console.log("fnWavCheck");}
+
+	if (DEBUG)  {console.log("DataWAV is "+dataWAV[n-1].byteLength+" bytes long");}
+
 	
 	if (ab.byteLength == 0) {
 		console.log("Buffer is empty");
@@ -180,8 +176,9 @@ function fnWavCheck(n,ab) {
 		console.log("Format field is not WAVE");
 		return;
 	}
-	memcpy(ab,0,dataWAV[n-1],0,12);
-	//new Uint8Array(ob).set(new Uint8Array(ab,0,12));
+	
+	// Copy the header over
+	dataWAVadd(n-1,ab.slice(0,12));
 
 	
 	let inptr = 12;		// the dataptr to the first header
@@ -191,24 +188,23 @@ function fnWavCheck(n,ab) {
 	let channels = 0;
 	let rate = 0;
 	let bits = 0;
-	let audiostart = 0;
 	let audiolength = 0;
 	
 	while (inptr<ab.byteLength) {		
 		temp = wavView.getUint32(inptr,false);
 		let hlen = wavView.getUint32(inptr+4,true)+8;
 		if ( fnChunkName(temp) == "fmt " ) { 
-			console.log("SubchunkID is fmt");
+			if (DEBUG)  {console.log("SubchunkID is fmt");}
 			audioformat = wavView.getUint16(inptr+8,true);	// PCM=1
 			channels = wavView.getUint16(inptr+10,true);	// mono or stereo
 			rate = wavView.getUint32(inptr+12,true);		// 
 			bits = wavView.getUint16(inptr+22,true);
 			// Copy the header over and move the output along
-			memcpy(ab,inptr,dataWAV[n-1],outptr,hlen);
+			dataWAVadd(n-1,ab.slice(inptr,inptr+hlen));
 			outptr+= hlen;
 
 		} else if ( fnChunkName(temp) == "data" ) {
-			console.log("SubchunkID is data");
+			if (DEBUG)  {console.log("SubchunkID is data");}
 			audiolength = hlen-8;	// reported length
 			// check that this doesn't go beyond the file!
 			if (hlen+inptr > ab.byteLength) {
@@ -226,10 +222,8 @@ function fnWavCheck(n,ab) {
 				wavView.setUint32(inptr+4,audiolength, true);
 			}
 			// Copy the header over and move the output along
-			memcpy(ab,inptr,dataWAV[n-1],outptr,audiolength);
-			audiostart = outptr+8;
-			outptr+= hlen;
-
+			dataWAVadd(n-1,ab.slice(inptr,inptr+audiolength+8));
+			outptr+=audiolength+8 ;
 
 		} else {
 			console.log("Unrecognized subchunk : "+ fnChunkName(temp) );
@@ -237,25 +231,24 @@ function fnWavCheck(n,ab) {
 		// jump to next chunk
 		inptr += hlen;
 	}
-	
-
-		
-			
-	
-			
+				
 	if (DEBUG) {
 		console.log("  PCM:" + audioformat);
 		console.log("  M/S:" + channels);
 		console.log("  Rate:" + rate);
 		console.log("  bits:" + bits);
-		console.log("  start:" + audiostart);
 		console.log("  length:" + audiolength);
+		console.log("DataWAV is "+dataWAV[n-1].byteLength+" bytes long");
 	}
-	
+
+
+	// Overwrite the length in the header
+	wavView = new DataView(dataWAV[n-1]);
+	wavView.setUint32(4,dataWAV[n-1].byteLength,true);
+
 	return;
 
 }		
-
 
 
 function fnWavInput(n, inputFile) {
@@ -278,6 +271,7 @@ function fnWavInput(n, inputFile) {
 	
 	reader.onload = function() {
 		if (DEBUG) {console.log(reader.result);}
+		
 		fnWavCheck(n,reader.result);
 		
 		
@@ -308,7 +302,6 @@ function fnWavInput(n, inputFile) {
 		
 	};
 	
-	// Limit the file size to 171052 bytes (2s)
 	// Limit the file size to the max size of the TNR file (!)
 	const blob = inputFile.slice(0, MAXFILESIZE);
 	reader.readAsArrayBuffer(blob);
@@ -383,6 +376,11 @@ function fnDeadWav(e) {
 function fnSaveTnw() {
 	if (DEBUG) {console.log("fnSaveTNW",headerTNW.byteLength);}
 
+	let filename = prompt("Enter the file name to save as.");
+	if (!filename) {
+		return
+	}
+
 	// Check the header from the server
 	if (headerTNW.byteLength != 0x860) {
 		if (DEBUG) {console.log("Header file not retrieved correctly");}
@@ -391,33 +389,112 @@ function fnSaveTnw() {
 	}
 	
 	// Copy the header into the TNW data buffer
-	new Uint8Array(dataTNW,0,headerTNW.byteLength).set(new Uint8Array(headerTNW),0);
+	dataTNW = headerTNW;
+	
+	// new Uint8Array(dataTNW,0,headerTNW.byteLength).set(new Uint8Array(headerTNW),0);
 
 
+	// This is to allow access to the offsets and lengths
 	let view = new DataView(dataTNW);
 	
 	// Go through each of the slots from the start
-	let audioPointerByte = 0x860;	// cumulative audio pointer
 	let audioPointerOff  = 0;		// cumulative audio pointer in blocks of 0x20 bytes
 	for (let i =0; i<dataWAV.length; i++) {
+		if (DEBUG) {console.log("Slot "+i);}
+		// The TNW file has the L and R audio separated, so lets setup the audio buffer the right length
 		
-		// get the amount of audio data we actually have
+		if (dataWAV[i].byteLength==0) {
+			if (DEBUG) {console.log(" No data");}
+			continue;	// next slot
+		}
+
+		if (DEBUG) {console.log(" data length "+dataWAV[i].byteLength);}
+					
+		let wavview = new DataView(dataWAV[i]);
+		let audiolength = wavview.getUint32(40,true);	// size of data2subchunk in bytes; guaranteed location by the WAV importer
 		
+		if (DEBUG) {console.log(" "+audiolength+" bytes of audio in slot");}
 		
+		// check whether we are mono or stereo
+		let channels = wavview.getUint16(22, true);
+		if (DEBUG) {console.log(" "+channels+" channels");}
+		let bufferlength = Math.floor(audiolength / channels);
+		
+		if (DEBUG) {console.log(" "+bufferlength+" bytes of audio in each channel");}
+		
+		// Write the slot data into L & R just in case it's mono
+		view.setUint16(942+i*30,audioPointerOff,true);
+		view.setUint16(1566+i*30,audioPointerOff,true);
+		let blocksize = bufferlength/0x20;
+		view.setUint16(946+i*30,blocksize,true);
+		view.setUint16(1570+i*30,blocksize,true);
+		audioPointerOff+=blocksize;
+
+		// write the slot ID data
+		for (let j=0;j<8;j++) {
+			let offset = (12+16*j)+(i+1)%2+2*Math.floor(i/2);
+			offset = offset%128;
+			view.setUint8(806+offset,i);
+			view.setUint8(1430+offset,i);
+		}
+				
 		// Assemble the L and R decoded audio from the WAV file
-		// just a
-		let outdata = new ArrayBuffer();
-		let left = new ArrayBuffer();
+		let outdata = new ArrayBuffer(bufferlength);
+		let outview = new DataView(outdata);
+		let bytepersample = 2*channels;
+		// L audio first
+		for (let j =0; j<bufferlength; j+=2) {
+			//console.log("j="+j); 83540
+			let wordin = wavview.getUint16(44+(j*channels), true);
+			let wordout = fnDecode(wordin);
+			outview.setUint16(j,wordout, true);
+		}
+		dataTNW = concat(dataTNW,outdata) ; // Append audio to TNW
+		view = new DataView(dataTNW);	// refresh the view
 		
-		// L channel : write the slot start and length
-		let temp = 0x3AE + (i*30);	// 30 bytes per slot descriptor
+		if (channels==1) {
+			continue;
+		}
+		// R audio
+		for (let j =0; j<bufferlength; j+=2) {
+			let wordin = wavview.getUint16(46+(j*channels), true);
+			let wordout = fnDecode(wordin);
+			outview.setUint16(j,wordout, true);
+		}
+		dataTNW = concat(dataTNW,outdata);  // Append audio to TNW
+		view = new DataView(dataTNW);	// refresh the view
 		
-		
+		view.setUint16(1566+i*30,audioPointerOff,true);
+		audioPointerOff+=blocksize;
+
 
 	}
 		
+	if (DEBUG) {console.log("Total length"+dataTNW.byteLength);}
+
+	// Write the total file length
+	let filelength = dataTNW.byteLength - 0x20;	
+	view.setUint16(20,filelength>>16,true);
+	view.setUint16(22,filelength&0xFFFF,true);
 	
-	//fnSaveAs(data[16],"Testing.TNW");
+	
+	// Put the name in the Title field
+	// 16 chars max, little endian
+	let slicename = filename.slice(0,16);
+	let pos = 33;
+	for (let i=0 ; i<filename.length ; i++) {
+		let char = filename.charCodeAt(i);
+		if (char>127) { char = 20; } 
+		view.setUint8(pos, char);
+		pos = pos + 3*(i%2) - ((i+1)%2);
+	}
+	
+	// check whether we end .TNW, if not, add it.
+	if ( filename.toUpperCase().endsWith('.TNW')==false) {
+		filename = filename  + '.TNW';
+	}
+	
+	fnSaveAs(dataTNW,filename);
 }
 
 // __________________________________________________________
@@ -458,11 +535,7 @@ function fnTnwInput(inputFile) {
 	reader.onload = function() {
 		if (DEBUG) {console.log(reader.result);}
 		dataTNW=reader.result;
-		// console.log(buf2hex(r.result));
 		fnTnwParse();
-
-		// Add into the name
-		// document.getElementById("file"+n).textContent = inputFile.name;
 
 		// enable the TNW save if it isn't already
 		document.getElementById("saveTnw").disabled = false;
@@ -493,8 +566,6 @@ function fnTnwParse() {
 			document.getElementById("file"+n).textContent = "Not Loaded";
 
 		}	
-
-
 
 		// Need to use Dataview in order to be sure about the endianness
 		const tnwView = new DataView(dataTNW);

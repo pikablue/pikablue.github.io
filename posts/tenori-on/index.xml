@@ -6,18 +6,18 @@
     <description>Recent content on pika.blue</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 29 Sep 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 06 Oct 2024 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://pika.blue/posts/tenori-on/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>TNW file auditioning</title>
+      <title>User Voice Manager</title>
       <link>http://pika.blue/posts/tenori-on/voiceman/</link>
-      <pubDate>Sun, 29 Sep 2024 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 06 Oct 2024 00:00:00 +0000</pubDate>
       
       <guid>http://pika.blue/posts/tenori-on/voiceman/</guid>
-      <description>&lt;p&gt;This page is an online tool for auditioning TNW (samplings) files.&lt;/p&gt;
+      <description>&lt;p&gt;This page is an online version of the User Voice Manager, with the additional ability of loading and auditioning sample files.&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
     </item>
