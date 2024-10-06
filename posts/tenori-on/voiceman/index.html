@@ -68,17 +68,19 @@
 
 <p></p>
 
-<p>Yamaha provide a User Voice Manager which enables you to assemble WAV/AIFF sound files into Tenori-on specific sample files, for uploading onto your TNR. However, while the tool can create TNW files, it can&rsquo;t load them, so it is not possible to use it to audition the contents of previous created files. This page allows you to load TNW files and playback the contents.</p>
+<p>Yamaha provide a User Voice Manager which enables you to assemble WAV/AIFF sound files into Tenori-on specific sample files, for uploading onto your TNR. However, while the tool can create TNW files, it can&rsquo;t load them, so it is not possible to use it to audition the contents of previous created files. This page also allows you to load TNW files and playback the contents.</p>
 
-<p>This page also permits you to load audio (WAV) files and create TNW files for loading onto your TNR.</p>
+<p>Click on the &ldquo;Load TNW&rdquo; button to load an TNW samplings file. Once loaded, the audio can be played, saved (to an audio file) or removed.</p>
 
-<p>Click on the &ldquo;Load TNW&rdquo; button to load an TNW samplings file. Once loaded, the audio can be played, saved (to an audio file) or removed. Click on the number to load a WAV file into a slot.</p>
+<p>Alternatively, assemble your own samplings file from source WAV files; click on the number to load a WAV file into a slot, then save the samplings file with the &ldquo;Save TNW&rdquo; button.</p>
+
+<p>(Reminder - the 16 slots are associated with chromatic notes, so layers playing back samples should almost always be set to <em>Chromatic scale</em>, and <em>Allow Transpose = off</em>).</p>
 
 <p><strong>Limitations</strong></p>
 
 <ul>
 <li>Only WAV files are currently importable. Probably also only 16 bit, 44.1kHz, PCM. I haven&rsquo;t experimented to see what the TNR can actually decode.</li>
-<li>The audio is truncated to 0.97, just like the Yamaha software does. However, the Yamaha software fades out long samples; here I just cut them.</li>
+<li>The audio length is truncated to 0.97 seconds, just like the Yamaha software does. However, the Yamaha software fades out long samples; here I just cut them.</li>
 <li>My javascript is not great, so there are highly likely to be bugs, especially cross-browser ones. I understand that Safari may not work.</li>
 </ul>
 
