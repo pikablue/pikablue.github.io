@@ -1,6 +1,7 @@
 // v1 : Audition only
 // v2 : TNW saving
 
+const VERSION = "Voice Manager v2 11/10/24";
 // ==========================================================
 // Global Variable declarations
 const DEBUG = true;
@@ -103,7 +104,7 @@ async function fnFetchHeader() {
 			throw new Error(`Response status: ${response.status}`);
 		}
 		headerTNW = await response.arrayBuffer();
-		if (DEBUG) {console.log(headerTNW);}
+		if (DEBUG) {console.log("Fetched header");}
 	} catch (error) {
 		console.error(error.message);
 	}
@@ -177,8 +178,9 @@ function fnWavCheck(n,ab) {
 		return;
 	}
 	
-	// Copy the header over
-	dataWAVadd(n-1,ab.slice(0,12));
+	// Set the file to the header
+	dataWAV[n-1] = ab.slice(0,12);
+
 
 	
 	let inptr = 12;		// the dataptr to the first header
@@ -190,11 +192,22 @@ function fnWavCheck(n,ab) {
 	let bits = 0;
 	let audiolength = 0;
 	
-	while (inptr<ab.byteLength) {		
+	// make sure we have enough bytes to read the format ID
+	while (inptr<(ab.byteLength-8)) {		
 		temp = wavView.getUint32(inptr,false);
 		let hlen = wavView.getUint32(inptr+4,true)+8;
+
 		if ( fnChunkName(temp) == "fmt " ) { 
+		
 			if (DEBUG)  {console.log("SubchunkID is fmt");}
+			
+			// check that the file contains all the format
+			if (hlen+inptr > ab.byteLength) {
+				console.log("Incomplete subchunk in file");
+				break;
+			}
+		
+			// Parse the fmt chunk
 			audioformat = wavView.getUint16(inptr+8,true);	// PCM=1
 			channels = wavView.getUint16(inptr+10,true);	// mono or stereo
 			rate = wavView.getUint32(inptr+12,true);		// 
@@ -207,29 +220,56 @@ function fnWavCheck(n,ab) {
 			if (DEBUG)  {console.log("SubchunkID is data");}
 			audiolength = hlen-8;	// reported length
 			// check that this doesn't go beyond the file!
+			let truncated = false;
 			if (hlen+inptr > ab.byteLength) {
 				audiolength = ab.byteLength-inptr-8;
-				console.log("Reported length <"+(hlen-8)+"> is not the actual length <"+audiolength+">");
+				console.log("Reported length of audio <"+(hlen-8)+"> exceeds the audio in the file <"+audiolength+">");
 				console.log("Truncating...");
 				wavView.setUint32(inptr+4,audiolength,true);
+				truncated = true;
 			}
 			// Truncate the WAV file to 171168 = 0x29CA0 bytes (TNR max)
 			let maxwav = 171168;
 			
 			if (audiolength>maxwav) {
-				console.log("Truncating WAV file from "+audiolength+ " to maximum "+maxwav);
+				console.log("Truncating WAV file audio from "+audiolength+ " to maximum "+maxwav);
 				audiolength = maxwav;
 				wavView.setUint32(inptr+4,audiolength, true);
+				truncated = true;
 			}
-			// Copy the header over and move the output along
+			// we scale fast over the last 500 samples (usually 0.01s)
+			if (truncated === true) {
+				console.log("Fading volume to avoid clip");
+				let nsamples = 1000;
+				let loc = inptr+audiolength+8;
+				for (let i=0;i<nsamples;i++) {
+					loc -= 2*channels;
+					let frac = i/nsamples;
+					let v = wavView.getInt16(loc,true);
+					wavView.setInt16(loc,v*frac,true);
+					if (channels==2) {
+						v = wavView.getInt16(loc+2,true);
+						wavView.setInt16(loc+2,v*frac,true);
+					}
+				}
+					
+			}
+			// Copy the chunk header over and move the output along
 			dataWAVadd(n-1,ab.slice(inptr,inptr+audiolength+8));
 			outptr+=audiolength+8 ;
+			// Fade the volume down if we are truncating to avoid pops
+
+
+			
+			// We might as well skip the rest of the file
+			break;
 
 		} else {
-			console.log("Unrecognized subchunk : "+ fnChunkName(temp) );
+			console.log("Unrecognized subchunk : "+ fnChunkName(temp) +", jumping to "+ inptr+hlen + " (length is "+ab.byteLength+")");
 		}
 		// jump to next chunk
 		inptr += hlen;
+
 	}
 				
 	if (DEBUG) {
@@ -262,7 +302,7 @@ function fnWavInput(n, inputFile) {
 	}
 	
 	// Check for extension
-	if ( inputFile.name.split('.').pop() != "wav" ) {
+	if ( inputFile.name.split('.').pop().toUpperCase() != "WAV" ) {
 		window.alert("Only WAV files can be loaded at present");
 		return;
 	}
@@ -281,7 +321,7 @@ function fnWavInput(n, inputFile) {
 		if (document.getElementById("play"+n).disabled == true) {
 			numberLoaded = numberLoaded+1;
 		}
-		if (DEBUG) {console.log(numberLoaded);}
+		if (DEBUG) {console.log("Slots in use : "+numberLoaded);}
 
 		// Add into the name
 		document.getElementById("file"+n).textContent = inputFile.name.split('.')[0];
@@ -366,7 +406,7 @@ function fnDeadWav(e) {
 	if (numberLoaded == 0) {
 		document.getElementById("saveTnw").disabled = true;
 	}
-	if (DEBUG) {console.log(numberLoaded);}
+	if (DEBUG) {console.log("Slots in use : "+numberLoaded);}
 
 }
 
@@ -703,6 +743,8 @@ for (let i = 0; i< dead.length; i++) {
 document.getElementById("saveTnw").addEventListener('click', function() { fnSaveTnw(); }, false );
 
 document.getElementById("loadTnw").addEventListener('click', function() { fnLoadTnw(); }, false );
+
+document.getElementById("scriptver").textContent = VERSION;
 
 // Load the TNW header
 fnFetchHeader();

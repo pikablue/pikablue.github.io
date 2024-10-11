@@ -80,11 +80,9 @@
 
 <ul>
 <li>Only WAV files are currently importable. Probably also only 16 bit, 44.1kHz, PCM. I haven&rsquo;t experimented to see what the TNR can actually decode.</li>
-<li>The audio length is truncated to 0.97 seconds, just like the Yamaha software does. However, the Yamaha software fades out long samples; here I just cut them.</li>
+<li>The audio length is truncated to 0.97 seconds, just like the Yamaha software does.</li>
 <li>My javascript is not great, so there are highly likely to be bugs, especially cross-browser ones. I understand that Safari may not work.</li>
 </ul>
-
-<p><strong>Voice Manager</strong></p>
 
 <style>
 button {
@@ -125,6 +123,8 @@ button:disabled, button[disabled=disabled] {
 
  </style>
  
+
+<p><div id="scriptver" class="fle" style="font-weight:bold">Not Loaded</div></p>
 
 <table>
 <thead>
