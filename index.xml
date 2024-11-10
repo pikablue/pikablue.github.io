@@ -12,23 +12,34 @@
     
     
     <item>
+      <title>Releases</title>
+      <link>http://pika.blue/posts/tenori-on/releases/</link>
+      <pubDate>Sun, 10 Nov 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/releases/</guid>
+      <description>&lt;p&gt;This page contains a link to the releases so far.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>File versions</title>
+      <link>http://pika.blue/posts/tenori-on/fileversions/</link>
+      <pubDate>Sat, 09 Nov 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/fileversions/</guid>
+      <description>&lt;p&gt;From release A040 onwards, files created by earlier versions of the firmware, including the Yamaha stock firmware, are correctly read.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>User Voice Manager</title>
       <link>http://pika.blue/posts/tenori-on/voiceman/</link>
       <pubDate>Sun, 06 Oct 2024 00:00:00 +0000</pubDate>
       
       <guid>http://pika.blue/posts/tenori-on/voiceman/</guid>
       <description>&lt;p&gt;This page is an online version of the User Voice Manager, with the additional ability of loading and auditioning sample files.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Releases</title>
-      <link>http://pika.blue/posts/tenori-on/releases/</link>
-      <pubDate>Sun, 22 Sep 2024 00:00:00 +0000</pubDate>
-      
-      <guid>http://pika.blue/posts/tenori-on/releases/</guid>
-      <description>&lt;p&gt;This page contains a link to the releases so far.&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
     </item>

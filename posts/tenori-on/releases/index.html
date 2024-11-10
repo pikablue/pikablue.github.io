@@ -58,7 +58,7 @@
 		<header class="post__header">
 			<h1 class="post__title">Releases</h1><div class="post__meta meta">
 <svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-<time class="post__meta-date meta-date" datetime="2024-09-22T00:00:00">September 22, 2024</time>
+<time class="post__meta-date meta-date" datetime="2024-11-10T00:00:00">November 10, 2024</time>
 <span class="post__meta-categories meta-categories">
 	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
 	<span class="meta-categories__list"><a class="meta-categories__link" href="../../../categories/tenori-on" rel="category">tenori-on</a></span>
@@ -113,7 +113,7 @@
 
 <p>The following then differs from the standard approach, because expected locations for things have moved around a bit.</p></li>
 
-<li><p>If the system hangs on startup (i.e. never moves on from the title screen), then you will need to do a TEST MODE Factory reset. This will remove any loaded samples and reset back to &ldquo;normal&rdquo; rather than &ldquo;advanced&rdquo; mode, but it is easy to put these back.</p>
+<li><p>If the system hangs on startup (i.e. never moves on from the title screen), then you will need to do a TEST MODE Factory reset. This will remove any loaded samples, but it is easy to put these back.</p>
 
 <ul>
 <li>Turn off, then turn on while holding [L1] and [CLEAR]. The text &ldquo;Test Mode&rdquo; and &ldquo;TEST&rdquo; will appear</li>
@@ -124,7 +124,7 @@
 <li><p>If the system didn&rsquo;t hang on startup, it is recommended to perform the &ldquo;normal&rdquo; factory reset, which is the same, but retains the user loaded samples. Use the <em>System Menu</em> to perform a Factory Reset. Recent release of the firmware have the TNR &ldquo;advanced mode&rdquo; permanently enabled, so you <em>won&rsquo;t</em> have to do [L1] + [L5] on startup to restore it following a factory reset.</p></li>
 </ol>
 
-<p>Note that, while I try to retain as much backward compatibility as possible, some releases will not play songs/layers/blocks from earlier releases (or the 2.10 release) correctly, since certain settings have changed.</p>
+<p>Release A040 provides backwards file compatibility. Releases prior to A040 will not play songs/layers/blocks from earlier releases (or the 2.10 release) correctly, since certain settings have changed.</p>
 
 <h2 id="liability-waiver">Liability Waiver !</h2>
 
@@ -174,10 +174,10 @@
 
 <tbody>
 <tr>
-<td>A039</td>
-<td>Rotary dial emulation<br>Bugfixes for 033</td>
-<td><a href="../../../posts/tenori-on/emulated/">Rotary dial emulation</a></td>
-<td><a href="../../../releases/A039.zip">A039 firmware</a></td>
+<td>A040</td>
+<td>Compatability with older files<br>Bugfixes for 034</td>
+<td><a href="../../../posts/tenori-on/fileversions/">File versions</a></td>
+<td><a href="../../../releases/A040.zip">A040 firmware</a></td>
 </tr>
 </tbody>
 </table>
@@ -211,6 +211,13 @@
 </thead>
 
 <tbody>
+<tr>
+<td>A039</td>
+<td>Rotary dial emulation<br>Bugfixes for 033</td>
+<td><a href="../../../posts/tenori-on/emulated/">Rotary dial emulation</a></td>
+<td><a href="../../../releases/A039.zip">A039 firmware</a></td>
+</tr>
+
 <tr>
 <td>A038</td>
 <td>Audition setting in SCR and RND<br>Screen echo to computer<br>Bugfixes for 031 and 032<br>Slightly improved user sample loading</td>
@@ -659,6 +666,13 @@
 <td>A038</td>
 <td>Fixed in A039</td>
 </tr>
+
+<tr>
+<td>034</td>
+<td>Song recording broken by encoder emulation update</td>
+<td>A039</td>
+<td>Fixed in A040</td>
+</tr>
 </tbody>
 </table>
 		</div>
@@ -685,10 +699,7 @@
 	
 <nav class="post-nav flex">
 	<div class="post-nav__item post-nav__item--prev">
-		<a class="post-nav__link" href="../../../posts/tenori-on/emulated/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Rotary Dial Emulation</p></a>
-	</div>
-	<div class="post-nav__item post-nav__item--next">
-		<a class="post-nav__link" href="../../../posts/tenori-on/voiceman/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">User Voice Manager</p></a>
+		<a class="post-nav__link" href="../../../posts/tenori-on/fileversions/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">File versions</p></a>
 	</div>
 </nav>
 	
@@ -698,18 +709,18 @@
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
-			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/voiceman/">User Voice Manager</a></li>
 			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/releases/">Releases</a></li>
+			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/fileversions/">File versions</a></li>
+			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/voiceman/">User Voice Manager</a></li>
 			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/emulated/">Rotary Dial Emulation</a></li>
 			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/auditionset/">Auditioning Mode</a></li>
-			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/screenecho/">Screen Echo</a></li>
 		</ul>
 	</div>
 </div>
 <div class="widget-taglist widget">
 	<h4 class="widget__title">Tags</h4>
 	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="../../../tags/new-features" title="New features">New features (34)</a>
+		<a class="widget-taglist__link widget__link btn" href="../../../tags/new-features" title="New features">New features (35)</a>
 		<a class="widget-taglist__link widget__link btn" href="../../../tags/project-plan" title="Project plan">Project plan (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="../../../tags/stock-features" title="Stock features">Stock features (3)</a>
 		<a class="widget-taglist__link widget__link btn" href="../../../tags/tools" title="Tools">Tools (2)</a>
