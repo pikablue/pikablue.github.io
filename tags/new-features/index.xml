@@ -6,10 +6,65 @@
     <description>Recent content in New Features on pika.blue</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 09 Nov 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 31 Dec 2024 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://pika.blue/tags/new-features/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Animations</title>
+      <link>http://pika.blue/posts/tenori-on/animations/</link>
+      <pubDate>Tue, 31 Dec 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/animations/</guid>
+      <description>&lt;p&gt;This change unlocks some existing animations in the TNR, and adds a few more. It also adds a &amp;ldquo;solo layer animation&amp;rdquo; feature.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Loop speed Meta Controllers</title>
+      <link>http://pika.blue/posts/tenori-on/meta_speeds/</link>
+      <pubDate>Tue, 31 Dec 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/meta_speeds/</guid>
+      <description>&lt;p&gt;This function adds two new meta controllers to set the Master Loop speed, and a targetted layer loop speed.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Loop speeds</title>
+      <link>http://pika.blue/posts/tenori-on/loopspeeds/</link>
+      <pubDate>Tue, 31 Dec 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/loopspeeds/</guid>
+      <description>&lt;p&gt;This change extends the number of available loop speeds from four to fifteen.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Scale Meta Controllers</title>
+      <link>http://pika.blue/posts/tenori-on/meta_scales/</link>
+      <pubDate>Tue, 31 Dec 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/meta_scales/</guid>
+      <description>&lt;p&gt;This function introduces three new meta controllers that provide control over the scales in use.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>MIDI Transport Controls</title>
+      <link>http://pika.blue/posts/tenori-on/transport/</link>
+      <pubDate>Mon, 30 Dec 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/transport/</guid>
+      <description>&lt;p&gt;This page discusses the TNR&amp;rsquo;s baseline MIDI transport implementation, and some extensions.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>File versions</title>
@@ -191,17 +246,6 @@
     </item>
     
     <item>
-      <title>MIDI Transport Controls</title>
-      <link>http://pika.blue/posts/tenori-on/transport/</link>
-      <pubDate>Thu, 15 Apr 2021 00:00:00 +0000</pubDate>
-      
-      <guid>http://pika.blue/posts/tenori-on/transport/</guid>
-      <description>&lt;p&gt;This page discusses the TNR&amp;rsquo;s baseline MIDI transport implementation, and some extensions.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
-    </item>
-    
-    <item>
       <title>XY layer type</title>
       <link>http://pika.blue/posts/tenori-on/xy/</link>
       <pubDate>Tue, 16 Mar 2021 00:00:00 +0000</pubDate>
@@ -351,17 +395,6 @@
       
       <guid>http://pika.blue/posts/tenori-on/perlayermidichannel/</guid>
       <description>This function adds the ability to set different midi channels per layer (including off)</description>
-    </item>
-    
-    <item>
-      <title>Animations</title>
-      <link>http://pika.blue/posts/tenori-on/animations/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://pika.blue/posts/tenori-on/animations/</guid>
-      <description>&lt;p&gt;This change unlocks some existing animations in the TNR, and adds a few more.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
     <item>

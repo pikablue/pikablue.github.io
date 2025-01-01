@@ -58,7 +58,7 @@
 		<header class="post__header">
 			<h1 class="post__title">MIDI Transport Controls</h1><div class="post__meta meta">
 <svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-<time class="post__meta-date meta-date" datetime="2021-04-15T00:00:00">April 15, 2021</time>
+<time class="post__meta-date meta-date" datetime="2024-12-30T00:00:00">December 30, 2024</time>
 <span class="post__meta-categories meta-categories">
 	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
 	<span class="meta-categories__list"><a class="meta-categories__link" href="../../../categories/tenori-on" rel="category">tenori-on</a></span>
@@ -141,7 +141,7 @@
      </tbody>
 </table>
 
-<p><sup>1</sup>: Song position pointer is interpreted as the playing position within the current block, not as a block change. The response to a SPP message of F2 0Y 00 is to set the playing position to Y. The last, MSByte, is ignored, which is always strange since this would have been a perfect vehicle for a block change byte.</p>
+<p><sup>1</sup>: Song position pointer is interpreted as the playing position within the current block, not as a block change. The response to a SPP message of F2 YY 00 is to set the playing position to YY. YY can take values of 00 to 7F, this is used as the position in the current block, wrapping around the size of the block, so for most blocks of 16 positions, only the LS nibble of the YY value is used. For ScoreX, the whole value is used.</p>
 
 <p><sup>2</sup>: The correct response to a &ldquo;Start&rdquo; message is to restart with song position 0, i.e. at the start of the block. However the TNR just treats Start the same as Continue</p>
 
@@ -186,7 +186,7 @@
 
 <li><p>Selection of Song Position Pointer Message Byte</p>
 
-<p>Not all sources can generate F3 song position pointer messages, so this option permits Control Change messages to be used instead, using any of CC 52-63 (usually undefined). Receipt of one of these CC messages on any midi channel is interpeted as a Song Position pointer. The encoding is the same as the LSByte of the SPP message, i.e. for CC 52 (0x34) this would now be be <code>B0 34 0Y</code> instead of <code>F3 0Y 00</code></p>
+<p>Not all sources can generate F2 song position pointer messages, so this option permits Control Change messages to be used instead, using any of CC 52-63 (usually undefined). Receipt of one of these CC messages on any midi channel is interpeted as a Song Position pointer. The encoding is the same as the LSByte of the SPP message, i.e. for CC 52 (0x34) this would now be be <code>B0 34 0Y</code> instead of <code>F3 0Y 00</code></p>
 
 <table>
 <thead>
@@ -227,6 +227,10 @@
 <li><p>Compliant behaviour in SLAVE mode</p>
 
 <p>In slave mode, receiving <code>FA</code> Start messages will result in the song position pointer going to zero and then starting. Both these behaviors are compliant to the MIDI specification.</p></li>
+
+<li><p>Song position pointer message (F2) second byte</p>
+
+<p>The second byte of the SPP message will act as a &ldquo;go to next loop position&rdquo; for those layers whose loop speed has been set to &ldquo;MIDI&rdquo;. A value of 1 or 2 causes this to happen. So <code>F2 yY 01</code> ignores the yY value and just causes all MIDI loop speed layers to advance, wheras <code>F2 yY 02</code> sets the loop position AND causes all MIDI loop speed layers to advance.</p></li>
 </ol>
 
 <p>Together, this changes the table as follows:</p>
@@ -309,7 +313,7 @@
 
 <h2 id="releases">Releases</h2>
 
-<p>First included in A023; start message made MIDI compliant in A028</p>
+<p>First included in A023; start message made MIDI compliant in A028. F2 message extended slightly for A041.</p>
 		</div>
 		
 <div class="post__tags tags clearfix">
@@ -335,10 +339,10 @@
 	
 <nav class="post-nav flex">
 	<div class="post-nav__item post-nav__item--prev">
-		<a class="post-nav__link" href="../../../posts/tenori-on/xy/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">XY layer type</p></a>
+		<a class="post-nav__link" href="../../../posts/tenori-on/fileversions/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">File versions</p></a>
 	</div>
 	<div class="post-nav__item post-nav__item--next">
-		<a class="post-nav__link" href="../../../posts/tenori-on/hardware/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">TNR Hardware</p></a>
+		<a class="post-nav__link" href="../../../posts/tenori-on/meta_scales/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Scale Meta Controllers</p></a>
 	</div>
 </nav>
 	
@@ -349,17 +353,17 @@
 	<div class="widget__content">
 		<ul class="widget__list">
 			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/releases/">Releases</a></li>
-			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/fileversions/">File versions</a></li>
-			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/voiceman/">User Voice Manager</a></li>
-			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/emulated/">Rotary Dial Emulation</a></li>
-			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/auditionset/">Auditioning Mode</a></li>
+			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/animations/">Animations</a></li>
+			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/meta_speeds/">Loop speed Meta Controllers</a></li>
+			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/loopspeeds/">Loop speeds</a></li>
+			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/meta_scales/">Scale Meta Controllers</a></li>
 		</ul>
 	</div>
 </div>
 <div class="widget-taglist widget">
 	<h4 class="widget__title">Tags</h4>
 	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="../../../tags/new-features" title="New features">New features (35)</a>
+		<a class="widget-taglist__link widget__link btn" href="../../../tags/new-features" title="New features">New features (38)</a>
 		<a class="widget-taglist__link widget__link btn" href="../../../tags/project-plan" title="Project plan">Project plan (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="../../../tags/stock-features" title="Stock features">Stock features (3)</a>
 		<a class="widget-taglist__link widget__link btn" href="../../../tags/tools" title="Tools">Tools (2)</a>
@@ -380,7 +384,7 @@
 		</div>
 		<footer class="footer">
 	<div class="container container-inner">
-		<div class="footer__copyright">&copy; 2024 pika.blue. <span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and a modified <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span></div>
+		<div class="footer__copyright">&copy; 2025 pika.blue. <span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and a modified <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span></div>
 	</div>
 </footer>
 
