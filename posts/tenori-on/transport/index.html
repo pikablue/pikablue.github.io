@@ -58,7 +58,7 @@
 		<header class="post__header">
 			<h1 class="post__title">MIDI Transport Controls</h1><div class="post__meta meta">
 <svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-<time class="post__meta-date meta-date" datetime="2024-12-30T00:00:00">December 30, 2024</time>
+<time class="post__meta-date meta-date" datetime="2025-03-21T00:00:00">March 21, 2025</time>
 <span class="post__meta-categories meta-categories">
 	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
 	<span class="meta-categories__list"><a class="meta-categories__link" href="../../../categories/tenori-on" rel="category">tenori-on</a></span>
@@ -75,10 +75,11 @@
 <li>MIDI Continue (0xFB)</li>
 <li>MIDI Stop (0xFC)</li>
 <li>MIDI Song Position Pointer (0xF2)</li>
+<li>MIDI Timing clock (0xF8)</li>
 <li>MIDI Block Change message</li>
 </ul>
 
-<h2 id="behavior-of-stock-firmware-v2-10">Behavior of Stock Firmware (v2.10)</h2>
+<h2 id="behavior-of-stock-firmware-v2-10-to-incoming-messages">Behavior of Stock Firmware (v2.10) to incoming messages</h2>
 
 <p>The standard response to the MIDI transport controls is largely compliant to the MIDI specification.</p>
 
@@ -92,7 +93,7 @@
     </colgroup>
     <thead>
         <tr>
-            <th colspan=2>Message</th>
+            <th colspan=2>Incoming Message</th>
             <th colspan=2>Slave</th>
             <th colspan=2>Master</th>
         </tr>
@@ -138,7 +139,15 @@
             <td>No</td>
             <td>No</td>
         </tr>
-     </tbody>
+         <tr>
+            <td>Timing Clock</td>
+            <td>0xF8</td>
+            <td>Yes</td>
+            <td>No</td>
+            <td>No</td>
+            <td>No</td>
+        </tr>
+        </tbody>
 </table>
 
 <p><sup>1</sup>: Song position pointer is interpreted as the playing position within the current block, not as a block change. The response to a SPP message of F2 YY 00 is to set the playing position to YY. YY can take values of 00 to 7F, this is used as the position in the current block, wrapping around the size of the block, so for most blocks of 16 positions, only the LS nibble of the YY value is used. For ScoreX, the whole value is used.</p>
@@ -148,7 +157,7 @@
 <pre><code>ASIDE : in Master mode, the TNR will produce Stop messages when stopped, and produce Start (FA) messages when started. This is non compliant - it should produce Continue (FB) messages when started since it doesn't restart from song position zero.
 </code></pre>
 
-<h2 id="behavior-of-new-firmware-releases-since-a025">Behavior of New Firmware (releases since A025)</h2>
+<h2 id="behavior-of-new-firmware-releases-since-a025-to-incoming-messages">Behavior of New Firmware (releases since A025) to incoming messages</h2>
 
 <p>Several new features have been added to manage MIDI transport, allowing the TNR to become more non-compliant to the specification, but enabling better integration with DAWs and other MIDI transport aware hardware.</p>
 
@@ -243,7 +252,7 @@
     </colgroup>
     <thead>
         <tr>
-            <th colspan=2>Message</th>
+            <th colspan=2>Incoming Message</th>
             <th colspan=2>Slave (assuming MIDI Transport is not set to "OFF")</th>
             <th colspan=2>Master (assuming MIDI Transport is set to "Master+Slave")</th>
         </tr>
@@ -296,10 +305,93 @@
             <td>Yes</td>
             <td>Yes</td>
             <td>Yes</td>
-        </tr>     </tbody>
+        </tr>
+       <tr>
+            <td>Timing Clock</td>
+            <td>0xF8</td>
+            <td>Yes</td>
+            <td>No</td>
+            <td>No</td>
+            <td>No</td>
+        </tr>
+        
+        
+        </tbody>
 </table>
 
 <p><sup>1</sup>: Receipt of the MIDI &ldquo;Start&rdquo; message also sets the Song position pointer to zero.</p>
+
+<h2 id="transport-messages-output">Transport messages output</h2>
+
+<p>Normally, MIDI transport messages are generated and output by the TNR when in master mode, and not transmitted at all in slave mode.</p>
+
+<p>There are some circumstances in which, in slave mode, incoming MIDI transport messages are needed to be retransmitted to MIDI out. For example, if the MIDI setup is daisy chained with the TNR in the middle of a chain.</p>
+
+<p>A new menu item has been added to perform MIDI Thru for selected transport messages when in slave mode. This is located under the MIDI menu and permits 4 options:</p>
+
+<ul>
+<li>Off : the default option; nothing is retransmitted in slave mode</li>
+<li>F8 only : MIDI Timing Clock messages are retransmitted</li>
+<li>FA+FB+FC : Incoming Start/Continue/Stop messages are retransmitted</li>
+<li>All : F8 (Timing Clock), FA (Start), FB (Continue) and FC (Stop) are retransmitted.</li>
+</ul>
+
+<table>
+<thead>
+<tr>
+<th><img src="../../../images/midithrumenu.png" alt="" title="MIDI menu item" /></th>
+<th><img src="../../../images/midithruselect.png" alt="" title="Selecting FA+FB+FC" /></th>
+</tr>
+</thead>
+
+<tbody>
+</tbody>
+</table>
+
+<p>In Master mode, these messages are automatically generated by the TNR, but not passed through, unless MIDI Transport is set to [Slave+Master] as above. This results in the following behavior:</p>
+
+<table>
+    <colgroup>
+        <col span=2>
+        <col span=2 style="background-color: AliceBlue">
+        <col span=2 style="background-color: LightBlue">
+    </colgroup>
+    <thead>
+        <tr>
+            <th colspan=2>Outgoing Message</th>
+            <th colspan=2>Slave</th>
+            <th colspan=2>Master</th>
+        </tr>
+        <tr style="border-bottom: 2px solid">
+            <th>Name</th>
+            <th>Byte</th>
+            <th>Generated</th>
+            <th>Retransmitted</th>
+            <th>Generated</th>
+            <th>Retransmitted</th>
+            </tr>
+    </thead>
+    <tbody style="text-align:center">
+        <tr >
+            <td>Start/Continue/Stop</td>
+            <td>0xFA/FB/FC</td>
+            <td>No</td>
+            <td>Depending on MIDI Thru (Slave) settings</td>
+            <td>Yes, on start/stop</td>
+            <td>Depending on MIDI Transport mode settings</td>
+        </tr>
+        <tr>
+            <td>Timing clock</td>
+            <td>0xF8</td>
+            <td>No</td>
+            <td>Depending on MIDI Thru (Slave) settings</td>
+            <td>Yes, when playing</td>
+            <td>No</td>
+       </tr>
+        </tbody>
+</table>
+
+<p>Since this feature is performed in software, there may be some delay between the receipt of Timing Clock messages and them being retransmitted.</p>
 
 <h2 id="compatibility-issues">Compatibility Issues</h2>
 
@@ -313,7 +405,7 @@
 
 <h2 id="releases">Releases</h2>
 
-<p>First included in A023; start message made MIDI compliant in A028. F2 message extended slightly for A041.</p>
+<p>First included in A023; start message made MIDI compliant in A028. F2 message extended slightly for A041. MIDI Thru (Slave) in A042</p>
 		</div>
 		
 <div class="post__tags tags clearfix">
@@ -339,10 +431,10 @@
 	
 <nav class="post-nav flex">
 	<div class="post-nav__item post-nav__item--prev">
-		<a class="post-nav__link" href="../../../posts/tenori-on/fileversions/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">File versions</p></a>
+		<a class="post-nav__link" href="../../../posts/tenori-on/animations/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Animations</p></a>
 	</div>
 	<div class="post-nav__item post-nav__item--next">
-		<a class="post-nav__link" href="../../../posts/tenori-on/meta_scales/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Scale Meta Controllers</p></a>
+		<a class="post-nav__link" href="../../../posts/tenori-on/gridmode/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Grid Layer Mode</p></a>
 	</div>
 </nav>
 	
@@ -353,17 +445,17 @@
 	<div class="widget__content">
 		<ul class="widget__list">
 			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/releases/">Releases</a></li>
+			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/gridmode/">Grid Layer Mode</a></li>
+			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/transport/">MIDI Transport Controls</a></li>
 			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/animations/">Animations</a></li>
 			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/meta_speeds/">Loop speed Meta Controllers</a></li>
-			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/loopspeeds/">Loop speeds</a></li>
-			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/meta_scales/">Scale Meta Controllers</a></li>
 		</ul>
 	</div>
 </div>
 <div class="widget-taglist widget">
 	<h4 class="widget__title">Tags</h4>
 	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="../../../tags/new-features" title="New features">New features (38)</a>
+		<a class="widget-taglist__link widget__link btn" href="../../../tags/new-features" title="New features">New features (39)</a>
 		<a class="widget-taglist__link widget__link btn" href="../../../tags/project-plan" title="Project plan">Project plan (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="../../../tags/stock-features" title="Stock features">Stock features (3)</a>
 		<a class="widget-taglist__link widget__link btn" href="../../../tags/tools" title="Tools">Tools (2)</a>

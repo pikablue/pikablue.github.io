@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Rotary Dial Emulation</title>
+	<title>Grid Layer Mode</title>
 	<meta name="description" content="">
 	<meta name="generator" content="Hugo 0.48" />
 	
@@ -56,29 +56,31 @@
 <main class="main content">
 	<article class="post">
 		<header class="post__header">
-			<h1 class="post__title">Rotary Dial Emulation</h1><div class="post__meta meta">
+			<h1 class="post__title">Grid Layer Mode</h1><div class="post__meta meta">
 <svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-<time class="post__meta-date meta-date" datetime="2024-09-21T00:00:00">September 21, 2024</time>
+<time class="post__meta-date meta-date" datetime="2025-03-22T00:00:00">March 22, 2025</time>
 <span class="post__meta-categories meta-categories">
 	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
 	<span class="meta-categories__list"><a class="meta-categories__link" href="../../../categories/tenori-on" rel="category">tenori-on</a></span>
 </span></div>
 		</header><div class="post__content clearfix">
-			<p>This function permits use of LED buttons instead of the rotary dial, for situations where the rotary encoder is failing.</p>
+			<p>This function adds a layer mode for interacting directly with external hardware, e.g. the Norns device.</p>
 
 <p></p>
 
-<p>A jumpy rotary dial is an unfortunate feature of ageing TNRs. Firmware efforts have been made to improve the situation (See XXX), but in many cases, this is not sufficient. The encoder is repairable, but this requires some electronics skill and a degree of bravery&hellip;</p>
+<p>The Grid layer is a simple layer type that generates MIDI messages when LED switches are pressed, and lights up LEDs in response to incoming MIDI messages. It allows the TNR to be used as a control surface for other hardware. It was originally aimed at the <a href="https://monome.org/docs/norns/" title="Monome Norns">Monome Norns</a>, via the <a href="https://llllllll.co/t/midigrid-use-launchpads-midi-grid-controllers-with-norns/42336" title="midigrid">midigrid</a> interface, but can be used as an interface to Ableton, other hardware, etc.</p>
 
-<p>Unfortunately, the rotary encoder is the only way to navigate the menu and access most menu items. This feature allows LED presses to be used instead, where pressing in the top half of the button grid moves the menu item up, and the bottom half moves it down.</p>
+<p>The Grid layer generates no sounds itself.</p>
 
-<p>This feature can be enabled and disabled via the System menu, under the setting &ldquo;Rotary Emulation&rdquo;</p>
+<p>This page provides the details of the TNR side of the interface. For implementing with midigrid, a specific Lua script is needed, this was developed and tested by PAKL and is hosted <a href="https://github.com/plaurent/tenori-norns">here</a>.</p>
+
+<p>Grid layer mode is selected in the same way as Score/Random etc., by going into the Layer menu, and changing the mode:</p>
 
 <table>
 <thead>
 <tr>
-<th><img src="../../../images/systemrotarymenu.png" alt="" title="System menu" /></th>
-<th><img src="../../../images/rotaryemulation.png" alt="" title="Setting Rotary Emulation" /></th>
+<th><img src="../../../images/layermode.png" alt="" title="Layer Mode" /></th>
+<th><img src="../../../images/grid_set.png" alt="" title="Selecting Grid" /></th>
 </tr>
 </thead>
 
@@ -86,15 +88,72 @@
 </tbody>
 </table>
 
-<p>Importantly, this feature can also be force enabled by simultaneously holding [R1] and [R2] during power-on; this is used in the catch-22 case where activating the feature via the menu is not possible since the rotary encoder is so bad&hellip;</p>
+<p>When keys are pressed, Grid mode will send out MIDI messages on the channel selected under Layer/MIDI channel. LEDs are illuminated based on messages received with MIDI channel matching the layer number. For this reason, it is important to make sure that the Outgoing Layer MIDI channel matches the layer number.</p>
 
-<p>If the feature is enabled, the boot-up screen replaces the text &ldquo;Advance&rdquo; with &ldquo;Emulate&rdquo;.</p>
+<table>
+<thead>
+<tr>
+<th><img src="../../../images/midichannel.png" alt="" title="Midi Channel Menu" /></th>
+<th><img src="../../../images/midichannelchoose.png" alt="" title="Setting Channel 1" /></th>
+</tr>
+</thead>
 
-<p>Note that when active, the TNR default behavior changes : normally, LED presses while the menu is active result in notes being played on the grid, but when this feature is active, this will not happen since the LED presses are interpreted as</p>
+<tbody>
+</tbody>
+</table>
+
+<p>The rest of this page assumes that the Grid layer is layer 1, and the MIDI channel is set to 1.</p>
+
+<h2 id="led-messaging">LED Messaging</h2>
+
+<p>The top half and the bottom half of the LED grid generate and respond to different messages (this is required because the MIDI specification limits note numbers to 128).</p>
+
+<p>The top half generates MIDI Note on messages with velocity=127 (0x90 nn 7F), with nn being 0x00 to 0x7F, when LEDs are pressed, and MIDI Note On messages with velocity 0 (0x90 nn 00) when the LED is released. &lsquo;nn&rsquo; here is the MIDI note, running from 0x00 to 0x7F. Note that the MIDI specification interprets Note-on with velocity zero as note off (0x80).</p>
+
+<p>Similarly, the LEDs in the tophalf respond to incoming Note on messages. The incoming velocity is interpreted as brightness, with 0 meaning off, 1-63 / 64-97 / 98-127 meaning brigthness 1/2/3 respectively.</p>
+
+<p>The bottom half generates MIDI Polyphonic Aftertouch (0xA0) messages, with similar logic : keypresses generate 0xA0 nn 7F and releases generate 0xA0 nn 00. LEDs light up in response to the same messages with the amount of aftertouch setting the brightness in the same way.</p>
+
+<h2 id="other-keys">Other keys</h2>
+
+<p>The OK/Cancel and [R1]-[R5] keys work in the normal TNR way. The Clear button, and [L1]-[L5] keys are not useful in the Grid layer, so they generate MIDI messages in case the external device can make use of them. The messaging uses a new Grid Control Change 0x55 (85 decimal), with codeing</p>
+
+<ul>
+<li>0xB0 55 jk</li>
+<li>j = 0 means button released, j = 1 means button pressed</li>
+<li>k = button ID, 0x4=Clear, 0xA=L1, 0xB=L2,&hellip;, 0xE=L5</li>
+</ul>
+
+<p><img src="../../../images/gridnotes.png" alt="Grid messages" title="Grid messages" /></p>
+
+<h2 id="configuration-message">Configuration message</h2>
+
+<p>The same CC message is used with a different meaning</p>
+
+<ul>
+<li>0xB0 55 40 : Clear all LEDs</li>
+<li>0xB0 55 41 : Set this layer (1) to Grid type</li>
+<li>0xB0 55 42 : Set the outbound midi channel on this layer to the same as the number (1)</li>
+<li>0xB0 55 43 : Equivalent to 0x41 + 0x42</li>
+<li>0xB0 55 44 : Change the visible layer to this one</li>
+<li>0xB0 55 45 : Equivalent to 0x44 + 0x41</li>
+<li>0xB0 55 46 : Equivalent to 0x44 + 0x42</li>
+<li>0xB0 55 47 : Equivalent to 0x44 + 0x42 + 0x41</li>
+</ul>
+
+<p>The last is a expected to be the most useful one when connecting to an external device.</p>
+
+<h2 id="other-remarks">Other remarks</h2>
+
+<p>It is highly recommended to disable the TNR&rsquo;s on-board screensaver feature, in order to prevent confusion if this and the norns are both running. This is disabled by selecting the &ldquo;Saver Time&rdquo; submenu found under the &ldquo;Interior&rdquo;, and setting the time to &ldquo;Off&rdquo;.</p>
+
+<h2 id="compatibility-issues">Compatibility Issues</h2>
+
+<p>None known.</p>
 
 <h2 id="releases">Releases</h2>
 
-<p>First included in A039.</p>
+<p>First included in A042</p>
 		</div>
 		
 <div class="post__tags tags clearfix">
@@ -119,10 +178,10 @@
 	
 <nav class="post-nav flex">
 	<div class="post-nav__item post-nav__item--prev">
-		<a class="post-nav__link" href="../../../posts/tenori-on/auditionset/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Auditioning Mode</p></a>
+		<a class="post-nav__link" href="../../../posts/tenori-on/transport/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">MIDI Transport Controls</p></a>
 	</div>
 	<div class="post-nav__item post-nav__item--next">
-		<a class="post-nav__link" href="../../../posts/tenori-on/voiceman/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">User Voice Manager</p></a>
+		<a class="post-nav__link" href="../../../posts/tenori-on/releases/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Releases</p></a>
 	</div>
 </nav>
 	
