@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>TNR Power On Buttons</title>
+	<title>Direction change</title>
 	<meta name="description" content="">
 	<meta name="generator" content="Hugo 0.48" />
 	
@@ -56,9 +56,9 @@
 <main class="main content">
 	<article class="post">
 		<header class="post__header">
-			<h1 class="post__title">TNR Power On Buttons</h1><div class="post__meta meta">
+			<h1 class="post__title">Direction change</h1><div class="post__meta meta">
 <svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-<time class="post__meta-date meta-date" datetime="2019-08-31T00:00:00">August 31, 2019</time>
+<time class="post__meta-date meta-date" datetime="2025-10-11T00:00:00">October 11, 2025</time>
 <span class="post__meta-categories meta-categories">
 	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
 	<span class="meta-categories__list"><a class="meta-categories__link" href="../../../categories/tenori-on" rel="category">tenori-on</a></span>
@@ -66,104 +66,82 @@
 		</header><div class="post__content clearfix">
 			
 
-<p>This page describes the behaviour of the TNR when certain buttons are held down on power up/boot. Most of these require a degree of finger flexibility (or a friend) since they aren&rsquo;t easy to actually do.</p>
+<p>This function allows Score, Random and Draw type layers to change their playing direction.</p>
 
-<h2 id="safe-to-execute">Safe to execute</h2>
+<p>This optional layer setting allows layer types that have a sense of playing direction to reverse their playing direction, or cycle forwards/backwards, or play through once only.</p>
 
-<table>
-<thead>
-<tr>
-<th>Combination</th>
-<th>Name</th>
-<th>Description</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>[OK] &amp; [CANCEL]</td>
-<td>&ldquo;ROM Update&rdquo;</td>
-<td>Allows new &ldquo;Main&rdquo;/TLCS firmware to be loaded. This is how Yamaha update the firmware (e.g. to v210) and can be rolled back if required.</td>
-</tr>
-
-<tr>
-<td>[L1] &amp; [L5]</td>
-<td>&ldquo;Advanced Mode&rdquo;</td>
-<td>Enters advanced mode, allowing the layer types (Score/Random etc.) to be changed</td>
-</tr>
-
-<tr>
-<td>[L1] &amp; [CLEAR]</td>
-<td>&ldquo;Test Mode&rdquo;</td>
-<td>This is described in the service manual. This provides a menu to a series of inbuilt tests that a service engineer can use to diagnose an issue.</td>
-</tr>
-
-<tr>
-<td>[L2] &amp; [CLEAR]</td>
-<td>&ldquo;Auto test mode&rdquo;</td>
-<td>Runs through all the tests one by one</td>
-</tr>
-
-<tr>
-<td>[L3] &amp; [CLEAR]</td>
-<td>&ldquo;DAC test&rdquo;</td>
-<td>Runs a DAC test (produces a continuous loud tone until you turn it off)</td>
-</tr>
-
-<tr>
-<td>[R5] &amp; [CANCEL]</td>
-<td>Boot test output</td>
-<td>Outputs the results of the boot ROM test</td>
-</tr>
-
-<tr>
-<td>[R5] &amp; [CLEAR]</td>
-<td>&ldquo;Normal mode&rdquo;</td>
-<td>Cancels the advanced mode setting, back to normal mode</td>
-</tr>
-</tbody>
-</table>
-
-<h2 id="not-safe-to-execute">Not Safe to execute</h2>
-
-<p>The following ones provide ways of updating other sections of the ROM. I have an image of the boot code, and of the Tone generator code (and default sounds). The TG program and TG sounds are probably safe to load, but I haven&rsquo;t tried it yet, hence the caution. Updating the &ldquo;Main Prog&rdquo; is extremely dangerous, since the &ldquo;Main Prog&rdquo; is in fact responsible for providing its own update - i.e. if you corrupt the Main Prog, there is no way of recovering your TNR. <strong>Updating this will brick your TNR</strong>.</p>
+<p>This function is found under the Layer menu:</p>
 
 <table>
 <thead>
 <tr>
-<th>Combination</th>
-<th>Name</th>
-<th>Description</th>
+<th><img src="../../../images/layerdirection.png" alt="" title="Layer direction" /></th>
+<th><img src="../../../images/direction.png" alt="" title="Selecting direction" /></th>
 </tr>
 </thead>
 
 <tbody>
-<tr>
-<td>[R1] &amp; [CANCEL]</td>
-<td>&ldquo;Main Prog Update&rdquo;</td>
-<td>This updates the boot code of the TNR.</td>
-</tr>
-
-<tr>
-<td>[R2] &amp; [CANCEL]</td>
-<td>&ldquo;TG Prog Update&rdquo;</td>
-<td>This updates the code running on the SWL01 (the Tone Generator).</td>
-</tr>
-
-<tr>
-<td>[R3] &amp; [CANCEL]</td>
-<td>&ldquo;TG Wave Update&rdquo;</td>
-<td>This updates the instrument definitions running on the SWL01, as well as (via a separate file) the names of the instruments.</td>
-</tr>
 </tbody>
 </table>
+
+<p>This provides 6 direction options:</p>
+
+<ul>
+<li><p>Forwards : This is the default behavior in the stock Yamaha firmware</p>
+
+<ul>
+<li>Score : The play head moves between the loop points from left to right. After reaching the right hand loop point it jumps back to the left hand loop point.</li>
+<li>Random : The play head moves in order from the first entered note, to the second entered note, etc. . After reaching the last entered note, the play head moves towards the first entered note.</li>
+<li>Draw : The notes play in order as entered.</li>
+</ul></li>
+
+<li><p>Backwards : This is the opposite of the above behavior.</p>
+
+<ul>
+<li>Score : The play head moves between the loop points from right to left. After reaching the left hand loop point it jumps back to the right hand loop point.</li>
+<li>Random : The play head moves from the last entered note to the first entered note. After reaching the first entered note, the play head moves towards the last entered note.</li>
+<li>Draw : The notes play in reverse order of entry.</li>
+</ul></li>
+
+<li><p>Cycle : The playing direction oscillates between forwards and backwards.</p>
+
+<ul>
+<li>Score : The play head moves between the loop points, reversing direction at the start or end of the loop. The first/last note are repeated (in order to maintain layer synchronisation).</li>
+<li>Random : In the forwards direction, after playing the last entered note and looping to the first entered note, the direction changes to backwards. In the backwards direction, after playing the first entered note, the direction changes to forwards. The first and last note are not repeated.</li>
+<li>Draw : The notes first play in the order of entry. After reaching the end of the draw &ldquo;bar&rdquo;, the direction of travel reverses. This maintains synchronisation.</li>
+</ul></li>
+
+<li><p>Bounce : The playing direction oscillates between forwards and backwards.</p>
+
+<ul>
+<li>Score : Same as Cycle, but the first/last note are not repeated. This will break layer synchronisation.</li>
+<li>Random : The same as cycle, but in the forwards direction, after immediately playing the last entered note, the direction changes to backwards. This will potentially break synchronisation.</li>
+<li>Draw : The notes first play in the order of entry. After reaching the last played note, the direction of travel reverses. NB : If the pattern entered in draw is longer than 1 bar, strange things happen : the inversion happens at the first played note, i.e. overlaps are not played.</li>
+</ul></li>
+
+<li><p>Forwards Once : The loop is only played once, in the forwards direction. The play head position is reset on a block change or stop/start.</p></li>
+
+<li><p>Backwards Once : The loop is only played once, in the backwards direction. The play head position is reset on a block change or stop/start.</p></li>
+</ul>
+
+<p>Note that layer direction changes are triggered at the end of the playing bar.</p>
+
+<p>The layer direction can be also changed using the key combination [L4]+[R4]. This changes forwards to backwards (and vice versa), and forwards once to backwards once (and vice versa). It has no effect on cycle or bounce.</p>
+
+<h2 id="compatibility-issues">Compatibility Issues</h2>
+
+<p>None known.</p>
+
+<h2 id="releases">Releases</h2>
+
+<p>First included in A043.</p>
 
 		</div>
 		
 <div class="post__tags tags clearfix">
 	<svg class="icon icon-tag" width="16" height="16" viewBox="0 0 16 16"><path d="M16 9.5c0 .373-.24.74-.5 1l-5 5c-.275.26-.634.5-1 .5-.373 0-.74-.24-1-.5L1 8a2.853 2.853 0 0 1-.7-1C.113 6.55 0 5.973 0 5.6V1.4C0 1.034.134.669.401.401.67.134 1.034 0 1.4 0h4.2c.373 0 .95.113 1.4.3.45.187.732.432 1 .7l7.5 7.502c.26.274.5.632.5.998zM3.5 5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg>
 	<ul class="tags__list">
-		<li class="tags__item"><a class="tags__link btn" href="../../../tags/stock-features/" rel="tag">stock features</a></li>
+		<li class="tags__item"><a class="tags__link btn" href="../../../tags/new-features/" rel="tag">new features</a></li>
 	</ul>
 </div>
 	</article>
@@ -182,10 +160,10 @@
 	
 <nav class="post-nav flex">
 	<div class="post-nav__item post-nav__item--prev">
-		<a class="post-nav__link" href="../../../posts/tenori-on/goals/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Tenori-On : Project Introduction and Goals</p></a>
+		<a class="post-nav__link" href="../../../posts/tenori-on/gridmode/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Grid Layer Mode</p></a>
 	</div>
 	<div class="post-nav__item post-nav__item--next">
-		<a class="post-nav__link" href="../../../posts/tenori-on/perlayermidichannel/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Per layer midi channels</p></a>
+		<a class="post-nav__link" href="../../../posts/tenori-on/releases/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Releases</p></a>
 	</div>
 </nav>
 	

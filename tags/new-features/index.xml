@@ -6,10 +6,19 @@
     <description>Recent content in New Features on pika.blue</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 22 Mar 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 11 Oct 2025 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://pika.blue/tags/new-features/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Direction change</title>
+      <link>http://pika.blue/posts/tenori-on/directionchange/</link>
+      <pubDate>Sat, 11 Oct 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/directionchange/</guid>
+      <description>This function allows Score, Random and Draw type layers to change their playing direction.</description>
+    </item>
     
     <item>
       <title>Grid Layer Mode</title>
