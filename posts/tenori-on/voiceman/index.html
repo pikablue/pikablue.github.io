@@ -119,157 +119,368 @@ button:disabled, button[disabled=disabled] {
  
  .fle {
     background: lightgrey;
-}
-
+    
  </style>
  
 
 <p><div id="scriptver" class="fle" style="font-weight:bold">Not Loaded</div></p>
 
-<table>
+<table style="text-align: center;" >
 <thead>
 <tr>
-<th align="center">Load</th>
-<th align="center">File</th>
-<th align="center">Play</th>
-<th align="center">Save</th>
-<th align="center">Del</th>
+<th>Load<th>File<th>Play<th>Save<th>Del<th class="tadv">Note</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
-<td align="center"><button class="but load" id="load16">16</button></td>
-<td align="center"><div id="file16" class="fle">Not Loaded</div></td>
-<td align="center"><button class="but play" id="play16" disabled> &#x25ba; </button></td>
-<td align="center"><button class="but save" id="save16" disabled> &#128427; </button></td>
-<td align="center"><button class="but dead" id="dead16" disabled> &#10799; </button></td>
-</tr>
-
+<td><button class="but load"  id="load16">16</button>
+<td><div    class="fle"       id="file16" >Not Loaded</div>
+<td><button class="but play"  id="play16" disabled> &#x25ba; </button>
+<td><button class="but save"  id="save16" disabled> &#128427; </button>
+<td><button class="but dead"  id="dead16" disabled> &#10799; </button>
+<td class="tadv"><select      id="note16" disabled class="note" > </select>
+</td> </tr>
 <tr>
-<td align="center"><button class="but load" id="load15">15</button></td>
-<td align="center"><div id="file15"  class="fle">Not Loaded</div></td>
-<td align="center"><button class="but play" id="play15" disabled> &#x25ba; </button></td>
-<td align="center"><button class="but save" id="save15" disabled> &#128427; </button></td>
-<td align="center"><button class="but dead" id="dead15" disabled> &#10799; </button></td>
-</tr>
-
+<td><button class="but load"  id="load15">15</button>
+<td><div    class="fle"       id="file15" >Not Loaded</div>
+<td><button class="but play"  id="play15" disabled> &#x25ba; </button>
+<td><button class="but save"  id="save15" disabled> &#128427; </button>
+<td><button class="but dead"  id="dead15" disabled> &#10799; </button>
+<td class="tadv"><select      id="note15" disabled class="note" > </select>
+</td> </tr>
 <tr>
-<td align="center"><button class="but load" id="load14">14</button></td>
-<td align="center"><div id="file14"  class="fle">Not Loaded</div></td>
-<td align="center"><button class="but play" id="play14" disabled> &#x25ba; </button></td>
-<td align="center"><button class="but save" id="save14" disabled> &#128427; </button></td>
-<td align="center"><button class="but dead" id="dead14" disabled> &#10799; </button></td>
-</tr>
-
+<td><button class="but load"  id="load14">14</button>
+<td><div    class="fle"       id="file14" >Not Loaded</div>
+<td><button class="but play"  id="play14" disabled> &#x25ba; </button>
+<td><button class="but save"  id="save14" disabled> &#128427; </button>
+<td><button class="but dead"  id="dead14" disabled> &#10799; </button>
+<td class="tadv"><select      id="note14" disabled class="note" > </select>
+</td> </tr>
 <tr>
-<td align="center"><button class="but load" id="load13">13</button></td>
-<td align="center"><div id="file13"  class="fle">Not Loaded</div></td>
-<td align="center"><button class="but play" id="play13" disabled> &#x25ba; </button></td>
-<td align="center"><button class="but save" id="save13" disabled> &#128427; </button></td>
-<td align="center"><button class="but dead" id="dead13" disabled> &#10799; </button></td>
-</tr>
-
+<td><button class="but load"  id="load13">13</button>
+<td><div    class="fle"       id="file13" >Not Loaded</div>
+<td><button class="but play"  id="play13" disabled> &#x25ba; </button>
+<td><button class="but save"  id="save13" disabled> &#128427; </button>
+<td><button class="but dead"  id="dead13" disabled> &#10799; </button>
+<td class="tadv"><select      id="note13" disabled class="note" > </select>
+</td> </tr>
 <tr>
-<td align="center"><button class="but load" id="load12">12</button></td>
-<td align="center"><div id="file12"  class="fle">Not Loaded</div></td>
-<td align="center"><button class="but play" id="play12" disabled> &#x25ba; </button></td>
-<td align="center"><button class="but save" id="save12" disabled> &#128427; </button></td>
-<td align="center"><button class="but dead" id="dead12" disabled> &#10799; </button></td>
-</tr>
-
+<td><button class="but load"  id="load12">12</button>
+<td><div    class="fle"       id="file12" >Not Loaded</div>
+<td><button class="but play"  id="play12" disabled> &#x25ba; </button>
+<td><button class="but save"  id="save12" disabled> &#128427; </button>
+<td><button class="but dead"  id="dead12" disabled> &#10799; </button>
+<td class="tadv"><select      id="note12" disabled class="note" > </select>
+</td> </tr>
 <tr>
-<td align="center"><button class="but load" id="load11">11</button></td>
-<td align="center"><div id="file11"  class="fle">Not Loaded</div></td>
-<td align="center"><button class="but play" id="play11" disabled> &#x25ba; </button></td>
-<td align="center"><button class="but save" id="save11" disabled> &#128427; </button></td>
-<td align="center"><button class="but dead" id="dead11" disabled> &#10799; </button></td>
-</tr>
-
+<td><button class="but load"  id="load11">11</button>
+<td><div    class="fle"       id="file11" >Not Loaded</div>
+<td><button class="but play"  id="play11" disabled> &#x25ba; </button>
+<td><button class="but save"  id="save11" disabled> &#128427; </button>
+<td><button class="but dead"  id="dead11" disabled> &#10799; </button>
+<td class="tadv"><select      id="note11" disabled class="note" > </select>
+</td> </tr>
 <tr>
-<td align="center"><button class="but load" id="load10">10</button></td>
-<td align="center"><div id="file10"  class="fle">Not Loaded</div></td>
-<td align="center"><button class="but play" id="play10" disabled> &#x25ba; </button></td>
-<td align="center"><button class="but save" id="save10" disabled> &#128427; </button></td>
-<td align="center"><button class="but dead" id="dead10" disabled> &#10799; </button></td>
-</tr>
-
+<td><button class="but load"  id="load10">10</button>
+<td><div    class="fle"       id="file10" >Not Loaded</div>
+<td><button class="but play"  id="play10" disabled> &#x25ba; </button>
+<td><button class="but save"  id="save10" disabled> &#128427; </button>
+<td><button class="but dead"  id="dead10" disabled> &#10799; </button>
+<td class="tadv"><select      id="note10" disabled class="note" > </select>
+</td> </tr>
 <tr>
-<td align="center"><button class="but load" id="load9">09</button></td>
-<td align="center"><div id="file9"  class="fle">Not Loaded</div></td>
-<td align="center"><button class="but play" id="play9" disabled> &#x25ba; </button></td>
-<td align="center"><button class="but save" id="save9" disabled> &#128427; </button></td>
-<td align="center"><button class="but dead" id="dead9" disabled> &#10799; </button></td>
-</tr>
-
+<td><button class="but load"  id="load9">09</button>
+<td><div    class="fle"       id="file9" >Not Loaded</div>
+<td><button class="but play"  id="play9" disabled> &#x25ba; </button>
+<td><button class="but save"  id="save9" disabled> &#128427; </button>
+<td><button class="but dead"  id="dead9" disabled> &#10799; </button>
+<td class="tadv"><select      id="note9" disabled class="note" > </select>
+</td> </tr>
 <tr>
-<td align="center"><button class="but load" id="load8">08</button></td>
-<td align="center"><div id="file8"  class="fle">Not Loaded</div></td>
-<td align="center"><button class="but play" id="play8" disabled> &#x25ba; </button></td>
-<td align="center"><button class="but save" id="save8" disabled> &#128427; </button></td>
-<td align="center"><button class="but dead" id="dead8" disabled> &#10799; </button></td>
-</tr>
-
+<td><button class="but load"  id="load8">08</button>
+<td><div    class="fle"       id="file8" >Not Loaded</div>
+<td><button class="but play"  id="play8" disabled> &#x25ba; </button>
+<td><button class="but save"  id="save8" disabled> &#128427; </button>
+<td><button class="but dead"  id="dead8" disabled> &#10799; </button>
+<td class="tadv"><select      id="note8" disabled class="note" > </select>
+</td> </tr>
 <tr>
-<td align="center"><button class="but load" id="load7">07</button></td>
-<td align="center"><div id="file7"  class="fle">Not Loaded</div></td>
-<td align="center"><button class="but play" id="play7" disabled> &#x25ba; </button></td>
-<td align="center"><button class="but save" id="save7" disabled> &#128427; </button></td>
-<td align="center"><button class="but dead" id="dead7" disabled> &#10799; </button></td>
-</tr>
-
+<td><button class="but load"  id="load7">07</button>
+<td><div    class="fle"       id="file7" >Not Loaded</div>
+<td><button class="but play"  id="play7" disabled> &#x25ba; </button>
+<td><button class="but save"  id="save7" disabled> &#128427; </button>
+<td><button class="but dead"  id="dead7" disabled> &#10799; </button>
+<td class="tadv"><select      id="note7" disabled class="note" > </select>
+</td> </tr>
 <tr>
-<td align="center"><button class="but load" id="load6">06</button></td>
-<td align="center"><div id="file6"  class="fle">Not Loaded</div></td>
-<td align="center"><button class="but play" id="play6" disabled> &#x25ba; </button></td>
-<td align="center"><button class="but save" id="save6" disabled> &#128427; </button></td>
-<td align="center"><button class="but dead" id="dead6" disabled> &#10799; </button></td>
-</tr>
-
+<td><button class="but load"  id="load6">06</button>
+<td><div    class="fle"       id="file6" >Not Loaded</div>
+<td><button class="but play"  id="play6" disabled> &#x25ba; </button>
+<td><button class="but save"  id="save6" disabled> &#128427; </button>
+<td><button class="but dead"  id="dead6" disabled> &#10799; </button>
+<td class="tadv"><select      id="note6" disabled class="note" > </select>
+</td> </tr>
 <tr>
-<td align="center"><button class="but load" id="load5">05</button></td>
-<td align="center"><div id="file5"  class="fle">Not Loaded</div></td>
-<td align="center"><button class="but play" id="play5" disabled> &#x25ba; </button></td>
-<td align="center"><button class="but save" id="save5" disabled> &#128427; </button></td>
-<td align="center"><button class="but dead" id="dead5" disabled> &#10799; </button></td>
-</tr>
-
+<td><button class="but load"  id="load5">05</button>
+<td><div    class="fle"       id="file5" >Not Loaded</div>
+<td><button class="but play"  id="play5" disabled> &#x25ba; </button>
+<td><button class="but save"  id="save5" disabled> &#128427; </button>
+<td><button class="but dead"  id="dead5" disabled> &#10799; </button>
+<td class="tadv"><select      id="note5" disabled class="note" > </select>
+</td> </tr>
 <tr>
-<td align="center"><button class="but load" id="load4">04</button></td>
-<td align="center"><div id="file4"  class="fle">Not Loaded</div></td>
-<td align="center"><button class="but play" id="play4" disabled> &#x25ba; </button></td>
-<td align="center"><button class="but save" id="save4" disabled> &#128427; </button></td>
-<td align="center"><button class="but dead" id="dead4" disabled> &#10799; </button></td>
-</tr>
-
+<td><button class="but load"  id="load4">04</button>
+<td><div    class="fle"       id="file4" >Not Loaded</div>
+<td><button class="but play"  id="play4" disabled> &#x25ba; </button>
+<td><button class="but save"  id="save4" disabled> &#128427; </button>
+<td><button class="but dead"  id="dead4" disabled> &#10799; </button>
+<td class="tadv"><select      id="note4" disabled class="note" > </select>
+</td> </tr>
 <tr>
-<td align="center"><button class="but load" id="load3">03</button></td>
-<td align="center"><div id="file3"  class="fle">Not Loaded</div></td>
-<td align="center"><button class="but play" id="play3" disabled> &#x25ba; </button></td>
-<td align="center"><button class="but save" id="save3" disabled> &#128427; </button></td>
-<td align="center"><button class="but dead" id="dead3" disabled> &#10799; </button></td>
-</tr>
-
+<td><button class="but load"  id="load3">03</button>
+<td><div    class="fle"       id="file3" >Not Loaded</div>
+<td><button class="but play"  id="play3" disabled> &#x25ba; </button>
+<td><button class="but save"  id="save3" disabled> &#128427; </button>
+<td><button class="but dead"  id="dead3" disabled> &#10799; </button>
+<td class="tadv"><select      id="note3" disabled class="note" > </select>
+</td> </tr>
 <tr>
-<td align="center"><button class="but load" id="load2">02</button></td>
-<td align="center"><div id="file2"  class="fle">Not Loaded</div></td>
-<td align="center"><button class="but play" id="play2" disabled> &#x25ba; </button></td>
-<td align="center"><button class="but save" id="save2" disabled> &#128427; </button></td>
-<td align="center"><button class="but dead" id="dead2" disabled> &#10799; </button></td>
-</tr>
-
+<td><button class="but load"  id="load2">02</button>
+<td><div    class="fle"       id="file2" >Not Loaded</div>
+<td><button class="but play"  id="play2" disabled> &#x25ba; </button>
+<td><button class="but save"  id="save2" disabled> &#128427; </button>
+<td><button class="but dead"  id="dead2" disabled> &#10799; </button>
+<td class="tadv"><select      id="note2" disabled class="note" > </select>
+</td> </tr>
 <tr>
-<td align="center"><button class="but load" id="load1">01</button></td>
-<td align="center"><div id="file1"  class="fle">Not Loaded</div></td>
-<td align="center"><button class="but play" id="play1" disabled> &#x25ba; </button></td>
-<td align="center"><button class="but save" id="save1" disabled> &#128427; </button></td>
-<td align="center"><button class="but dead" id="dead1" disabled> &#10799; </button></td>
-</tr>
+<td><button class="but load"  id="load1">01</button>
+<td><div    class="fle"       id="file1" >Not Loaded</div>
+<td><button class="but play"  id="play1" disabled> &#x25ba; </button>
+<td><button class="but save"  id="save1" disabled> &#128427; </button>
+<td><button class="but dead"  id="dead1" disabled> &#10799; </button>
+<td class="tadv"><select      id="note1" disabled class="note" > </select>
+</td> </tr>
 </tbody>
 </table>
 
 <p><button class="but" id="loadTnw">Load TNW file</button>
-<button class="but" id="saveTnw" disabled>Save TNW file</button></p>
+<button class="but" id="saveTnw" disabled>Save TNW file</button>
+<button class="but" id="advancedMode" style="float: right;">Enable Advanced Mode</button></p>
+
+<p><label for="splitslots" class="adv">Split across:</label>
+<select id="splitslots" name="splitslots" class="adv">
+    <option value="16">16</option>
+    <option value="8">8</option>
+    <option value="4">4</option>
+    <option value="2">2</option>
+</select>
+<button class="but adv" id="loadSplit">Load WAV and Split</button>
+<button class="but adv" id="defaultNotes">Default Notes and Alloc</button></p>
+
+<p><button class="choose adv" id="choose1"  style="width:30px" disabled>1</button>
+<button class="choose adv" id="choose2"  style="width:30px" disabled>2</button>
+<button class="choose adv" id="choose3"  style="width:30px" disabled>3</button>
+<button class="choose adv" id="choose4"  style="width:30px" disabled>4</button>
+<button class="choose adv" id="choose5"  style="width:30px" disabled>5</button>
+<button class="choose adv" id="choose6"  style="width:30px" disabled>6</button>
+<button class="choose adv" id="choose7"  style="width:30px" disabled>7</button>
+<button class="choose adv" id="choose8"  style="width:30px" disabled>8</button>
+<button class="choose adv" id="choose9"  style="width:30px" disabled>9</button>
+<button class="choose adv" id="choose10" style="width:30px" disabled>10</button>
+<button class="choose adv" id="choose11" style="width:30px" disabled>11</button>
+<button class="choose adv" id="choose12" style="width:30px" disabled>12</button>
+<button class="choose adv" id="choose13" style="width:30px" disabled>13</button>
+<button class="choose adv" id="choose14" style="width:30px" disabled>14</button>
+<button class="choose adv" id="choose15" style="width:30px" disabled>15</button>
+<button class="choose adv" id="choose16" style="width:30px" disabled>16</button>
+<button class="adv" id="fillAlloc" disabled>Autoallocate</button></p>
+
+<table class="fixed adv" style="text-align: center;" >
+<col width="40"/>
+<col width="40"/>
+<col width="40"/>
+<col width="40"/>
+<col width="40"/>
+<col width="40"/>
+<col width="40"/>
+<col width="40"/>
+<col width="40"/>
+<col width="40"/>
+<col width="40"/>
+<col width="40"/>
+<col width="40"/>
+<thead>
+<tr>
+<th> </th>
+<th>C </th>
+<th>C#</th>
+<th>D </th>
+<th>D#</th>
+<th>E </th>
+<th>F </th>
+<th>F#</th>
+<th>G </th>
+<th>G#</th>
+<th>A </th>
+<th>A#</th>
+<th>B </th>
+</tr>
+</thead>
+
+
+<tbody>
+<tr> <td>9</td>
+<td><button class="assigg" id="n120" disabled>13</button></td>
+<td><button class="assigg" id="n121" disabled>14</button></td>
+<td><button class="assigg" id="n122" disabled>15</button></td>
+<td><button class="assigg" id="n123" disabled>16</button></td>
+<td><button class="assigg" id="n124" disabled>1</button></td>
+<td><button class="assigg" id="n125" disabled>2</button></td>
+<td><button class="assigg" id="n126" disabled>3</button></td>
+<td><button class="assigg" id="n127" disabled>4</button></td>
+</tr>
+<tr> <td>8</td>
+<td><button class="assigg" id="n108" disabled>1</button></td>
+<td><button class="assigg" id="n109" disabled>2</button></td>
+<td><button class="assigg" id="n110" disabled>3</button></td>
+<td><button class="assigg" id="n111" disabled>4</button></td>
+<td><button class="assigg" id="n112" disabled>5</button></td>
+<td><button class="assigg" id="n113" disabled>6</button></td>
+<td><button class="assigg" id="n114" disabled>7</button></td>
+<td><button class="assigg" id="n115" disabled>8</button></td>
+<td><button class="assigg" id="n116" disabled>9</button></td>
+<td><button class="assigg" id="n117" disabled>10</button></td>
+<td><button class="assigg" id="n118" disabled>11</button></td>
+<td><button class="assigg" id="n119" disabled>12</button></td>
+</tr>
+<tr> <td>7</td>
+<td><button class="assigg" id="n096" disabled>5</button></td>
+<td><button class="assigg" id="n097" disabled>6</button></td>
+<td><button class="assigg" id="n098" disabled>7</button></td>
+<td><button class="assigg" id="n099" disabled>8</button></td>
+<td><button class="assigg" id="n100" disabled>9</button></td>
+<td><button class="assigg" id="n101" disabled>10</button></td>
+<td><button class="assigg" id="n102" disabled>11</button></td>
+<td><button class="assigg" id="n103" disabled>12</button></td>
+<td><button class="assigg" id="n104" disabled>13</button></td>
+<td><button class="assigg" id="n105" disabled>14</button></td>
+<td><button class="assigg" id="n106" disabled>15</button></td>
+<td><button class="assigg" id="n107" disabled>16</button></td>
+</tr>
+<tr> <td>6</td>
+<td><button class="assigg" id="n084" disabled>9</button></td>
+<td><button class="assigg" id="n085" disabled>10</button></td>
+<td><button class="assigg" id="n086" disabled>11</button></td>
+<td><button class="assigg" id="n087" disabled>12</button></td>
+<td><button class="assigg" id="n088" disabled>13</button></td>
+<td><button class="assigg" id="n089" disabled>14</button></td>
+<td><button class="assigg" id="n090" disabled>15</button></td>
+<td><button class="assigg" id="n091" disabled>16</button></td>
+<td><button class="assigg" id="n092" disabled>1</button></td>
+<td><button class="assigg" id="n093" disabled>2</button></td>
+<td><button class="assigg" id="n094" disabled>3</button></td>
+<td><button class="assigg" id="n095" disabled>4</button></td>
+</tr>
+<tr> <td>5</td>
+<td><button class="assigg" id="n072" disabled>13</button></td>
+<td><button class="assigg" id="n073" disabled>14</button></td>
+<td><button class="assigg" id="n074" disabled>15</button></td>
+<td><button class="assigg" id="n075" disabled>16</button></td>
+<td><button class="assigg" id="n076" disabled>1</button></td>
+<td><button class="assigg" id="n077" disabled>2</button></td>
+<td><button class="assigg" id="n078" disabled>3</button></td>
+<td><button class="assigg" id="n079" disabled>4</button></td>
+<td><button class="assigg" id="n080" disabled>5</button></td>
+<td><button class="assigg" id="n081" disabled>6</button></td>
+<td><button class="assigg" id="n082" disabled>7</button></td>
+<td><button class="assigg" id="n083" disabled>8</button></td>
+</tr>
+<tr> <td>4</td>
+<td><button class="assigg" id="n060" disabled>1</button></td>
+<td><button class="assigg" id="n061" disabled>2</button></td>
+<td><button class="assigg" id="n062" disabled>3</button></td>
+<td><button class="assigg" id="n063" disabled>4</button></td>
+<td><button class="assigg" id="n064" disabled>5</button></td>
+<td><button class="assigg" id="n065" disabled>6</button></td>
+<td><button class="assigg" id="n066" disabled>7</button></td>
+<td><button class="assigg" id="n067" disabled>8</button></td>
+<td><button class="assigg" id="n068" disabled>9</button></td>
+<td><button class="assigg" id="n069" disabled>10</button></td>
+<td><button class="assigg" id="n070" disabled>11</button></td>
+<td><button class="assigg" id="n071" disabled>12</button></td>
+</tr>
+<tr> <td>3</td>
+<td><button class="assigg" id="n048" disabled>5</button></td>
+<td><button class="assigg" id="n049" disabled>6</button></td>
+<td><button class="assigg" id="n050" disabled>7</button></td>
+<td><button class="assigg" id="n051" disabled>8</button></td>
+<td><button class="assigg" id="n052" disabled>9</button></td>
+<td><button class="assigg" id="n053" disabled>10</button></td>
+<td><button class="assigg" id="n054" disabled>11</button></td>
+<td><button class="assigg" id="n055" disabled>12</button></td>
+<td><button class="assigg" id="n056" disabled>13</button></td>
+<td><button class="assigg" id="n057" disabled>14</button></td>
+<td><button class="assigg" id="n058" disabled>15</button></td>
+<td><button class="assigg" id="n059" disabled>16</button></td>
+</tr>
+<tr> <td>2</td>
+<td><button class="assigg" id="n036" disabled>9</button></td>
+<td><button class="assigg" id="n037" disabled>10</button></td>
+<td><button class="assigg" id="n038" disabled>11</button></td>
+<td><button class="assigg" id="n039" disabled>12</button></td>
+<td><button class="assigg" id="n040" disabled>13</button></td>
+<td><button class="assigg" id="n041" disabled>14</button></td>
+<td><button class="assigg" id="n042" disabled>15</button></td>
+<td><button class="assigg" id="n043" disabled>16</button></td>
+<td><button class="assigg" id="n044" disabled>1</button></td>
+<td><button class="assigg" id="n045" disabled>2</button></td>
+<td><button class="assigg" id="n046" disabled>3</button></td>
+<td><button class="assigg" id="n047" disabled>4</button></td>
+</tr>
+<tr> <td>1</td>
+<td><button class="assigg" id="n024" disabled>13</button></td>
+<td><button class="assigg" id="n025" disabled>14</button></td>
+<td><button class="assigg" id="n026" disabled>15</button></td>
+<td><button class="assigg" id="n027" disabled>16</button></td>
+<td><button class="assigg" id="n028" disabled>1</button></td>
+<td><button class="assigg" id="n029" disabled>2</button></td>
+<td><button class="assigg" id="n030" disabled>3</button></td>
+<td><button class="assigg" id="n031" disabled>4</button></td>
+<td><button class="assigg" id="n032" disabled>5</button></td>
+<td><button class="assigg" id="n033" disabled>6</button></td>
+<td><button class="assigg" id="n034" disabled>7</button></td>
+<td><button class="assigg" id="n035" disabled>8</button></td>
+</tr>
+<tr> <td>0</td>
+<td><button class="assigg" id="n012" disabled>1</button></td>
+<td><button class="assigg" id="n013" disabled>2</button></td>
+<td><button class="assigg" id="n014" disabled>3</button></td>
+<td><button class="assigg" id="n015" disabled>4</button></td>
+<td><button class="assigg" id="n016" disabled>5</button></td>
+<td><button class="assigg" id="n017" disabled>6</button></td>
+<td><button class="assigg" id="n018" disabled>7</button></td>
+<td><button class="assigg" id="n019" disabled>8</button></td>
+<td><button class="assigg" id="n020" disabled>9</button></td>
+<td><button class="assigg" id="n021" disabled>10</button></td>
+<td><button class="assigg" id="n022" disabled>11</button></td>
+<td><button class="assigg" id="n023" disabled>12</button></td>
+</tr>
+<tr> <td>-1</td>
+<td><button class="assigg" id="n000" disabled>5</button></td>
+<td><button class="assigg" id="n001" disabled>6</button></td>
+<td><button class="assigg" id="n002" disabled>7</button></td>
+<td><button class="assigg" id="n003" disabled>8</button></td>
+<td><button class="assigg" id="n004" disabled>9</button></td>
+<td><button class="assigg" id="n005" disabled>10</button></td>
+<td><button class="assigg" id="n006" disabled>11</button></td>
+<td><button class="assigg" id="n007" disabled>12</button></td>
+<td><button class="assigg" id="n008" disabled>13</button></td>
+<td><button class="assigg" id="n009" disabled>14</button></td>
+<td><button class="assigg" id="n010" disabled>15</button></td>
+<td><button class="assigg" id="n011" disabled>16</button></td>
+</tr>
+</tbody>
+</table>
 
 <script type="text/javascript" src="../../../js/FileSaver.js"></script>
 <script type="text/javascript" src="../../../js/voicemanager.js"></script>
@@ -311,17 +522,17 @@ button:disabled, button[disabled=disabled] {
 	<div class="widget__content">
 		<ul class="widget__list">
 			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/releases/">Releases</a></li>
-			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/directionchange/">Direction change</a></li>
-			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/gridmode/">Grid Layer Mode</a></li>
-			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/transport/">MIDI Transport Controls</a></li>
-			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/animations/">Animations</a></li>
+			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/effects/">Effects (reverb, chorus, echo)</a></li>
+			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/splits/">Splits</a></li>
+			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/pitchbend/">Pitch bend</a></li>
+			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/midilatency/">Managing midi latency</a></li>
 		</ul>
 	</div>
 </div>
 <div class="widget-taglist widget">
 	<h4 class="widget__title">Tags</h4>
 	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="../../../tags/new-features" title="New features">New features (40)</a>
+		<a class="widget-taglist__link widget__link btn" href="../../../tags/new-features" title="New features">New features (42)</a>
 		<a class="widget-taglist__link widget__link btn" href="../../../tags/project-plan" title="Project plan">Project plan (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="../../../tags/stock-features" title="Stock features">Stock features (3)</a>
 		<a class="widget-taglist__link widget__link btn" href="../../../tags/tools" title="Tools">Tools (2)</a>
@@ -342,7 +553,7 @@ button:disabled, button[disabled=disabled] {
 		</div>
 		<footer class="footer">
 	<div class="container container-inner">
-		<div class="footer__copyright">&copy; 2025 pika.blue. <span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and a modified <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span></div>
+		<div class="footer__copyright">&copy; 2026 pika.blue. <span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and a modified <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span></div>
 	</div>
 </footer>
 

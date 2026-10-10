@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Effects (reverb, chorus)</title>
+	<title>Effects (reverb, chorus, echo)</title>
 	<meta name="description" content="">
 	<meta name="generator" content="Hugo 0.48" />
 	
@@ -56,17 +56,77 @@
 <main class="main content">
 	<article class="post">
 		<header class="post__header">
-			<h1 class="post__title">Effects (reverb, chorus)</h1><div class="post__meta meta">
+			<h1 class="post__title">Effects (reverb, chorus, echo)</h1><div class="post__meta meta">
 <svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-<time class="post__meta-date meta-date" datetime="2021-07-10T00:00:00">July 10, 2021</time>
+<time class="post__meta-date meta-date" datetime="2026-10-09T00:00:00">October 09, 2026</time>
 <span class="post__meta-categories meta-categories">
 	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
 	<span class="meta-categories__list"><a class="meta-categories__link" href="../../../categories/tenori-on" rel="category">tenori-on</a></span>
 </span></div>
-		</header><div class="post__content clearfix">
-			<p>This feature unlocks some marginally different effects already in the TNR.</p>
+		</header>
+<div class="post__toc toc">
+	<div class="toc__title">Page content</div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#new-echo-effect">New echo effect</a></li>
+<li><a href="#additional-reverb-chorus-effects">Additional reverb &amp; chorus effects</a></li>
+<li><a href="#per-layer-effects">Per layer effects</a></li>
+<li><a href="#compatibility-issues">Compatibility Issues</a></li>
+<li><a href="#releases">Releases</a></li>
+</ul></li>
+</ul>
+</nav>
+	</div>
+</div>
+<div class="post__content clearfix">
+			<p>This feature adds some new reverb and chorus effects, adds an echo effect, and applies them per layer rather than globally.</p>
 
 <p></p>
+
+<h2 id="new-echo-effect">New echo effect</h2>
+
+<p>In addition to reverb, and chorus, this function adds a new user-adjustable echo effects. The user can define three different types of echo (imaginatively labelled A, B, and C) and then apply them to layers as desired - each layer can have one of the three echo types, or none. This enables some layers to have very fast, single pulse, slapback type echoes, whereas other layers can have many gradual fading notes sounding.</p>
+
+<p>Although the time between echoes is part of the layer effects page (see later), the parameters of the echo itself are setup within the effects menu.</p>
+
+<table>
+<thead>
+<tr>
+<th><img src="../../../images/echomenu.png" alt="" title="Echo Effect" /></th>
+<th><img src="../../../images/echochoice.png" alt="" title="Setting echo" /></th>
+</tr>
+</thead>
+
+<tbody>
+</tbody>
+</table>
+
+<p>This has the following parameters:</p>
+
+<ul>
+<li><p>Count : Options are Infinite, 1, 2, or 3. For settings other than infinite, this limits the number of echoes coming after the note.</p></li>
+
+<li><p>Level : Options are OFF, -32, -48 or -64. This sets the base note velocity (effectively volume) that the echoes are played at. For the TNR default note velocity of 100, choosing -48 means the echos start at half the velocity of initially played note.</p></li>
+
+<li><p>Fade : Options are 0, -8, -16, -24. This sets the change in velocity for subsequent echoes. Choosing -8 means that the echoes fade away slowly, -24 means they fade fast.</p></li>
+
+<li><p>Pan : Options are OFF, Near, Mid and Wide. This rather limited effect causes echoes to ping-pong between stereo positions, with the stereo separation either relatively small, or wide. This effect is clumsy and only really suitable for notes with short duration, because the TNR has to pan the whole layer from left to right.</p></li>
+
+<li><p>Decel : Options are OFF or ON. When active, the time gap between subsequent echoes increases by about 25% each echo, slowing down gradually.</p></li>
+</ul>
+
+<p>Note that the combination of Count=INF and Fade=0 would mean that the echoes would never end and the number of playing sounds would quickly exceed the TNR capability; consequently this combination is treated as if Fader were a very gentle -4.</p>
+
+<p>The layers reverb and chorus settings are applied to echoing notes.</p>
+
+<p>Note 1 : echo doesn&rsquo;t work very well with Push mode, since the velocity of the original playing note is unavoidably modified by the echo. There might be a fix for this but I haven&rsquo;t found it yet.</p>
+
+<p>Note 2 : Echoes are not currently <a href="../../../posts/tenori-on/midilatency/">delayed</a> for performance reasons. Let me know if this causes an issue!</p>
+
+<h2 id="additional-reverb-chorus-effects">Additional reverb &amp; chorus effects</h2>
 
 <p>The stock TNR firmware has 9 reverb types (Hall 1 &amp; 2, Room 1-3, Stage 1 &amp; 2, and Plate 1 &amp; 2) and 5 chorus types (Chorus 1-3, and Flanger 1 &amp; 2). In fact more types are available as can be seen in both the response to remote mode commands, the MIDI implementation chart from other Yamaha devices with identical hardware, as well as dissassembly of the TG code.</p>
 
@@ -265,13 +325,43 @@
     </tbody>
 </table>
 
+<h2 id="per-layer-effects">Per layer effects</h2>
+
+<p>The stock firmware applies these effects to all layers, as a global setting. Whether the effect is applied or not can now be selected on a per-layer basis. This is selected from within the layer menu:</p>
+
+<table>
+<thead>
+<tr>
+<th><img src="../../../images/layerfx.png" alt="" title="Layer Effects" /></th>
+<th><img src="../../../images/layerfxchoice.png" alt="" title="Setting effect" /></th>
+</tr>
+</thead>
+
+<tbody>
+</tbody>
+</table>
+
+<p>This has the following parameters:</p>
+
+<ul>
+<li><p>Chorus : Options are ON or OFF. The layer either has the global chorus effect (Flanger, Celeste, etc.) applied at the level defined by the chorus parameter, or it has no chorus at all.</p></li>
+
+<li><p>Reverb : Options are ON or OFF. The layer either has the global reverb (Stage, Room, etc.) effect applied at the level defined by the reverb parameter, or it has no reverb at all.</p></li>
+
+<li><p>Echo : Options are OFF, A B or C. The layer either has no echo, or one of the three echo types applied (A, B, or C) as described above.</p></li>
+
+<li><p>Time : Options are ¼, ½, 1, 1½, 2, 2⅔, 3, 4, 5, 5⅔, 6, 6⅓, 7, 8 , 12 or 16. This is the delay between echos. The units are a bit arbitrary, but, at a loop speed of 8, choosing a setting of 1 will result in the echo of a note in score mode in column 1 being simultaneous with a note in column 2.</p></li>
+</ul>
+
+<p>Like Reverb and Chorus settings, echos are saved in &ldquo;all blocks&rdquo; files as well as by &ldquo;Save As Default&rdquo; under System menu.</p>
+
 <h2 id="compatibility-issues">Compatibility Issues</h2>
 
 <p>None known.</p>
 
 <h2 id="releases">Releases</h2>
 
-<p>Additional types unlocked in A034.</p>
+<p>Additional types unlocked in A034. Echo effect and per-layer effects added in A044.</p>
 		</div>
 		
 <div class="post__tags tags clearfix">
@@ -296,10 +386,10 @@
 	
 <nav class="post-nav flex">
 	<div class="post-nav__item post-nav__item--prev">
-		<a class="post-nav__link" href="../../../posts/tenori-on/meta_velpan/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Layer Meta Controllers</p></a>
+		<a class="post-nav__link" href="../../../posts/tenori-on/splits/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Splits</p></a>
 	</div>
 	<div class="post-nav__item post-nav__item--next">
-		<a class="post-nav__link" href="../../../posts/tenori-on/splits/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Splits</p></a>
+		<a class="post-nav__link" href="../../../posts/tenori-on/releases/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Releases</p></a>
 	</div>
 </nav>
 	
@@ -310,17 +400,17 @@
 	<div class="widget__content">
 		<ul class="widget__list">
 			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/releases/">Releases</a></li>
-			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/directionchange/">Direction change</a></li>
-			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/gridmode/">Grid Layer Mode</a></li>
-			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/transport/">MIDI Transport Controls</a></li>
-			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/animations/">Animations</a></li>
+			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/effects/">Effects (reverb, chorus, echo)</a></li>
+			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/splits/">Splits</a></li>
+			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/pitchbend/">Pitch bend</a></li>
+			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/midilatency/">Managing midi latency</a></li>
 		</ul>
 	</div>
 </div>
 <div class="widget-taglist widget">
 	<h4 class="widget__title">Tags</h4>
 	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="../../../tags/new-features" title="New features">New features (40)</a>
+		<a class="widget-taglist__link widget__link btn" href="../../../tags/new-features" title="New features">New features (42)</a>
 		<a class="widget-taglist__link widget__link btn" href="../../../tags/project-plan" title="Project plan">Project plan (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="../../../tags/stock-features" title="Stock features">Stock features (3)</a>
 		<a class="widget-taglist__link widget__link btn" href="../../../tags/tools" title="Tools">Tools (2)</a>
@@ -341,7 +431,7 @@
 		</div>
 		<footer class="footer">
 	<div class="container container-inner">
-		<div class="footer__copyright">&copy; 2025 pika.blue. <span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and a modified <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span></div>
+		<div class="footer__copyright">&copy; 2026 pika.blue. <span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and a modified <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span></div>
 	</div>
 </footer>
 

@@ -6,7 +6,7 @@
     <description>Recent content in Tenori On on pika.blue</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 25 Oct 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 10 Oct 2026 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://pika.blue/categories/tenori-on/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>Releases</title>
       <link>http://pika.blue/posts/tenori-on/releases/</link>
-      <pubDate>Sat, 25 Oct 2025 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 10 Oct 2026 00:00:00 +0000</pubDate>
       
       <guid>http://pika.blue/posts/tenori-on/releases/</guid>
       <description>&lt;p&gt;This page contains a link to the releases so far.&lt;/p&gt;
@@ -23,7 +23,45 @@
     </item>
     
     <item>
-      <title>Direction change</title>
+      <title>Effects (reverb, chorus, echo)</title>
+      <link>http://pika.blue/posts/tenori-on/effects/</link>
+      <pubDate>Fri, 09 Oct 2026 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/effects/</guid>
+      <description>&lt;p&gt;This feature adds some new reverb and chorus effects, adds an echo effect, and applies them per layer rather than globally.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Splits</title>
+      <link>http://pika.blue/posts/tenori-on/splits/</link>
+      <pubDate>Fri, 09 Oct 2026 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/splits/</guid>
+      <description>This function extends all layer modes with a variety of &amp;ldquo;splits&amp;rdquo;, providing dynamic changes of octave, velocity, note length, pan, and many others.</description>
+    </item>
+    
+    <item>
+      <title>Pitch bend</title>
+      <link>http://pika.blue/posts/tenori-on/pitchbend/</link>
+      <pubDate>Thu, 08 Oct 2026 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/pitchbend/</guid>
+      <description>This function adds the response to the MIDI channel pitch bend message.</description>
+    </item>
+    
+    <item>
+      <title>Managing midi latency</title>
+      <link>http://pika.blue/posts/tenori-on/midilatency/</link>
+      <pubDate>Sun, 04 Oct 2026 00:00:00 +0000</pubDate>
+      
+      <guid>http://pika.blue/posts/tenori-on/midilatency/</guid>
+      <description>This function allows the sound made by the TNR to be slightly delayed relative to the MIDI note-on messages.</description>
+    </item>
+    
+    <item>
+      <title>Direction Change</title>
       <link>http://pika.blue/posts/tenori-on/directionchange/</link>
       <pubDate>Sat, 11 Oct 2025 00:00:00 +0000</pubDate>
       
@@ -210,26 +248,6 @@
       
       <guid>http://pika.blue/posts/tenori-on/sendto/</guid>
       <description>&lt;p&gt;This function acts similarly to the &amp;ldquo;Send&amp;rdquo; metacontroller, but is enabled &amp;amp; disabled via key combination.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Splits</title>
-      <link>http://pika.blue/posts/tenori-on/splits/</link>
-      <pubDate>Sat, 01 Jan 2022 00:00:00 +0000</pubDate>
-      
-      <guid>http://pika.blue/posts/tenori-on/splits/</guid>
-      <description>This function extends all layer modes with octave, velocity, note length, pan, probabilistic, offbeat, sharp/flat, sustain and portamento splits.</description>
-    </item>
-    
-    <item>
-      <title>Effects (reverb, chorus)</title>
-      <link>http://pika.blue/posts/tenori-on/effects/</link>
-      <pubDate>Sat, 10 Jul 2021 00:00:00 +0000</pubDate>
-      
-      <guid>http://pika.blue/posts/tenori-on/effects/</guid>
-      <description>&lt;p&gt;This feature unlocks some marginally different effects already in the TNR.&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
     </item>

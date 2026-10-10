@@ -58,33 +58,83 @@
 		<header class="post__header">
 			<h1 class="post__title">Splits</h1><div class="post__meta meta">
 <svg class="icon icon-time" width="16" height="14" viewBox="0 0 16 16"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-<time class="post__meta-date meta-date" datetime="2022-01-01T00:00:00">January 01, 2022</time>
+<time class="post__meta-date meta-date" datetime="2026-10-09T00:00:00">October 09, 2026</time>
 <span class="post__meta-categories meta-categories">
 	<svg class="icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
 	<span class="meta-categories__list"><a class="meta-categories__link" href="../../../categories/tenori-on" rel="category">tenori-on</a></span>
 </span></div>
-		</header><div class="post__content clearfix">
+		</header>
+<div class="post__toc toc">
+	<div class="toc__title">Page content</div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#menu-selection">Menu selection</a></li>
+<li><a href="#note-behaviour">Note behaviour</a></li>
+<li><a href="#split-layout-in-layers">Split layout in layers</a></li>
+<li><a href="#implementation-in-different-layer-types">Implementation in different layer types</a></li>
+<li><a href="#compatibility-issues">Compatibility Issues</a></li>
+<li><a href="#releases">Releases</a></li>
+</ul></li>
+</ul>
+</nav>
+	</div>
+</div>
+<div class="post__content clearfix">
 			
 
-<p>This function extends all layer modes with octave, velocity, note length, pan, probabilistic, offbeat, sharp/flat, sustain and portamento splits.</p>
+<p>This function extends all layer modes with a variety of &ldquo;splits&rdquo;, providing dynamic changes of octave, velocity, note length, pan, and many others.</p>
+
+<h2 id="overview">Overview</h2>
+
+<p>Splits can be applied to instruments, but not to meta controllers or CC layers.</p>
+
+<p>If a split is selected, it acts to sacrifice the top 3 pitched notes of the block, and uses these to select between a number of different modifiers for the notes. Thus the note range is &ldquo;split&rdquo; into normal instrument notes (bottom 13) and modifiers (top 3).</p>
+
+<p>The following splits are available</p>
 
 <ul>
-<li><p>It is quite frustrating that the normal TNR limits the &ldquo;playable&rdquo; range of one block to the range of the selected scale and the octave setting. This new feature allows the octave to be one higher, or one lower, than the selected setting dynamically.</p></li>
+<li><p>Octave : The played notes can be one octave higher, or one lower, than the selected layer setting.</p></li>
 
-<li><p>The SWL-01 chip can actually produce a much more interesting range of notes than the TNR will allow it, in particular by allowing modification of the note velocity away from the default of 100. This new feature allows the velocity to be changed per note (from 3 options), allowing, for example, more musically dynamic drums and other effects.</p></li>
+<li><p>Velocity (i.e. how hard the note is played). This allows dynamic modification of the note velocity away from the default of 100. This split allows the velocity to be changed per note (from 3 options), allowing, for example, more musically dynamic drums and other effects.</p></li>
 
-<li><p>This feature allows the sound length to be dynamically halved, or doubled, allowing a larger range of expression.</p></li>
+<li><p>Sound length : this split allows the sound length to be dynamically halved, or doubled</p></li>
 
-<li><p>The probabilistic, or chance, split, provides true randomness to whether notes play.</p></li>
+<li><p>Probability : The probabilistic, or chance, split, provides true randomness to whether notes play.</p></li>
 
-<li><p>The offbeat split allows score layers to play repeated or offbeat notes, in each column.</p></li>
+<li><p>Offbeat : The offbeat split allows score layers to play repeated or offbeat notes, in each column.</p></li>
 
-<li><p>The sharp/flat (or accidental) split allows easy sharpening or flattening of notes</p></li>
+<li><p>Sharp/flat : The sharp/flat (or accidental) split allows easy sharpening or flattening of notes.</p></li>
 
-<li><p>The sustain split can be used to emulate the action of the sostenuto and sustain pedals on a piano</p></li>
+<li><p>Sustain : The sustain split can be used to emulate the action of the sostenuto and sustain pedals on a piano</p></li>
 
-<li><p>The portamento split turns portamento on/off - although the audio of the TNR does not support portamento, this is meant to support other synths that do.</p></li>
+<li><p>Portamento : this turns portamento on/off - although the audio of the TNR does not support portamento, this is meant to support other synths that do.</p></li>
+
+<li><p>Modulation : this split adds 50% or 100% modulation to the playing note (similar to using the mod wheel on a keyboard)</p></li>
+
+<li><p>Attack time : this split allows the attack time of the note to be increased from the sounds default</p></li>
+
+<li><p>Release time : this split allows the attack time of the note to be increased or decreased from the sounds default</p></li>
+
+<li><p>Timbre : this split allows the timbre of the sound to be increased from the sounds default</p></li>
+
+<li><p>Brightness : this split allows the brightness of the sound to be increased or decreased from the sounds default</p></li>
+
+<li><p>Expression (volume) : this split allows the volume of the note to be temporarily reduced similar to the expression controller</p></li>
+
+<li><p>Reverb depth : this split allows the reverb depth to be turned off to maximum.</p></li>
+
+<li><p>Chorus depth : this split allows the chirus depth to be turned off to maximum.</p></li>
+
+<li><p>Conditional play : these splits allow notes to either play or not depending on the block count within a grouping of four - this is explained further below</p></li>
+
+<li><p>Echo : where an echo effect is active on the layer, this split allows the echo to be turned on &amp; off on a per note basis, but also the echo buffer to be purged stopping all currently echoing notes</p></li>
 </ul>
+
+<h2 id="menu-selection">Menu selection</h2>
 
 <p>This function is a property of the layer, and is selected under the layer menu.</p>
 
@@ -100,7 +150,9 @@
 </tbody>
 </table>
 
-<p>These features - only one of which can be selected at a time - act to sacrifice the top 3 pitched notes of the block, and use these to select which of the three octaves/velocities/sound lengths/probabilities are wanted. Thus the note range is &ldquo;split&rdquo; into normal instrument notes (bottom 13) and expression (top 3). The following table shows the behaviour of the 3 expression notes in the various splits.</p>
+<h2 id="note-behaviour">Note behaviour</h2>
+
+<p>The following table shows the behaviour of the 3 modifier notes in the various splits. The default condition is highlighted in bold.</p>
 
 <table>
 <thead>
@@ -116,27 +168,27 @@
 <tr>
 <td>Octave</td>
 <td>+1 octave</td>
-<td>Default octave</td>
+<td><strong>Default octave</strong></td>
 <td>-1 octave</td>
 </tr>
 
 <tr>
 <td>Velocity</td>
 <td>127</td>
-<td>100</td>
+<td><strong>100</strong></td>
 <td>73</td>
 </tr>
 
 <tr>
 <td>Length</td>
 <td>2x default</td>
-<td>default</td>
+<td><strong>Default</strong></td>
 <td><sup>1</sup>&frasl;<sub>2</sub> x default</td>
 </tr>
 
 <tr>
 <td>Probability</td>
-<td>100%</td>
+<td>**100% **</td>
 <td>50%</td>
 <td>25%</td>
 </tr>
@@ -144,39 +196,104 @@
 <tr>
 <td>Pan</td>
 <td>Right</td>
-<td>Center</td>
+<td><strong>Center</strong></td>
 <td>Left</td>
 </tr>
 
 <tr>
 <td>Offbeat</td>
 <td>Double note</td>
-<td>Onbeat single note</td>
+<td><strong>Onbeat single note</strong></td>
 <td>Offbeat single note</td>
 </tr>
 
 <tr>
 <td>Sharp/Flat</td>
 <td>+1 semitone</td>
-<td>no change</td>
+<td><strong>No Change</strong></td>
 <td>-1 semitone</td>
 </tr>
 
 <tr>
 <td>Sustain</td>
 <td>Sostenuto on</td>
-<td>No pedals</td>
+<td><strong>No pedals</strong></td>
 <td>Sustain on</td>
 </tr>
 
 <tr>
 <td>Portamento</td>
 <td>On</td>
-<td>Off</td>
+<td><strong>Off</strong></td>
 <td>On</td>
+</tr>
+
+<tr>
+<td>Modulation</td>
+<td>100%</td>
+<td>50%</td>
+<td><strong>Off</strong></td>
+</tr>
+
+<tr>
+<td>Attack time</td>
+<td>Maximum</td>
+<td>Increased</td>
+<td><strong>Normal</strong></td>
+</tr>
+
+<tr>
+<td>Release time</td>
+<td>Maximum</td>
+<td><strong>Normal</strong></td>
+<td>Minimum</td>
+</tr>
+
+<tr>
+<td>Timbre</td>
+<td>Maximum</td>
+<td>Increased</td>
+<td><strong>Normal</strong></td>
+</tr>
+
+<tr>
+<td>Brightness</td>
+<td>Maximum</td>
+<td><strong>Normal</strong></td>
+<td>Minimum</td>
+</tr>
+
+<tr>
+<td>Expression</td>
+<td><strong>Normal</strong></td>
+<td>Quieter</td>
+<td>Much quieter</td>
+</tr>
+
+<tr>
+<td>Reverb Depth</td>
+<td>Maximum</td>
+<td><strong>Default</strong></td>
+<td>Off</td>
+</tr>
+
+<tr>
+<td>Chorus Depth</td>
+<td>Maximum</td>
+<td><strong>Default</strong></td>
+<td>Off</td>
+</tr>
+
+<tr>
+<td>Conditionals</td>
+<td><strong>All blocks</strong></td>
+<td>Fewer blocks</td>
+<td>Fewest blocks</td>
 </tr>
 </tbody>
 </table>
+
+<h2 id="split-layout-in-layers">Split layout in layers</h2>
 
 <p>For layers where pitch increases vertically - i.e. score, random, draw - the top 3 rows of the TNR adjust the split expression value. For layers where pitch increases horizontally - i.e. bounce - the rightmost 3 rows of the adjust the split expression value. In push mode, the top <sup>1</sup>&frasl;<sub>4</sub> of the screen is the &ldquo;Top&rdquo; expression value, the bottom <sup>1</sup>&frasl;<sub>4</sub> of the grid is the &ldquo;Bottom&rdquo; expression value, and the middle <sup>1</sup>&frasl;<sub>2</sub> of the grid is the Middle expression value. Currently in solo mode, the split is handled as per bounce mode, but this may change in later releases since this is a particularly inefficient use of grid real estate.</p>
 
@@ -196,28 +313,36 @@
 </tbody>
 </table>
 
-<p>Not all layer types have all split types implemented.</p>
+<p>The split modified is retained until the next split modifier, i.e. the split latches. This is easily seen in score mode, and is fun to use in bounce mode, using the bounce to vary the velocity or octave randomly.</p>
+
+<p>In score mode, a split directive in the same column as a note will strictly apply (i.e. before) that note plays. This is required in order to make &ldquo;chords&rdquo; in score mode behave predictably. For the other layer types, this has not been enforced, and depends on the order in which the notes were originally entered.</p>
+
+<h2 id="implementation-in-different-layer-types">Implementation in different layer types</h2>
+
+<p>Not all layer types have all split types implemented. Grid does not have any splits, since it is driven externally.</p>
 
 <table>
 <thead>
 <tr>
 <th>Split type</th>
-<th>Score<br>Score256</th>
-<th>Random<br>Bounce<br>Draw</th>
+<th>Score<br>ScoreX<br>Life</th>
+<th>Random<br>RandomXY<br>Bounce<br>Draw</th>
 <th>Push</th>
 <th>Solo</th>
 <th>Abacus</th>
+<th>Rain</th>
 </tr>
 </thead>
 
 <tbody>
 <tr>
-<td>Octave</td>
+<td>Octave<br>Sharp/Flat</td>
 <td>Y</td>
 <td>Y</td>
 <td>Y</td>
 <td>Y</td>
-<td>N</td>
+<td>Y</td>
+<td>Y</td>
 </tr>
 
 <tr>
@@ -227,6 +352,7 @@
 <td>Y</td>
 <td>Y</td>
 <td>N</td>
+<td>Y</td>
 </tr>
 
 <tr>
@@ -236,6 +362,7 @@
 <td>N</td>
 <td>Y</td>
 <td>N</td>
+<td>Y</td>
 </tr>
 
 <tr>
@@ -244,7 +371,8 @@
 <td>Y</td>
 <td>N</td>
 <td>Y</td>
-<td>N</td>
+<td>Y</td>
+<td>Y</td>
 </tr>
 
 <tr>
@@ -254,6 +382,7 @@
 <td>Y</td>
 <td>Y</td>
 <td>N</td>
+<td>Y</td>
 </tr>
 
 <tr>
@@ -263,14 +392,6 @@
 <td>N</td>
 <td>N</td>
 <td>N</td>
-</tr>
-
-<tr>
-<td>Sharp/Flat</td>
-<td>Y</td>
-<td>Y</td>
-<td>Y</td>
-<td>Y</td>
 <td>N</td>
 </tr>
 
@@ -281,6 +402,7 @@
 <td>Y</td>
 <td>Y</td>
 <td>N</td>
+<td>Y</td>
 </tr>
 
 <tr>
@@ -290,21 +412,78 @@
 <td>Y</td>
 <td>Y</td>
 <td>N</td>
+<td>Y</td>
+</tr>
+
+<tr>
+<td>Modulation</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>N</td>
+<td>Y</td>
+</tr>
+
+<tr>
+<td>Attack Time<br>Release Time<br>Timbre<br>Brightness</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>N</td>
+<td>Y</td>
+</tr>
+
+<tr>
+<td>Expression</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>N</td>
+<td>Y</td>
+</tr>
+
+<tr>
+<td>Reverb depth<br>Chorus depth<br></td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>N</td>
+<td>Y</td>
+</tr>
+
+<tr>
+<td>Conditionals</td>
+<td>Y</td>
+<td>N</td>
+<td>N</td>
+<td>N</td>
+<td>N</td>
+<td>N</td>
+</tr>
+
+<tr>
+<td>Echo</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>N</td>
+<td>Y</td>
 </tr>
 </tbody>
 </table>
 
-<p>The split modified is retained until the next split modifier, i.e. the split latches. This is easily seen in score mode, and is fun to use in bounce mode, using the bounce to vary the velocity or octave randomly.</p>
-
-<p>In score mode, a split directive in the same column as a note will strictly apply (i.e. before) that note plays. This is required in order to make &ldquo;chords&rdquo; in score mode behave predictably. For the other layer types, this has not been enforced, and depends on the order in which the notes were originally entered.</p>
-
 <h2 id="compatibility-issues">Compatibility Issues</h2>
 
-<p>Loading songs/blocks saved in previous releases may confuse the split code, and unexpected results may occur.</p>
+<p>None known</p>
 
 <h2 id="releases">Releases</h2>
 
-<p>First included in A015. Probabilistic/Chance and Pan splits in A028. Offbeat splits in A029. Sharp/Flat in A033. Sustain &amp; Portamento in A035.</p>
+<p>First included in A015. Probabilistic/Chance and Pan splits in A028. Offbeat splits in A029. Sharp/Flat in A033. Sustain &amp; Portamento in A035. Modulation, Attack &amp; Release time, Timbre, Brightness, Expression, Reverb &amp; Chorus depth, Conditionals and Echo added in A044</p>
 
 		</div>
 		
@@ -330,10 +509,10 @@
 	
 <nav class="post-nav flex">
 	<div class="post-nav__item post-nav__item--prev">
-		<a class="post-nav__link" href="../../../posts/tenori-on/effects/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Effects (reverb, chorus)</p></a>
+		<a class="post-nav__link" href="../../../posts/tenori-on/pitchbend/" rel="prev"><span class="post-nav__caption">«&thinsp;Previous</span><p class="post-nav__post-title">Pitch bend</p></a>
 	</div>
 	<div class="post-nav__item post-nav__item--next">
-		<a class="post-nav__link" href="../../../posts/tenori-on/sendto/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Send to Layer</p></a>
+		<a class="post-nav__link" href="../../../posts/tenori-on/effects/" rel="next"><span class="post-nav__caption">Next&thinsp;»</span><p class="post-nav__post-title">Effects (reverb, chorus, echo)</p></a>
 	</div>
 </nav>
 	
@@ -344,17 +523,17 @@
 	<div class="widget__content">
 		<ul class="widget__list">
 			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/releases/">Releases</a></li>
-			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/directionchange/">Direction change</a></li>
-			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/gridmode/">Grid Layer Mode</a></li>
-			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/transport/">MIDI Transport Controls</a></li>
-			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/animations/">Animations</a></li>
+			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/effects/">Effects (reverb, chorus, echo)</a></li>
+			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/splits/">Splits</a></li>
+			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/pitchbend/">Pitch bend</a></li>
+			<li class="widget__item"><a class="widget__link" href="../../../posts/tenori-on/midilatency/">Managing midi latency</a></li>
 		</ul>
 	</div>
 </div>
 <div class="widget-taglist widget">
 	<h4 class="widget__title">Tags</h4>
 	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="../../../tags/new-features" title="New features">New features (40)</a>
+		<a class="widget-taglist__link widget__link btn" href="../../../tags/new-features" title="New features">New features (42)</a>
 		<a class="widget-taglist__link widget__link btn" href="../../../tags/project-plan" title="Project plan">Project plan (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="../../../tags/stock-features" title="Stock features">Stock features (3)</a>
 		<a class="widget-taglist__link widget__link btn" href="../../../tags/tools" title="Tools">Tools (2)</a>
@@ -375,7 +554,7 @@
 		</div>
 		<footer class="footer">
 	<div class="container container-inner">
-		<div class="footer__copyright">&copy; 2025 pika.blue. <span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and a modified <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span></div>
+		<div class="footer__copyright">&copy; 2026 pika.blue. <span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and a modified <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span></div>
 	</div>
 </footer>
 

@@ -1,7 +1,8 @@
 // v1 : Audition only
 // v2 : TNW saving
+// v3 : WAV Splits
 
-const VERSION = "Voice Manager v2 11/10/24";
+const VERSION = "Voice Manager v3 11/07/26";
 // ==========================================================
 // Global Variable declarations
 const DEBUG = true;
@@ -17,6 +18,9 @@ const CORRECTION = "048C048C048C048C0C840C840C840C84048CE26A048CE26A0C84EA620C84
 
 const MAXFILESIZE = 2739296;
 
+const NOTENAMES = ["C-1","C#-1","D-1","D#-1","E-1","F-1","F#-1","G-1","G#-1","A-1","A#-1","B-1","C0","C#0","D0","D#0","E0","F0","F#0","G0","G#0","A0","A#0","B0","C1","C#1","D1","D#1","E1","F1","F#1","G1","G#1","A1","A#1","B1","C2","C#2","D2","D#2","E2","F2","F#2","G2","G#2","A2","A#2","B2","C3","C#3","D3","D#3","E3","F3","F#3","G3","G#3","A3","A#3","B3","C4","C#4","D4","D#4","E4","F4","F#4","G4","G#4","A4","A#4","B4","C5","C#5","D5","D#5","E5","F5","F#5","G5","G#5","A5","A#5","B5","C6","C#6","D6","D#6","E6","F6","F#6","G6","G#6","A6","A#6","B6","C7","C#7","D7","D#7","E7","F7","F#7","G7","G#7","A7","A#7","B7","C8","C#8","D8","D#8","E8","F8","F#8","G8","G#8","A8","A#8","B8","C9","C#9","D9","D#9","E9","F9","F#9","G9"]
+
+
 // __________________________________________________________
 // A FileReader object to allow us to load files
 const reader = new FileReader();
@@ -26,12 +30,20 @@ const reader = new FileReader();
 // these are loaded as WAV files. 
 const dataWAV = new Array(16);
 
-for (let i =0; i<dataWAV.length; i++) {
-		dataWAV[i] = new ArrayBuffer();
-}
+for (let i =0; i<dataWAV.length; i++) dataWAV[i] = new ArrayBuffer();
+
+// The length of time each slot takes
+const dataTime = new Array(16);
+for (let i =0; i<dataWAV.length; i++) dataTime[i] = 0.0;
 
 // Number of currently occupied slots
 let numberLoaded = 0;
+
+// Whether advanced mode has been selected
+let advancedMode = false;
+
+// Whether a slot chooser has been selected
+let chosenSlot = 0;
 
 // __________________________________________________________
 // Global name of input file (TNW or WAV) just for populating text fields
@@ -51,6 +63,8 @@ const load = document.querySelectorAll("button.load");
 const play = document.querySelectorAll("button.play");
 const save = document.querySelectorAll("button.save");
 const dead = document.querySelectorAll("button.dead");
+const note = document.querySelectorAll("select.note");
+const choose = document.querySelectorAll("button.choose");
 
 // ==========================================================
 // Functions
@@ -68,6 +82,10 @@ function hex2buf(string) {
     for (let i = 0; i < string.length;)
         uint8array[i / 2] = Number.parseInt(string.slice(i, i += 2), 16);
     return uint8array;
+}
+
+function pad(num, size){
+	return ('000000000' + num).substr(-size);
 }
 
 // __________________________________________________________
@@ -148,7 +166,10 @@ function dataWAVadd(n,a) {
 
 // Checks the format, and trims if needed
 // ab is the input arraybuffer
-function fnWavCheck(n,ab) {
+// n is the starting slot
+// slots is the number of slots to span (normally 1)
+// returns the time
+function fnWavCheck(n,ab,slots) {
 	if (DEBUG)  {console.log("fnWavCheck");}
 
 	if (DEBUG)  {console.log("DataWAV is "+dataWAV[n-1].byteLength+" bytes long");}
@@ -178,19 +199,23 @@ function fnWavCheck(n,ab) {
 		return;
 	}
 	
-	// Set the file to the header
-	dataWAV[n-1] = ab.slice(0,12);
+	// Set the headers
+	let buftemp = ab.slice(0,12);
+	for (let i = 0; i< slots; i++) {
+		let j = n-1+i;
+		if (DEBUG)  {console.log("DataWAV slot "+j+" is "+dataWAV[j].byteLength+" bytes long");}
+		dataWAV[j] = buftemp;
+	}
 
-
-	
 	let inptr = 12;		// the dataptr to the first header
-	let outptr = 12;		// the dataptr to the first header
+	// let outptr = 12;		// the dataptr to the first header
 
 	let audioformat = 0;
 	let channels = 0;
 	let rate = 0;
 	let bits = 0;
 	let audiolength = 0;
+	let bytesPerSample = 0;
 	
 	// make sure we have enough bytes to read the format ID
 	while (inptr<(ab.byteLength-8)) {		
@@ -210,11 +235,16 @@ function fnWavCheck(n,ab) {
 			// Parse the fmt chunk
 			audioformat = wavView.getUint16(inptr+8,true);	// PCM=1
 			channels = wavView.getUint16(inptr+10,true);	// mono or stereo
-			rate = wavView.getUint32(inptr+12,true);		// 
-			bits = wavView.getUint16(inptr+22,true);
+			rate = wavView.getUint32(inptr+12,true);		// sample rate (Hz)
+			bits = wavView.getUint16(inptr+22,true);		// bits per sample
 			// Copy the header over and move the output along
-			dataWAVadd(n-1,ab.slice(inptr,inptr+hlen));
-			outptr+= hlen;
+			buftemp = ab.slice(inptr,inptr+hlen);
+
+			for (let i = 0; i< slots; i++) {
+				dataWAVadd(n-1+i, buftemp)
+			}
+
+			// outptr+= hlen;
 
 		} else if ( fnChunkName(temp) == "data" ) {
 			if (DEBUG)  {console.log("SubchunkID is data");}
@@ -228,6 +258,15 @@ function fnWavCheck(n,ab) {
 				wavView.setUint32(inptr+4,audiolength,true);
 				truncated = true;
 			}
+			
+			// audiolength is the total length of the data in the incoming file
+			if (slots>1) {
+				// we need to split it up into slots group but split the channels correctly
+				bytesPerSample = (bits/8)*channels	;
+				audiolength = bytesPerSample * Math.floor (audiolength / (bytesPerSample * slots) ) ;
+				truncated = true;
+			}
+				
 			// Truncate the WAV file to 171168 = 0x29CA0 bytes (TNR max)
 			let maxwav = 171168;
 			
@@ -237,28 +276,42 @@ function fnWavCheck(n,ab) {
 				wavView.setUint32(inptr+4,audiolength, true);
 				truncated = true;
 			}
-			// we scale fast over the last 500 samples (usually 0.01s)
-			if (truncated === true) {
-				console.log("Fading volume to avoid clip");
-				let nsamples = 1000;
-				let loc = inptr+audiolength+8;
-				for (let i=0;i<nsamples;i++) {
-					loc -= 2*channels;
-					let frac = i/nsamples;
-					let v = wavView.getInt16(loc,true);
-					wavView.setInt16(loc,v*frac,true);
-					if (channels==2) {
-						v = wavView.getInt16(loc+2,true);
-						wavView.setInt16(loc+2,v*frac,true);
-					}
-				}
-					
-			}
-			// Copy the chunk header over and move the output along
-			dataWAVadd(n-1,ab.slice(inptr,inptr+audiolength+8));
-			outptr+=audiolength+8 ;
-			// Fade the volume down if we are truncating to avoid pops
 
+			// write all the chunk headers = 
+			buftemp = new ArrayBuffer(8);
+			new DataView(buftemp).setUint32(0, 1635017060, true);	// 'data'
+			new DataView(buftemp).setUint32(4, audiolength, true);
+			for (let i = 0; i< slots; i++) {
+				dataWAVadd(n-1+i, buftemp)
+			}
+			inptr +=8;
+			
+			for (let i = 0; i< slots; i++) {
+		
+				// Fade the volume down if we are truncating to avoid pops
+				// we scale fast over the last 500 samples (usually 0.01s)
+				if (truncated === true) {
+					console.log("Fading volume to avoid clip in slot "+(i+1));
+					let nsamples = 1000;
+					let loc = inptr+audiolength;
+					for (let j=0;j<nsamples;j++) {
+						loc -= 2*channels;
+						let frac = j/nsamples;
+						let v = wavView.getInt16(loc,true);
+						wavView.setInt16(loc,v*frac,true);
+						if (channels==2) {
+							v = wavView.getInt16(loc+2,true);
+							wavView.setInt16(loc+2,v*frac,true);
+						}
+					}
+						
+				}
+				// Copy the chunk header over and move the output along
+				dataWAVadd(n-1+i,ab.slice(inptr,inptr+audiolength));
+				inptr += audiolength;
+			// outptr+=audiolength+8 ;
+			}
+			
 
 			
 			// We might as well skip the rest of the file
@@ -271,6 +324,10 @@ function fnWavCheck(n,ab) {
 		inptr += hlen;
 
 	}
+
+	// work out the time : audiolength is bytes
+	let time = 1.0 * ( audiolength / bytesPerSample ) / rate;
+	for (let i = 0; i< slots; i++) dataTime[n-1+i] = time;	// in s
 				
 	if (DEBUG) {
 		console.log("  PCM:" + audioformat);
@@ -278,15 +335,18 @@ function fnWavCheck(n,ab) {
 		console.log("  Rate:" + rate);
 		console.log("  bits:" + bits);
 		console.log("  length:" + audiolength);
+		console.log("  time:"+ time);
 		console.log("DataWAV is "+dataWAV[n-1].byteLength+" bytes long");
 	}
+	
+	
 
 
 	// Overwrite the length in the header
-	wavView = new DataView(dataWAV[n-1]);
-	wavView.setUint32(4,dataWAV[n-1].byteLength,true);
+	//wavView = new DataView(dataWAV[n-1]);
+	//wavView.setUint32(4,dataWAV[n-1].byteLength,true);
 
-	return;
+	return time;
 
 }		
 
@@ -312,7 +372,7 @@ function fnWavInput(n, inputFile) {
 	reader.onload = function() {
 		if (DEBUG) {console.log(reader.result);}
 		
-		fnWavCheck(n,reader.result);
+		fnWavCheck(n,reader.result,1);
 		
 		
 		// console.log(buf2hex(r.result));
@@ -330,9 +390,15 @@ function fnWavInput(n, inputFile) {
 		document.getElementById("play"+n).disabled = false;
 		document.getElementById("save"+n).disabled = false;
 		document.getElementById("dead"+n).disabled = false;
-	
+		document.getElementById("choose"+n).disabled = false;
+		for (let i=0;i<128; i++) {
+			document.getElementById("n"+pad(i,3)).disabled = false ;
+		}
+		document.getElementById("note"+n).disabled = false;
+
 		// Enable the saveTnw button
 		document.getElementById("saveTnw").disabled = false;
+		document.getElementById("fillAlloc").disabled = false;
 
 
 	};
@@ -395,9 +461,15 @@ function fnDeadWav(e) {
 	document.getElementById("play"+n).disabled = true;
 	document.getElementById("save"+n).disabled = true;
 	document.getElementById("dead"+n).disabled = true;
+	document.getElementById("note"+n).disabled = true;
+	document.getElementById("choose"+n).disabled = true;
+	
+	if (n==chosenSlot) { fnUpdateSlot(0); } ;
 	
 	// Clear the slot
-	dataWAV[n-1].length = 0;
+	dataWAV[n-1] =  new ArrayBuffer();
+	if (DEBUG) {console.log("cleared length "+dataWAV[n-1].byteLength);}
+	
 	
 	// If all are dead, disable the Save TNW button
 	if (numberLoaded > 0) {
@@ -405,6 +477,10 @@ function fnDeadWav(e) {
 	}
 	if (numberLoaded == 0) {
 		document.getElementById("saveTnw").disabled = true;
+		document.getElementById("fillAlloc").disabled = true;
+		for (let i=0;i<128; i++) {
+			document.getElementById("n"+pad(i,3)).disabled = true ;
+		}
 	}
 	if (DEBUG) {console.log("Slots in use : "+numberLoaded);}
 
@@ -517,7 +593,27 @@ function fnSaveTnw() {
 	view.setUint16(20,filelength>>16,true);
 	view.setUint16(22,filelength&0xFFFF,true);
 	
-	
+	// write the notes
+	let bytePointer = 0x3A8;
+	for (let i=0 ; i<16; i++) {
+		let n = i+1;
+		let midinote = 127-document.getElementById("note"+n).selectedIndex
+		view.setUint16(bytePointer,midinote,false);
+		view.setUint16(bytePointer + 0x270,midinote,false);
+		bytePointer += 30;
+	}
+
+	// write the elements
+	bytePointer = 0x326;
+	for (let i=0 ; i<128; i+=2) {
+		let slot1 = parseInt( document.getElementById("n"+pad(i,3)).textContent ) -1;
+		let slot2 = parseInt( document.getElementById("n"+pad(i+1,3)).textContent ) -1;
+		let slot3 = 256*slot2 + slot1;
+		view.setUint16(bytePointer,slot3,false);
+		view.setUint16(bytePointer + 0x270,slot3,false);
+		bytePointer += 2;
+	}
+						
 	// Put the name in the Title field
 	// 16 chars max, little endian
 	let slicename = filename.slice(0,16);
@@ -576,10 +672,6 @@ function fnTnwInput(inputFile) {
 		if (DEBUG) {console.log(reader.result);}
 		dataTNW=reader.result;
 		fnTnwParse();
-
-		// enable the TNW save if it isn't already
-		document.getElementById("saveTnw").disabled = false;
-
 	};
 	reader.onerror = function() {
 		window.alert("Couldn't load File");
@@ -594,125 +686,426 @@ function fnTnwInput(inputFile) {
 // This function parses the TNW file into their originating 
 // WAV files
 function fnTnwParse() {
-		if (DEBUG) {console.log("fnTnwParse");}
-		
-		// Disable the buttons just in case the slot loading fails
-		numberLoaded = 0;
-		for (let i=0; i<16; i++) {
-			let n=i+1;
-			document.getElementById("play"+n).disabled = true;
-			document.getElementById("save"+n).disabled = true;
-			document.getElementById("dead"+n).disabled = true;
-			document.getElementById("file"+n).textContent = "Not Loaded";
+	if (DEBUG) {console.log("fnTnwParse");}
+	
+	// Disable the buttons just in case the slot loading fails
+	numberLoaded = 0;
+	for (let i=0; i<16; i++) {
+		let n=i+1;
+		document.getElementById("play"+n).disabled = true;
+		document.getElementById("save"+n).disabled = true;
+		document.getElementById("dead"+n).disabled = true;
+		document.getElementById("file"+n).textContent = "Not Loaded";
+		document.getElementById("note"+n).disabled = true;
+		document.getElementById("choose"+n).disabled = true;
+	}	
 
-		}	
-
-		// Need to use Dataview in order to be sure about the endianness
-		const tnwView = new DataView(dataTNW);
-		
-		// Byte count pointer in file
-		let bytePointer = 0x3AE;
-		
-		let sampleStartL = []; 	// start position for the L samples
-		let sampleStartR = [];  // start position for the R samples
-		let sampleLength = [];
-		
-		// Get the sample lengths in the slots and allocate
-		// the start positions for the left and right channels
-		// Left slots first
-		for (let i=0; i<16; i++) {
-			let length = tnwView.getUint16(bytePointer, true);	// little endian
-			//console.log(i,length);
-			length = length * 0x20 + 0x860;
-			sampleStartL.push(length);
-			bytePointer += 4;
-			length = tnwView.getUint16(bytePointer, true);
-			sampleLength.push(length);
-			//console.log(i,length);
-			bytePointer += 26;
-		}
-		
-		bytePointer = 0x61E;
-		for (let i=0; i<16; i++) {
-			let length = tnwView.getUint16(bytePointer, true);	// little endian
-			//console.log(i,length);
-			length = length * 0x20 + 0x860;
-			sampleStartR.push(length);
-			bytePointer += 4;
-			length = tnwView.getUint16(bytePointer, true);
-			// Check the length is correct
-			if (length === 0) {
-				// nothing
-			} else if ( length !== sampleLength[i] ) {
-				console.log("Length mismatch in samples in slot ",i);
-				sampleLength[i] = 0;
-			} else {
-				length = length * 0x20;
-				sampleLength[i] = length;
-			}
-			//console.log(i,length);
-			bytePointer += 26;
-		}
-		
-		// Now convert the samples into WAV files
-		// and generate the header
-		for (let i=0; i<16; i++) {
-			let slength = sampleLength[i]
-			if (slength === 0) {
-				dataWAV[i].length = 0;
-				continue;
-			}
-
-			numberLoaded++;
+	// Need to use Dataview in order to be sure about the endianness
+	const tnwView = new DataView(dataTNW);
+	
+	// Byte count pointer in file
+	let bytePointer = 0x3AE;
+	
+	let sampleStartL = []; 	// start position for the L samples
+	let sampleStartR = [];  // start position for the R samples
+	let sampleLength = [];
 			
-			let lstart = sampleStartL[i];
-			let rstart = sampleStartR[i];
-			// console.log(lstart,rstart,slength);
-			// Generate a new array buffer of suitable length
-			let filelength = 44 + slength;
-			if (lstart !== rstart) {
-				// stereo
-				filelength = filelength + slength;
-			}
-			let wavData = new ArrayBuffer(filelength);
-			let wavView = new DataView(wavData);
-			wavView.setUint32(0,0x52494646,false);	// "RIFF"
-			wavView.setUint32(4,filelength,true);		// file length
-			if (lstart === rstart) {	// mono
-				new Uint8Array(wavData,0,wavData.byteLength).set(new Uint8Array(hex2buf(WAVMONO)),8);
-				wavView.setUint32(40,slength,true);		// sample length
-			} else {	// stereo
-				new Uint8Array(wavData,0,wavData.byteLength).set(new Uint8Array(hex2buf(WAVSTEREO)),8);
-				wavView.setUint32(40,2*slength,true);		// sample length
-			}
-			// Now we read the TNW data, converting the bytes and interleaving the data in the WAV file if required
-			let wavPointer = 44;	// WAV file write pointer
-			for (let j=0; j<slength ; j+=2) {
-				let wordin = tnwView.getUint16(lstart+j, true);
-				let wordout = fnDecode(wordin);
+	// Get the sample lengths in the slots and allocate
+	// the start positions for the left and right channels
+	// Left slots first
+	for (let i=0; i<16; i++) {
+		let length = tnwView.getUint16(bytePointer, true);	// little endian
+		//console.log(i,length);
+		length = length * 0x20 + 0x860;
+		sampleStartL.push(length);
+		bytePointer += 4;
+		length = tnwView.getUint16(bytePointer, true);
+		sampleLength.push(length);
+		//console.log(i,length);
+		bytePointer += 26;
+	}
+	
+	bytePointer = 0x61E;
+	for (let i=0; i<16; i++) {
+		let length = tnwView.getUint16(bytePointer, true);	// little endian
+		//console.log(i,length);
+		length = length * 0x20 + 0x860;
+		sampleStartR.push(length);
+		bytePointer += 4;
+		length = tnwView.getUint16(bytePointer, true);
+		// Check the length is correct
+		if (length === 0) {
+			// nothing
+		} else if ( length !== sampleLength[i] ) {
+			console.log("Length mismatch in samples in slot ",i);
+			sampleLength[i] = 0;
+		} else {
+			length = length * 0x20;
+			sampleLength[i] = length;
+		}
+		//console.log(i,length);
+		bytePointer += 26;
+	}
+	
+	// Get the notes (from the left)
+	bytePointer = 0x3A8;
+	for (let i=0; i<16; i++) {
+		let midinote = tnwView.getUint16(bytePointer, false);	// little endian
+		if (DEBUG) {console.log("Slot note ",i," read at position ",bytePointer," with note ",midinote);}
+		let n = i+1;
+		document.getElementById("note"+n).selectedIndex = 127-midinote;
+		// Check the right hand side  0x618-0x3A8
+		if (tnwView.getUint16(bytePointer+0x270,false) !== midinote) {
+			console.log("Left/right note mismatch in slot ",i);
+		}
+		
+		bytePointer += 30;	// next slot
+	}
+	
+	// Get the element allocation (from the left)
+	bytePointer = 0x326;
+	for (let i=0; i<64; i++) {
+		let word = tnwView.getUint16(bytePointer, false);
+		document.getElementById("n"+pad(i*2,3)).textContent = 1+(word&0xF);
+		document.getElementById("n"+pad(i*2+1,3)).textContent = 1+(word>>8);
+		bytePointer+=2;
+	}
+		
+	
+	
+		
+	// Now convert the samples into WAV files
+	// and generate the header
+	for (let i=0; i<16; i++) {
+		let slength = sampleLength[i]
+		if (slength === 0) {
+			dataWAV[i] = new ArrayBuffer();	// delete the old data
+			continue;
+		}
+
+		numberLoaded++;
+		
+		let lstart = sampleStartL[i];
+		let rstart = sampleStartR[i];
+		// console.log(lstart,rstart,slength);
+		// Generate a new array buffer of suitable length
+		let filelength = 44 + slength;
+		if (lstart !== rstart) {
+			// stereo
+			filelength = filelength + slength;
+		}
+		let wavData = new ArrayBuffer(filelength);
+		let wavView = new DataView(wavData);
+		wavView.setUint32(0,0x52494646,false);	// "RIFF"
+		wavView.setUint32(4,filelength,true);		// file length
+		if (lstart === rstart) {	// mono
+			new Uint8Array(wavData,0,wavData.byteLength).set(new Uint8Array(hex2buf(WAVMONO)),8);
+			wavView.setUint32(40,slength,true);		// sample length
+		} else {	// stereo
+			new Uint8Array(wavData,0,wavData.byteLength).set(new Uint8Array(hex2buf(WAVSTEREO)),8);
+			wavView.setUint32(40,2*slength,true);		// sample length
+		}
+		// Now we read the TNW data, converting the bytes and interleaving the data in the WAV file if required
+		let wavPointer = 44;	// WAV file write pointer
+		for (let j=0; j<slength ; j+=2) {
+			let wordin = tnwView.getUint16(lstart+j, true);
+			let wordout = fnDecode(wordin);
+			wavView.setUint16(wavPointer,wordout, true);
+
+			wavPointer += 2;
+			if (lstart !== rstart) {	// stereo
+				wordin = tnwView.getUint16(rstart+j, true);
+				wordout = fnDecode(wordin);
 				wavView.setUint16(wavPointer,wordout, true);
-
 				wavPointer += 2;
-				if (lstart !== rstart) {	// stereo
-					wordin = tnwView.getUint16(rstart+j, true);
-					wordout = fnDecode(wordin);
-					wavView.setUint16(wavPointer,wordout, true);
-					wavPointer += 2;
-				}
 			}
+		}
+		
+		// load the wav file into the slot
+		dataWAV[i] = wavData;
+		
+		// enable the buttons; set the filename
+		let n = i+1;
+		document.getElementById("play"+n).disabled = false;
+		document.getElementById("save"+n).disabled = false;
+		document.getElementById("dead"+n).disabled = false;
+		document.getElementById("file"+n).textContent = filenameTNW+"_"+n;
+		document.getElementById("note"+n).disabled = false;
+		document.getElementById("choose"+n).disabled = false;
+		
+
+	}
+
+	// if any slots are now filled
+	if (numberLoaded>0) {
+		document.getElementById("saveTnw").disabled = false;
+		document.getElementById("fillAlloc").disabled = false;
+	} else {
+		document.getElementById("saveTnw").disabled = true;
+		document.getElementById("fillAlloc").disabled = true;
+	}
+		
+}
+
+// __________________________________________________________
+// Loading and splitting a WAV file
+function fnLoadSplitWav() {
+	// get the
+	if (DEBUG) {console.log("fnLoadSplitWav");}
+	
+	// const n = e.id.substr(4,2);
+	
+	// Create and launch the handler
+	let input = document.createElement('input');
+    input.type = 'file';
+	input.accept = ".wav";
+	input.onchange = () => {
+		fnSplitInput(input.files[0]);
+	};
+	input.click();
+}
+
+function fnSplitInput(inputFile) {
+	// Fetch the split range value
+	e = document.getElementById("splitslots")
+	slots = +e.options[e.selectedIndex].text
+	
+	if (DEBUG) {console.log("fnSplitInput",slots,inputFile);}
+	
+	// Check for non-zero
+	if (inputFile.name=="") {
+		window.alert("No File");
+		return;
+	}
+	
+	// Check for extension
+	if ( inputFile.name.split('.').pop().toUpperCase() != "WAV" ) {
+		window.alert("Only WAV files can be loaded at present");
+		return;
+	}
 			
-			// load the wav file into the slot
-			dataWAV[i] = wavData;
-			
-			// enable the buttons; set the filename
-			let n = i+1;
+	// Read the data now using FileReader. 
+	
+	reader.onload = function() {
+		if (DEBUG) {console.log(reader.result);}
+		
+		let time = fnWavCheck(1,reader.result,slots);
+		// At 60bpm with LS = 1, we get 1 click per s. This is C4
+		// for notes <1s, we need to speed them up, so this is how many we add
+		// notes <1s have negative semitones.
+		let semitones = 12.0* Math.log2(time);
+	
+		// Run through the first n 
+		// Check if we are adding a new one
+		for (let n = 1; n<= slots; n++) {
+			if (document.getElementById("play"+n).disabled == true) {
+				numberLoaded = numberLoaded+1;
+			}
+			if (DEBUG) {console.log("Slots in use : "+numberLoaded);}
+
+			// Add into the name
+			document.getElementById("file"+n).textContent = inputFile.name.split('.')[0]+"_"+n;
+
+			// enable all the other ones
 			document.getElementById("play"+n).disabled = false;
 			document.getElementById("save"+n).disabled = false;
 			document.getElementById("dead"+n).disabled = false;
-			document.getElementById("file"+n).textContent = filenameTNW+"_"+n;
+			document.getElementById("choose"+n).disabled = false;
+		
+			// set the note based on time
+			// slot 1 would be C4 (note 60 but index 67),
+			// slot 2 C#4 (note 61 but index 66)
+			document.getElementById("note"+n).selectedIndex = (68-n)+Math.round(semitones);
 
-	}
+			// Enable the saveTnw button
+			document.getElementById("saveTnw").disabled = false;
+		}
+
+	};
+	reader.onerror = function() {
+		window.alert("Couldn't load File");
+		if (DEBUG) {console.log(reader.error);}
+		
+	};
+	
+	// Limit the file size to the max size of the TNR file (!)
+	const blob = inputFile.slice(0, MAXFILESIZE);
+	reader.readAsArrayBuffer(blob);
+
 }
+
+
+function fnSetDefaultNotes () {
+	if (DEBUG) {console.log("fnSetDefaultNotes");}
+	
+	for (let i = 1; i<= note.length; i++) {
+		document.getElementById("note"+i).selectedIndex = 68-i;	 // 127-59-i
+	}
+	let count=4;	// initial count
+	for (let i=0; i<128;i++) {
+		document.getElementById("n"+pad(i,3)).textContent = count+1;
+		count = (count+1)%16;
+	}
+
+}
+
+function fnAdvancedMode () {
+	if (DEBUG) {console.log("fnAdvancedMode");}
+
+	// if we are turning ON
+	let e = document.getElementById("advancedMode");
+	
+	if (advancedMode === false) {
+		advancedMode = true;
+		e.textContent = "Disable Advanced Mode";
+		// enable notes for which we have elements
+		for (let i = 1; i<= note.length; i++) {
+			document.getElementById("note"+i).disabled = document.getElementById("play"+i).disabled;
+		}
+		fnShowAdvanced();
+
+
+	} else {
+		advancedMode = false;		
+		e.textContent = "Enable Advanced Mode";
+		// set all the notes back to their default
+		fnSetDefaultNotes();
+		// disable all the notes
+		for (let i = 1; i<= note.length; i++) {
+			document.getElementById("note"+i).disabled = true;
+		}
+		fnHideAdvanced();
+	}
+	
+	// reset the chosenslot
+	if (chosenSlot>0) {
+		choose[chosenSlot].style.borderStyle = "none";
+	}
+
+	fnUpdateSlot(0);
+}
+
+function fnHideAdvanced () {
+	let elements=document.getElementsByClassName("adv");
+	for (let i=0;i<elements.length; i++) {
+		elements[i].style.display = 'none';
+	};
+	elements=document.getElementsByClassName("tadv");
+	for (let i=0;i<elements.length; i++) {
+		elements[i].style.display = 'none';
+	};
+}
+
+function fnShowAdvanced () {
+	let elements=document.getElementsByClassName("adv");
+	for (let i=0;i<elements.length; i++) {
+		elements[i].style.display = 'inline';
+	};
+	elements=document.getElementsByClassName("tadv");
+	for (let i=0;i<elements.length; i++) {
+		elements[i].style.display = 'table-cell';
+	};
+
+	
+}
+
+
+// Selecting a cslot
+function fnChooseSlot(e) {
+	if (DEBUG) {console.log("fnChooseSlot"+e.id);}
+	
+	const n = e.id.substr(6,2); // 'choose'
+	fnUpdateSlot(n);
+}
+
+// if n=0, and there is an old slot, clear it and return
+function fnUpdateSlot(n) {
+	
+	if ((chosenSlot>0)&&(chosenSlot!=n)) {
+		choose[chosenSlot-1].style.color = "white";
+		choose[chosenSlot-1].style.fontWeight = "normal";
+	}
+	chosenSlot = n;	
+	if (n==0) {
+		// disable all the buttons
+		for (let i=0;i<128; i++) {
+			document.getElementById("n"+pad(i,3)).disabled = true;
+		}
+		return;
+	}
+	
+	choose[chosenSlot-1].style.color = "darkgreen";
+	choose[chosenSlot-1].style.fontWeight = "bold";
+	for (let i=0;i<128; i++) {
+		document.getElementById("n"+pad(i,3)).disabled = false;
+	}
+
+}
+
+function fnAssignSlot(e) {
+	if (DEBUG) {console.log("fnAssignSlot "+e.id);}
+	e.textContent = chosenSlot;
+}
+
+function fnFillAlloc() {
+	if (DEBUG) {console.log("fnFillAlloc");}
+	
+	if (numberLoaded==0) { return; }	// nothing to do
+	
+	// do this with an array
+	let slots = new Array(128);
+	for (let i=0; i<128; i++) { slots[i]=0; }
+	
+	// populate the ones we have with the note we have
+	for (let i=1; i<=16;i++) {
+		let e = document.getElementById("note"+i);
+		if (e.disabled == true ) continue;
+		let n = 127-e.selectedIndex;
+		slots[n] = i;
+	}
+	
+
+	let nextIndex=0;
+	let lastIndex=-1000;
+	
+	// find the first index
+	for (let i=0;i<128;i++) {
+		if (slots[i]>0) {
+			nextIndex=i;
+			break;
+		}
+	}
+
+	// find the first index
+	for (let i=0;i<128;i++) {
+		// If this slot already is allocated, then make this the lastIndex
+		// and go and find the next one
+		let slot = slots[i];
+		if (slot>0) {
+			lastIndex = i;
+			nextIndex = 1000;
+			for(let j= i+1;j<128;j++) {
+				if (slots[j]>0) {
+					nextIndex = j;
+					break;
+				}
+			}
+		} else {
+			// we assign the slot based on the nearest of lastIndex and nextIndex
+			if ( (nextIndex-i)<(i-lastIndex) ) {
+				slot = slots[nextIndex];
+			} else {
+				slot = slots[lastIndex];
+			}
+		}
+		
+		// allocate it
+		document.getElementById("n"+pad(i,3)).textContent = slot;
+	}
+	
+}
+
+// TODO : autogenerate segments
 
 // ==========================================================
 // Startup code at top level
@@ -737,14 +1130,55 @@ for (let i = 0; i< dead.length; i++) {
 	dead[i].addEventListener('click', function() { fnDeadWav(this); }, false);
 }
 
+for (let i = 0; i< choose.length; i++) {
+	choose[i].addEventListener('click', function() { fnChooseSlot(this); }, false);
+}
+
+for (let i = 0; i< 128; i++) {
+	const n = document.getElementById("n"+pad(i,3));
+	n.addEventListener('click', function() { fnAssignSlot(this); }, false);
+	n.style.width = "24px";
+	n.style.height = "24px";
+	n.style.fontsize = "12px";
+	n.style.padding = "0px";
+	n.style.alignItems = "center";
+	
+}
+
 // __________________________________________________________
-// Attach hander to the save/load TNW file
+for (let i = 0; i< note.length; i++) {
+	for (let j=127; j>=0; j--) {
+		note[i].add(new Option(NOTENAMES[j]));
+	}
+}
+fnSetDefaultNotes();
+
+// __________________________________________________________
+// hack the style of the assig notes
+
+
+// __________________________________________________________
+// Attach hander to the save/load TNW file, the load and split, the advanced mode, autoalloc
 
 document.getElementById("saveTnw").addEventListener('click', function() { fnSaveTnw(); }, false );
 
 document.getElementById("loadTnw").addEventListener('click', function() { fnLoadTnw(); }, false );
 
+document.getElementById("advancedMode").addEventListener('click', function() { fnAdvancedMode(); }, false );
+
+document.getElementById("loadSplit").addEventListener('click', function() { fnLoadSplitWav(); }, false );
+
+document.getElementById("defaultNotes").addEventListener('click', function() { fnSetDefaultNotes(); }, false );
+
+document.getElementById("fillAlloc").addEventListener('click', function() { fnFillAlloc(); }, false );
+
+// __________________________________________________________
+// Report the version
 document.getElementById("scriptver").textContent = VERSION;
+
 
 // Load the TNW header
 fnFetchHeader();
+
+// Hide the advanced elements
+fnHideAdvanced();
